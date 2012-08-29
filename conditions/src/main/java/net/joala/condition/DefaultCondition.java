@@ -25,6 +25,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
+import static com.google.common.base.Preconditions.checkNotNull;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
@@ -74,6 +75,8 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   private double factor = 1.0;
 
   public DefaultCondition(@Nonnull final Expression<T> expression, @Nonnull final Timeout timeout) {
+    checkNotNull(expression, "Expression must not be null.");
+    checkNotNull(timeout, "Timeout must not be null.");
     this.expression = expression;
     this.timeout = timeout;
   }
