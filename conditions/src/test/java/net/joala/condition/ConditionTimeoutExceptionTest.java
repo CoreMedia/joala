@@ -1,0 +1,81 @@
+package net.joala.condition;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import static net.joala.condition.RandomData.randomString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+
+/**
+ * Tests {@link ConditionTimeoutException}.
+ *
+ * @since 8/24/12
+ */
+@RunWith(Parameterized.class)
+public class ConditionTimeoutExceptionTest {
+
+  @Test(expected = ConditionTimeoutException.class)
+  public void should_be_able_to_call_constructor_without_exception() throws Exception {
+    throw new ConditionTimeoutException(exceptionMessage, exceptionCause);
+  }
+
+  @Test
+  public void message_should_be_set_correctly() throws Exception {
+    try {
+      throw new ConditionTimeoutException(exceptionMessage, exceptionCause);
+    } catch (ConditionTimeoutException e) {
+      assertEquals(testMessage, exceptionMessage, e.getMessage());
+    }
+  }
+
+  @Test
+  public void cause_should_be_set_correctly() throws Exception {
+    try {
+      throw new ConditionTimeoutException(exceptionMessage, exceptionCause);
+    } catch (ConditionTimeoutException e) {
+      assertSame(testMessage, exceptionCause, e.getCause());
+    }
+  }
+
+  @Parameterized.Parameters
+  public static Collection<Object[]> parameters() {
+    Math.random();
+    return Arrays.asList(new Object[][]{
+            {"Should except both, message and cause to be null.", null, null},
+            {"Should except both, message and cause not to be null.", randomString(), new Exception(randomString())},
+            {"Should except message to be null, while cause is non-null.", null, new Exception(randomString())},
+            {"Should except cause to be null, while message is non-null.", randomString(), null},
+    });
+  }
+
+  private static final int MAX_STRING_LENGTH = 255;
+  private static final int MIN_STRING_LENGTH = 0;
+
+  private final String testMessage;
+  private final String exceptionMessage;
+  private final Throwable exceptionCause;
+
+  public ConditionTimeoutExceptionTest(final String testMessage, final String exceptionMessage, final Throwable exceptionCause) {
+    this.exceptionCause = exceptionCause;
+    this.testMessage = testMessage;
+    this.exceptionMessage = exceptionMessage;
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE).
+            append("testMessage", testMessage).
+            append("exceptionMessage", exceptionMessage).
+            append("exceptionCause", exceptionCause).
+            toString();
+  }
+
+}
