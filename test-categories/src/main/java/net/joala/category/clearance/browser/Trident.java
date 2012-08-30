@@ -16,13 +16,12 @@
 
 package net.joala.category.clearance.browser;
 
-import net.joala.category.requirement.WebGUI;
-
 /**
  * <p>
- *   This test is known to run in internet explorer.
+ * Test is known to run on browsers with Trident (also known as MSHTML) as layout engine.
  * </p>
+ *
  * @since 8/30/12
  */
-public interface InternetExplorer extends WebGUI, Trident {
+public interface Trident {
 }
