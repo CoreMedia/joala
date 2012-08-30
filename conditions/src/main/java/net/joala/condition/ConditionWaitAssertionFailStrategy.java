@@ -20,7 +20,6 @@ import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,12 +32,21 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 class ConditionWaitAssertionFailStrategy extends AbstractConditionWaitFailStrategy {
   @Override
-  public void fail(@Nonnull final String reason, @Nonnull final ConditionFunction<?> function, @Nonnull final ExpressionEvaluationException exception, @Nonnegative final long consumedMillis) {
-    assertThat(addTimeoutDescription(reason, function, consumedMillis), exception, new ConditionWaitFailNoExceptionMatcher(function));
+  public void fail(@Nonnull final String reason,
+                   @Nonnull final ConditionFunction<?> function,
+                   @Nonnull final ExpressionEvaluationException exception,
+                   @Nonnegative final long consumedMillis) {
+    assertThat(
+            addTimeoutDescription(reason, function, consumedMillis),
+            exception,
+            new ConditionWaitFailNoExceptionMatcher(function));
   }
 
   @Override
-  public <T> void fail(@Nonnull final String reason, @Nonnull final ConditionFunction<T> function, @Nonnull final Matcher<? super T> matcher, @Nonnegative final long consumedMillis) {
+  public <T> void fail(@Nonnull final String reason,
+                       @Nonnull final ConditionFunction<T> function,
+                       @Nonnull final Matcher<? super T> matcher,
+                       @Nonnegative final long consumedMillis) {
     assertThat(addTimeoutDescription(reason, function, consumedMillis), function.getCached(), matcher);
   }
 }

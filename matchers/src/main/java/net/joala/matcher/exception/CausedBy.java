@@ -22,8 +22,6 @@ import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnull;
 
-import static org.hamcrest.core.IsEqual.equalTo;
-
 /**
  * <p>
  * Matcher to search stacktrace of exception if it get caused by a given exception somewhere.

@@ -64,15 +64,15 @@ public class DefaultBooleanCondition extends DefaultCondition<Boolean> implement
 
   @Override
   @Nonnull
-  public DefaultBooleanCondition withMessage(@Nullable final String message) {
-    super.withMessage(message);
+  public DefaultBooleanCondition withMessage(@Nullable final String newMessage) {
+    super.withMessage(newMessage);
     return this;
   }
 
   @Override
   @Nonnull
-  public DefaultBooleanCondition withTimeoutFactor(@Nonnegative final double factor) {
-    super.withTimeoutFactor(factor);
+  public DefaultBooleanCondition withTimeoutFactor(@Nonnegative final double newFactor) {
+    super.withTimeoutFactor(newFactor);
     return this;
   }
 }

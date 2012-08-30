@@ -34,8 +34,9 @@ public interface Expression<T> extends SelfDescribing {
    * Retrieve the result of the expression.
    *
    * @return expression result
-   * @throws ExpressionEvaluationException when the expression cannot (yet) be computed, but this failure is "volatile", i.e.
-   *                                       it is expected to vanish later, so it makes sense to re-evaluate the expression
+   * @throws ExpressionEvaluationException when the expression cannot (yet) be computed, but this failure is
+   *                                       "volatile", i.&nbsp;e. it is expected to vanish later, so it makes sense
+   *                                       to re-evaluate the expression
    */
   @Nullable
   T get();

@@ -42,7 +42,9 @@ public final class JoalaMatchers {
     return MessageContains.messageContains(expected, recurseCauses);
   }
 
-  public static <T> Matcher<T> enhanceDescriptionBy(final String descriptionTemplate, final Matcher<T> matcher, final Object... values) {
+  public static <T> Matcher<T> enhanceDescriptionBy(@Nonnull final String descriptionTemplate,
+                                                    @Nonnull final Matcher<T> matcher,
+                                                    final Object... values) {
     return EnhanceDescriptionBy.enhanceDescriptionBy(descriptionTemplate, matcher, values);
   }
 }

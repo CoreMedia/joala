@@ -44,9 +44,11 @@
     <module>conditions</module>
     <module>thirdparty-test-bom</module>
     <module>matchers</module>
+    <module>build-tools</module>
   </modules>
   <!-- Properties -->
   <properties>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
+
 </project>

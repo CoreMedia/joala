@@ -26,11 +26,32 @@ import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * <p>
+ * Abstract implementation of {@link ConditionWaitFailStrategy}. Provides some commonly used
+ * methods for fail strategy implementations.
+ * </p>
+ *
  * @since 8/27/12
  */
 abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStrategy {
+
+  private static final int TIMEUNIT_LIMIT = 2;
+
+  /**
+   * <p>
+   * Enhances the description for a failure message by the evaluated function and how long it took to
+   * meet the timeout.
+   * </p>
+   *
+   * @param message        original (plain) message
+   * @param function       function evaluated
+   * @param consumedMillis how long it took until timeout
+   * @return enhanced message
+   */
   @Nonnull
-  protected String addTimeoutDescription(@Nullable final String message, @Nonnull final SelfDescribing function, @Nonnegative final long consumedMillis) {
+  protected String addTimeoutDescription(@Nullable final String message,
+                                         @Nonnull final SelfDescribing function,
+                                         @Nonnegative final long consumedMillis) {
     final Description description = new StringDescription();
     description.appendText(message != null ? message : "Failed to evaluate.");
     description.appendText(" - after ");
@@ -40,22 +61,30 @@ abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStr
     return description.toString();
   }
 
+  /**
+   * <p>
+   * Format the milliseconds in a "human readable" way.
+   * </p>
+   *
+   * @param millis milliseconds to format
+   * @return milliseconds in human readable format (for example converted to seconds or minutes)
+   */
   @Nonnull
   private String formatMillis(@Nonnegative final long millis) {
     final long amount;
     final String unit;
-    if (TimeUnit.MILLISECONDS.toSeconds(millis) < 2) {
-      amount = millis;
-      unit = "ms";
-    } else if (TimeUnit.MILLISECONDS.toMinutes(millis) < 5) {
-      amount = TimeUnit.MILLISECONDS.toSeconds(millis);
-      unit = "s";
-    } else if (TimeUnit.MILLISECONDS.toHours(millis) < 2) {
-      amount = TimeUnit.MILLISECONDS.toMinutes(millis);
-      unit = "min";
-    } else {
+    if (TimeUnit.MILLISECONDS.toHours(millis) > TIMEUNIT_LIMIT) {
       amount = TimeUnit.MILLISECONDS.toHours(millis);
       unit = "h";
+    } else if (TimeUnit.MILLISECONDS.toMinutes(millis) > TIMEUNIT_LIMIT) {
+      amount = TimeUnit.MILLISECONDS.toMinutes(millis);
+      unit = "min";
+    } else if (TimeUnit.MILLISECONDS.toSeconds(millis) > TIMEUNIT_LIMIT) {
+      amount = TimeUnit.MILLISECONDS.toSeconds(millis);
+      unit = "s";
+    } else {
+      amount = millis;
+      unit = "ms";
     }
     return String.format("%d %s", amount, unit);
   }

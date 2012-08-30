@@ -37,6 +37,7 @@ class ConditionWaitImpl<T> implements ConditionWait {
 
   static final long INITIAL_DELAY = 10L;
   static final double DECELERATION_FACTOR = 1.1;
+  private static final int TIMEOUT_DEADLINE_TOLERANCE = 100;
 
   @Nullable
   private final String message;
@@ -50,7 +51,11 @@ class ConditionWaitImpl<T> implements ConditionWait {
   private final long timeoutMillis;
 
 
-  ConditionWaitImpl(@Nullable final String message, @Nonnull final ConditionFunction<T> function, @Nonnull final Matcher<? super T> matcher, @Nonnegative final long timeoutMillis, @Nonnull final ConditionWaitFailStrategy failStrategy) {
+  ConditionWaitImpl(@Nullable final String message,
+                    @Nonnull final ConditionFunction<T> function,
+                    @Nonnull final Matcher<? super T> matcher,
+                    @Nonnegative final long timeoutMillis,
+                    @Nonnull final ConditionWaitFailStrategy failStrategy) {
     this.message = message;
     this.function = function;
     this.matcher = matcher;
@@ -119,7 +124,7 @@ class ConditionWaitImpl<T> implements ConditionWait {
 
       // Wait, but not much longer than until the deadline and at least a millisecond.
       try {
-        sleep(Math.max(1, Math.min(delay, deadline + 100 - now)));
+        sleep(Math.max(1, Math.min(delay, deadline + TIMEOUT_DEADLINE_TOLERANCE - now)));
       } catch (InterruptedException e) {
         throw new IllegalStateException("Unexpected Interruption", e);
       }

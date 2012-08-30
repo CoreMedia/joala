@@ -38,7 +38,10 @@ interface ConditionWaitFailStrategy {
    * @param matcher        the matcher which did not match
    * @param consumedMillis consumed milliseconds
    */
-  <T> void fail(@Nonnull String reason, @Nonnull ConditionFunction<T> function, @Nonnull Matcher<? super T> matcher, @Nonnegative long consumedMillis);
+  <T> void fail(@Nonnull String reason,
+                @Nonnull ConditionFunction<T> function,
+                @Nonnull Matcher<? super T> matcher,
+                @Nonnegative long consumedMillis);
 
   /**
    * Makes a condition fail because the expected value could not be retrieved because of repeating
@@ -49,5 +52,8 @@ interface ConditionWaitFailStrategy {
    * @param exception last exception which got caught
    * @param consumedMillis consumed milliseconds
    */
-  void fail(@Nonnull String reason, @Nonnull ConditionFunction<?> function, @Nonnull ExpressionEvaluationException exception, @Nonnegative long consumedMillis);
+  void fail(@Nonnull String reason,
+            @Nonnull ConditionFunction<?> function,
+            @Nonnull ExpressionEvaluationException exception,
+            @Nonnegative long consumedMillis);
 }

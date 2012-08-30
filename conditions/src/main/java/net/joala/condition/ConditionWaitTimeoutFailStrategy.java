@@ -20,9 +20,7 @@ import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
 /**
@@ -34,12 +32,18 @@ import static org.junit.Assume.assumeThat;
  */
 class ConditionWaitTimeoutFailStrategy extends AbstractConditionWaitFailStrategy {
   @Override
-  public void fail(@Nonnull final String reason, @Nonnull final ConditionFunction<?> function, @Nonnull final ExpressionEvaluationException exception, @Nonnegative final long consumedMillis) {
+  public void fail(@Nonnull final String reason,
+                   @Nonnull final ConditionFunction<?> function,
+                   @Nonnull final ExpressionEvaluationException exception,
+                   @Nonnegative final long consumedMillis) {
     throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), exception);
   }
 
   @Override
-  public <T> void fail(@Nonnull final String reason, @Nonnull final ConditionFunction<T> function, @Nonnull final Matcher<? super T> matcher, @Nonnegative final long consumedMillis) {
+  public <T> void fail(@Nonnull final String reason,
+                       @Nonnull final ConditionFunction<T> function,
+                       @Nonnull final Matcher<? super T> matcher,
+                       @Nonnegative final long consumedMillis) {
     try {
       assumeThat(function.getCached(), matcher);
     } catch (Exception e) {

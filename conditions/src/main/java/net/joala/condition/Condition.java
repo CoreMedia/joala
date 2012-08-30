@@ -36,7 +36,8 @@ public interface Condition<T> {
    *
    * @return the value
    * @throws ExpressionEvaluationException when the actual value cannot be evaluated. Consider calling any of the
-   *                                       {@code await} or {@code assume} methods to wait for the value to become available.
+   *                                       {@code await} or {@code assume} methods to wait for the value to
+   *                                       become available.
    * @see Expression#get()
    */
   @Nullable

@@ -21,6 +21,8 @@ import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.DescribedAs;
 
+import javax.annotation.Nonnull;
+
 /**
  * <p>
  * Use this wrapper for matchers to enhance it by additional
@@ -35,13 +37,16 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
 
   private final Matcher<T> matcher;
 
-  public EnhanceDescriptionBy(final String descriptionTemplate, final Matcher<T> matcher, final Object... values) {
+  public EnhanceDescriptionBy(
+          @Nonnull final String descriptionTemplate,
+          @Nonnull final Matcher<T> matcher,
+          final Object... values) {
     super(descriptionTemplate, matcher, values);
     this.matcher = matcher;
   }
 
   @Override
-  public void describeTo(final Description description) {
+  public void describeTo(@Nonnull final Description description) {
     matcher.describeTo(description);
     description.appendText(" (");
     super.describeTo(description);
@@ -49,7 +54,10 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
   }
 
   @Factory
-  public static <T> Matcher<T> enhanceDescriptionBy(final String descriptionTemplate, final Matcher<T> matcher, final Object... values) {
+  public static <T> Matcher<T> enhanceDescriptionBy(
+          @Nonnull final String descriptionTemplate,
+          @Nonnull final Matcher<T> matcher,
+          final Object... values) {
     return new EnhanceDescriptionBy<T>(descriptionTemplate, matcher, values);
   }
 

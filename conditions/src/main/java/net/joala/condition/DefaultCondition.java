@@ -42,9 +42,12 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * @since 2/24/12
  */
 public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
-  private static final ConditionWaitTimeoutFailStrategy TIMEOUT_FAIL_STRATEGY = new ConditionWaitTimeoutFailStrategy();
-  private static final ConditionWaitAssumptionFailStrategy ASSUMPTION_FAIL_STRATEGY = new ConditionWaitAssumptionFailStrategy();
-  private static final ConditionWaitAssertionFailStrategy ASSERTION_FAIL_STRATEGY = new ConditionWaitAssertionFailStrategy();
+  private static final ConditionWaitTimeoutFailStrategy TIMEOUT_FAIL_STRATEGY =
+          new ConditionWaitTimeoutFailStrategy();
+  private static final ConditionWaitAssumptionFailStrategy ASSUMPTION_FAIL_STRATEGY =
+          new ConditionWaitAssumptionFailStrategy();
+  private static final ConditionWaitAssertionFailStrategy ASSERTION_FAIL_STRATEGY =
+          new ConditionWaitAssertionFailStrategy();
   /**
    * Message to print on failure. {@code null} for none.
    */
@@ -97,7 +100,12 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   @Nullable
   public T await(@Nonnull final Matcher<? super T> matcher) {
     final ConditionFunction<T> function = new ConditionFunction<T>(expression);
-    until(new ConditionWaitImpl<T>(message, function, matcher, timeout.in(TimeUnit.MILLISECONDS, factor), TIMEOUT_FAIL_STRATEGY));
+    until(new ConditionWaitImpl<T>(
+            message,
+            function,
+            matcher,
+            timeout.in(TimeUnit.MILLISECONDS, factor),
+            TIMEOUT_FAIL_STRATEGY));
     return function.getCached();
   }
 
@@ -116,7 +124,12 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
 
   @Override
   public void assumeThat(@Nonnull final Matcher<? super T> matcher) {
-    until(new ConditionWaitImpl<T>(message, new ConditionFunction<T>(expression), matcher, timeout.in(TimeUnit.MILLISECONDS, factor), ASSUMPTION_FAIL_STRATEGY));
+    until(new ConditionWaitImpl<T>(
+            message,
+            new ConditionFunction<T>(expression),
+            matcher,
+            timeout.in(TimeUnit.MILLISECONDS, factor),
+            ASSUMPTION_FAIL_STRATEGY));
   }
 
   @Override
@@ -126,7 +139,12 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
 
   @Override
   public void assertThat(@Nonnull final Matcher<? super T> matcher) {
-    until(new ConditionWaitImpl<T>(message, new ConditionFunction<T>(expression), matcher, timeout.in(TimeUnit.MILLISECONDS, factor), ASSERTION_FAIL_STRATEGY));
+    until(new ConditionWaitImpl<T>(
+            message,
+            new ConditionFunction<T>(expression),
+            matcher,
+            timeout.in(TimeUnit.MILLISECONDS, factor),
+            ASSERTION_FAIL_STRATEGY));
   }
 
   @Override
@@ -150,15 +168,15 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
 
   @Override
   @Nonnull
-  public DefaultCondition<T> withTimeoutFactor(@Nonnegative final double factor) {
-    this.factor = factor;
+  public DefaultCondition<T> withTimeoutFactor(@Nonnegative final double newFactor) {
+    this.factor = newFactor;
     return this;
   }
 
   @Override
   @Nonnull
-  public DefaultCondition<T> withMessage(@Nullable final String message) {
-    this.message = message;
+  public DefaultCondition<T> withMessage(@Nullable final String newMessage) {
+    this.message = newMessage;
     return this;
   }
 

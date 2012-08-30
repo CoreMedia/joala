@@ -42,7 +42,8 @@ public class MessageContains extends CustomTypeSafeMatcher<Throwable> {
 
   @Override
   protected boolean matchesSafely(final Throwable item) {
-    return containsString(containedMessage).matches(item.getMessage()) || (recurseCauses && item.getCause() != null && matchesSafely(item.getCause()));
+    return containsString(containedMessage).matches(item.getMessage())
+            || (recurseCauses && item.getCause() != null && matchesSafely(item.getCause()));
   }
 
   @Factory

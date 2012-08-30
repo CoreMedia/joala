@@ -33,15 +33,27 @@ import static org.junit.Assume.assumeThat;
  */
 class ConditionWaitAssumptionFailStrategy extends AbstractConditionWaitFailStrategy {
   @Override
-  public void fail(@Nonnull final String reason, @Nonnull final ConditionFunction<?> function, @Nonnull final ExpressionEvaluationException exception, @Nonnegative final long consumedMillis) {
+  public void fail(@Nonnull final String reason,
+                   @Nonnull final ConditionFunction<?> function,
+                   @Nonnull final ExpressionEvaluationException exception,
+                   @Nonnegative final long consumedMillis) {
     // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
-    assumeThat(exception, enhanceDescriptionBy(addTimeoutDescription(reason, function, consumedMillis), new ConditionWaitFailNoExceptionMatcher(function)));
+    assumeThat(
+            exception,
+            enhanceDescriptionBy(
+                    addTimeoutDescription(reason, function, consumedMillis),
+                    new ConditionWaitFailNoExceptionMatcher(function)));
   }
 
   @Override
-  public <T> void fail(@Nonnull final String reason, @Nonnull final ConditionFunction<T> function, @Nonnull final Matcher<? super T> matcher, @Nonnegative final long consumedMillis) {
+  public <T> void fail(@Nonnull final String reason,
+                       @Nonnull final ConditionFunction<T> function,
+                       @Nonnull final Matcher<? super T> matcher,
+                       @Nonnegative final long consumedMillis) {
     // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
-    assumeThat(function.getCached(), enhanceDescriptionBy(addTimeoutDescription(reason, function, consumedMillis), matcher));
+    assumeThat(
+            function.getCached(),
+            enhanceDescriptionBy(addTimeoutDescription(reason, function, consumedMillis), matcher));
   }
 
 }
