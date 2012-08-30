@@ -18,11 +18,10 @@ package net.joala.category.clearance.os;
 
 /**
  * <p>
- * This test is known to run on any operating system. Use this category with care as it is extended by any new
- * operating system added to the list.
+ * Test is known to run on HP UX.
  * </p>
  *
  * @since 8/30/12
  */
-public interface AnyOS extends Linux, Mac, Solaris, Windows, AIX, HP_UX {
+public interface HP_UX {
 }
