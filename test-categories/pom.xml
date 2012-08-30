@@ -18,31 +18,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>net.joala</groupId>
+    <artifactId>joala-parent</artifactId>
+    <version>1.0-preview-SNAPSHOT</version>
+    <relativePath>../parent/pom.xml</relativePath>
+  </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.joala</groupId>
-  <artifactId>joala-thirdparty-test-bom</artifactId>
-  <version>1.0-preview-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>Joala 3rd-party Test BOM</name>
-  <description>Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries throughout all modules. Not deployed on release.</description>
+  <artifactId>joala-test-categories</artifactId>
+  <name>Joala test-categories</name>
 
-  <properties>
-    <maven.deploy.skip>true</maven.deploy.skip>
-  </properties>
+  <description><![CDATA[
+    Provides some interfaces which can be used as categories for JUnit.
+    See http://kentbeck.github.com/junit/javadoc/4.10/org/junit/experimental/categories/Categories.html]]>
+  </description>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>1.9.0</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.0.7</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+
 </project>

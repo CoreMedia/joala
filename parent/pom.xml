@@ -25,7 +25,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-preview-SNAPSHOT</version>
   <name>Joala parent</name>
   <packaging>pom</packaging>
   <description>Joala parent: Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
@@ -53,7 +53,7 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <joala.version>1.0-SNAPSHOT</joala.version>
+    <joala.version>1.0-preview-SNAPSHOT</joala.version>
   </properties>
 
   <dependencyManagement>
@@ -172,7 +172,7 @@
           <dependency>
             <groupId>net.joala</groupId>
             <artifactId>joala-build-tools</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0-preview-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>

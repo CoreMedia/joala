@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.joala</groupId>
   <artifactId>joala</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-preview-SNAPSHOT</version>
   <name>Joala</name>
   <packaging>pom</packaging>
   <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
@@ -45,6 +45,7 @@
     <module>thirdparty-test-bom</module>
     <module>matchers</module>
     <module>build-tools</module>
+    <module>test-categories</module>
   </modules>
   <!-- Properties -->
   <properties>
