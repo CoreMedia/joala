@@ -45,7 +45,6 @@
     <module>thirdparty-test-bom</module>
     <module>matchers</module>
     <module>build-tools</module>
-    <module>test-categories</module>
   </modules>
   <!-- Properties -->
   <properties>
