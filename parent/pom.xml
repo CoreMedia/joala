@@ -22,6 +22,7 @@
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-parent</artifactId>
@@ -36,6 +37,18 @@
     <connection>scm:git:git://github.com/CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
   </scm>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>playground</id>
+      <name>CoreMedia Playground Snapshots</name>
+      <url>http://repository-build.coremedia.com/nexus/content/groups/playground/</url>
+    </snapshotRepository>
+    <repository>
+      <id>playground</id>
+      <name>CoreMedia Playground Snapshots</name>
+      <url>http://repository-build.coremedia.com/nexus/content/groups/playground/</url>
+    </repository>
+  </distributionManagement>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -102,6 +115,9 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.12.3</version>
+          <configuration>
+            <junitArtifactName>junit:junit-dep</junitArtifactName>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>

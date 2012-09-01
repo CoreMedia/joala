@@ -1,0 +1,34 @@
+/*
+ * Copyright 2012 CoreMedia AG
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package net.joala.category;
+
+import net.joala.category.clearance.browser.Firefox;
+import net.joala.category.clearance.os.Windows;
+import net.joala.category.level.Integration;
+import net.joala.category.time.WithinSeconds;
+import org.junit.experimental.categories.Categories;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+/**
+ * @since 8/30/12
+ */
+@RunWith(Categories.class)
+@Categories.IncludeCategory(Firefox.class)
+@Suite.SuiteClasses(CategorizedTest.class)
+public class FirefoxWindowsSuite {
+}
