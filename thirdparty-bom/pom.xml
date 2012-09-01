@@ -14,9 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.joala</groupId>
   <artifactId>joala-thirdparty-bom</artifactId>
@@ -24,6 +22,11 @@
   <packaging>pom</packaging>
   <name>Joala 3rd-party BOM</name>
   <description>Joala Bill of Materials for Thirdparty artifacts.</description>
+  <scm>
+    <connection>scm:git:git://github.com/CoreMedia/joala.git</connection>
+    <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
+    <url>http://github.com/CoreMedia/joala</url>
+  </scm>
   <properties>
     <guava.version>13.0</guava.version>
     <commons.lang3.version>3.1</commons.lang3.version>
@@ -31,11 +34,6 @@
   </properties>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${commons.lang3.version}</version>
-      </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
@@ -47,6 +45,11 @@
         <artifactId>junit-dep</artifactId>
         <version>4.10</version>
         <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
       </dependency>
       <dependency>
         <groupId>org.hamcrest</groupId>
@@ -65,10 +68,4 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <scm>
-    <url>http://github.com/CoreMedia/joala</url>
-    <connection>scm:git:git://github.com/CoreMedia/joala.git</connection>
-    <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
-  </scm>
 </project>
-
