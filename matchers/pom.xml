@@ -29,6 +29,11 @@
   <artifactId>joala-matchers</artifactId>
   <name>Joala matchers</name>
 
+  <description>
+    Matchers in addition to those provided by Hamcrest. Might be added as proposal to
+    Hamcrest matchers. Thus take these as experimental.
+  </description>
+
   <dependencies>
     <dependency>
       <groupId>com.google.code.findbugs</groupId>

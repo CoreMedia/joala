@@ -17,6 +17,10 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!--
+    To sort the POM use:
+    mvn com.google.code.sortpom:maven-sortpom-plugin:sort
+  -->
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.sonatype.oss</groupId>
@@ -149,6 +153,22 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>2.5</version>
         </plugin>
+        <!-- see http://code.google.com/p/sortpom/ -->
+        <!-- To start: mvn com.google.code.sortpom:maven-sortpom-plugin:sort -->
+        <plugin>
+          <groupId>com.google.code.sortpom</groupId>
+          <artifactId>maven-sortpom-plugin</artifactId>
+          <version>2.0.0</version>
+          <configuration>
+            <!-- POM Code Convention - http://maven.apache.org/developers/conventions/code.html#POM_Code_Convention -->
+            <sortOrderFile>recommended_2008_06.xml</sortOrderFile>
+            <createBackupFile>false</createBackupFile>
+            <expandEmptyElements>false</expandEmptyElements>
+            <sortDependencies>true</sortDependencies>
+            <sortPlugins>true</sortPlugins>
+            <keepBlankLines>true</keepBlankLines>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -191,6 +211,11 @@
             <version>1.0-preview-SNAPSHOT</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <!-- Make it available in IDE -->
+        <groupId>com.google.code.sortpom</groupId>
+        <artifactId>maven-sortpom-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
