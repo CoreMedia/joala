@@ -21,4 +21,13 @@
   <version>0.1-SNAPSHOT</version>
   <name>Joala build-tools</name>
   <description>Support for Build-Tooling. Especially to create checkstyle reports.</description>
+  <scm>
+    <connection>scm:git:git://github.com/CoreMedia/joala.git</connection>
+    <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
+    <url>http://github.com/CoreMedia/joala</url>
+  </scm>
+  <!-- Properties -->
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+  </properties>
 </project>

@@ -27,6 +27,18 @@
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
     <url>http://github.com/CoreMedia/joala</url>
   </scm>
+  <distributionManagement>
+    <repository>
+      <id>playground</id>
+      <name>CoreMedia Playground Releases</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>playground</id>
+      <name>CoreMedia Playground Snapshots</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
   <properties>
     <guava.version>13.0</guava.version>
     <commons.lang3.version>3.1</commons.lang3.version>

@@ -28,6 +28,18 @@
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
     <url>http://github.com/CoreMedia/joala</url>
   </scm>
+  <distributionManagement>
+    <repository>
+      <id>playground</id>
+      <name>CoreMedia Playground Releases</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>playground</id>
+      <name>CoreMedia Playground Snapshots</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
