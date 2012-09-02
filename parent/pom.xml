@@ -298,6 +298,7 @@
   </reporting>
 
   <profiles>
+<!--
     <profile>
       <id>release-signing</id>
       <activation>
@@ -325,6 +326,7 @@
         </plugins>
       </build>
     </profile>
+-->
     <profile>
       <id>release</id>
       <build>
