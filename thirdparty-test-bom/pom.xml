@@ -19,7 +19,7 @@
 
   <groupId>net.joala</groupId>
   <artifactId>joala-thirdparty-test-bom</artifactId>
-  <version>1.0-preview-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala 3rd-party Test BOM</name>
   <description>Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries throughout all modules. Not deployed on release.</description>
