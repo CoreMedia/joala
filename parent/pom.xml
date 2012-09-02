@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <!--
     To sort the POM use:
     mvn com.google.code.sortpom:maven-sortpom-plugin:sort
@@ -24,14 +25,15 @@
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-parent</artifactId>
   <version>1.0-preview-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala parent</name>
-  <description>Joala parent: Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
+  <description>Joala parent: Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
+  </description>
   <url>http://www.coremedia.com/</url>
   <organization>
     <name>CoreMedia AG</name>
@@ -107,13 +109,13 @@
   <distributionManagement>
     <repository>
       <id>playground</id>
-      <name>CoreMedia Playground Snapshots</name>
-      <url>http://repository-build.coremedia.com/nexus/content/groups/playground/</url>
+      <name>CoreMedia Playground Releases</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
     </repository>
     <snapshotRepository>
       <id>playground</id>
       <name>CoreMedia Playground Snapshots</name>
-      <url>http://repository-build.coremedia.com/nexus/content/groups/playground/</url>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -221,6 +223,16 @@
             <junitArtifactName>junit:junit-dep</junitArtifactName>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>2.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.8.1</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -252,9 +264,10 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence/>
                 <requireNoRepositories>
-                  <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)</message>
+                  <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
+                  </message>
                   <allowedRepositories>
                     <allowedRepository>sonatype-nexus-snapshots</allowedRepository>
                   </allowedRepositories>
@@ -262,7 +275,7 @@
                 <requirePluginVersions>
                   <message>Best Practice is to always define plugin versions!</message>
                 </requirePluginVersions>
-                <requireUpperBoundDeps />
+                <requireUpperBoundDeps/>
               </rules>
             </configuration>
           </execution>
@@ -306,6 +319,37 @@
                   <goal>sign</goal>
                 </goals>
                 <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
