@@ -18,7 +18,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.joala</groupId>
   <artifactId>joala</artifactId>
-  <version>0.1.1</version>
+  <version>0.1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala</name>
   <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
@@ -47,7 +47,7 @@
     <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
     <url>https://github.com/CoreMedia/joala</url>
-    <tag>joala-0.1.1</tag>
+    <tag>HEAD</tag>
   </scm>
   <!-- Properties -->
   <properties>
