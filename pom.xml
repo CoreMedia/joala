@@ -18,7 +18,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.joala</groupId>
   <artifactId>joala</artifactId>
-  <version>0.1</version>
+  <version>0.1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala</name>
   <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>

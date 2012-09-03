@@ -19,7 +19,7 @@
   <parent>
     <groupId>net.joala</groupId>
     <artifactId>joala-parent</artifactId>
-    <version>0.1</version>
+    <version>0.1.1-SNAPSHOT</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
   <artifactId>joala-conditions</artifactId>

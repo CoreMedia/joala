@@ -28,7 +28,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-parent</artifactId>
-  <version>0.1</version>
+  <version>0.1.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala parent</name>
   <description>Joala parent: Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
