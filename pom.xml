@@ -14,7 +14,8 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.joala</groupId>
   <artifactId>joala</artifactId>
@@ -53,4 +54,26 @@
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
 
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.3.2</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <!--
+            | if we don't do clean install javadoc aggregation will fail in release:perform because
+            | aggregated javadoc for root project will run before the deploy goal of the submodules and therefore
+            | also before the install of the submodules
+            -->
+            <preparationGoals>clean install</preparationGoals>
+            <pushChanges>false</pushChanges>
+            <localCheckout>true</localCheckout>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
