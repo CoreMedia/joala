@@ -24,7 +24,7 @@
   <description>Joala Bill of Materials POM</description>
 
   <scm>
-    <connection>scm:git:git://github.com/CoreMedia/joala.git</connection>
+    <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
     <url>http://github.com/CoreMedia/joala</url>
   </scm>

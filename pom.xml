@@ -23,6 +23,10 @@
   <name>Joala</name>
   <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
   <url>http://www.coremedia.com/</url>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/CoreMedia/joala/issues</url>
+  </issueManagement>
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
@@ -40,7 +44,7 @@
     <module>build-tools</module>
   </modules>
   <scm>
-    <connection>scm:git:git://github.com/CoreMedia/joala.git</connection>
+    <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
     <url>http://github.com/CoreMedia/joala</url>
   </scm>
