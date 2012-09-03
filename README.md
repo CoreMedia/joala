@@ -11,12 +11,14 @@ For version changes the following contract exists:
 
 ## See Also
 
+If relative links don't work, please open the `README.md` directly.
+
 * [LICENSE][]
 * [VERSIONS][]
 * [HOWTO_RELEASE][]
 
 <!-- Links -->
 
-[HOWTO_RELEASE]: <./HOWTO_RELEASE.md> "Documentation how to perform a Joala Release"
-[VERSIONS]: <./VERSIONS.md> "Overview of changes"
-[LICENSE]: <./LICENSE.md> "The License"
+[HOWTO_RELEASE]: <./HOWTO_RELEASE.md> "(relative) Documentation how to perform a Joala Release"
+[VERSIONS]: <./VERSIONS.md> "(relative) Overview of changes"
+[LICENSE]: <./LICENSE.md> "(relative) The License"
