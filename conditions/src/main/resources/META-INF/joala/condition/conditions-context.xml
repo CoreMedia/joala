@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2012 CoreMedia AG
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <description><![CDATA[
+    Provides importable default beans for condition factory. Usage:
+    <import resource="classpath:META-INF/joala/condition/conditions-context.xml"/>
+  ]]></description>
+
+  <bean id="defaultTimeout" class="net.joala.condition.TimeoutImpl" scope="singleton">
+    <description><![CDATA[
+      Provides a default timeout. It defaults to 60 seconds. The amount of
+      seconds to use as default can be overriden by a property named
+      condition.timeout.seconds.
+    ]]></description>
+    <constructor-arg name="amount" value="${condition.timeout.seconds:60}"/>
+    <constructor-arg name="unit" value="SECONDS"/>
+  </bean>
+
+  <bean id="defaultConditionFactory" class="net.joala.condition.DefaultConditionFactory" scope="singleton">
+    <description><![CDATA[
+      Default factory for conditions.
+    ]]></description>
+    <constructor-arg name="timeout" ref="defaultTimeout"/>
+  </bean>
+</beans>

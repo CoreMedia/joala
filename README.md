@@ -4,8 +4,8 @@
 
 For version changes the following contract exists:
 
-* The version consists of three digits.
-* The third digit changes on important bug-fix-releases. Thus you should always use the highest available digit.
+* The version consists of three digits: `#.#.#`
+* #.#.#: The third digit changes on important bug-fix-releases. Thus you should always use the highest available digit.
 * The second digit changes for bug-fix and feature-releases. Releases might add new deprecation warnings.
 * The first digit changes for breaking API changes. Any deprecations from previous releases might vanish.
 
