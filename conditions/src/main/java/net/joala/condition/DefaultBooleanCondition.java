@@ -20,6 +20,9 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 /**
  * @since 2/26/12
  */
@@ -30,22 +33,22 @@ public class DefaultBooleanCondition extends DefaultCondition<Boolean> implement
 
   @Override
   public final void assumeTrue() {
-    assumeEquals(true);
+    assumeEquals(TRUE);
   }
 
   @Override
   public final void assumeFalse() {
-    assumeEquals(false);
+    assumeEquals(FALSE);
   }
 
   @Override
   public final void assertTrue() {
-    assertEquals(true);
+    assertEquals(TRUE);
   }
 
   @Override
   public final void assertFalse() {
-    assertEquals(false);
+    assertEquals(FALSE);
   }
 
   @Override
