@@ -73,13 +73,13 @@ abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStr
   private String formatMillis(@Nonnegative final long millis) {
     final long amount;
     final String unit;
-    if (TimeUnit.MILLISECONDS.toHours(millis) > TIMEUNIT_LIMIT) {
+    if (TimeUnit.MILLISECONDS.toHours(millis) >= TIMEUNIT_LIMIT) {
       amount = TimeUnit.MILLISECONDS.toHours(millis);
       unit = "h";
-    } else if (TimeUnit.MILLISECONDS.toMinutes(millis) > TIMEUNIT_LIMIT) {
+    } else if (TimeUnit.MILLISECONDS.toMinutes(millis) >= TIMEUNIT_LIMIT) {
       amount = TimeUnit.MILLISECONDS.toMinutes(millis);
       unit = "min";
-    } else if (TimeUnit.MILLISECONDS.toSeconds(millis) > TIMEUNIT_LIMIT) {
+    } else if (TimeUnit.MILLISECONDS.toSeconds(millis) >= TIMEUNIT_LIMIT) {
       amount = TimeUnit.MILLISECONDS.toSeconds(millis);
       unit = "s";
     } else {
