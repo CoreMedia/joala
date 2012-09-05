@@ -53,6 +53,7 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
     description.appendText(")");
   }
 
+  @SuppressWarnings("ParameterHidesMemberVariable")
   @Factory
   public static <T> Matcher<T> enhanceDescriptionBy(
           @Nonnull final String descriptionTemplate,
