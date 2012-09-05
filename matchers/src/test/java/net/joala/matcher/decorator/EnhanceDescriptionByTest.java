@@ -19,6 +19,7 @@ package net.joala.matcher.decorator;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,13 +48,13 @@ import static org.mockito.Mockito.doAnswer;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class EnhanceDescriptionByTest {
-  private static final int RANDMON_STRING_LENGTH = 16;
+  private static final int RANDOM_STRING_LENGTH = 16;
   @Mock
   private Matcher<String> matcher;
   private final Description description = new StringDescription();
-  private final String plainDescriptionTemplate = format("%s_tpl", random(RANDMON_STRING_LENGTH));
-  private final String arg1DescriptionTemplate = format("%s_%%0_tpl", random(RANDMON_STRING_LENGTH));
-  private final String matcherDescription = format("%s_matcher", random(RANDMON_STRING_LENGTH));
+  private final String plainDescriptionTemplate = format("%s_tpl", random(RANDOM_STRING_LENGTH));
+  private final String arg1DescriptionTemplate = format("%s_%%0_tpl", random(RANDOM_STRING_LENGTH));
+  private final String matcherDescription = format("%s_matcher", random(RANDOM_STRING_LENGTH));
 
   @Before
   public void setUp() throws Exception {
@@ -72,22 +73,22 @@ public class EnhanceDescriptionByTest {
 
   @Test
   public void describeTo_should_add_matcher_description() throws Exception {
-    final EnhanceDescriptionBy<String> descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
+    final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Matcher description should be part of the description.", description.toString(), Matchers.containsString(matcherDescription));
   }
 
   @Test
   public void describeTo_should_add_enhanced_description() throws Exception {
-    final EnhanceDescriptionBy<String> descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
+    final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Enhanced description should be part of the description.", description.toString(), Matchers.containsString(plainDescriptionTemplate));
   }
 
   @Test
   public void describeTo_should_add_template_arguments() throws Exception {
-    final String argument = format("%sarg0", random(RANDMON_STRING_LENGTH));
-    final EnhanceDescriptionBy<String> descMatcher = new EnhanceDescriptionBy<String>(arg1DescriptionTemplate, matcher, argument);
+    final String argument = format("%sarg0", random(RANDOM_STRING_LENGTH));
+    final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(arg1DescriptionTemplate, matcher, argument);
     descMatcher.describeTo(description);
     assertThat("Argument should be contained in description.", description.toString(), Matchers.containsString(argument));
   }
@@ -108,7 +109,7 @@ public class EnhanceDescriptionByTest {
 
   @Test
   public void describeTo_should_add_template_arguments_using_factory() throws Exception {
-    final String argument = format("%sarg0", random(RANDMON_STRING_LENGTH));
+    final String argument = format("%sarg0", random(RANDOM_STRING_LENGTH));
     final Matcher<String> descMatcher = enhanceDescriptionBy(arg1DescriptionTemplate, matcher, argument);
     descMatcher.describeTo(description);
     assertThat("Argument should be contained in description.", description.toString(), Matchers.containsString(argument));
