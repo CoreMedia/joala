@@ -16,10 +16,12 @@
 
 package net.joala.condition;
 
-import org.hamcrest.Description;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +34,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,19 +41,15 @@ import static org.mockito.Mockito.when;
 /**
  * @since 8/29/12
  */
+@RunWith(MockitoJUnitRunner.class)
 public class DefaultConditionTest {
-
-  private Runnable runnable;
 
   @Before
   public void setUp() throws Exception {
-    expression = mock(StringExpression.class);
-    timeout = mock(Timeout.class);
     condition = new DefaultCondition<String>(expression, timeout);
     expressionValue = randomString("expressionValue");
     when(expression.get()).thenReturn(expressionValue);
     when(timeout.in(any(TimeUnit.class), any(Double.class))).thenReturn(0l);
-    runnable = mock(Runnable.class);
   }
 
   @Test
@@ -315,20 +312,13 @@ public class DefaultConditionTest {
     }
   }
 
-  private StringExpression expression;
-  private Timeout timeout;
   private Condition<String> condition;
   private String expressionValue;
-
-  private static class StringExpression implements Expression<String> {
-    @Override
-    public void describeTo(final Description description) {
-    }
-
-    @Override
-    public String get() {
-      return null;
-    }
-  }
+  @Mock
+  private Timeout timeout;
+  @Mock
+  private Expression<String> expression;
+  @Mock
+  private Runnable runnable;
 
 }
