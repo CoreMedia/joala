@@ -17,21 +17,14 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <context:property-placeholder properties-ref="propertyDefaults"/>
-
-  <!-- Properties which can be modified through system properties -->
-  <util:properties id="propertyDefaults">
-    <prop key="condition.timeout.seconds">10</prop>
-  </util:properties>
-
+  <context:property-placeholder
+          location="classpath:/META-INF/joala/condition/test-context.properties"/>
 
   <import resource="classpath:META-INF/joala/condition/conditions-context.xml"/>
 
