@@ -16,7 +16,11 @@ The site is generated to a sub-folder `site` on the pages site. In addition anot
 the published site. Expect SNAPSHOT-sites to vanish soon.
 
 The configuration in the POMs is derived from a [blog post by Flaming Penguin][blog-flaming-penguin] which provides
-a workaround for multi-module Maven projects.
+a workaround for multi-module Maven projects. In addition also [akquinet][blog-maven-sites-reloaded] provides
+interesting information about how to create sites and also suggests to put sites in a subfolder denoting its
+version. In addition it suggests to disable the `maven-site-plugin` and adjust the `site-maven-plugin` to
+run in phase `site-deploy` which is more convenient than `site` which is suggested by the documentation of the
+`site-maven-plugin`.
 
 <!-- Links -->
 
@@ -27,3 +31,4 @@ a workaround for multi-module Maven projects.
 [github-maven-plugins]: <https://github.com/github/maven-plugins> "GitHub Maven Plugins"
 [blog-github-maven-plugins]: <https://github.com/blog/945-github-maven-plugins> "Blog Post: GitHub Maven Plugins"
 [blog-flaming-penguin]: <http://www.flamingpenguin.co.uk/blog/2012/02/15/github-maven-plugins/> "Flaming Penguin: Github Maven Plugins"
+[blog-maven-sites-reloaded]: <http://blog.akquinet.de/2012/04/12/maven-sites-reloaded/> "akquinet AG: Maven Sites - Reloaded"
