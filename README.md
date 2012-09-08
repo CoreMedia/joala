@@ -1,4 +1,9 @@
-# Joala - Supporting automatic Java QA
+# Joala - Enjoy Testing
+
+
+## Documentation
+
+For complete documentation of Joala please visit [Joala Pages][].
 
 ## Versions Contract
 
@@ -22,3 +27,4 @@ If relative links don't work, please open the `README.md` directly.
 [HOWTO_RELEASE]: <./HOWTO_RELEASE.md> "(relative) Documentation how to perform a Joala Release"
 [VERSIONS]: <./VERSIONS.md> "(relative) Overview of changes"
 [LICENSE]: <./LICENSE.md> "(relative) The License"
+[Joala Pages]: <|http://coremedia.github.com/joala/> "GitHub Pages for Joala"

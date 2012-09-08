@@ -1,0 +1,14 @@
+`${project.groupId}:${project.artifactId}:${project.packaging}:${project.version}`
+
+${project.description}
+
+In order to use this POM as parent add this to your Maven Modules:
+
+```xml
+<parent>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.artifactId}</artifactId>
+  <version>${project.version}</version>
+  <relativePath>../parent/pom.xml</relativePath>
+</parent>
+```
