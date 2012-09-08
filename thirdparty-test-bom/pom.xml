@@ -17,10 +17,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>net.joala</groupId>
+    <artifactId>joala-bom</artifactId>
+    <version>0.1.2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
 
-  <groupId>net.joala</groupId>
   <artifactId>joala-thirdparty-test-bom</artifactId>
-  <version>0.1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala 3rd-party Test BOM</name>
   <description>Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries throughout all
@@ -32,16 +36,6 @@
     <github.global.server>github</github.global.server>
     <spring.version>3.1.2.RELEASE</spring.version>
   </properties>
-  <prerequisites>
-    <maven>3.0.3</maven>
-  </prerequisites>
-
-  <scm>
-    <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
-    <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
-    <url>https://github.com/CoreMedia/joala</url>
-    <tag>HEAD</tag>
-  </scm>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -86,87 +80,4 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.3.2</version>
-          <configuration>
-            <autoVersionSubmodules>true</autoVersionSubmodules>
-            <!--
-            | if we don't do clean install javadoc aggregation will fail in release:perform because
-            | aggregated javadoc for root project will run before the deploy goal of the submodules and therefore
-            | also before the install of the submodules
-            -->
-            <preparationGoals>clean install</preparationGoals>
-            <pushChanges>false</pushChanges>
-            <localCheckout>true</localCheckout>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>2.5</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.1</version>
-          <dependencies>
-            <dependency>
-              <!--
-              | allows markdown syntax for site generation. To use it place files below
-              | src/site/markdown/[filename].md
-              -->
-              <groupId>org.apache.maven.doxia</groupId>
-              <artifactId>doxia-module-markdown</artifactId>
-              <version>1.3</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <skipDeploy>true</skipDeploy>
-            <generateSitemap>true</generateSitemap>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.7</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.3.1</version>
-        </plugin>
-        <plugin>
-          <groupId>com.github.github</groupId>
-          <artifactId>site-maven-plugin</artifactId>
-          <version>0.7</version>
-          <configuration>
-            <message>Creating site for ${project.artifactId}, ${project.version}</message>
-            <path>site/${project.version}/${project.artifactId}</path>
-            <merge>true</merge>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>github-site</id>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>site-deploy</phase>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>

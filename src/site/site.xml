@@ -41,6 +41,10 @@
       <item name="GitHub Pages" href="http://coremedia.github.com/joala/"/>
     </links>
 
+    <breadcrumbs>
+      <item href="../${project.artifactId}/" name="${project.name}"/>
+    </breadcrumbs>
+
     <menu name="Joala" inherit="bottom">
       <!-- ref modules and parent don't work for this project; creating menu manually -->
       <item name="Home" href="index.html"/>
@@ -56,7 +60,41 @@
       </item>
     </menu>
 
-    <menu ref="reports"/>
+    <menu name="Joala Top" inherit="top">
+      <!-- ref modules and parent don't work for this project; creating menu manually -->
+      <item name="Home" href="index.html"/>
+      <item name="Modules" href="modules.html">
+        <description><![CDATA[
+          Overview of all modules which are included in Joala.
+        ]]></description>
+        <item name="Parent" href="joala-parent/"/>
+        <item name="Conditions" href="joala-conditions/"/>
+        <item name="Matchers" href="joala-matchers/"/>
+        <item name="BOM POM" href="joala-bom/"/>
+        <item name="3rd Party BOM POM" href="joala-thirdparty-bom/"/>
+      </item>
+    </menu>
+
+    <menu name="Joala Bottom" inherit="bottom">
+      <!-- ref modules and parent don't work for this project; creating menu manually -->
+      <item name="Home" href="index.html"/>
+      <item name="Modules" href="modules.html">
+        <description><![CDATA[
+          Overview of all modules which are included in Joala.
+        ]]></description>
+        <item name="Parent" href="joala-parent/"/>
+        <item name="Conditions" href="joala-conditions/"/>
+        <item name="Matchers" href="joala-matchers/"/>
+        <item name="BOM POM" href="joala-bom/"/>
+        <item name="3rd Party BOM POM" href="joala-thirdparty-bom/"/>
+      </item>
+    </menu>
+
+    <menu ref="parent" inherit="top"/>
+
+    <menu ref="reports" inherit="bottom"/>
+
+    <menu ref="modules" inherit="bottom"/>
 
   </body>
 

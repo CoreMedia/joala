@@ -1,3 +1,15 @@
 `${project.groupId}:${project.artifactId}:${project.packaging}:${project.version}`
 
 ${project.description}
+
+**Dependency**
+
+```xml
+<dependency>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.artifactId}</artifactId>
+  <type>${project.packaging}</type>
+  <version>${project.version}</version>
+</dependency>
+```
+

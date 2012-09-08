@@ -25,7 +25,7 @@
   </parent>
 
   <artifactId>joala-matchers</artifactId>
-  <name>Joala matchers</name>
+  <name>Joala Matchers</name>
 
   <description>Matchers in addition to those provided by Hamcrest. Might be added as proposal to
     Hamcrest matchers. Thus take these as experimental.
