@@ -24,7 +24,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
   <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
@@ -56,7 +56,7 @@
     <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
     <url>https://github.com/CoreMedia/joala</url>
-    <tag>joala-bom-0.1.2</tag>
+    <tag>HEAD</tag>
   </scm>
   <distributionManagement>
     <repository>
