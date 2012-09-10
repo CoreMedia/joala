@@ -1,3 +1,5 @@
+## In order to assist Code Completion add maven-core as dependency in your IDE.
+#* @vtlvariable name="project" type="org.apache.maven.project.MavenProject" *#
 `${project.groupId}:${project.artifactId}:${project.packaging}:${project.version}`
 
 ${project.description}
