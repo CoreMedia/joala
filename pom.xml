@@ -71,9 +71,9 @@
       <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
     </snapshotRepository>
     <site>
-      <id>local-site</id>
-      <name>Locally deployed site</name>
-      <url>file://${java.io.tmpdir}/joala/site</url>
+      <id>github-pages-site</id>
+      <name>Deployment through GitHub's site deployment plugin</name>
+      <url>site/${project.version}</url>
     </site>
   </distributionManagement>
   <!-- Properties -->
@@ -167,14 +167,13 @@
             <keepBlankLines>true</keepBlankLines>
           </configuration>
         </plugin>
-<!--
         <plugin>
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
           <version>0.7</version>
           <configuration>
             <message>Creating site for ${project.artifactId}, ${project.version}</message>
-            <path>site/${project.version}/${project.artifactId}</path>
+            <path>${project.distributionManagement.site.url}</path>
             <merge>true</merge>
           </configuration>
           <executions>
@@ -187,7 +186,6 @@
             </execution>
           </executions>
         </plugin>
--->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
@@ -214,9 +212,7 @@
             </dependency>
           </dependencies>
           <configuration>
-<!--
             <skipDeploy>true</skipDeploy>
--->
           </configuration>
         </plugin>
         <plugin>
@@ -316,25 +312,31 @@
       <plugin>
         <groupId>com.github.github</groupId>
         <artifactId>site-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>github-site</id>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>site-deploy</phase>
-          </execution>
-        </executions>
       </plugin>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <inherited>false</inherited>
-        <configuration>
-          <message>Creating site for ${project.artifactId}, ${project.version}</message>
-          <path>site/${project.version}</path>
-        </configuration>
-      </plugin>
+      <!--
+            <plugin>
+              <groupId>com.github.github</groupId>
+              <artifactId>site-maven-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>github-site</id>
+                  <goals>
+                    <goal>site</goal>
+                  </goals>
+                  <phase>site-deploy</phase>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>com.github.github</groupId>
+              <artifactId>site-maven-plugin</artifactId>
+              <inherited>false</inherited>
+              <configuration>
+                <message>Creating site for ${project.artifactId}, ${project.version}</message>
+                <path>site/${project.version}</path>
+              </configuration>
+            </plugin>
+      -->
       <plugin>
         <!-- Make it available in IDE -->
         <groupId>com.google.code.sortpom</groupId>
