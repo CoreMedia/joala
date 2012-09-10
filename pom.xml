@@ -306,6 +306,15 @@
             </archive>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.4</version>
+          <configuration>
+            <!-- Skip for the first versions of Joala not deployed to Maven Central -->
+            <skip>true</skip>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -313,30 +322,6 @@
         <groupId>com.github.github</groupId>
         <artifactId>site-maven-plugin</artifactId>
       </plugin>
-      <!--
-            <plugin>
-              <groupId>com.github.github</groupId>
-              <artifactId>site-maven-plugin</artifactId>
-              <executions>
-                <execution>
-                  <id>github-site</id>
-                  <goals>
-                    <goal>site</goal>
-                  </goals>
-                  <phase>site-deploy</phase>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>com.github.github</groupId>
-              <artifactId>site-maven-plugin</artifactId>
-              <inherited>false</inherited>
-              <configuration>
-                <message>Creating site for ${project.artifactId}, ${project.version}</message>
-                <path>site/${project.version}</path>
-              </configuration>
-            </plugin>
-      -->
       <plugin>
         <!-- Make it available in IDE -->
         <groupId>com.google.code.sortpom</groupId>
