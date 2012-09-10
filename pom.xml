@@ -49,8 +49,6 @@
   </prerequisites>
   <modules>
     <module>parent</module>
-    <module>conditions</module>
-    <module>matchers</module>
     <module>build-tools</module>
     <module>thirdparty-bom</module>
     <module>thirdparty-test-bom</module>
