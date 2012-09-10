@@ -17,7 +17,6 @@
 
 <!-- Site Descriptor Info: http://maven.apache.org/doxia/doxia-sitetools/doxia-decoration-model/decoration.html -->
 
-<!-- Multi-Module Site-XML: http://stackoverflow.com/questions/5976123/maven-site-for-multi-module -->
 <!-- Multi Module: http://tech-mind.blogspot.de/2009/01/configure-site-plugin-for-maven-multi.html -->
 <!-- http://stackoverflow.com/questions/3422151/maven-site-plugin-how-does-menu-inheritance-work -->
 
@@ -42,7 +41,7 @@
     </links>
 
     <breadcrumbs>
-      <item href="../${project.artifactId}/" name="${project.name}"/>
+      <item href="index.html" name="${project.name}"/>
     </breadcrumbs>
 
     <menu name="Joala" inherit="bottom">

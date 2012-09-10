@@ -21,6 +21,9 @@
     mvn com.google.code.sortpom:maven-sortpom-plugin:sort
   -->
   <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>test</module>
+  </modules>
   <parent>
     <groupId>net.joala</groupId>
     <artifactId>joala-bom</artifactId>
@@ -59,4 +62,32 @@
     </dependencies>
   </dependencyManagement>
 
+<!--
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <inherited>false</inherited>
+          <configuration>
+            <message>Creating site for ${project.artifactId}, ${project.version}</message>
+            <path>site/${project.version}/joala-parent/${project.artifactId}</path>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <message>Creating site for ${project.artifactId}, ${project.version}</message>
+          <path>site/${project.version}/${project.artifactId}</path>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+-->
 </project>

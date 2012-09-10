@@ -12,4 +12,3 @@ ${project.description}
   <version>${project.version}</version>
 </dependency>
 ```
-

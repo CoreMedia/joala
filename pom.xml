@@ -61,6 +61,23 @@
     <url>https://github.com/CoreMedia/joala</url>
     <tag>HEAD</tag>
   </scm>
+  <distributionManagement>
+    <repository>
+      <id>playground</id>
+      <name>CoreMedia Playground Releases</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>playground</id>
+      <name>CoreMedia Playground Snapshots</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
+    </snapshotRepository>
+    <site>
+      <id>local-site</id>
+      <name>Locally deployed site</name>
+      <url>file://${java.io.tmpdir}/joala/site</url>
+    </site>
+  </distributionManagement>
   <!-- Properties -->
   <properties>
     <github.global.server>github</github.global.server>
@@ -152,6 +169,7 @@
             <keepBlankLines>true</keepBlankLines>
           </configuration>
         </plugin>
+<!--
         <plugin>
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
@@ -171,6 +189,7 @@
             </execution>
           </executions>
         </plugin>
+-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-clean-plugin</artifactId>
@@ -197,7 +216,9 @@
             </dependency>
           </dependencies>
           <configuration>
+<!--
             <skipDeploy>true</skipDeploy>
+-->
           </configuration>
         </plugin>
         <plugin>
