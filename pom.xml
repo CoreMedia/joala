@@ -29,7 +29,11 @@
   <packaging>pom</packaging>
   <name>Joala BOM</name>
   <url>http://coremedia.github.com/joala</url>
-  <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
+  <description><![CDATA[
+    Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
+    This BOM is meant to be used as dependency with scope import in dependencyManagement section
+    in order to provide all Joala artifacts managed to the same version.
+  ]]></description>
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/CoreMedia/joala/issues</url>
