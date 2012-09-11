@@ -27,7 +27,7 @@
   <name>Joala 3rd-party BOM</name>
   <description>Joala Bill of Materials for Thirdparty artifacts.</description>
   <properties>
-    <guava.version>13.0</guava.version>
+    <guava.version>13.0.1</guava.version>
     <commons.lang3.version>3.1</commons.lang3.version>
     <junit.version>4.10</junit.version>
   </properties>
