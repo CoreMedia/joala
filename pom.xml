@@ -34,6 +34,10 @@
     <system>GitHub</system>
     <url>https://github.com/CoreMedia/joala/issues</url>
   </issueManagement>
+  <ciManagement>
+    <system>jenkins</system>
+    <url>http://pc-ci.coremedia.com/job/joala/</url>
+  </ciManagement>
   <organization>
     <name>CoreMedia AG</name>
     <url>http://www.coremedia.com/</url>
