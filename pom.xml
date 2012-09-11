@@ -68,6 +68,7 @@
     <url>https://github.com/CoreMedia/joala</url>
     <tag>HEAD</tag>
   </scm>
+  <inceptionYear>2011</inceptionYear>
   <distributionManagement>
     <repository>
       <id>playground</id>
@@ -79,6 +80,12 @@
       <name>CoreMedia Playground Snapshots</name>
       <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
     </snapshotRepository>
+    <!-- Local Deployment, will be overridden by GitHub Pages Deployment on Release -->
+    <site>
+      <id>local-site</id>
+      <name>Deployment as local artifacts</name>
+      <url>${local.site.deploy.url}</url>
+    </site>
   </distributionManagement>
   <!-- Properties -->
   <properties>
@@ -87,6 +94,7 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
   </properties>
 
   <dependencyManagement>
@@ -388,6 +396,11 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.5.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.3</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
