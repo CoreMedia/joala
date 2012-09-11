@@ -34,4 +34,18 @@ site$ git commit -m "Delete old Snapshot Version of GitHub Pages Site"
 site$ git push origin gh-pages
 ```
 
+## Troubleshooting
+
+### Fix Version after Release
+
+If you forgot to set the version correctly after release use the [versions-maven-plugin][] to adjust to the new
+version:
+
+```
+joala$ mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
+```
+
+<!-- Links -->
+
 [Joala GitHub Pages]: <http://coremedia.github.com/joala/> "Joala GitHub Pages"
+[versions-maven-plugin: <http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html#newVersion> "Codehaus.org: Versions Maven Plugin"
