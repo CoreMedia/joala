@@ -4,8 +4,7 @@
 
 ${project.description}
 
-Dependency
-----------
+<h3>Dependency</h3>
 
 ```xml
 <dependency>
