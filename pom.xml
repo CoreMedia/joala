@@ -28,6 +28,7 @@
   <version>0.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
+  <url>http://coremedia.github.com/joala</url>
   <description>Joala is a set of libraries to assist in writing tests based on JUnit testing framework.</description>
   <issueManagement>
     <system>GitHub</system>
@@ -70,11 +71,6 @@
       <name>CoreMedia Playground Snapshots</name>
       <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
     </snapshotRepository>
-    <site>
-      <id>github-pages-site</id>
-      <name>Deployment through GitHub's site deployment plugin</name>
-      <url>site/${project.version}</url>
-    </site>
   </distributionManagement>
   <!-- Properties -->
   <properties>
@@ -223,7 +219,8 @@
             </dependency>
           </dependencies>
           <configuration>
-            <skipDeploy>true</skipDeploy>
+            <skipDeploy>false</skipDeploy>
+            <generateSitemap>true</generateSitemap>
           </configuration>
         </plugin>
         <plugin>
@@ -265,6 +262,7 @@
             <preparationGoals>clean install</preparationGoals>
             <pushChanges>false</pushChanges>
             <localCheckout>true</localCheckout>
+            <releaseProfiles>release</releaseProfiles>
           </configuration>
         </plugin>
         <plugin>
@@ -329,10 +327,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-      </plugin>
       <plugin>
         <!-- Make it available in IDE -->
         <groupId>com.google.code.sortpom</groupId>
@@ -448,7 +442,31 @@
   <profiles>
     <profile>
       <id>release</id>
+      <distributionManagement>
+        <!-- Workaround for Multi Module Site Deployment with GitHub Plugin -->
+        <site>
+          <id>github-pages-site</id>
+          <name>Deployment through GitHub's site deployment plugin</name>
+          <url>site/${project.version}</url>
+        </site>
+      </distributionManagement>
       <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-site-plugin</artifactId>
+              <configuration>
+                <!-- On release deployment will be done through GitHub Site Deployment. -->
+                <skipDeploy>true</skipDeploy>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>com.github.github</groupId>
+              <artifactId>site-maven-plugin</artifactId>
+            </plugin>
+          </plugins>
+        </pluginManagement>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
