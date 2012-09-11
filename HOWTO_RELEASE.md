@@ -14,13 +14,36 @@ joala$ git release:prepare release:perform
 joala$ git push origin master --tags
 ```
 
-If you release a #.1.0 version you should update the development version to #.2.0-SNAPSHOT version. The last number
-is only meant for critical bugfix releases. If you release a #.1.1 version (most likely on a branch) your next
-development version should be #.1.2-SNAPSHOT.
+## Version Numbers
 
-If you release a 1.3.0 version the next development version is 1.4.0-SNAPSHOT. Changing the major release number
-(leading number) will require manually creating a branch for the lower versions - while the development for the
-next major release takes place on the master branch.
+The version numbers of Joala are built of four elements (for reference and naming see
+*[Maven: The Complete Reference, 3.3. POM Syntax][maven-reference-pom-syntax]*):
+
+```
+<major version>.<minor version>.<incremental version>-<qualifier>
+```
+
+### Qualifier
+
+Use it for milestone builds like alpha, beta, ...
+
+### Incremental Version
+
+A change in the incremental version means a bugfix release. No features are introduced or API changed. You are
+always save if you update the incremental version.
+
+### Minor Version
+
+Minor versions also might contain bugfixes but especially introduce new features. New feature are not necessarily
+visible to the user of the Joala libraries. It might also mean better test coverage or enhancements to the build
+infrastructure.
+
+In minor versions deprecations might be introduced but existing API will not be broken.
+
+### Major Release
+
+Major releases might contain strong refactorings and possibly breaking API changes. Typically breaking API
+changes are introduced by deprecations in previous minor version releases.
 
 ## Cleanup Tasks
 
@@ -49,3 +72,4 @@ joala$ mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
 
 [Joala GitHub Pages]: <http://coremedia.github.com/joala/> "Joala GitHub Pages"
 [versions-maven-plugin: <http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html#newVersion> "Codehaus.org: Versions Maven Plugin"
+[maven-reference-pom-syntax]: <http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-syntax.html> "Maven: The Complete Reference, 3.3. POM Syntax"
