@@ -71,5 +71,5 @@ joala$ mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
 <!-- Links -->
 
 [Joala GitHub Pages]: <http://coremedia.github.com/joala/> "Joala GitHub Pages"
-[versions-maven-plugin: <http://mojo.codehaus.org/versions-maven-plugin/set-mojo.html#newVersion> "Codehaus.org: Versions Maven Plugin"
+[versions-maven-plugin]: <http://mojo.codehaus.org/versions-maven-plugin/> "Codehaus.org: Versions Maven Plugin"
 [maven-reference-pom-syntax]: <http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-syntax.html> "Maven: The Complete Reference, 3.3. POM Syntax"
