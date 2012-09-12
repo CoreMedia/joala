@@ -235,7 +235,6 @@
             </dependency>
           </dependencies>
           <configuration>
-            <skipDeploy>false</skipDeploy>
             <generateSitemap>true</generateSitemap>
           </configuration>
         </plugin>
