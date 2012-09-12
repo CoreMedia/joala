@@ -54,7 +54,7 @@
     </license>
   </licenses>
   <prerequisites>
-    <maven>3.0.3</maven>
+    <maven>3.0.4</maven>
   </prerequisites>
   <modules>
     <module>parent</module>
@@ -321,10 +321,11 @@
               <manifestEntries>
                 <Built-By>CoreMedia</Built-By>
                 <Build-Jdk>${java.version}</Build-Jdk>
-                <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-                <Implementation-Title>${project.artifactId}</Implementation-Title>
-                <Implementation-Vendor>CoreMedia AG</Implementation-Vendor>
+                <Implementation-Title>${project.name} - ${project.artifactId}</Implementation-Title>
                 <Implementation-Version>${project.version}</Implementation-Version>
+                <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
+                <Implementation-Vendor-Id>com.coremedia</Implementation-Vendor-Id>
+                <Implementation-Vendor>CoreMedia AG</Implementation-Vendor>
                 <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
                 <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
               </manifestEntries>
