@@ -31,7 +31,6 @@
   </description>
 
   <properties>
-    <maven.install.skip>true</maven.install.skip>
     <maven.deploy.skip>true</maven.deploy.skip>
     <maven.site.skip>true</maven.site.skip>
     <github.global.server>github</github.global.server>
