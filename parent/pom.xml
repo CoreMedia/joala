@@ -20,10 +20,6 @@
     mvn com.google.code.sortpom:maven-sortpom-plugin:sort
   -->
   <modelVersion>4.0.0</modelVersion>
-  <modules>
-    <module>conditions</module>
-    <module>matchers</module>
-  </modules>
   <parent>
     <groupId>net.joala</groupId>
     <artifactId>joala-bom</artifactId>
@@ -33,10 +29,12 @@
   <artifactId>joala-parent</artifactId>
   <packaging>pom</packaging>
   <name>Joala Parent</name>
-  <description><![CDATA[
-    This is the parent POM used for all Joala modules in order to provide a common set of
-    dependencies and common set of plugin configurations.
-  ]]></description>
+  <description><![CDATA[This is the parent POM used for all Joala modules in order to provide a common set of
+    dependencies and common set of plugin configurations.]]></description>
+  <modules>
+    <module>conditions</module>
+    <module>matchers</module>
+  </modules>
 
   <dependencyManagement>
     <dependencies>
@@ -62,7 +60,7 @@
     </dependencies>
   </dependencyManagement>
 
-<!--
+  <!--
   <build>
     <pluginManagement>
       <plugins>

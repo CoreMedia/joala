@@ -27,8 +27,7 @@
   <packaging>pom</packaging>
   <name>Joala 3rd-party Test BOM</name>
   <description>Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries throughout all
-    modules. Not deployed on release.
-  </description>
+    modules. Not deployed on release.</description>
 
   <properties>
     <maven.deploy.skip>true</maven.deploy.skip>
@@ -43,19 +42,19 @@
         <version>1.0.7</version>
       </dependency>
       <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+      </dependency>
+      <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>1.9.0</version>
       </dependency>
       <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-core</artifactId>
-        <version>${spring.version}</version>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>1.7.0</version>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
@@ -68,14 +67,14 @@
         <version>${spring.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>jcl-over-slf4j</artifactId>
-        <version>1.7.0</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>${spring.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>1</version>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

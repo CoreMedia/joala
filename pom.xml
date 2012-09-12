@@ -14,34 +14,24 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
-    <relativePath/>
+    <relativePath />
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
   <version>0.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
-  <url>http://coremedia.github.com/joala</url>
-  <description><![CDATA[
-    Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
+  <description><![CDATA[Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
     This BOM is meant to be used as dependency with scope import in dependencyManagement section
-    in order to provide all Joala artifacts managed to the same version.
-  ]]></description>
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/CoreMedia/joala/issues</url>
-  </issueManagement>
-  <ciManagement>
-    <system>jenkins</system>
-    <url>http://pc-ci.coremedia.com/job/joala/</url>
-  </ciManagement>
+    in order to provide all Joala artifacts managed to the same version.]]></description>
+  <url>http://coremedia.github.com/joala</url>
+  <inceptionYear>2011</inceptionYear>
   <organization>
     <name>CoreMedia AG</name>
     <url>http://www.coremedia.com/</url>
@@ -53,64 +43,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  <prerequisites>
-    <maven>3.0.4</maven>
-  </prerequisites>
-  <modules>
-    <module>parent</module>
-    <module>build-tools</module>
-    <module>thirdparty-bom</module>
-    <module>thirdparty-test-bom</module>
-  </modules>
-  <scm>
-    <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
-    <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
-    <url>https://github.com/CoreMedia/joala</url>
-    <tag>HEAD</tag>
-  </scm>
-  <inceptionYear>2011</inceptionYear>
-  <distributionManagement>
-    <repository>
-      <id>playground</id>
-      <name>CoreMedia Playground Releases</name>
-      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>playground</id>
-      <name>CoreMedia Playground Snapshots</name>
-      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
-    </snapshotRepository>
-    <!-- Local Deployment, will be overridden by GitHub Pages Deployment on Release -->
-    <site>
-      <id>local-site</id>
-      <name>Deployment as local artifacts</name>
-      <url>${local.site.deploy.url}</url>
-    </site>
-  </distributionManagement>
-  <!-- Properties -->
-  <properties>
-    <github.global.server>github</github.global.server>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>joala-conditions</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>joala-matchers</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <developers>
     <developer>
@@ -159,35 +91,75 @@
       <timezone>+1</timezone>
     </developer>
   </developers>
+  <prerequisites>
+    <maven>3.0.4</maven>
+  </prerequisites>
+  <modules>
+    <module>parent</module>
+    <module>build-tools</module>
+    <module>thirdparty-bom</module>
+    <module>thirdparty-test-bom</module>
+  </modules>
+  <scm>
+    <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
+    <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/CoreMedia/joala</url>
+  </scm>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/CoreMedia/joala/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>jenkins</system>
+    <url>http://pc-ci.coremedia.com/job/joala/</url>
+  </ciManagement>
+  <distributionManagement>
+    <repository>
+      <id>playground</id>
+      <name>CoreMedia Playground Releases</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>playground</id>
+      <name>CoreMedia Playground Snapshots</name>
+      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
+    </snapshotRepository>
+    <!-- Local Deployment, will be overridden by GitHub Pages Deployment on Release -->
+    <site>
+      <id>local-site</id>
+      <name>Deployment as local artifacts</name>
+      <url>${local.site.deploy.url}</url>
+    </site>
+  </distributionManagement>
+  <!-- Properties -->
+  <properties>
+    <github.global.server>github</github.global.server>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>joala-conditions</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>joala-matchers</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
     <pluginManagement>
       <plugins>
-        <!-- see http://code.google.com/p/sortpom/ -->
-        <!-- To start: mvn com.google.code.sortpom:maven-sortpom-plugin:sort -->
-        <plugin>
-          <groupId>com.google.code.sortpom</groupId>
-          <artifactId>maven-sortpom-plugin</artifactId>
-          <version>2.0.0</version>
-          <configuration>
-            <!-- POM Code Convention - http://maven.apache.org/developers/conventions/code.html#POM_Code_Convention -->
-            <sortOrderFile>recommended_2008_06.xml</sortOrderFile>
-            <createBackupFile>false</createBackupFile>
-            <expandEmptyElements>false</expandEmptyElements>
-            <sortDependencies>true</sortDependencies>
-            <sortPlugins>true</sortPlugins>
-            <keepBlankLines>true</keepBlankLines>
-          </configuration>
-        </plugin>
-        <!-- Used to check dependency/plugin versions for updates or to adjust the version for Joala -->
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>versions-maven-plugin</artifactId>
-          <version>1.3.1</version>
-          <configuration>
-            <generateBackupPoms>false</generateBackupPoms>
-          </configuration>
-        </plugin>
         <plugin>
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
@@ -209,39 +181,26 @@
             </execution>
           </executions>
         </plugin>
+        <!-- see http://code.google.com/p/sortpom/ -->
+        <!-- To start: mvn com.google.code.sortpom:maven-sortpom-plugin:sort -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>2.5</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.7</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.1</version>
-          <dependencies>
-            <dependency>
-              <!--
-              | allows markdown syntax for site generation. To use it place files below
-              | src/site/markdown/[filename].md
-              -->
-              <groupId>org.apache.maven.doxia</groupId>
-              <artifactId>doxia-module-markdown</artifactId>
-              <version>1.3</version>
-            </dependency>
-          </dependencies>
+          <groupId>com.google.code.sortpom</groupId>
+          <artifactId>maven-sortpom-plugin</artifactId>
+          <version>2.0.0</version>
           <configuration>
-            <generateSitemap>true</generateSitemap>
+            <!-- POM Code Convention - http://maven.apache.org/developers/conventions/code.html#POM_Code_Convention -->
+            <sortOrderFile>recommended_2008_06.xml</sortOrderFile>
+            <createBackupFile>false</createBackupFile>
+            <expandEmptyElements>false</expandEmptyElements>
+            <sortDependencies>true</sortDependencies>
+            <sortPlugins>true</sortPlugins>
+            <keepBlankLines>true</keepBlankLines>
           </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>2.3.1</version>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>2.5</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -255,8 +214,55 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>1.1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.4</version>
+          <configuration>
+            <!-- Skip for the first versions of Joala not deployed to Maven Central -->
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>2.4</version>
+          <configuration>
+            <skipIfEmpty>true</skipIfEmpty>
+            <archive>
+              <addMavenDescriptor>false</addMavenDescriptor>
+              <forced>false</forced>
+              <manifestEntries>
+                <Built-By>CoreMedia</Built-By>
+                <Build-Jdk>${java.version}</Build-Jdk>
+                <Implementation-Title>${project.name} - ${project.artifactId}</Implementation-Title>
+                <Implementation-Version>${project.version}</Implementation-Version>
+                <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
+                <Implementation-Vendor-Id>com.coremedia</Implementation-Vendor-Id>
+                <Implementation-Vendor>CoreMedia AG</Implementation-Vendor>
+                <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+                <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+              </manifestEntries>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.8.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -292,11 +298,22 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.12.3</version>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.1</version>
           <configuration>
-            <junitArtifactName>junit:junit-dep</junitArtifactName>
+            <generateSitemap>true</generateSitemap>
           </configuration>
+          <dependencies>
+            <dependency>
+              <!--
+              | allows markdown syntax for site generation. To use it place files below
+              | src/site/markdown/[filename].md
+              -->
+              <groupId>org.apache.maven.doxia</groupId>
+              <artifactId>doxia-module-markdown</artifactId>
+              <version>1.3</version>
+            </dependency>
+          </dependencies>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -305,39 +322,19 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.8.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>2.4</version>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.12.3</version>
           <configuration>
-            <skipIfEmpty>true</skipIfEmpty>
-            <archive>
-              <addMavenDescriptor>false</addMavenDescriptor>
-              <forced>false</forced>
-              <manifestEntries>
-                <Built-By>CoreMedia</Built-By>
-                <Build-Jdk>${java.version}</Build-Jdk>
-                <Implementation-Title>${project.name} - ${project.artifactId}</Implementation-Title>
-                <Implementation-Version>${project.version}</Implementation-Version>
-                <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-                <Implementation-Vendor-Id>com.coremedia</Implementation-Vendor-Id>
-                <Implementation-Vendor>CoreMedia AG</Implementation-Vendor>
-                <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
-                <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
-              </manifestEntries>
-            </archive>
+            <junitArtifactName>junit:junit-dep</junitArtifactName>
           </configuration>
         </plugin>
+        <!-- Used to check dependency/plugin versions for updates or to adjust the version for Joala -->
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.4</version>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>1.3.1</version>
           <configuration>
-            <!-- Skip for the first versions of Joala not deployed to Maven Central -->
-            <skip>true</skip>
+            <generateBackupPoms>false</generateBackupPoms>
           </configuration>
         </plugin>
       </plugins>
@@ -371,10 +368,9 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence/>
+                <DependencyConvergence />
                 <requireNoRepositories>
-                  <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
-                  </message>
+                  <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)</message>
                   <allowedRepositories>
                     <allowedRepository>sonatype-nexus-snapshots</allowedRepository>
                   </allowedRepositories>
@@ -382,7 +378,7 @@
                 <requirePluginVersions>
                   <message>Best Practice is to always define plugin versions!</message>
                 </requirePluginVersions>
-                <requireUpperBoundDeps/>
+                <requireUpperBoundDeps />
               </rules>
             </configuration>
           </execution>
@@ -392,16 +388,6 @@
   </build>
   <reporting>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>2.5.1</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-        <version>2.3</version>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -415,6 +401,16 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.5.1</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -475,6 +471,10 @@
         <pluginManagement>
           <plugins>
             <plugin>
+              <groupId>com.github.github</groupId>
+              <artifactId>site-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-site-plugin</artifactId>
               <configuration>
@@ -482,25 +482,9 @@
                 <skipDeploy>true</skipDeploy>
               </configuration>
             </plugin>
-            <plugin>
-              <groupId>com.github.github</groupId>
-              <artifactId>site-maven-plugin</artifactId>
-            </plugin>
           </plugins>
         </pluginManagement>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
@@ -509,6 +493,18 @@
                 <id>attach-javadocs</id>
                 <goals>
                   <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
                 </goals>
               </execution>
             </executions>
