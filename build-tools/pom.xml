@@ -22,7 +22,10 @@
   <artifactId>joala-build-tools</artifactId>
   <version>0.2.0-SNAPSHOT</version>
   <name>Joala build-tools</name>
-  <description>Support for Build-Tooling. Especially to create checkstyle reports.</description>
+  <description>
+    Support for Build-Tooling. Module can be taken as dependency to provide configuration
+    data to reporting plugins for example like the checkstyle plugin.
+  </description>
   <inceptionYear>2011</inceptionYear>
   <prerequisites>
     <maven>3.0.4</maven>

@@ -4,8 +4,7 @@
 
 ${project.description}
 
-Dependency
-----------
+<h3>Dependency</h3>
 
 ```xml
 <dependency>
@@ -15,3 +14,27 @@ Dependency
   <version>${project.version}</version>
 </dependency>
 ```
+
+<h3>Usage</h3>
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-checkstyle-plugin</artifactId>
+  <dependencies>
+    <dependency>
+      <groupId>net.joala</groupId>
+      <artifactId>joala-build-tools</artifactId>
+      <version>\${project.version}</version>
+    </dependency>
+  </dependencies>
+</plugin>
+```
+
+<h3>See Also</h3>
+
+* [Checkstyle Plugin Examples: Multimodule Configuration][checkstyle-multimodule-configuration]
+
+<!-- Links -->
+
+[checkstyle-multimodule-configuration]: <http://maven.apache.org/plugins/maven-checkstyle-plugin/examples/multi-module-config.html> "Checkstyle Plugin Examples: Multimodule Configuration"
