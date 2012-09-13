@@ -18,9 +18,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>com.coremedia</groupId>
+    <artifactId>coremedia-parent</artifactId>
+    <version>8</version>
     <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
@@ -116,16 +116,7 @@
     <url>http://pc-ci.coremedia.com/job/joala/</url>
   </ciManagement>
   <distributionManagement>
-    <repository>
-      <id>playground</id>
-      <name>CoreMedia Playground Releases</name>
-      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.releases</url>
-    </repository>
-    <snapshotRepository>
-      <id>playground</id>
-      <name>CoreMedia Playground Snapshots</name>
-      <url>http://repository-build.coremedia.com/nexus/content/repositories/playground.snapshots</url>
-    </snapshotRepository>
+    <!-- repository and snapshotRepository from parent POM -->
     <!-- Local Deployment, will be overridden by GitHub Pages Deployment on Release -->
     <site>
       <id>local-site</id>
@@ -135,12 +126,12 @@
   </distributionManagement>
   <!-- Properties -->
   <properties>
-    <github.global.server>github</github.global.server>
-    <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
     <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
+    <github.global.server>github</github.global.server>
   </properties>
 
   <dependencyManagement>
@@ -386,7 +377,7 @@
                   <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
                   </message>
                   <allowedRepositories>
-                    <allowedRepository>sonatype-nexus-snapshots</allowedRepository>
+                    <allowedRepository>coremedia.external.releases</allowedRepository>
                   </allowedRepositories>
                 </requireNoRepositories>
                 <requirePluginVersions>
@@ -516,4 +507,16 @@
       </build>
     </profile>
   </profiles>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>coremedia.external.releases</id>
+      <name>CoreMedia CMS</name>
+      <url>https://repository.coremedia.com/nexus/content/groups/cms/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
 </project>
