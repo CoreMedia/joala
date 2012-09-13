@@ -5,14 +5,14 @@
 * Ensure that you have configured your GitHub credentials in your `settings.xml`.
     This is required in order to deploy the Maven site to [Joala GitHub Pages][].
     ```xml
-	<server>
+    <server>
       <id>github</id>
       <username>...</username>
       <password>...</password>
     </server>
-	```
-	Mind that with `site-maven-plugin:0.7` it is not possible to have an encrypted
-	password in here.
+    ```
+    Mind that with `site-maven-plugin:0.7` it is not possible to have an encrypted
+    password in here.
 * Ensure that you have set the passwords for `coremedia.external.releases` in
     your `settings.xml`.
 * Ensure that you have installed Maven 3.0.4 or higher.
