@@ -109,10 +109,10 @@ class ConditionWaitImpl<T> implements ConditionWait {
       // Are we past the deadline?
       if (now > deadline) {
         final long consumedMillis = timeoutMillis + now - deadline;
-        if (lastException != null) {
-          failStrategy.fail(message, function, lastException, consumedMillis);
-        } else {
+        if (lastException == null) {
           failStrategy.fail(message, function, matcher, consumedMillis);
+        } else {
+          failStrategy.fail(message, function, lastException, consumedMillis);
         }
       }
 

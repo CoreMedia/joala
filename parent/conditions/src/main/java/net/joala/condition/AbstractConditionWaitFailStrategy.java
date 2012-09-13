@@ -53,7 +53,7 @@ abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStr
                                          @Nonnull final SelfDescribing function,
                                          @Nonnegative final long consumedMillis) {
     final Description description = new StringDescription();
-    description.appendText(message != null ? message : "Failed to evaluate.");
+    description.appendText(message == null ? "Failed to evaluate." : message);
     description.appendText(" - after ");
     description.appendText(formatMillis(consumedMillis));
     description.appendText(" evaluating function ");

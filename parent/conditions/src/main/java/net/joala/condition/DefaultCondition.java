@@ -58,13 +58,13 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
    * Runnable to execute after condition has been performed.
    */
   @Nullable
-  private Runnable runFinally;
+  private Runnable runFinallyRunnable;
 
   /**
    * Runnable to execute before the condition is being performed.
    */
   @Nullable
-  private Runnable runBefore;
+  private Runnable runBeforeRunnable;
 
   @Nonnull
   private final Timeout timeout;
@@ -110,14 +110,14 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   }
 
   private void until(@Nonnull final ConditionWait wait) {
-    if (runBefore != null) {
-      runBefore.run();
+    if (runBeforeRunnable != null) {
+      runBeforeRunnable.run();
     }
     try {
       wait.until();
     } finally {
-      if (runFinally != null) {
-        runFinally.run();
+      if (runFinallyRunnable != null) {
+        runFinallyRunnable.run();
       }
     }
   }
@@ -155,14 +155,14 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   @Override
   @Nonnull
   public DefaultCondition<T> runFinally(@Nullable final Runnable runnable) {
-    runFinally = runnable;
+    runFinallyRunnable = runnable;
     return this;
   }
 
   @Override
   @Nonnull
   public DefaultCondition<T> runBefore(@Nullable final Runnable runnable) {
-    runBefore = runnable;
+    runBeforeRunnable = runnable;
     return this;
   }
 
@@ -185,8 +185,8 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
     return Objects.toStringHelper(this)
             .add("message", message)
             .add("expression", expression)
-            .add("runBefore", runBefore)
-            .add("runFinally", runFinally)
+            .add("runBefore", runBeforeRunnable)
+            .add("runFinally", runFinallyRunnable)
             .add("timeout", timeout)
             .add("factor", factor)
             .toString();

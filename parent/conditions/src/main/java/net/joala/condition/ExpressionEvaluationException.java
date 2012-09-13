@@ -22,17 +22,37 @@ package net.joala.condition;
  */
 public class ExpressionEvaluationException extends RuntimeException {
 
+  /**
+   * Exception without message and cause.
+   */
   public ExpressionEvaluationException() {
+    // nothing to do but make PMD happy
   }
 
+  /**
+   * Exception with given message.
+   *
+   * @param message message
+   */
   public ExpressionEvaluationException(final String message) {
     super(message);
   }
 
+  /**
+   * Exception with message and cause.
+   *
+   * @param message message
+   * @param cause   cause
+   */
   public ExpressionEvaluationException(final String message, final Throwable cause) {
     super(message, cause);
   }
 
+  /**
+   * Exception with given cause.
+   *
+   * @param cause cause
+   */
   public ExpressionEvaluationException(final Throwable cause) {
     super(cause);
   }

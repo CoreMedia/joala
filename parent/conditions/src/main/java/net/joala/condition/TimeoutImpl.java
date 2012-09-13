@@ -46,6 +46,7 @@ public class TimeoutImpl implements Timeout {
 
   @Override
   @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
   public long in(@Nonnull final TimeUnit targetUnit) {
     checkNotNull(targetUnit, "time unit must not be null");
     return targetUnit.convert(amount, unit);
@@ -53,6 +54,7 @@ public class TimeoutImpl implements Timeout {
 
   @Override
   @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
   public long in(@Nonnull final TimeUnit targetUnit, @Nonnegative final double factor) {
     checkArgument(Double.compare(factor, 0d) > 0, "factor must be positive: %s", factor);
     return round(in(targetUnit) * factor);

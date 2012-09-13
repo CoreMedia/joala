@@ -40,6 +40,7 @@ class ConditionWaitTimeoutFailStrategy extends AbstractConditionWaitFailStrategy
   }
 
   @Override
+  @SuppressWarnings("PMD.AvoidCatchingGenericException")
   public <T> void fail(@Nonnull final String reason,
                        @Nonnull final ConditionFunction<T> function,
                        @Nonnull final Matcher<? super T> matcher,

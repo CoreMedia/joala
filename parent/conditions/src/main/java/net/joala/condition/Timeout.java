@@ -35,6 +35,7 @@ public interface Timeout {
    * @return timeout in the given unit
    */
   @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
   long in(@Nonnull TimeUnit targetUnit);
 
   /**
@@ -47,5 +48,6 @@ public interface Timeout {
    * @return timeout adjust by factor
    */
   @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
   long in(@Nonnull TimeUnit targetUnit, @Nonnegative double factor);
 }
