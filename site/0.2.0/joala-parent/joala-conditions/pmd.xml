@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-09-13T14:19:51.403">
+<file name="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/DefaultCondition.java">
+<violation beginline="44" endline="196" begincolumn="80" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="net.joala.condition" class="DefaultCondition" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+</file>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/ConditionWaitTimeoutFailStrategy.java" suppressiontype="annotation" msg="Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/Timeout.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/Timeout.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/TimeoutImpl.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/TimeoutImpl.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+</pmd>
