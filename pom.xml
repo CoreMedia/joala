@@ -452,6 +452,38 @@
 
   <profiles>
     <profile>
+      <id>test-github-site</id>
+      <!-- Used in order to test deployment of site to github pages. -->
+      <distributionManagement>
+        <!-- Workaround for Multi Module Site Deployment with GitHub Plugin -->
+        <site>
+          <id>github-pages-site</id>
+          <name>Deployment through GitHub's site deployment plugin</name>
+          <url>site/${project.version}</url>
+        </site>
+      </distributionManagement>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-site-plugin</artifactId>
+              <configuration>
+                <!-- On release deployment will be done through GitHub Site Deployment. -->
+                <skipDeploy>true</skipDeploy>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+        <plugins>
+          <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>release</id>
       <distributionManagement>
         <!-- Workaround for Multi Module Site Deployment with GitHub Plugin -->
@@ -465,10 +497,6 @@
         <pluginManagement>
           <plugins>
             <plugin>
-              <groupId>com.github.github</groupId>
-              <artifactId>site-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-site-plugin</artifactId>
               <configuration>
@@ -479,6 +507,10 @@
           </plugins>
         </pluginManagement>
         <plugins>
+          <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
