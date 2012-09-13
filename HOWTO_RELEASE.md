@@ -2,17 +2,36 @@
 
 ## Release Preparations
 
-Ensure that you have configured your GitHub credentials in your `settings.xml`. This is required in order to deploy
-the Maven site to [Joala GitHub Pages][].
+* Ensure that you have configured your GitHub credentials in your `settings.xml`.
+    This is required in order to deploy the Maven site to [Joala GitHub Pages][].
+    ```xml
+	<server>
+      <id>github</id>
+      <username>...</username>
+      <password>...</password>
+    </server>
+	```
+	Mind that with `site-maven-plugin:0.7` it is not possible to have an encrypted
+	password in here.
+* Ensure that you have set the passwords for `coremedia.external.releases` in
+    your `settings.xml`.
+* Ensure that you have installed Maven 3.0.4 or higher.
 
 ## Maven Release
 
 Here are the recommended steps to release Joala:
 
 ```
-joala$ git release:prepare release:perform
-joala$ git push origin master --tags
+joala$ mvn release:prepare release:perform
+joala$ mvn push origin master --tags
 ```
+
+As you can see from the commands above Joala is configured to release locally. Thus
+it is required to push your changes after the release.
+
+**Please don't release in batch mode** in order to choose the correct version numbers as
+mentioned below. Versions for child modules will be set automatically so that you only
+have to specify the versions once.
 
 ## Version Numbers
 
