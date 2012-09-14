@@ -34,6 +34,7 @@
   <modules>
     <module>conditions</module>
     <module>matchers</module>
+    <module>base</module>
   </modules>
 
   <dependencyManagement>

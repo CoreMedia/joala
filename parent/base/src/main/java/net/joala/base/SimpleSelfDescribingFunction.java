@@ -14,37 +14,33 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.base;
 
-import net.joala.base.SimpleSelfDescribing;
+import com.google.common.base.Function;
 import org.hamcrest.Description;
 
 import javax.annotation.Nullable;
 
 /**
- * Convenience abstract implementation of {@link Expression} which has an empty
- * implementation of {@link #describeTo(Description)}.
+ * <p>
+ * Implementation of a function which is able to describe itself with a simple description.
+ * </p>
+ * <p>
+ * <strong>Feature:</strong> if you provide {@code null} as simple description this function
+ * will not add anything to the description on {@link #describeTo(Description)}.
+ * </p>
  *
- * @since 2/27/12
+ * @since 9/14/12
  */
-public abstract class AbstractExpression<T> extends SimpleSelfDescribing implements Expression<T> {
+public abstract class SimpleSelfDescribingFunction<F, T> extends SimpleSelfDescribing implements Function<F, T> {
   /**
    * <p>
-   * Constructor providing an empty description.
-   * </p>
-   */
-  protected AbstractExpression() {
-    this(null);
-  }
-
-  /**
-   * <p>
-   * Constructor providing a plain text description of this expression for debugging purpose.
+   * Constructor providing a simple description of this function.
    * </p>
    *
-   * @param simpleDescription the simple description
+   * @param simpleDescription description; if {@code null} will not add any description
    */
-  protected AbstractExpression(@Nullable final String simpleDescription) {
+  protected SimpleSelfDescribingFunction(@Nullable final String simpleDescription) {
     super(simpleDescription);
   }
 }

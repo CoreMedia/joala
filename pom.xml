@@ -137,6 +137,11 @@
     <dependencies>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>joala-base</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>joala-conditions</artifactId>
         <version>${project.version}</version>
       </dependency>
