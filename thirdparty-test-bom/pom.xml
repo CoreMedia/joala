@@ -26,12 +26,12 @@
   <artifactId>joala-thirdparty-test-bom</artifactId>
   <packaging>pom</packaging>
   <name>Joala 3rd-party Test BOM</name>
-  <description>Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries throughout all
-    modules. Not deployed on release.</description>
+  <description><![CDATA[
+    Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries within
+    Joala throughout all modules. Not expected to be used as BOM outside of Joala.
+  ]]></description>
 
   <properties>
-    <maven.deploy.skip>true</maven.deploy.skip>
-    <github.global.server>github</github.global.server>
     <spring.version>3.1.2.RELEASE</spring.version>
   </properties>
   <dependencyManagement>
