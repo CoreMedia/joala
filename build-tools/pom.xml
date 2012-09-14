@@ -26,7 +26,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-build-tools</artifactId>
-  <version>0.2.1</version>
+  <version>0.2.0</version>
   <name>Joala build-tools</name>
   <description>
     Support for Build-Tooling. Module can be taken as dependency to provide configuration
@@ -111,6 +111,6 @@
   </profiles>
 
   <scm>
-    <tag>joala-bom-0.2.1</tag>
+    <tag>joala-bom-0.2.0</tag>
   </scm>
 </project>
