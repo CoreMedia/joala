@@ -13,7 +13,7 @@ The Maven Site for Joala is uploaded to GitHub through the `site-maven-plugin` a
 [GitHub Maven Plugins][github-maven-plugins] (introduced in a [blog post][blog-github-maven-plugins] in September 2011).
 
 The site is generated to a sub-folder `site` on the pages site. In addition another folder denotes the version of
-the published site. Expect SNAPSHOT-sites to vanish soon.
+the published site.
 
 The configuration in the POMs is derived from a [blog post by Flaming Penguin][blog-flaming-penguin] which provides
 a workaround for multi-module Maven projects. In addition also [akquinet][blog-maven-sites-reloaded] provides
