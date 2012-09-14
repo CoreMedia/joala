@@ -24,7 +24,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
   <description><![CDATA[Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
