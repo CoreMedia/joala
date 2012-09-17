@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.data.random;
 
 /**
- * <p>
- * A timeout which can be converted to different time-units.
- * </p>
- *
- * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.Timeout} instead
+ * @since 9/14/12
  */
-@Deprecated
-public interface Timeout extends net.joala.base.Timeout {
+public interface RandomNumberType<T extends Comparable<? extends Number>> {
+  Class<T> getType();
+
+  T min();
+
+  T max();
+
+  T sum(T value1, T value2);
+
+  T percentOf(double percent, T value);
 }

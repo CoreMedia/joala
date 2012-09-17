@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.base;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -22,15 +22,32 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
- * Implementation of {@link Timeout}.
+ * A timeout which can be converted to different time-units.
  * </p>
  *
  * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.TimeoutImpl} instead
  */
-@Deprecated
-public class TimeoutImpl extends net.joala.base.TimeoutImpl implements Timeout {
-  public TimeoutImpl(@Nonnegative final long amount, @Nonnull final TimeUnit unit) {
-    super(amount, unit);
-  }
+public interface Timeout {
+  /**
+   * Get the timeout in the given unit.
+   *
+   * @param targetUnit the timeunit to use
+   * @return timeout in the given unit
+   */
+  @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
+  long in(@Nonnull TimeUnit targetUnit);
+
+  /**
+   * <p>
+   * Get the timeout in the given unit adjusted by the given factor.
+   * </p>
+   *
+   * @param targetUnit the timeunit to use
+   * @param factor     factor to adjust the timeout
+   * @return timeout adjust by factor
+   */
+  @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
+  long in(@Nonnull TimeUnit targetUnit, @Nonnegative double factor);
 }

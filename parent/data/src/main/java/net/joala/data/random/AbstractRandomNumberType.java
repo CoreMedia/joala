@@ -14,16 +14,29 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.data.random;
+
+import com.google.common.base.Objects;
 
 /**
- * <p>
- * A timeout which can be converted to different time-units.
- * </p>
- *
- * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.Timeout} instead
+ * @since 9/17/12
  */
-@Deprecated
-public interface Timeout extends net.joala.base.Timeout {
+public abstract class AbstractRandomNumberType<T extends Comparable<? extends Number>> implements RandomNumberType<T> {
+  private final Class<T> type;
+
+  protected AbstractRandomNumberType(final Class<T> type) {
+    this.type = type;
+  }
+
+  @Override
+  public final Class<T> getType() {
+    return type;
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("type", type)
+            .toString();
+  }
 }

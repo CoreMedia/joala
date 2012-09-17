@@ -14,23 +14,31 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.data.random;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.util.concurrent.TimeUnit;
+import javax.annotation.Nullable;
 
 /**
- * <p>
- * Implementation of {@link Timeout}.
- * </p>
- *
- * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.TimeoutImpl} instead
+ * @since 9/17/12
  */
-@Deprecated
-public class TimeoutImpl extends net.joala.base.TimeoutImpl implements Timeout {
-  public TimeoutImpl(@Nonnegative final long amount, @Nonnull final TimeUnit unit) {
-    super(amount, unit);
-  }
+public interface RandomStringProvider extends RandomDataProvider<String> {
+  @Nonnull
+  RandomStringProvider length(@Nonnegative int len);
+
+  @Nonnull
+  RandomStringProvider maxLength(@Nonnegative int len);
+
+  @Nonnull
+  RandomStringProvider minLength(@Nonnegative int len);
+
+  @Nonnull
+  RandomStringProvider type(@Nonnull RandomStringType type);
+
+  @Nonnull
+  RandomStringProvider prefix(@Nullable String prefix);
+
+  @Nonnull
+  RandomStringProvider postfix(@Nullable String postfix);
 }

@@ -16,6 +16,8 @@
 
 package net.joala.condition;
 
+import net.joala.base.Timeout;
+
 import javax.annotation.Nonnull;
 
 import static com.google.common.base.Preconditions.checkNotNull;

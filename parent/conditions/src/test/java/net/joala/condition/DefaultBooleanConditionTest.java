@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.base.Timeout;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.runner.RunWith;

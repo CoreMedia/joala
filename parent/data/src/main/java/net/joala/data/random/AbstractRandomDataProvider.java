@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.data.random;
+
+import net.joala.data.DataProvider;
+
+import javax.annotation.Nonnull;
 
 /**
  * <p>
- * A timeout which can be converted to different time-units.
+ * Abstract implementation of a random data provider.
  * </p>
  *
- * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.Timeout} instead
+ * @since 9/17/12
  */
-@Deprecated
-public interface Timeout extends net.joala.base.Timeout {
+public abstract class AbstractRandomDataProvider<T> implements RandomDataProvider<T> {
+  @Override
+  @Nonnull
+  public final DataProvider<T> fixate() {
+    return this;
+  }
+
 }

@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.base;
 
+import net.joala.data.DataProvider;
+import net.joala.data.random.RandomDoubleProvider;
+import net.joala.data.random.RandomIntegerProvider;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.condition.RandomData.randomPositiveDouble;
-import static net.joala.condition.RandomData.randomPositiveInt;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -34,6 +35,8 @@ import static org.junit.Assert.assertThat;
  * @since 8/25/12
  */
 public class TimeoutImplTest {
+  private final DataProvider<Integer> randomPositiveInt = new RandomIntegerProvider().min(0).max(Integer.MAX_VALUE).fixate();
+  private final DataProvider<Double> randomPositiveDouble = new RandomDoubleProvider().min(0d).max(Double.MAX_VALUE).fixate();
 
   @Test(expected = IllegalArgumentException.class)
   public void constructor_should_throw_exception_on_negative_timeout() throws Exception {
@@ -43,12 +46,12 @@ public class TimeoutImplTest {
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void constructor_should_throw_exception_on_invalid_timeunit() throws Exception {
-    new TimeoutImpl(randomPositiveInt(), null);
+    new TimeoutImpl(randomPositiveInt.get(), null);
   }
 
   @Test
   public void constructor_should_set_amount_and_unit_correctly() throws Exception {
-    final int amount = randomPositiveInt();
+    final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
     assertEquals("Constructor should have correctly set amount and unit.", unit.toMillis(amount), timeout.in(TimeUnit.MILLISECONDS));
@@ -56,7 +59,7 @@ public class TimeoutImplTest {
 
   @Test
   public void in_method_should_convert_correctly() throws Exception {
-    final int amount = randomPositiveInt();
+    final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
     assertEquals(format("Correctly converted to Milliseconds: %s", timeout), unit.toMillis(amount), timeout.in(TimeUnit.MILLISECONDS));
@@ -67,7 +70,7 @@ public class TimeoutImplTest {
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void in_method_should_throw_exception_on_null_timeunit() throws Exception {
-    final int amount = randomPositiveInt();
+    final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
     timeout.in(null);
@@ -75,8 +78,8 @@ public class TimeoutImplTest {
 
   @Test
   public void in_method_should_correctly_apply_positive_factor() throws Exception {
-    final double factor = randomPositiveDouble();
-    final int amount = randomPositiveInt();
+    final double factor = randomPositiveDouble.get();
+    final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
     assertEquals(format("Correctly converted to Milliseconds: %s", timeout), round(unit.toMillis(amount) * factor), timeout.in(TimeUnit.MILLISECONDS, factor));
@@ -85,8 +88,8 @@ public class TimeoutImplTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void in_method_should_throw_exception_on_non_positive_factor() throws Exception {
-    final double factor = -1.0 * randomPositiveDouble();
-    final int amount = randomPositiveInt();
+    final double factor = -1.0 * randomPositiveDouble.get();
+    final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
     timeout.in(unit, factor);
@@ -94,7 +97,7 @@ public class TimeoutImplTest {
 
   @Test
   public void toString_should_contain_parameters() throws Exception {
-    final int amount = randomPositiveInt();
+    final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
     final String str = timeout.toString();

@@ -14,16 +14,24 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.data;
 
 /**
- * <p>
- * A timeout which can be converted to different time-units.
- * </p>
- *
- * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.Timeout} instead
+ * @since 9/16/12
  */
-@Deprecated
-public interface Timeout extends net.joala.base.Timeout {
+public class DataProvidingException extends Exception {
+  public DataProvidingException() {
+  }
+
+  public DataProvidingException(final Throwable cause) {
+    super(cause);
+  }
+
+  public DataProvidingException(final String message) {
+    super(message);
+  }
+
+  public DataProvidingException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
 }
