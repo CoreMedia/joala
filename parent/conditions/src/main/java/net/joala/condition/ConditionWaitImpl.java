@@ -17,6 +17,7 @@
 package net.joala.condition;
 
 import com.google.common.base.Objects;
+import net.joala.base.ConditionWaitFailStrategy;
 import org.hamcrest.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

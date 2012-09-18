@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.base.AbstractConditionWaitFailStrategy;
 import org.hamcrest.SelfDescribing;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +37,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * <p>
- * Tests {@link AbstractConditionWaitFailStrategy}.
+ * Tests {@link net.joala.base.AbstractConditionWaitFailStrategy}.
  * </p>
  *
  * @since 9/4/12

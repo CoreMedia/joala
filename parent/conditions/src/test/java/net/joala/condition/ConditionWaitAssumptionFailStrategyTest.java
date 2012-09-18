@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import org.junit.Test;
+import net.joala.base.ConditionWaitAssumptionFailStrategy;
 import org.junit.internal.AssumptionViolatedException;
 
 /**

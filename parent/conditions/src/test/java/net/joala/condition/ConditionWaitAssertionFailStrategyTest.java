@@ -16,6 +16,8 @@
 
 package net.joala.condition;
 
+import net.joala.base.ConditionWaitAssertionFailStrategy;
+
 /**
  * @since 8/26/12
  */

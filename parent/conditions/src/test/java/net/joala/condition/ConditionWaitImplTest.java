@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.base.ConditionWaitFailStrategy;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;

@@ -17,6 +17,9 @@
 package net.joala.condition;
 
 import com.google.common.base.Objects;
+import net.joala.base.ConditionWaitAssertionFailStrategy;
+import net.joala.base.ConditionWaitAssumptionFailStrategy;
+import net.joala.base.ConditionWaitTimeoutFailStrategy;
 import net.joala.base.Timeout;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsAnything;

@@ -14,42 +14,46 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.base;
 
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
+import static net.joala.matcher.decorator.EnhanceDescriptionBy.enhanceDescriptionBy;
 import static org.junit.Assume.assumeThat;
 
 /**
  * <p>
- * Fail-strategy to fail with timeout exception.
+ * Strategy to fail with an assumption violation if the condition is not fulfilled.
  * </p>
  *
  * @since 8/23/12
  */
-class ConditionWaitTimeoutFailStrategy extends AbstractConditionWaitFailStrategy {
+class ConditionWaitAssumptionFailStrategy extends AbstractConditionWaitFailStrategy {
   @Override
   public void fail(@Nonnull final String reason,
                    @Nonnull final ConditionFunction<?> function,
                    @Nonnull final ExpressionEvaluationException exception,
                    @Nonnegative final long consumedMillis) {
-    throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), exception);
+    // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
+    Assume.assumeThat(
+            exception,
+            EnhanceDescriptionBy.enhanceDescriptionBy(
+                    addTimeoutDescription(reason, function, consumedMillis),
+                    new ConditionWaitFailNoExceptionMatcher(function)));
   }
 
   @Override
-  @SuppressWarnings("PMD.AvoidCatchingGenericException")
   public <T> void fail(@Nonnull final String reason,
                        @Nonnull final ConditionFunction<T> function,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
-    try {
-      assumeThat(function.getCached(), matcher);
-    } catch (Exception e) {
-      throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), e);
-    }
+    // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
+    Assume.assumeThat(
+            function.getCached(),
+            EnhanceDescriptionBy.enhanceDescriptionBy(addTimeoutDescription(reason, function, consumedMillis), matcher));
   }
 
 }

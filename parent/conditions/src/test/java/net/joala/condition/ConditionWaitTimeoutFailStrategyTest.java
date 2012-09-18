@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import java.util.concurrent.TimeoutException;
+import net.joala.base.ConditionWaitTimeoutFailStrategy;
 
 /**
  * @since 8/27/12

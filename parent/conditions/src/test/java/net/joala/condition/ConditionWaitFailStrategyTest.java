@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.base.ConditionWaitFailStrategy;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -32,7 +33,7 @@ import static org.junit.Assert.fail;
 
 /**
  * <p>
- * Base test for classes implementing {@link ConditionWaitFailStrategy}.
+ * Base test for classes implementing {@link net.joala.base.ConditionWaitFailStrategy}.
  * </p>
  *
  * @since 8/26/12
