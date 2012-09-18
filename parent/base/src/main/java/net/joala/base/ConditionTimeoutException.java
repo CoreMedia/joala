@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.base;
 
 import javax.annotation.Nullable;
 

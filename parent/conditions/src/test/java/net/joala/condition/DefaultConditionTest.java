@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.base.ConditionTimeoutException;
 import net.joala.base.Timeout;
 import org.junit.Before;
 import org.junit.Test;

@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.base.ConditionTimeoutException;
 import net.joala.base.ConditionWaitTimeoutFailStrategy;
 
 /**
