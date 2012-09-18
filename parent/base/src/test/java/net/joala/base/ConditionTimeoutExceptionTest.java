@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.base;
 
 import net.joala.base.WaitTimeoutException;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -66,9 +66,9 @@ public class ConditionTimeoutExceptionTest {
     Math.random();
     return Arrays.asList(new Object[][]{
             {"Should except both, message and cause to be null.", null, null},
-            {"Should except both, message and cause not to be null.", randomString(), new Exception(randomString())},
-            {"Should except message to be null, while cause is non-null.", null, new Exception(randomString())},
-            {"Should except cause to be null, while message is non-null.", randomString(), null},
+            {"Should except both, message and cause not to be null.", RandomData.randomString(), new Exception(RandomData.randomString())},
+            {"Should except message to be null, while cause is non-null.", null, new Exception(RandomData.randomString())},
+            {"Should except cause to be null, while message is non-null.", RandomData.randomString(), null},
     });
   }
 
