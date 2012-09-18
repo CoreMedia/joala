@@ -21,32 +21,35 @@ import org.hamcrest.Matcher;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assume.assumeThat;
 
 /**
  * <p>
- * Strategy to fail with an assertion error if the condition is not fulfilled.
+ * Fail-strategy to fail with timeout exception.
  * </p>
  *
  * @since 8/23/12
  */
-class ConditionWaitAssertionFailStrategy extends AbstractConditionWaitFailStrategy {
+class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nonnull final String reason,
                    @Nonnull final ConditionFunction<?> function,
                    @Nonnull final ExpressionEvaluationException exception,
                    @Nonnegative final long consumedMillis) {
-    assertThat(
-            addTimeoutDescription(reason, function, consumedMillis),
-            exception,
-            new ConditionWaitFailNoExceptionMatcher(function));
+    throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), exception);
   }
 
   @Override
+  @SuppressWarnings("PMD.AvoidCatchingGenericException")
   public <T> void fail(@Nonnull final String reason,
                        @Nonnull final ConditionFunction<T> function,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
-    assertThat(addTimeoutDescription(reason, function, consumedMillis), function.getCached(), matcher);
+    try {
+      Assume.assumeThat(function.getCached(), matcher);
+    } catch (Exception e) {
+      throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), e);
+    }
   }
+
 }

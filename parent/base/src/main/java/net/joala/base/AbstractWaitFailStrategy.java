@@ -29,13 +29,13 @@ import static net.joala.base.TimeFormat.format;
 
 /**
  * <p>
- * Abstract implementation of {@link ConditionWaitFailStrategy}. Provides some commonly used
+ * Abstract implementation of {@link WaitFailStrategy}. Provides some commonly used
  * methods for fail strategy implementations.
  * </p>
  *
  * @since 8/27/12
  */
-abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStrategy {
+abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
 
   /**
    * <p>

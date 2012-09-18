@@ -21,28 +21,25 @@ import org.hamcrest.Matcher;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-import static net.joala.matcher.decorator.EnhanceDescriptionBy.enhanceDescriptionBy;
-import static org.junit.Assume.assumeThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * <p>
- * Strategy to fail with an assumption violation if the condition is not fulfilled.
+ * Strategy to fail with an assertion error if the condition is not fulfilled.
  * </p>
  *
  * @since 8/23/12
  */
-class ConditionWaitAssumptionFailStrategy extends AbstractConditionWaitFailStrategy {
+class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nonnull final String reason,
                    @Nonnull final ConditionFunction<?> function,
                    @Nonnull final ExpressionEvaluationException exception,
                    @Nonnegative final long consumedMillis) {
-    // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
-    Assume.assumeThat(
+    assertThat(
+            addTimeoutDescription(reason, function, consumedMillis),
             exception,
-            EnhanceDescriptionBy.enhanceDescriptionBy(
-                    addTimeoutDescription(reason, function, consumedMillis),
-                    new ConditionWaitFailNoExceptionMatcher(function)));
+            new ConditionWaitFailNoExceptionMatcher(function));
   }
 
   @Override
@@ -50,10 +47,6 @@ class ConditionWaitAssumptionFailStrategy extends AbstractConditionWaitFailStrat
                        @Nonnull final ConditionFunction<T> function,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
-    // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
-    Assume.assumeThat(
-            function.getCached(),
-            EnhanceDescriptionBy.enhanceDescriptionBy(addTimeoutDescription(reason, function, consumedMillis), matcher));
+    assertThat(addTimeoutDescription(reason, function, consumedMillis), function.getCached(), matcher);
   }
-
 }

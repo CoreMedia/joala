@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
  *
  * @since 8/23/12
  */
-interface ConditionWaitFailStrategy {
+interface WaitFailStrategy {
   /**
    * Makes a condition fail because the expected value did not get returned in time.
    *
