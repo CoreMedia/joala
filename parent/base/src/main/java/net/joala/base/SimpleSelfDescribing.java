@@ -32,7 +32,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  *
  * @since 9/14/12
  */
-public class SimpleSelfDescribing implements SelfDescribing {
+public abstract class SimpleSelfDescribing implements SelfDescribing {
   /**
    * The simple description.
    */
@@ -46,7 +46,7 @@ public class SimpleSelfDescribing implements SelfDescribing {
    *
    * @param simpleDescription description to add; {@code null} if this object shall not provide any description
    */
-  public SimpleSelfDescribing(@Nullable final String simpleDescription) {
+  protected SimpleSelfDescribing(@Nullable final String simpleDescription) {
     this.simpleDescription = simpleDescription;
   }
 

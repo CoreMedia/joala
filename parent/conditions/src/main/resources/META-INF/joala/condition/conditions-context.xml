@@ -23,6 +23,13 @@
   <description><![CDATA[
     Provides importable default beans for condition factory. Usage:
     <import resource="classpath:META-INF/joala/condition/conditions-context.xml"/>
+
+    Available beans:
+
+    * defaultTimeout <net.joala.base.TimeoutImpl>
+    * defaultConditionFactory <net.joala.condition.DefaultConditionFactory>
+
+    where defaultTimout can be configured with condition.timeout.seconds (default: 60).
   ]]></description>
 
   <bean id="defaultTimeout" class="net.joala.base.TimeoutImpl" scope="singleton">

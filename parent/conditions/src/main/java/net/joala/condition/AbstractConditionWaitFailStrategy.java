@@ -25,6 +25,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
+import static net.joala.base.TimeFormat.format;
+
 /**
  * <p>
  * Abstract implementation of {@link ConditionWaitFailStrategy}. Provides some commonly used
@@ -34,8 +36,6 @@ import java.util.concurrent.TimeUnit;
  * @since 8/27/12
  */
 abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStrategy {
-
-  private static final int TIMEUNIT_LIMIT = 2;
 
   /**
    * <p>
@@ -55,38 +55,10 @@ abstract class AbstractConditionWaitFailStrategy implements ConditionWaitFailStr
     final Description description = new StringDescription();
     description.appendText(message == null ? "Failed to evaluate." : message);
     description.appendText(" - after ");
-    description.appendText(formatMillis(consumedMillis));
+    description.appendText(format(consumedMillis, TimeUnit.MILLISECONDS));
     description.appendText(" evaluating function ");
     description.appendDescriptionOf(function);
     return description.toString();
-  }
-
-  /**
-   * <p>
-   * Format the milliseconds in a "human readable" way.
-   * </p>
-   *
-   * @param millis milliseconds to format
-   * @return milliseconds in human readable format (for example converted to seconds or minutes)
-   */
-  @Nonnull
-  private String formatMillis(@Nonnegative final long millis) {
-    final long amount;
-    final String unit;
-    if (TimeUnit.MILLISECONDS.toHours(millis) >= TIMEUNIT_LIMIT) {
-      amount = TimeUnit.MILLISECONDS.toHours(millis);
-      unit = "h";
-    } else if (TimeUnit.MILLISECONDS.toMinutes(millis) >= TIMEUNIT_LIMIT) {
-      amount = TimeUnit.MILLISECONDS.toMinutes(millis);
-      unit = "min";
-    } else if (TimeUnit.MILLISECONDS.toSeconds(millis) >= TIMEUNIT_LIMIT) {
-      amount = TimeUnit.MILLISECONDS.toSeconds(millis);
-      unit = "s";
-    } else {
-      amount = millis;
-      unit = "ms";
-    }
-    return String.format("%d %s", amount, unit);
   }
 
 }

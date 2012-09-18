@@ -44,6 +44,7 @@ public interface Wait {
    * @param matcher    validate if the state matches the expectations
    * @param <F>        the type of the object to validate
    * @param <T>        the type of the state query result
+   * @return the result of the stateQuery if successfully matched
    */
-  <F, T> void until(@Nonnull F input, @Nonnull Function<? super F, T> stateQuery, @Nonnull Matcher<? super T> matcher);
+  <F, T> T until(@Nonnull F input, @Nonnull Function<? super F, T> stateQuery, @Nonnull Matcher<? super T> matcher);
 }
