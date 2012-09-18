@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import net.joala.base.ConditionTimeoutException;
+import net.joala.base.WaitTimeoutException;
 import net.joala.base.Timeout;
 import org.junit.Before;
 import org.junit.Test;
@@ -103,7 +103,7 @@ public class DefaultConditionTest {
     verify(expression).get();
   }
 
-  @Test(expected = ConditionTimeoutException.class)
+  @Test(expected = WaitTimeoutException.class)
   public void await_should_timeout_if_expression_does_not_match() throws Exception {
     condition.await(not(anything()));
   }

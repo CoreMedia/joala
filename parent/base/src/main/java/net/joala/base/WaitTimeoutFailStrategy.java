@@ -36,7 +36,7 @@ class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
                    @Nonnull final ConditionFunction<?> function,
                    @Nonnull final ExpressionEvaluationException exception,
                    @Nonnegative final long consumedMillis) {
-    throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), exception);
+    throw new WaitTimeoutException(addTimeoutDescription(reason, function, consumedMillis), exception);
   }
 
   @Override
@@ -48,7 +48,7 @@ class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
     try {
       Assume.assumeThat(function.getCached(), matcher);
     } catch (Exception e) {
-      throw new ConditionTimeoutException(addTimeoutDescription(reason, function, consumedMillis), e);
+      throw new WaitTimeoutException(addTimeoutDescription(reason, function, consumedMillis), e);
     }
   }
 

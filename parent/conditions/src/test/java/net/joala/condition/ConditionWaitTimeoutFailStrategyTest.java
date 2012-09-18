@@ -16,16 +16,16 @@
 
 package net.joala.condition;
 
-import net.joala.base.ConditionTimeoutException;
+import net.joala.base.WaitTimeoutException;
 import net.joala.base.ConditionWaitTimeoutFailStrategy;
 
 /**
  * @since 8/27/12
  */
-public class ConditionWaitTimeoutFailStrategyTest extends ConditionWaitFailStrategyTest<ConditionWaitTimeoutFailStrategy, ConditionTimeoutException> {
+public class ConditionWaitTimeoutFailStrategyTest extends ConditionWaitFailStrategyTest<ConditionWaitTimeoutFailStrategy, WaitTimeoutException> {
   @Override
-  protected Class<ConditionTimeoutException> getRaisedExceptionType() {
-    return ConditionTimeoutException.class;
+  protected Class<WaitTimeoutException> getRaisedExceptionType() {
+    return WaitTimeoutException.class;
   }
 
   @Override

@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import net.joala.base.ConditionTimeoutException;
+import net.joala.base.WaitTimeoutException;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Test;
@@ -31,23 +31,23 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 /**
- * Tests {@link net.joala.base.ConditionTimeoutException}.
+ * Tests {@link net.joala.base.WaitTimeoutException}.
  *
  * @since 8/24/12
  */
 @RunWith(Parameterized.class)
 public class ConditionTimeoutExceptionTest {
 
-  @Test(expected = ConditionTimeoutException.class)
+  @Test(expected = WaitTimeoutException.class)
   public void should_be_able_to_call_constructor_without_exception() throws Exception {
-    throw new ConditionTimeoutException(exceptionMessage, exceptionCause);
+    throw new WaitTimeoutException(exceptionMessage, exceptionCause);
   }
 
   @Test
   public void message_should_be_set_correctly() throws Exception {
     try {
-      throw new ConditionTimeoutException(exceptionMessage, exceptionCause);
-    } catch (ConditionTimeoutException e) {
+      throw new WaitTimeoutException(exceptionMessage, exceptionCause);
+    } catch (WaitTimeoutException e) {
       assertEquals(testMessage, exceptionMessage, e.getMessage());
     }
   }
@@ -55,8 +55,8 @@ public class ConditionTimeoutExceptionTest {
   @Test
   public void cause_should_be_set_correctly() throws Exception {
     try {
-      throw new ConditionTimeoutException(exceptionMessage, exceptionCause);
-    } catch (ConditionTimeoutException e) {
+      throw new WaitTimeoutException(exceptionMessage, exceptionCause);
+    } catch (WaitTimeoutException e) {
       assertSame(testMessage, exceptionCause, e.getCause());
     }
   }

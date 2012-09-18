@@ -25,8 +25,8 @@ import javax.annotation.Nullable;
  *
  * @since 8/23/12
  */
-public final class ConditionTimeoutException extends RuntimeException {
-  public ConditionTimeoutException(@Nullable final String message, @Nullable final Throwable cause) {
+public final class WaitTimeoutException extends RuntimeException {
+  public WaitTimeoutException(@Nullable final String message, @Nullable final Throwable cause) {
     super(message, cause);
   }
 }
