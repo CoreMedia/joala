@@ -36,7 +36,7 @@ import static org.junit.Assert.assertSame;
  * @since 8/24/12
  */
 @RunWith(Parameterized.class)
-public class ConditionTimeoutExceptionTest {
+public class WaitTimeoutExceptionTest {
 
   @Test(expected = WaitTimeoutException.class)
   public void should_be_able_to_call_constructor_without_exception() throws Exception {
@@ -79,7 +79,7 @@ public class ConditionTimeoutExceptionTest {
   private final String exceptionMessage;
   private final Throwable exceptionCause;
 
-  public ConditionTimeoutExceptionTest(final String testMessage, final String exceptionMessage, final Throwable exceptionCause) {
+  public WaitTimeoutExceptionTest(final String testMessage, final String exceptionMessage, final Throwable exceptionCause) {
     this.exceptionCause = exceptionCause;
     this.testMessage = testMessage;
     this.exceptionMessage = exceptionMessage;
