@@ -67,7 +67,7 @@ public class DefaultRandomStringProvider extends AbstractRandomDataProvider<Stri
   }
 
   public DefaultRandomStringProvider(@Nonnull final RandomStringType type, @Nonnegative final int defaultMinLen, @Nonnegative final int defaultMaxLen) {
-    checkArgument(defaultMinLen > defaultMaxLen, "Min length must not be greater than max len.");
+    checkArgument(defaultMinLen <= defaultMaxLen, "Min length must not be greater than max len: %s >= %s", defaultMinLen, defaultMaxLen);
     checkArgument(defaultMinLen >= 0, "Minimum length must be non-negative.");
     checkArgument(defaultMaxLen >= 0, "Maximum length must be non-negative.");
     checkNotNull(type, "String Type must not be null.");
@@ -87,7 +87,7 @@ public class DefaultRandomStringProvider extends AbstractRandomDataProvider<Stri
     final int postfixLength = postfix == null ? 0 : postfix.length();
     final int predefinedLength = prefixLength + postfixLength;
 
-    checkState(maxLen < predefinedLength, "Maximum length is less than pre- and/or postfix.");
+    checkState(maxLen >= predefinedLength, "Maximum length (%s) is less than pre- and/or postfix (%s).", maxLen, predefinedLength);
     final int adjustedMaxLen = maxLen - predefinedLength;
     if (minLen == maxLen) {
       return adjustedMaxLen;

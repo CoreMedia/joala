@@ -20,6 +20,7 @@ import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * <p>
@@ -29,17 +30,22 @@ import javax.annotation.Nonnull;
  *
  * @since 8/23/12
  */
-interface WaitFailStrategy {
+public interface WaitFailStrategy {
   /**
    * Makes a condition fail because the expected value did not get returned in time.
    *
    * @param reason         reason of the failure
    * @param function       function evaluated
+   * @param input          original input to the function
+   * @param lastValue      the last value retrieved via function
    * @param matcher        the matcher which did not match
    * @param consumedMillis consumed milliseconds
+   * @param <T>            the value type returned by the function
    */
-  <T> void fail(@Nonnull String reason,
-                @Nonnull ConditionFunction<T> function,
+  <T> void fail(@Nullable String reason,
+                @Nonnull Object function,
+                @Nonnull Object input,
+                @Nullable T lastValue,
                 @Nonnull Matcher<? super T> matcher,
                 @Nonnegative long consumedMillis);
 
@@ -47,13 +53,15 @@ interface WaitFailStrategy {
    * Makes a condition fail because the expected value could not be retrieved because of repeating
    * evaluation exceptions.
    *
-   * @param reason    reason of the failure
-   * @param function  function evaluated
-   * @param exception last exception which got caught
+   * @param reason         reason of the failure
+   * @param function       function evaluated
+   * @param input          original input to the function
+   * @param throwable      last exception which got caught
    * @param consumedMillis consumed milliseconds
    */
-  void fail(@Nonnull String reason,
-            @Nonnull ConditionFunction<?> function,
-            @Nonnull ExpressionEvaluationException exception,
+  void fail(@Nullable String reason,
+            @Nonnull Object function,
+            @Nonnull Object input,
+            @Nonnull Throwable throwable,
             @Nonnegative long consumedMillis);
 }

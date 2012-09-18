@@ -17,17 +17,17 @@
 package net.joala.condition;
 
 import com.google.common.base.Objects;
-import net.joala.base.ConditionWaitAssertionFailStrategy;
-import net.joala.base.ConditionWaitAssumptionFailStrategy;
-import net.joala.base.ConditionWaitTimeoutFailStrategy;
+import net.joala.base.DeceleratingWait;
 import net.joala.base.Timeout;
+import net.joala.base.Wait;
+import net.joala.base.WaitFailStrategy;
+import net.joala.base.WaitTimeoutFailStrategy;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsAnything;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -46,12 +46,9 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * @since 2/24/12
  */
 public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
-  private static final ConditionWaitTimeoutFailStrategy TIMEOUT_FAIL_STRATEGY =
-          new ConditionWaitTimeoutFailStrategy();
-  private static final ConditionWaitAssumptionFailStrategy ASSUMPTION_FAIL_STRATEGY =
-          new ConditionWaitAssumptionFailStrategy();
-  private static final ConditionWaitAssertionFailStrategy ASSERTION_FAIL_STRATEGY =
-          new ConditionWaitAssertionFailStrategy();
+  private static final WaitFailStrategy TIMEOUT_FAIL_STRATEGY = new WaitTimeoutFailStrategy();
+  private static final WaitFailStrategy ASSUMPTION_FAIL_STRATEGY = new WaitAssumptionFailStrategy();
+  private static final WaitFailStrategy ASSERTION_FAIL_STRATEGY = new WaitAssertionFailStrategy();
   /**
    * Message to print on failure. {@code null} for none.
    */
@@ -103,22 +100,19 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   @Override
   @Nullable
   public T await(@Nonnull final Matcher<? super T> matcher) {
-    final ConditionFunction<T> function = new ConditionFunction<T>(expression);
-    until(new ConditionWaitImpl<T>(
-            message,
-            function,
-            matcher,
-            timeout.in(TimeUnit.MILLISECONDS, factor),
-            TIMEOUT_FAIL_STRATEGY));
-    return function.getCached();
+    return until(matcher, TIMEOUT_FAIL_STRATEGY);
   }
 
-  private void until(@Nonnull final ConditionWait wait) {
+  private T until(final Matcher<? super T> matcher, final WaitFailStrategy failStrategy) {
+    return until(new DeceleratingWait(timeout, factor, failStrategy), matcher);
+  }
+
+  private T until(@Nonnull final Wait wait, @Nullable final Matcher<? super T> matcher) {
     if (runBeforeRunnable != null) {
       runBeforeRunnable.run();
     }
     try {
-      wait.until();
+      return wait.until(message, expression, new ExpressionFunction<T>(), matcher);
     } finally {
       if (runFinallyRunnable != null) {
         runFinallyRunnable.run();
@@ -128,12 +122,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
 
   @Override
   public void assumeThat(@Nonnull final Matcher<? super T> matcher) {
-    until(new ConditionWaitImpl<T>(
-            message,
-            new ConditionFunction<T>(expression),
-            matcher,
-            timeout.in(TimeUnit.MILLISECONDS, factor),
-            ASSUMPTION_FAIL_STRATEGY));
+    until(matcher, ASSUMPTION_FAIL_STRATEGY);
   }
 
   @Override
@@ -143,12 +132,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
 
   @Override
   public void assertThat(@Nonnull final Matcher<? super T> matcher) {
-    until(new ConditionWaitImpl<T>(
-            message,
-            new ConditionFunction<T>(expression),
-            matcher,
-            timeout.in(TimeUnit.MILLISECONDS, factor),
-            ASSERTION_FAIL_STRATEGY));
+    until(matcher, ASSERTION_FAIL_STRATEGY);
   }
 
   @Override

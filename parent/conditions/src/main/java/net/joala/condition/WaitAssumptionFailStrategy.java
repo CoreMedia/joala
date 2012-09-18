@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package net.joala.base;
+package net.joala.condition;
 
+import net.joala.base.AbstractWaitFailStrategy;
+import net.joala.matcher.decorator.EnhanceDescriptionBy;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
-import static net.joala.matcher.decorator.EnhanceDescriptionBy.enhanceDescriptionBy;
 import static org.junit.Assume.assumeThat;
 
 /**
@@ -31,29 +32,31 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 8/23/12
  */
-class WaitAssumptionFailStrategy extends AbstractWaitFailStrategy {
+public class WaitAssumptionFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nonnull final String reason,
-                   @Nonnull final ConditionFunction<?> function,
-                   @Nonnull final ExpressionEvaluationException exception,
+                   @Nonnull final Object function,
+                   @Nonnull final Object input,
+                   @Nonnull final Throwable exception,
                    @Nonnegative final long consumedMillis) {
     // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
-    Assume.assumeThat(
+    assumeThat(
             exception,
             EnhanceDescriptionBy.enhanceDescriptionBy(
-                    addTimeoutDescription(reason, function, consumedMillis),
-                    new ConditionWaitFailNoExceptionMatcher(function)));
+                    addTimeoutDescription(reason, function, input, consumedMillis),
+                    new WaitFailNoExceptionMatcher(function)));
   }
 
   @Override
   public <T> void fail(@Nonnull final String reason,
-                       @Nonnull final ConditionFunction<T> function,
+                       @Nonnull final Object function,
+                       @Nonnull final Object input,
+                       @Nonnull final T lastValue,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
     // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
-    Assume.assumeThat(
-            function.getCached(),
-            EnhanceDescriptionBy.enhanceDescriptionBy(addTimeoutDescription(reason, function, consumedMillis), matcher));
+    assumeThat(
+            lastValue,
+            EnhanceDescriptionBy.enhanceDescriptionBy(addTimeoutDescription(reason, function, input, consumedMillis), matcher));
   }
-
 }

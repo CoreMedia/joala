@@ -17,7 +17,6 @@
 package net.joala.base;
 
 import org.hamcrest.Description;
-import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 
 import javax.annotation.Nonnegative;
@@ -26,6 +25,7 @@ import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
 import static net.joala.base.TimeFormat.format;
+import static net.joala.matcher.DescriptionUtil.describeTo;
 
 /**
  * <p>
@@ -35,7 +35,7 @@ import static net.joala.base.TimeFormat.format;
  *
  * @since 8/27/12
  */
-abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
+public abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
 
   /**
    * <p>
@@ -45,19 +45,22 @@ abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
    *
    * @param message        original (plain) message
    * @param function       function evaluated
-   * @param consumedMillis how long it took until timeout
-   * @return enhanced message
+   * @param input          the input to the function
+   * @param consumedMillis how long it took until timeout  @return enhanced message
    */
   @Nonnull
   protected String addTimeoutDescription(@Nullable final String message,
-                                         @Nonnull final SelfDescribing function,
+                                         @Nonnull final Object function,
+                                         @Nonnull final Object input,
                                          @Nonnegative final long consumedMillis) {
     final Description description = new StringDescription();
     description.appendText(message == null ? "Failed to evaluate." : message);
     description.appendText(" - after ");
     description.appendText(format(consumedMillis, TimeUnit.MILLISECONDS));
-    description.appendText(" evaluating function ");
-    description.appendDescriptionOf(function);
+    description.appendText(" evaluating ");
+    describeTo(description, function);
+    description.appendText(" on ");
+    describeTo(description, input);
     return description.toString();
   }
 

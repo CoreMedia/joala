@@ -18,7 +18,6 @@ package net.joala.base;
 
 import com.google.common.base.Function;
 import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 
@@ -26,11 +25,12 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static net.joala.matcher.DescriptionUtil.describeTo;
 
 /**
  * <p>
- * Exception which evaluated functions in {@link Wait#until(Object, Function, Matcher)}
- * might throw in order to signal that the current state query failed but should be retried.
+ * Exception which evaluated functions might throw in order to signal that the current state query failed but should
+ * be retried.
  * </p>
  * <p>
  * If the function implements {@link SelfDescribing} its description will be added to the failure message
@@ -128,24 +128,8 @@ public class IgnorableStateQueryException extends RuntimeException {
       description.appendText(message);
       description.appendText(" - ");
     }
-    appendDescriptionOf(description, function);
+    describeTo(description, function);
     return description.toString();
   }
 
-  /**
-   * <p>
-   * Adds the description of the stateQuery. If the query implements {@link SelfDescribing} it will be asked for
-   * its description. Otherwise its {@link Object#toString()} method will be called.
-   * </p>
-   *
-   * @param description description to add the description of the query to
-   * @param function    query to derive its description from
-   */
-  private static void appendDescriptionOf(@Nonnull final Description description, @Nonnull final Function<?, ?> function) {
-    if (function instanceof SelfDescribing) {
-      description.appendDescriptionOf((SelfDescribing) function);
-    } else {
-      description.appendValue(function);
-    }
-  }
 }

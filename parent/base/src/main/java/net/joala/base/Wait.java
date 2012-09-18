@@ -21,6 +21,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.SelfDescribing;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * <p>
@@ -32,19 +33,43 @@ import javax.annotation.Nonnull;
 public interface Wait {
   /**
    * <p>
+   * Wait until the given input passes its state query without ignorable exception.
+   * </p>
+   * <p>
+   * This call is equal to:
+   * </p>
+   * <pre>{@code
+   * until(null, input, stateQuery, null)
+   * }</pre>
+   *
+   * @param input      the input to pass to the query function; if implementing {@link SelfDescribing} the
+   *                   description of input will be queried on failure
+   * @param stateQuery the function to query the state of input; if implementing {@link SelfDescribing} the
+   *                   description of stateQuery will be queried on failure
+   * @param <F>        the input type
+   * @param <T>        the return type of the state query
+   * @return the result of the successful state query
+   * @see IgnorableStateQueryException
+   */
+  <F, T> T until(@Nonnull F input,
+                 @Nonnull Function<? super F, T> stateQuery);
+
+  /**
+   * <p>
    * Wait until an expectation is met. Validate the expectation with decelerating polling intervals.
    * </p>
    *
-   * @param input      the object whose state shall be verified
-   * @param stateQuery function to query the state of `input`;
-   *                   exceptions of type {@link IgnorableStateQueryException} on {@link Function#apply(Object)}
-   *                   will be ignored unless a timeout is met; all other exceptions will immediately abort
-   *                   waiting; if the query implements {@link SelfDescribing} its description will be used on
-   *                   failure reporting
-   * @param matcher    validate if the state matches the expectations
-   * @param <F>        the type of the object to validate
-   * @param <T>        the type of the state query result
-   * @return the result of the stateQuery if successfully matched
+   * @param message    the message to print on failure; {@code null} for no additional message
+   * @param input      the input to pass to the query function; if implementing {@link SelfDescribing} the
+   *                   description of input will be queried on failure
+   * @param stateQuery the function to query the state of input; if implementing {@link SelfDescribing} the
+   *                   description of stateQuery will be queried on failure
+   * @param matcher    the matcher to validate the result of the query; {@code null} to match any returned value
+   * @param <F>        the input type
+   * @param <T>        the return type of the state query
    */
-  <F, T> T until(@Nonnull F input, @Nonnull Function<? super F, T> stateQuery, @Nonnull Matcher<? super T> matcher);
+  <F, T> T until(@Nullable String message,
+                 @Nonnull F input,
+                 @Nonnull Function<? super F, T> stateQuery,
+                 @Nullable Matcher<? super T> matcher);
 }

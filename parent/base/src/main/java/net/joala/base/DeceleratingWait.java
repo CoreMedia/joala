@@ -18,11 +18,12 @@ package net.joala.base;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
+import com.google.common.base.Objects;
 import org.hamcrest.Matcher;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Collection;
+import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -42,20 +43,39 @@ import java.util.concurrent.TimeUnit;
 // which is available under an Apache 2.0 license.
 public class DeceleratingWait implements Wait {
 
-  private long timeout = 500L;
-  private long initialDelay = 10L;
-  private double decelerationFactor = 1.1;
-  private String message = null;
-  private final Timeout timeoutObj;
-
-  private Collection<Class<? extends RuntimeException>> ignoredExceptionClasses = new ArrayList<Class<? extends RuntimeException>>();
+  @VisibleForTesting
+  static final long DEFAULT_TIMEOUT_MILLIS = 500l;
+  @VisibleForTesting
+  static final long INITIAL_DELAY = 10L;
+  @VisibleForTesting
+  static final double DECELERATION_FACTOR = 1.1;
+  @Nonnull
+  private final Timeout timeout;
+  @Nonnegative
+  private final double timeoutFactor;
+  @Nonnull
+  private final WaitFailStrategy failStrategy;
 
   public DeceleratingWait() {
-    this(new TimeoutImpl(500l, TimeUnit.MILLISECONDS));
+    this(new TimeoutImpl(DEFAULT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
   }
 
-  public DeceleratingWait(final Timeout timeoutObj) {
-    this.timeoutObj = timeoutObj;
+  public DeceleratingWait(@Nonnull final Timeout timeout) {
+    this(timeout, new WaitTimeoutFailStrategy());
+  }
+
+  public DeceleratingWait(@Nonnull final Timeout timeout, @Nonnegative final double timeoutFactor) {
+    this(timeout, timeoutFactor, new WaitTimeoutFailStrategy());
+  }
+
+  public DeceleratingWait(@Nonnull final Timeout timeout, @Nonnull final WaitFailStrategy failStrategy) {
+    this(timeout, 1d, failStrategy);
+  }
+
+  public DeceleratingWait(@Nonnull final Timeout timeout, @Nonnegative final double timeoutFactor, @Nonnull final WaitFailStrategy failStrategy) {
+    this.timeout = timeout;
+    this.timeoutFactor = timeoutFactor;
+    this.failStrategy = failStrategy;
   }
 
   /**
@@ -80,230 +100,89 @@ public class DeceleratingWait implements Wait {
   }
 
   @Override
-  public <F, T> T until(@Nonnull final F input, @Nonnull final Function<? super F, T> stateQuery, @Nonnull final Matcher<? super T> matcher) {
-    // Compute the deadlineMillis until which we want to wait.
-    final long deadlineMillis = nowMillis() + timeout;
+  public final <F, T> T until(@Nonnull final F input, @Nonnull final Function<? super F, T> stateQuery) {
+    return until(null, input, stateQuery, null);
+  }
+
+  @Override
+  public <F, T> T until(@Nullable final String message,
+                        @Nonnull final F input,
+                        @Nonnull final Function<? super F, T> stateQuery,
+                        @Nullable final Matcher<? super T> matcher) {
+    // Compute the deadlineTimeMillis until which we want to wait.
+    final long startTimeMillis = nowMillis();
+    final long timeoutMillis = timeout.in(TimeUnit.MILLISECONDS, timeoutFactor);
+    final long deadlineTimeMillis = startTimeMillis + timeoutMillis;
     // At first, wait 10ms between checks.
-    long delay = initialDelay;
+    long delay = INITIAL_DELAY;
     // We keep track of the last exception to be able to rethrow it.
     IgnorableStateQueryException lastException = null;
+    T lastState = null;
     while (true) {
       // Measure the time that the evaluation takes.
-      final long beforeEvaluation = nowMillis();
+      final long beforeEvaluationTimeMillis = nowMillis();
       try {
         // Evaluate and report the result unless it is null, false, or an exception.
         final T result = stateQuery.apply(input);
-        if (matcher.matches(result)) {
+        if (matcher == null || matcher.matches(result)) {
           return result;
         }
+        lastState = result;
       } catch (IgnorableStateQueryException e) {
         // Remember the exception for rethrowing.
         lastException = e;
       }
-      final long now = nowMillis();
-      // Are we past the deadlineMillis?
-      if (now > deadlineMillis) {
-        // Yes.
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Timed out after ");
-        if (timeout > 5000) {
-          builder.append(timeout/1000).append(" seconds");
-        } else {
-          builder.append(timeout).append(" milliseconds");
-        }
-        if (message != null) {
-          builder.append(": ").append(message);
-        }
-        throw timeoutException(builder.toString(), lastException);
+      final long afterEvaluationTimeMillis = nowMillis();
+      // Are we past the deadlineTimeMillis?
+      if (afterEvaluationTimeMillis > deadlineTimeMillis) {
+        failAtDeadline(message, stateQuery, input, lastException, lastState, matcher, startTimeMillis);
       }
+      delay = sleepAndRecalculateDelay(delay, deadlineTimeMillis, beforeEvaluationTimeMillis, afterEvaluationTimeMillis);
+    }
+  }
 
-      // Leave at least as much time between two checks as the check itself took.
-      final long lastDuration = now - beforeEvaluation;
-      if (lastDuration > delay) {
-        delay = lastDuration;
-      }
+  private long sleepAndRecalculateDelay(long previousDelay, final long deadlineTimeMillis, final long beforeEvaluationTimeMillis, final long afterEvaluationTimeMillis) {
+    // Leave at least as much time between two checks as the check itself took.
+    final long lastDuration = afterEvaluationTimeMillis - beforeEvaluationTimeMillis;
+    if (lastDuration > previousDelay) {
+      previousDelay = lastDuration;
+    }
 
-      // Wait, but not much longer than until the deadlineMillis and at least a millisecond.
-      try {
-        sleep(Math.max(1, Math.min(delay, deadlineMillis + 100 - now)));
-      } catch (InterruptedException e) {
-        throw new IllegalStateException("unexpected interruption", e);
-      }
+    // Wait, but not much longer than until the deadlineTimeMillis and at least a millisecond.
+    try {
+      sleep(Math.max(1, Math.min(previousDelay, deadlineTimeMillis + 100 - afterEvaluationTimeMillis)));
+    } catch (InterruptedException e) {
+      throw new IllegalStateException("unexpected interruption", e);
+    }
 
-      // Make checks less and less frequently.
-      // Increase the wait period using the deceleration factor, but
-      // wait at least one millisecond longer next time.
-      delay = Math.max(delay + 1, (long)(delay * decelerationFactor));
+    // Make checks less and less frequently.
+    // Increase the wait period using the deceleration factor, but
+    // wait at least one millisecond longer next time.
+    previousDelay = Math.max(previousDelay + 1, (long) (previousDelay * DECELERATION_FACTOR));
+    return previousDelay;
+  }
+
+  private <F, T> void failAtDeadline(@Nullable final String message,
+                                     @Nonnull final Function<? super F, T> stateQuery,
+                                     @Nonnull final F input,
+                                     @Nullable final IgnorableStateQueryException lastException,
+                                     @Nullable final T lastState,
+                                     @Nonnull final Matcher<? super T> matcher,
+                                     @Nonnegative final long startTimeMillis) {
+    final long consumedMillis = nowMillis() - startTimeMillis;
+    if (lastException == null) {
+      failStrategy.fail(message, stateQuery, input, lastState, matcher, consumedMillis);
+    } else {
+      failStrategy.fail(message, stateQuery, input, lastException, consumedMillis);
     }
   }
 
   @Override
-  public <T> T until(final Function<? super F, T> isTrue) {
-    // Compute the deadlineMillis until which we want to wait.
-    final long deadlineMillis = nowMillis() + timeout;
-    // At first, wait 10ms between checks.
-    long delay = initialDelay;
-    // We keep track of the last exception to be able to rethrow it.
-    RuntimeException lastException = null;
-    while (true) {
-      // Measure the time that the evaluation takes.
-      final long beforeEvaluation = nowMillis();
-      try {
-        // Evaluate and report the result unless it is null, false, or an exception.
-        final T result = isTrue.apply(input);
-        if (result != null && !Boolean.FALSE.equals(result)) {
-          return result;
-        }
-      } catch (RuntimeException e) {
-        // Remember the exception for rethrowing.
-        lastException = propagateIfNotIngored(e);
-      }
-      final long now = nowMillis();
-      // Are we past the deadlineMillis?
-      if (now > deadlineMillis) {
-        // Yes.
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Timed out after ");
-        if (timeout > 5000) {
-          builder.append(timeout/1000).append(" seconds");
-        } else {
-          builder.append(timeout).append(" milliseconds");
-        }
-        if (message != null) {
-          builder.append(": ").append(message);
-        }
-        throw timeoutException(builder.toString(), lastException);
-      }
-
-      // Leave at least as much time between two checks as the check itself took.
-      final long lastDuration = now - beforeEvaluation;
-      if (lastDuration > delay) {
-        delay = lastDuration;
-      }
-
-      // Wait, but not much longer than until the deadlineMillis and at least a millisecond.
-      try {
-        sleep(Math.max(1, Math.min(delay, deadlineMillis + 100 - now)));
-      } catch (InterruptedException e) {
-        throw new IllegalStateException("unexpected interruption", e);
-      }
-
-      // Make checks less and less frequently.
-      // Increase the wait period using the deceleration factor, but
-      // wait at least one millisecond longer next time.
-      delay = Math.max(delay + 1, (long)(delay * decelerationFactor));
-    }
-  }
-
-  private RuntimeException propagateIfNotIngored(final RuntimeException e) {
-    for (final Class<? extends RuntimeException> ignoredException : ignoredExceptionClasses) {
-      if (ignoredException.isInstance(e)) {
-        return e;
-      }
-    }
-    throw e;
-  }
-
-  /**
-   * Throws a timeout exception. This method may be overridden to throw an exception that is
-   * idiomatic for a particular test infrastructure, such as an AssertionError in JUnit4.
-   *
-   * @param message The timeout message.
-   * @param lastException The last exception to be thrown and subsequently supressed while waiting
-   *        on a function.
-   * @return Nothing will ever be returned; this return type is only specified as a convience.
-   */
-  protected RuntimeException timeoutException(final String message, final RuntimeException lastException) {
-    throw new TimeoutException(message, lastException);
-  }
-
-  /**
-   * Sets how long to wait for the evaluated condition to be true. The default timeout is
-   * 500 milliseconds.
-   *
-   * @param duration the timeout duration
-   * @param unit The unit of time.
-   * @return a self reference
-   */
-  public DeceleratingWait<F> withTimeout(final long duration, final TimeUnit unit) {
-    this.timeout = unit.toMillis(duration);
-    return this;
-  }
-
-  /**
-   * Sets how long to wait between two checks initially. Subsequent delays get
-   * exponentially longer. The default timeout is 10 milliseconds.
-   *
-   * @param duration the initial delay
-   * @param unit The unit of time.
-   * @return a self reference
-   */
-  public DeceleratingWait<F> withInitialDelay(final long duration, final TimeUnit unit) {
-    this.initialDelay = unit.toMillis(duration);
-    return this;
-  }
-
-  /**
-   * Set the deceleration factor, that is, the factor with which the delay between to checks
-   * is multiplied after each check.
-   * The default deceleration factor is 1.1, indicating a 10 percent increase
-   * in waiting time per iteration.
-   *
-   * @param decelerationFactor the deceleration factor
-   * @return a self reference
-   */
-  public DeceleratingWait<F> withDecelerationFactor(final double decelerationFactor) {
-    this.decelerationFactor = decelerationFactor;
-    return this;
-  }
-
-  /**
-   * Sets the message to be displayed when time expires.
-   *
-   * @param message to be appended to default.
-   * @return a self reference
-   */
-  public DeceleratingWait<F> withMessage(final String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Configures this instance to ignore specific types of exceptions while waiting for a condition.
-   * Any exceptions not whitelisted will be allowed to propagate, terminating the wait.
-   *
-   * @param types the types of exceptions to ignore
-   * @return a self reference
-   */
-  public DeceleratingWait<F> ignoreAll(final Collection<Class<? extends RuntimeException>> types) {
-    ignoredExceptionClasses.addAll(types);
-    return this;
-  }
-
-  /**
-   * Configures this instance to ignore specific types of exceptions while waiting for a condition.
-   * Any exceptions not whitelisted will be allowed to propagate, terminating the wait.
-   *
-   * @param exceptionType the exception class to ignore
-   * @see #ignoreAll(java.util.Collection)
-   */
-  public DeceleratingWait<F> ignoring(final Class<? extends RuntimeException> exceptionType) {
-    ignoredExceptionClasses.add(exceptionType);
-    return this;
-  }
-
-  /**
-   * Configures this instance to ignore specific types of exceptions while waiting for a condition.
-   * Any exceptions not whitelisted will be allowed to propagate, terminating the wait.
-   *
-   * @param firstType a first exception class to ignore
-   * @param secondType a second exception class to ignore
-   * @return
-   */
-  public DeceleratingWait<F> ignoring(final Class<? extends RuntimeException> firstType,
-                                final Class<? extends RuntimeException> secondType) {
-    ignoredExceptionClasses.add(firstType);
-    ignoredExceptionClasses.add(secondType);
-    return this;
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("timeout", timeout)
+            .add("timeoutFactor", timeoutFactor)
+            .add("failStrategy", failStrategy)
+            .toString();
   }
 }

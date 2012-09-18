@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.matcher.DescriptionUtil;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Description;
 
@@ -27,27 +28,27 @@ import java.io.StringWriter;
 /**
  * @since 8/27/12
  */
-final class ConditionWaitFailNoExceptionMatcher extends CustomTypeSafeMatcher<ExpressionEvaluationException> {
-  private final ConditionFunction<?> function;
+final class WaitFailNoExceptionMatcher extends CustomTypeSafeMatcher<Throwable> {
+  private final Object function;
 
-  ConditionWaitFailNoExceptionMatcher(@Nonnull final ConditionFunction<?> function) {
+  WaitFailNoExceptionMatcher(@Nonnull final Object function) {
     super("evaluation without exception");
     this.function = function;
   }
 
   @Override
-  protected boolean matchesSafely(@Nullable final ExpressionEvaluationException item) {
+  protected boolean matchesSafely(@Nullable final Throwable item) {
     return item == null;
   }
 
   @Override
-  protected void describeMismatchSafely(@Nonnull final ExpressionEvaluationException item,
+  protected void describeMismatchSafely(@Nonnull final Throwable item,
                                         @Nonnull final Description mismatchDescription) {
     final StringWriter out = new StringWriter();
     item.printStackTrace(new PrintWriter(out));
-    mismatchDescription.appendText("failed to evaluate function:");
-    mismatchDescription.appendDescriptionOf(function);
-    mismatchDescription.appendText("because of:");
+    mismatchDescription.appendText("failed to evaluate: ");
+    DescriptionUtil.describeTo(mismatchDescription, function);
+    mismatchDescription.appendText("because of: ");
     mismatchDescription.appendText(out.toString());
   }
 }

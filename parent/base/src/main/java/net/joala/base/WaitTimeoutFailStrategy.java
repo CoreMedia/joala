@@ -17,9 +17,11 @@
 package net.joala.base;
 
 import org.hamcrest.Matcher;
+import org.junit.internal.AssumptionViolatedException;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static org.junit.Assume.assumeThat;
 
@@ -30,26 +32,27 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 8/23/12
  */
-class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
+public class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
   @Override
-  public void fail(@Nonnull final String reason,
-                   @Nonnull final ConditionFunction<?> function,
-                   @Nonnull final ExpressionEvaluationException exception,
+  public void fail(@Nullable final String reason,
+                   @Nonnull final Object function,
+                   @Nonnull final Object input,
+                   @Nonnull final Throwable exception,
                    @Nonnegative final long consumedMillis) {
-    throw new WaitTimeoutException(addTimeoutDescription(reason, function, consumedMillis), exception);
+    throw new WaitTimeoutException(addTimeoutDescription(reason, function, input, consumedMillis), exception);
   }
 
   @Override
-  @SuppressWarnings("PMD.AvoidCatchingGenericException")
-  public <T> void fail(@Nonnull final String reason,
-                       @Nonnull final ConditionFunction<T> function,
+  public <T> void fail(@Nullable final String reason,
+                       @Nonnull final Object function,
+                       @Nonnull final Object input,
+                       @Nullable final T lastValue,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
     try {
-      Assume.assumeThat(function.getCached(), matcher);
-    } catch (Exception e) {
-      throw new WaitTimeoutException(addTimeoutDescription(reason, function, consumedMillis), e);
+      assumeThat(lastValue, matcher);
+    } catch (AssumptionViolatedException e) {
+      throw new WaitTimeoutException(addTimeoutDescription(reason, function, input, consumedMillis), e);
     }
   }
-
 }

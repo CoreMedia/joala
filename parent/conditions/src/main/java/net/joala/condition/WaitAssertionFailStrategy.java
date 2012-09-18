@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package net.joala.base;
+package net.joala.condition;
 
+import net.joala.base.AbstractWaitFailStrategy;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
@@ -30,23 +31,26 @@ import static org.hamcrest.MatcherAssert.assertThat;
  *
  * @since 8/23/12
  */
-class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
+public class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nonnull final String reason,
-                   @Nonnull final ConditionFunction<?> function,
-                   @Nonnull final ExpressionEvaluationException exception,
+                   @Nonnull final Object function,
+                   @Nonnull final Object input,
+                   @Nonnull final Throwable exception,
                    @Nonnegative final long consumedMillis) {
     assertThat(
-            addTimeoutDescription(reason, function, consumedMillis),
+            addTimeoutDescription(reason, function, input, consumedMillis),
             exception,
-            new ConditionWaitFailNoExceptionMatcher(function));
+            new WaitFailNoExceptionMatcher(function));
   }
 
   @Override
   public <T> void fail(@Nonnull final String reason,
-                       @Nonnull final ConditionFunction<T> function,
+                       @Nonnull final Object function,
+                       @Nonnull final Object input,
+                       @Nonnull final T lastValue,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
-    assertThat(addTimeoutDescription(reason, function, consumedMillis), function.getCached(), matcher);
+    assertThat(addTimeoutDescription(reason, function, input, consumedMillis), lastValue, matcher);
   }
 }
