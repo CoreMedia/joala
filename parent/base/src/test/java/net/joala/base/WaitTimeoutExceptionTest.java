@@ -16,7 +16,9 @@
 
 package net.joala.base;
 
-import net.joala.base.WaitTimeoutException;
+import net.joala.data.DataProvider;
+import net.joala.data.DataProvidingException;
+import net.joala.data.random.DefaultRandomStringProvider;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Test;
@@ -26,17 +28,17 @@ import org.junit.runners.Parameterized;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static net.joala.condition.RandomData.randomString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
 /**
- * Tests {@link net.joala.base.WaitTimeoutException}.
+ * Tests {@link WaitTimeoutException}.
  *
  * @since 8/24/12
  */
 @RunWith(Parameterized.class)
 public class WaitTimeoutExceptionTest {
+  private static final DataProvider<String> STRING_PROVIDER = new DefaultRandomStringProvider().fixate();
 
   @Test(expected = WaitTimeoutException.class)
   public void should_be_able_to_call_constructor_without_exception() throws Exception {
@@ -62,18 +64,15 @@ public class WaitTimeoutExceptionTest {
   }
 
   @Parameterized.Parameters
-  public static Collection<Object[]> parameters() {
+  public static Collection<Object[]> parameters() throws DataProvidingException {
     Math.random();
     return Arrays.asList(new Object[][]{
             {"Should except both, message and cause to be null.", null, null},
-            {"Should except both, message and cause not to be null.", RandomData.randomString(), new Exception(RandomData.randomString())},
-            {"Should except message to be null, while cause is non-null.", null, new Exception(RandomData.randomString())},
-            {"Should except cause to be null, while message is non-null.", RandomData.randomString(), null},
+            {"Should except both, message and cause not to be null.", STRING_PROVIDER.get(), new Exception(STRING_PROVIDER.get())},
+            {"Should except message to be null, while cause is non-null.", null, new Exception(STRING_PROVIDER.get())},
+            {"Should except cause to be null, while message is non-null.", STRING_PROVIDER.get(), null},
     });
   }
-
-  private static final int MAX_STRING_LENGTH = 255;
-  private static final int MIN_STRING_LENGTH = 0;
 
   private final String testMessage;
   private final String exceptionMessage;
