@@ -33,7 +33,7 @@ public class RandomLongProvider extends AbstractRandomNumberProvider<Long> {
     super(new LongRandomNumberType());
   }
 
-  private static class LongRandomNumberType extends AbstractRandomNumberType<Long> {
+  private static final class LongRandomNumberType extends AbstractRandomNumberType<Long> {
 
     private LongRandomNumberType() {
       super(Long.class);

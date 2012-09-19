@@ -32,7 +32,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @param <T> the type of the value the expression returns
  * @since 9/18/12
  */
-class ExpressionFunction<T> implements Function<Expression<T>, T> {
+final class ExpressionFunction<T> implements Function<Expression<T>, T> {
   /**
    * <p>
    * Evaluates expression and makes any {@link ExpressionEvaluationException} ignorable.
@@ -43,7 +43,7 @@ class ExpressionFunction<T> implements Function<Expression<T>, T> {
    */
   @Override
   @Nullable
-  public T apply(@Nullable final Expression<T> input) {
+  public T apply(final Expression<T> input) {
     checkNotNull(input, "Expression must not be null.");
     try {
       return input.get();

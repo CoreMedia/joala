@@ -33,7 +33,7 @@ public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer>
     super(new IntegerRandomNumberType());
   }
 
-  private static class IntegerRandomNumberType extends AbstractRandomNumberType<Integer> {
+  private static final class IntegerRandomNumberType extends AbstractRandomNumberType<Integer> {
 
     private IntegerRandomNumberType() {
       super(Integer.class);

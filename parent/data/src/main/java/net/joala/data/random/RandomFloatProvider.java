@@ -33,7 +33,7 @@ public class RandomFloatProvider extends AbstractRandomNumberProvider<Float> {
     super(new FloatRandomNumberType());
   }
 
-  private static class FloatRandomNumberType extends AbstractRandomNumberType<Float> {
+  private static final class FloatRandomNumberType extends AbstractRandomNumberType<Float> {
 
     private FloatRandomNumberType() {
       super(Float.class);
