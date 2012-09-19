@@ -16,15 +16,21 @@
 
 package net.joala.condition.timing;
 
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Lists;
+
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
  * @since 9/18/12
  */
 public final class TimeFormat {
-  private static final int TIMEUNIT_LIMIT = 2;
+  @VisibleForTesting
+  static final int TIMEUNIT_LIMIT = 2;
 
   private TimeFormat() {
   }
@@ -39,21 +45,39 @@ public final class TimeFormat {
    * @return time amount in human readable format (for example converted to seconds or minutes)
    */
   public static String format(@Nonnegative final long amount, @Nonnull final TimeUnit timeUnit) {
-    final long formatAmount;
-    final String formatUnit;
-    if (timeUnit.toHours(amount) >= TIMEUNIT_LIMIT) {
-      formatAmount = timeUnit.toHours(amount);
-      formatUnit = "h";
-    } else if (timeUnit.toMinutes(amount) >= TIMEUNIT_LIMIT) {
-      formatAmount = timeUnit.toMinutes(amount);
-      formatUnit = "min";
-    } else if (timeUnit.toSeconds(amount) >= TIMEUNIT_LIMIT) {
-      formatAmount = timeUnit.toSeconds(amount);
-      formatUnit = "s";
-    } else {
-      formatAmount = amount;
-      formatUnit = "ms";
+    final List<TimeUnit> reverse = Lists.reverse(Arrays.asList(TimeUnit.values()));
+    for (final TimeUnit currentUnit : reverse) {
+      if (currentUnit.equals(timeUnit) || currentUnit.convert(amount, timeUnit) >= TIMEUNIT_LIMIT) {
+        return TimeUnitFormat.getFormat(currentUnit).format(amount, timeUnit);
+      }
     }
-    return String.format("%d %s", formatAmount, formatUnit);
+    throw new IllegalArgumentException(String.format("TimeUnit %s not supported for formatting.", timeUnit));
+  }
+
+  private enum TimeUnitFormat {
+    NANOSECONDS("ns", TimeUnit.NANOSECONDS),
+    MICROSECONDS("µs", TimeUnit.MICROSECONDS),
+    MILLISECONDS("ms", TimeUnit.MILLISECONDS),
+    SECONDS("s", TimeUnit.SECONDS),
+    MINUTES("min", TimeUnit.MINUTES),
+    HOURS("h", TimeUnit.HOURS),
+    DAYS("d", TimeUnit.DAYS);
+
+    private final String sign;
+    private final TimeUnit timeUnit;
+
+    TimeUnitFormat(final String sign, final TimeUnit timeUnit) {
+      this.sign = sign;
+      this.timeUnit = timeUnit;
+    }
+
+    public String format(final long amount, final TimeUnit sourceUnit) {
+      return String.format("%d %s", timeUnit.convert(amount, sourceUnit), sign);
+    }
+
+    public static TimeUnitFormat getFormat(final TimeUnit timeUnit) {
+      // Simple matching by name; throws IllegalArgumentException if there is no such name.
+      return TimeUnitFormat.valueOf(timeUnit.name());
+    }
   }
 }
