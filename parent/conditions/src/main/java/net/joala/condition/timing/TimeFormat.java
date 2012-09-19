@@ -54,6 +54,10 @@ public final class TimeFormat {
     throw new IllegalArgumentException(String.format("TimeUnit %s not supported for formatting.", timeUnit));
   }
 
+  // UnusedDeclaration: enum elements are not used directly but by name matching
+  // with TimeUnit-element-names. Thus static code analysis will report the enum
+  // elements to be unused.
+  @SuppressWarnings("UnusedDeclaration")
   private enum TimeUnitFormat {
     NANOSECONDS("ns", TimeUnit.NANOSECONDS),
     MICROSECONDS("µs", TimeUnit.MICROSECONDS),
