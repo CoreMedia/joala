@@ -131,6 +131,7 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
     <github.global.server>github</github.global.server>
+    <generated.sources.root>${project.build.directory}/generated-sources</generated.sources.root>
   </properties>
 
   <dependencyManagement>
@@ -156,6 +157,11 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.2.1</version>
+        </plugin>
         <plugin>
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
@@ -189,9 +195,14 @@
             <createBackupFile>false</createBackupFile>
             <expandEmptyElements>false</expandEmptyElements>
             <sortDependencies>true</sortDependencies>
-            <sortPlugins>true</sortPlugins>
+            <sortPlugins>false</sortPlugins>
             <keepBlankLines>true</keepBlankLines>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.7</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
