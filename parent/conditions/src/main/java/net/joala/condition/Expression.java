@@ -16,8 +16,8 @@
 
 package net.joala.condition;
 
-import org.hamcrest.Description;
-import org.hamcrest.SelfDescribing; // NOSONAR
+import org.hamcrest.Description; // NOSONAR
+import org.hamcrest.SelfDescribing;
 
 import javax.annotation.Nullable;
 
