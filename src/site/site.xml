@@ -40,7 +40,7 @@
     </breadcrumbs>
 
     <menu name="Joala" inherit="bottom">
-      <!-- ref modules and parent don't work for this project; creating menu manually -->
+      <item name="Sitemap" href="sitemap.html"/>
       <item name="Home" href="index.html"/>
       <item name="Parent" href="joala-parent/index.html">
         <item name="Conditions" href="joala-parent/joala-conditions/index.html"/>
