@@ -105,6 +105,11 @@ public class DeceleratingWait implements Wait {
   }
 
   @Override
+  public <F, T> T until(@Nonnull final F input, @Nonnull final Function<? super F, T> stateQuery, @Nullable final Matcher<? super T> matcher) {
+    return until(null, input, stateQuery, matcher);
+  }
+
+  @Override
   public <F, T> T until(@Nullable final String message,
                         @Nonnull final F input,
                         @Nonnull final Function<? super F, T> stateQuery,

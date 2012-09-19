@@ -59,6 +59,23 @@ public interface Wait {
    * Wait until an expectation is met. Validate the expectation with decelerating polling intervals.
    * </p>
    *
+   * @param input      the input to pass to the query function; if implementing {@link SelfDescribing} the
+   *                   description of input will be queried on failure
+   * @param stateQuery the function to query the state of input; if implementing {@link SelfDescribing} the
+   *                   description of stateQuery will be queried on failure
+   * @param matcher    the matcher to validate the result of the query; {@code null} to match any returned value
+   * @param <F>        the input type
+   * @param <T>        the return type of the state query
+   */
+  <F, T> T until(@Nonnull F input,
+                 @Nonnull Function<? super F, T> stateQuery,
+                 @Nullable Matcher<? super T> matcher);
+
+  /**
+   * <p>
+   * Wait until an expectation is met. Validate the expectation with decelerating polling intervals.
+   * </p>
+   *
    * @param message    the message to print on failure; {@code null} for no additional message
    * @param input      the input to pass to the query function; if implementing {@link SelfDescribing} the
    *                   description of input will be queried on failure
