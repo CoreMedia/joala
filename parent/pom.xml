@@ -34,7 +34,6 @@
   <modules>
     <module>conditions</module>
     <module>matchers</module>
-    <module>base</module>
     <module>data</module>
   </modules>
 
