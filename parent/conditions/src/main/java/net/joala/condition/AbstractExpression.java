@@ -22,9 +22,12 @@ import org.hamcrest.Description;
 import javax.annotation.Nullable;
 
 /**
+ * <p>
  * Convenience abstract implementation of {@link Expression} which has an empty
  * implementation of {@link #describeTo(Description)}.
+ * </p>
  *
+ * @param <T> the result type of the expression
  * @since 2/27/12
  */
 public abstract class AbstractExpression<T> extends SimpleSelfDescribing implements Expression<T> {
