@@ -25,7 +25,7 @@ Here are the recommended steps to release Joala:
 
 ```
 joala$ mvn release:prepare release:perform
-joala$ mvn push origin master --tags
+joala$ git push origin master --tags
 ```
 
 As you can see from the commands above Joala is configured to release locally. Thus
@@ -87,6 +87,17 @@ version:
 
 ```
 joala$ mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
+```
+
+### site-maven-plugin fails on deployment
+
+Sometimes the site-maven-plugin seems to cause failures. Such as `Not Allowed (405)`. In this case the current
+approach is to repeat the release. Assume you just were on your way release version `0.3.0` if Joala:
+
+```
+joala$ mvn release:rollback
+joala$ git tag -d joala-bom-0.3.0
+joala$ mvn release:prepare release:perform
 ```
 
 <!-- Links -->
