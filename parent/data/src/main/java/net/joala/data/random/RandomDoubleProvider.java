@@ -30,28 +30,33 @@ public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
    * </p>
    */
   public RandomDoubleProvider() {
-    super(new AbstractRandomNumberType<Double>(Double.class) {
-
-      @Override
-      public Double min() {
-        return Double.MIN_VALUE;
-      }
-
-      @Override
-      public Double max() {
-        return Double.MAX_VALUE;
-      }
-
-      @Override
-      public Double sum(final Double value1, final Double value2) {
-        return value1 + value2;
-      }
-
-      @Override
-      public Double percentOf(final double percent, final Double value) {
-        return percent * value;
-      }
-    });
+    super(new DoubleRandomNumberType());
   }
 
+  private static class DoubleRandomNumberType extends AbstractRandomNumberType<Double> {
+
+    private DoubleRandomNumberType() {
+      super(Double.class);
+    }
+
+    @Override
+    public Double min() {
+      return Double.MIN_VALUE;
+    }
+
+    @Override
+    public Double max() {
+      return Double.MAX_VALUE;
+    }
+
+    @Override
+    public Double sum(final Double value1, final Double value2) {
+      return value1 + value2;
+    }
+
+    @Override
+    public Double percentOf(final double percent, final Double value) {
+      return percent * value;
+    }
+  }
 }

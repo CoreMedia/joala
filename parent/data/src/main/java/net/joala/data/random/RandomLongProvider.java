@@ -30,28 +30,33 @@ public class RandomLongProvider extends AbstractRandomNumberProvider<Long> {
    * </p>
    */
   public RandomLongProvider() {
-    super(new AbstractRandomNumberType<Long>(Long.class) {
-
-      @Override
-      public Long min() {
-        return Long.MIN_VALUE;
-      }
-
-      @Override
-      public Long max() {
-        return Long.MAX_VALUE;
-      }
-
-      @Override
-      public Long sum(final Long value1, final Long value2) {
-        return value1 + value2;
-      }
-
-      @Override
-      public Long percentOf(final double percent, final Long value) {
-        return (long) percent * value;
-      }
-    });
+    super(new LongRandomNumberType());
   }
 
+  private static class LongRandomNumberType extends AbstractRandomNumberType<Long> {
+
+    private LongRandomNumberType() {
+      super(Long.class);
+    }
+
+    @Override
+    public Long min() {
+      return Long.MIN_VALUE;
+    }
+
+    @Override
+    public Long max() {
+      return Long.MAX_VALUE;
+    }
+
+    @Override
+    public Long sum(final Long value1, final Long value2) {
+      return value1 + value2;
+    }
+
+    @Override
+    public Long percentOf(final double percent, final Long value) {
+      return (long) percent * value;
+    }
+  }
 }

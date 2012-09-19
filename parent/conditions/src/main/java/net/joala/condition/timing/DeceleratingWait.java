@@ -141,16 +141,17 @@ public class DeceleratingWait implements Wait {
     }
   }
 
-  private long sleepAndRecalculateDelay(long previousDelay, final long deadlineTimeMillis, final long beforeEvaluationTimeMillis, final long afterEvaluationTimeMillis) {
+  private long sleepAndRecalculateDelay(final long previousDelay, final long deadlineTimeMillis, final long beforeEvaluationTimeMillis, final long afterEvaluationTimeMillis) {
+    long newDelay = previousDelay;
     // Leave at least as much time between two checks as the check itself took.
     final long lastDuration = afterEvaluationTimeMillis - beforeEvaluationTimeMillis;
-    if (lastDuration > previousDelay) {
-      previousDelay = lastDuration;
+    if (lastDuration > newDelay) {
+      newDelay = lastDuration;
     }
 
     // Wait, but not much longer than until the deadlineTimeMillis and at least a millisecond.
     try {
-      sleep(Math.max(1, Math.min(previousDelay, deadlineTimeMillis + 100 - afterEvaluationTimeMillis)));
+      sleep(Math.max(1, Math.min(newDelay, deadlineTimeMillis + 100 - afterEvaluationTimeMillis)));
     } catch (InterruptedException e) {
       throw new IllegalStateException("unexpected interruption", e);
     }
@@ -158,8 +159,8 @@ public class DeceleratingWait implements Wait {
     // Make checks less and less frequently.
     // Increase the wait period using the deceleration factor, but
     // wait at least one millisecond longer next time.
-    previousDelay = Math.max(previousDelay + 1, (long) (previousDelay * DECELERATION_FACTOR));
-    return previousDelay;
+    newDelay = Math.max(newDelay + 1, (long) (newDelay * DECELERATION_FACTOR));
+    return newDelay;
   }
 
   private <F, T> void failAtDeadline(@Nullable final String message,

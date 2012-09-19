@@ -30,28 +30,33 @@ public class RandomFloatProvider extends AbstractRandomNumberProvider<Float> {
    * </p>
    */
   public RandomFloatProvider() {
-    super(new AbstractRandomNumberType<Float>(Float.class) {
-
-      @Override
-      public Float min() {
-        return Float.MIN_VALUE;
-      }
-
-      @Override
-      public Float max() {
-        return Float.MAX_VALUE;
-      }
-
-      @Override
-      public Float sum(final Float value1, final Float value2) {
-        return value1 + value2;
-      }
-
-      @Override
-      public Float percentOf(final double percent, final Float value) {
-        return (float) percent * value;
-      }
-    });
+    super(new FloatRandomNumberType());
   }
 
+  private static class FloatRandomNumberType extends AbstractRandomNumberType<Float> {
+
+    private FloatRandomNumberType() {
+      super(Float.class);
+    }
+
+    @Override
+    public Float min() {
+      return Float.MIN_VALUE;
+    }
+
+    @Override
+    public Float max() {
+      return Float.MAX_VALUE;
+    }
+
+    @Override
+    public Float sum(final Float value1, final Float value2) {
+      return value1 + value2;
+    }
+
+    @Override
+    public Float percentOf(final double percent, final Float value) {
+      return (float) percent * value;
+    }
+  }
 }

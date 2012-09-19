@@ -127,7 +127,8 @@ public class DefaultRandomStringProvider extends AbstractRandomDataProvider<Stri
   @Override
   @Nonnull
   public final RandomStringProvider length(@Nonnegative final int len) {
-    maxLen = minLen = len;
+    maxLen = len;
+    minLen = len;
     return this;
   }
 

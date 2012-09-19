@@ -30,28 +30,33 @@ public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer>
    * </p>
    */
   public RandomIntegerProvider() {
-    super(new AbstractRandomNumberType<Integer>(Integer.class) {
-
-      @Override
-      public Integer min() {
-        return Integer.MIN_VALUE;
-      }
-
-      @Override
-      public Integer max() {
-        return Integer.MAX_VALUE;
-      }
-
-      @Override
-      public Integer sum(final Integer value1, final Integer value2) {
-        return value1 + value2;
-      }
-
-      @Override
-      public Integer percentOf(final double percent, final Integer value) {
-        return (int) percent * value;
-      }
-    });
+    super(new IntegerRandomNumberType());
   }
 
+  private static class IntegerRandomNumberType extends AbstractRandomNumberType<Integer> {
+
+    private IntegerRandomNumberType() {
+      super(Integer.class);
+    }
+
+    @Override
+    public Integer min() {
+      return Integer.MIN_VALUE;
+    }
+
+    @Override
+    public Integer max() {
+      return Integer.MAX_VALUE;
+    }
+
+    @Override
+    public Integer sum(final Integer value1, final Integer value2) {
+      return value1 + value2;
+    }
+
+    @Override
+    public Integer percentOf(final double percent, final Integer value) {
+      return (int) percent * value;
+    }
+  }
 }

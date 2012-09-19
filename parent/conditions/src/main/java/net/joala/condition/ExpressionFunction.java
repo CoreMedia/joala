@@ -21,6 +21,8 @@ import net.joala.condition.timing.IgnorableStateQueryException;
 
 import javax.annotation.Nullable;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * <p>
  * A function to evaluate an expression. It especially wraps exceptions of type
@@ -30,7 +32,7 @@ import javax.annotation.Nullable;
  * @param <T> the type of the value the expression returns
  * @since 9/18/12
  */
-public class ExpressionFunction<T> implements Function<Expression<T>, T> {
+class ExpressionFunction<T> implements Function<Expression<T>, T> {
   /**
    * <p>
    * Evaluates expression and makes any {@link ExpressionEvaluationException} ignorable.
@@ -40,7 +42,9 @@ public class ExpressionFunction<T> implements Function<Expression<T>, T> {
    * @return the result of the expression
    */
   @Override
+  @Nullable
   public T apply(@Nullable final Expression<T> input) {
+    checkNotNull(input, "Expression must not be null.");
     try {
       return input.get();
     } catch (ExpressionEvaluationException e) {
