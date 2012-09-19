@@ -17,11 +17,11 @@
 package net.joala.condition;
 
 import com.google.common.base.Objects;
-import net.joala.base.DeceleratingWait;
-import net.joala.base.Timeout;
-import net.joala.base.Wait;
-import net.joala.base.WaitFailStrategy;
-import net.joala.base.WaitTimeoutFailStrategy;
+import net.joala.condition.timing.DeceleratingWait;
+import net.joala.condition.timing.Timeout;
+import net.joala.condition.timing.Wait;
+import net.joala.condition.timing.WaitFailStrategy;
+import net.joala.condition.timing.WaitTimeoutFailStrategy;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsAnything;
 

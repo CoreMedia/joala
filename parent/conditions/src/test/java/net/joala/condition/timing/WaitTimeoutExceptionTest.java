@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.base;
+package net.joala.condition.timing;
 
 import net.joala.data.DataProvider;
 import net.joala.data.DataProvidingException;

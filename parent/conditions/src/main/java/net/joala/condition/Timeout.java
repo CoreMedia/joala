@@ -22,8 +22,8 @@ package net.joala.condition;
  * </p>
  *
  * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.Timeout} instead
+ * @deprecated since 0.3.0; use {@link net.joala.condition.timing.Timeout} instead
  */
 @Deprecated
-public interface Timeout extends net.joala.base.Timeout {
+public interface Timeout extends net.joala.condition.timing.Timeout {
 }

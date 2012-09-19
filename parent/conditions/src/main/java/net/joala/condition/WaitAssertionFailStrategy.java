@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import net.joala.base.AbstractWaitFailStrategy;
+import net.joala.condition.timing.AbstractWaitFailStrategy;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;

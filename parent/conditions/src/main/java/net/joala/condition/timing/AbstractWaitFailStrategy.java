@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.base;
+package net.joala.condition.timing;
 
 import org.hamcrest.Description;
 import org.hamcrest.StringDescription;
@@ -24,7 +24,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
-import static net.joala.base.TimeFormat.format;
 import static net.joala.matcher.DescriptionUtil.describeTo;
 
 /**
@@ -56,7 +55,7 @@ public abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
     final Description description = new StringDescription();
     description.appendText(message == null ? "Failed to evaluate." : message);
     description.appendText(" - after ");
-    description.appendText(format(consumedMillis, TimeUnit.MILLISECONDS));
+    description.appendText(TimeFormat.format(consumedMillis, TimeUnit.MILLISECONDS));
     description.appendText(" evaluating ");
     describeTo(description, function);
     description.appendText(" on ");

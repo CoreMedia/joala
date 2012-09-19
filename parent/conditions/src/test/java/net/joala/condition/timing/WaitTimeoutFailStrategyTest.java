@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package net.joala.base;
-
-import javax.annotation.Nullable;
+package net.joala.condition.timing;
 
 /**
- * <p>
- * Exception which signals that a condition is not fulfilled within time.
- * </p>
- *
- * @since 8/23/12
+ * @since 8/27/12
  */
-public final class WaitTimeoutException extends RuntimeException {
-  public WaitTimeoutException(@Nullable final String message, @Nullable final Throwable cause) {
-    super(message, cause);
+public class WaitTimeoutFailStrategyTest extends WaitFailStrategyTest<WaitTimeoutFailStrategy, WaitTimeoutException> {
+  @Override
+  protected Class<WaitTimeoutException> getRaisedExceptionType() {
+    return WaitTimeoutException.class;
+  }
+
+  @Override
+  protected WaitTimeoutFailStrategy getFailStrategy() {
+    return new WaitTimeoutFailStrategy();
   }
 }

@@ -49,7 +49,7 @@ public interface Condition<T> {
    * </p>
    *
    * @return the retrieved value
-   * @throws net.joala.base.WaitTimeoutException if a value could not be retrieved in time
+   * @throws net.joala.condition.timing.WaitTimeoutException if a value could not be retrieved in time
    */
   @Nullable
   T await();
@@ -61,7 +61,7 @@ public interface Condition<T> {
    *
    * @param matcher matcher to use
    * @return the value which fulfills the given matcher
-   * @throws net.joala.base.WaitTimeoutException if a value could not be retrieved in time
+   * @throws net.joala.condition.timing.WaitTimeoutException if a value could not be retrieved in time
    */
   @Nullable
   T await(@Nonnull Matcher<? super T> matcher);

@@ -16,8 +16,8 @@
 
 package net.joala.condition;
 
-import net.joala.base.WaitTimeoutException;
-import net.joala.base.Timeout;
+import net.joala.condition.timing.WaitTimeoutException;
+import net.joala.condition.timing.Timeout;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;

@@ -26,10 +26,10 @@ import java.util.concurrent.TimeUnit;
  * </p>
  *
  * @since 8/22/12
- * @deprecated since 0.3.0; use {@link net.joala.base.TimeoutImpl} instead
+ * @deprecated since 0.3.0; use {@link net.joala.condition.timing.TimeoutImpl} instead
  */
 @Deprecated
-public class TimeoutImpl extends net.joala.base.TimeoutImpl implements Timeout {
+public class TimeoutImpl extends net.joala.condition.timing.TimeoutImpl implements Timeout {
   public TimeoutImpl(@Nonnegative final long amount, @Nonnull final TimeUnit unit) {
     super(amount, unit);
   }

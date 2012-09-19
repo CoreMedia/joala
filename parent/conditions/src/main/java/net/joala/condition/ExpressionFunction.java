@@ -17,7 +17,7 @@
 package net.joala.condition;
 
 import com.google.common.base.Function;
-import net.joala.base.IgnorableStateQueryException;
+import net.joala.condition.timing.IgnorableStateQueryException;
 
 import javax.annotation.Nullable;
 
