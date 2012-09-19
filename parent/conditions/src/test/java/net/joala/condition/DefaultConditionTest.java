@@ -16,8 +16,10 @@
 
 package net.joala.condition;
 
-import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.condition.timing.Timeout;
+import net.joala.condition.timing.WaitTimeoutException;
+import net.joala.data.DataProvider;
+import net.joala.data.random.DefaultRandomStringProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;
@@ -27,7 +29,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.concurrent.TimeUnit;
 
-import static net.joala.condition.RandomData.randomString;
 import static net.joala.matcher.exception.MessageContains.messageContains;
 import static org.hamcrest.core.IsAnything.anything;
 import static org.hamcrest.core.IsNot.not;
@@ -45,11 +46,10 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultConditionTest {
-
   @Before
   public void setUp() throws Exception {
     condition = new DefaultCondition<String>(expression, timeout);
-    expressionValue = randomString("expressionValue");
+    expressionValue = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(expressionValue);
     when(timeout.in(any(TimeUnit.class), any(Double.class))).thenReturn(0l);
   }
@@ -277,7 +277,7 @@ public class DefaultConditionTest {
   public void message_should_be_contained_in_exception_on_await_exception() throws Exception {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
-    final String message = randomString("conditionMessage");
+    final String message = CONDITION_MESSAGE_PROVIDER.get();
     condition.withMessage(message);
     try {
       condition.await(not(anything()));
@@ -291,7 +291,7 @@ public class DefaultConditionTest {
   public void message_should_be_contained_in_exception_on_assume_exception() throws Exception {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
-    final String message = randomString("conditionMessage");
+    final String message = CONDITION_MESSAGE_PROVIDER.get();
     condition.withMessage(message);
     try {
       condition.assumeThat(not(anything()));
@@ -305,7 +305,7 @@ public class DefaultConditionTest {
   public void message_should_be_contained_in_exception_on_assertion_exception() throws Exception {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
-    final String message = randomString("conditionMessage");
+    final String message = CONDITION_MESSAGE_PROVIDER.get();
     condition.withMessage(message);
     try {
       condition.assumeThat(not(anything()));
@@ -313,6 +313,9 @@ public class DefaultConditionTest {
       assertThat(e, messageContains(message, true));
     }
   }
+
+  private static final DataProvider<String> EXPRESSION_VALUE_PROVIDER = new DefaultRandomStringProvider().prefix("expressionValue").fixate();
+  private static final DataProvider<String> CONDITION_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("conditionMessage").fixate();
 
   private Condition<String> condition;
   private String expressionValue;

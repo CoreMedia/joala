@@ -16,9 +16,10 @@
 
 package net.joala.condition;
 
+import net.joala.data.DataProvider;
+import net.joala.data.random.DefaultRandomStringProvider;
 import org.junit.Test;
 
-import static net.joala.condition.RandomData.randomString;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -31,6 +32,9 @@ import static org.junit.Assert.assertThat;
  * @since 8/25/12
  */
 public class ExpressionEvaluationExceptionTest {
+  private static final DataProvider<String> MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("message").fixate();
+  private static final DataProvider<String> MESSAGE_CAUSE_PROVIDER = new DefaultRandomStringProvider().prefix("messageCause").fixate();
+
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
   public void default_constructor_should_work() throws Exception {
@@ -44,7 +48,7 @@ public class ExpressionEvaluationExceptionTest {
 
   @Test
   public void constructor_with_message_should_work() throws Exception {
-    final String message = randomString();
+    final String message = MESSAGE_PROVIDER.get();
     try {
       throw new ExpressionEvaluationException(message);
     } catch (ExpressionEvaluationException e) {
@@ -55,7 +59,7 @@ public class ExpressionEvaluationExceptionTest {
 
   @Test
   public void constructor_with_cause_should_work() throws Exception {
-    final String message = randomString();
+    final String message = MESSAGE_PROVIDER.get();
     final Exception cause = new Exception(message);
     try {
       throw new ExpressionEvaluationException(cause);
@@ -67,8 +71,8 @@ public class ExpressionEvaluationExceptionTest {
 
   @Test
   public void constructor_with_message_and_cause_should_work() throws Exception {
-    final String message = randomString();
-    final Exception cause = new Exception(randomString());
+    final String message = MESSAGE_PROVIDER.get();
+    final Exception cause = new Exception(MESSAGE_CAUSE_PROVIDER.get());
     try {
       throw new ExpressionEvaluationException(message, cause);
     } catch (ExpressionEvaluationException e) {

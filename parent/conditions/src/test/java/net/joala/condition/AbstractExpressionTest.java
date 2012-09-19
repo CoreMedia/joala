@@ -16,12 +16,17 @@
 
 package net.joala.condition;
 
+import net.joala.data.DataProvider;
+import net.joala.data.random.DefaultRandomStringProvider;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
-import static net.joala.condition.RandomData.randomString;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -34,6 +39,9 @@ import static org.junit.Assert.assertThat;
  * @since 8/26/12
  */
 public class AbstractExpressionTest {
+  private static final DataProvider<String> TEXT_PROVIDER = new DefaultRandomStringProvider().prefix("text").fixate();
+  private static final DataProvider<String> DESCRIPTION_PROVIDER = new DefaultRandomStringProvider().prefix("description").fixate();
+
   @Test
   public void empty_simple_description_should_not_cause_update_of_description() throws Exception {
     final SelfDescribing expression = new AbstractExpression<Object>() {
@@ -42,7 +50,7 @@ public class AbstractExpressionTest {
         return null;
       }
     };
-    final String text = randomString();
+    final String text = TEXT_PROVIDER.get();
     final Description description = new StringDescription().appendText(text);
     expression.describeTo(description);
     assertEquals("Description should not have been updated.", text, description.toString());
@@ -50,14 +58,14 @@ public class AbstractExpressionTest {
 
   @Test
   public void non_empty_simple_description_should_be_added_to_description() throws Exception {
-    final String simpleDescription = randomString();
+    final String simpleDescription = DESCRIPTION_PROVIDER.get();
     final SelfDescribing expression = new AbstractExpression<Object>(simpleDescription) {
       @Override
       public Object get() {
         return null;
       }
     };
-    final String text = randomString();
+    final String text = TEXT_PROVIDER.get();
     final Description description = new StringDescription().appendText(text);
     expression.describeTo(description);
     assertThat("Original description should still be contained.", description.toString(), containsString(text));
@@ -66,7 +74,7 @@ public class AbstractExpressionTest {
 
   @Test
   public void expression_description_should_be_contained_in_toString() throws Exception {
-    final String simpleDescription = randomString();
+    final String simpleDescription = DESCRIPTION_PROVIDER.get();
     final SelfDescribing expression = new AbstractExpression<Object>(simpleDescription) {
       @Override
       public Object get() {

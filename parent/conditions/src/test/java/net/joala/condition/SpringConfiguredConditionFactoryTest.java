@@ -16,6 +16,8 @@
 
 package net.joala.condition;
 
+import net.joala.data.DataProvider;
+import net.joala.data.random.DefaultRandomStringProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,7 +25,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 
-import static net.joala.condition.RandomData.randomString;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -42,6 +43,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/META-INF/joala/condition/test-context.xml")
 public class SpringConfiguredConditionFactoryTest {
+  private static final DataProvider<String> EXPRESSION_VALUE_PROVIDER = new DefaultRandomStringProvider().prefix("expressionValue").fixate();
+
   @Inject
   private ConditionFactory conditionFactory;
 
@@ -65,7 +68,7 @@ public class SpringConfiguredConditionFactoryTest {
   @Test
   public void instantiating_string_condition_should_be_possible() throws Exception {
     final StringTestExpression expression = mock(StringTestExpression.class);
-    final String value = randomString("expressionValue");
+    final String value = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(value);
     final Condition<String> condition = conditionFactory.condition(expression);
     assertNotNull("Retrieved string condition should not be null.", condition);

@@ -16,6 +16,8 @@
 
 package net.joala.condition;
 
+import net.joala.data.DataProvider;
+import net.joala.data.random.DefaultRandomStringProvider;
 import org.hamcrest.Description;
 import org.hamcrest.Matchers;
 import org.hamcrest.SelfDescribing;
@@ -25,7 +27,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static net.joala.condition.RandomData.randomString;
 import static org.hamcrest.core.IsAnything.anything;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.hamcrest.core.StringContains.containsString;
@@ -45,6 +46,8 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class ConditionFunctionTest {
+  private static final DataProvider<String> VALUE_PROVIDER = new DefaultRandomStringProvider().prefix("value").fixate();
+
   @Mock
   private Expression<Object> objectExpression;
   @Mock
@@ -52,7 +55,7 @@ public class ConditionFunctionTest {
 
   @Test
   public void apply_should_accept_any_if_matcher_is_null() throws Exception {
-    final Object value = randomString();
+    final Object value = VALUE_PROVIDER.get();
     when(objectExpression.get()).thenReturn(value);
     final ConditionFunction<Object> function = new ConditionFunction<Object>(objectExpression);
     assertTrue("Given no matcher any returned value from expression should be fine.",
@@ -61,7 +64,7 @@ public class ConditionFunctionTest {
 
   @Test
   public void apply_should_accept_any_if_matcher_matches_any() throws Exception {
-    final Object value = randomString();
+    final Object value = VALUE_PROVIDER.get();
     when(objectExpression.get()).thenReturn(value);
     final ConditionFunction<Object> function = new ConditionFunction<Object>(objectExpression);
     assertTrue("Given matcher matching any returned value from expression should be fine.",
@@ -70,7 +73,7 @@ public class ConditionFunctionTest {
 
   @Test
   public void apply_should_accept_when_matcher_matches() throws Exception {
-    final String value = randomString();
+    final String value = VALUE_PROVIDER.get();
     when(stringExpression.get()).thenReturn(value);
     final ConditionFunction<String> function = new ConditionFunction<String>(stringExpression);
     assertTrue("If matcher matches apply should return true.",
@@ -79,7 +82,7 @@ public class ConditionFunctionTest {
 
   @Test
   public void apply_should_deny_when_matcher_does_not_match() throws Exception {
-    final String value = randomString();
+    final String value = VALUE_PROVIDER.get();
     when(stringExpression.get()).thenReturn(value);
     final ConditionFunction<String> function = new ConditionFunction<String>(stringExpression);
     assertFalse("If matcher does not matche apply should return false.",
@@ -88,7 +91,7 @@ public class ConditionFunctionTest {
 
   @Test
   public void cache_last_value_on_successful_matching_expression_evaluation() throws Exception {
-    final Object value = randomString();
+    final Object value = VALUE_PROVIDER.get();
     when(objectExpression.get()).thenReturn(value);
     final ConditionFunction<Object> function = new ConditionFunction<Object>(objectExpression);
     assumeTrue(function.apply(anything()));
@@ -97,7 +100,7 @@ public class ConditionFunctionTest {
 
   @Test
   public void cache_last_value_on_successful_non_matching_expression_evaluation() throws Exception {
-    final Object value = randomString();
+    final Object value = VALUE_PROVIDER.get();
     when(objectExpression.get()).thenReturn(value);
     final ConditionFunction<Object> function = new ConditionFunction<Object>(objectExpression);
     assumeThat(function.apply(nullValue()), Matchers.equalTo(Boolean.FALSE));
