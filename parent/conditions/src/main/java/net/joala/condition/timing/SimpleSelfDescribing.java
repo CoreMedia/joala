@@ -37,7 +37,7 @@ public abstract class SimpleSelfDescribing implements SelfDescribing {
    * The simple description.
    */
   @Nullable
-  protected final String simpleDescription;
+  private final String simpleDescription;
 
   /**
    * <p>

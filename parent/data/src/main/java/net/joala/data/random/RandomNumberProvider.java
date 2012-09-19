@@ -16,12 +16,11 @@
 
 package net.joala.data.random;
 
-import net.joala.data.DataProvider;
-
 /**
  * <p>
  * Provides random numbers. Configuration methods always return self-references.
  * </p>
+ *
  * @since 9/17/12
  */
 public interface RandomNumberProvider<T extends Comparable<? extends Number>> extends RandomDataProvider<T> {
@@ -34,6 +33,7 @@ public interface RandomNumberProvider<T extends Comparable<? extends Number>> ex
    * @return self-reference
    */
   RandomNumberProvider<T> min(T minValue);
+
   /**
    * <p>
    * Specifies the maximum value to retrieve via random.

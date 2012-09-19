@@ -49,6 +49,7 @@ public class DeceleratingWait implements Wait {
   static final long INITIAL_DELAY = 10L;
   @VisibleForTesting
   static final double DECELERATION_FACTOR = 1.1;
+  private static final long SLEEP_NOT_MUCH_LONGER_OFFSET_MILLIS = 100L;
   @Nonnull
   private final Timeout timeout;
   @Nonnegative
@@ -156,7 +157,7 @@ public class DeceleratingWait implements Wait {
 
     // Wait, but not much longer than until the deadlineTimeMillis and at least a millisecond.
     try {
-      sleep(Math.max(1, Math.min(newDelay, deadlineTimeMillis + 100 - afterEvaluationTimeMillis)));
+      sleep(Math.max(1, Math.min(newDelay, deadlineTimeMillis + SLEEP_NOT_MUCH_LONGER_OFFSET_MILLIS - afterEvaluationTimeMillis)));
     } catch (InterruptedException e) {
       throw new IllegalStateException("unexpected interruption", e);
     }
