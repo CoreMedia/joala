@@ -22,9 +22,23 @@ import net.joala.condition.timing.IgnorableStateQueryException;
 import javax.annotation.Nullable;
 
 /**
+ * <p>
+ * A function to evaluate an expression. It especially wraps exceptions of type
+ * {@link ExpressionEvaluationException} into {@link IgnorableStateQueryException}.
+ * </p>
+ *
+ * @param <T> the type of the value the expression returns
  * @since 9/18/12
  */
 public class ExpressionFunction<T> implements Function<Expression<T>, T> {
+  /**
+   * <p>
+   * Evaluates expression and makes any {@link ExpressionEvaluationException} ignorable.
+   * </p>
+   *
+   * @param input the expression to evaluate
+   * @return the result of the expression
+   */
   @Override
   public T apply(@Nullable final Expression<T> input) {
     try {

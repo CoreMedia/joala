@@ -44,7 +44,7 @@ import java.util.concurrent.TimeUnit;
 public class DeceleratingWait implements Wait {
 
   @VisibleForTesting
-  static final long DEFAULT_TIMEOUT_MILLIS = 500l;
+  static final long DEFAULT_TIMEOUT_MILLIS = 500L;
   @VisibleForTesting
   static final long INITIAL_DELAY = 10L;
   @VisibleForTesting
