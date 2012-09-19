@@ -21,6 +21,7 @@ import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,7 +34,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
   @Override
-  public void fail(@Nonnull final String reason,
+  public void fail(@Nullable final String reason,
                    @Nonnull final Object function,
                    @Nonnull final Object input,
                    @Nonnull final Throwable exception,
@@ -45,10 +46,10 @@ public class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
   }
 
   @Override
-  public <T> void fail(@Nonnull final String reason,
+  public <T> void fail(@Nullable final String reason,
                        @Nonnull final Object function,
                        @Nonnull final Object input,
-                       @Nonnull final T lastValue,
+                       @Nullable final T lastValue,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
     assertThat(addTimeoutDescription(reason, function, input, consumedMillis), lastValue, matcher);

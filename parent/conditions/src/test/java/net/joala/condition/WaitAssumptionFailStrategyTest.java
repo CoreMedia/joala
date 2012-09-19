@@ -16,19 +16,20 @@
 
 package net.joala.condition;
 
-import net.joala.base.ConditionWaitAssertionFailStrategy;
+import net.joala.condition.timing.WaitFailStrategyTest;
+import org.junit.internal.AssumptionViolatedException;
 
 /**
  * @since 8/26/12
  */
-public class ConditionWaitAssertionFailStrategyTest extends ConditionWaitFailStrategyTest<ConditionWaitAssertionFailStrategy, AssertionError> {
+public class WaitAssumptionFailStrategyTest extends WaitFailStrategyTest<WaitAssumptionFailStrategy, AssumptionViolatedException> {
   @Override
-  protected Class<AssertionError> getRaisedExceptionType() {
-    return AssertionError.class;
+  protected Class<AssumptionViolatedException> getRaisedExceptionType() {
+    return AssumptionViolatedException.class;
   }
 
   @Override
-  protected ConditionWaitAssertionFailStrategy getFailStrategy() {
-    return new ConditionWaitAssertionFailStrategy();
+  protected WaitAssumptionFailStrategy getFailStrategy() {
+    return new WaitAssumptionFailStrategy();
   }
 }
