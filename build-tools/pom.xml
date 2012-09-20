@@ -30,7 +30,7 @@
   <name>Joala build-tools</name>
   <description><![CDATA[
     Support for Build-Tooling. Module can be taken as dependency to provide configuration
-    data to reporting plugins for example like the checkstyle plugin.
+    data to reporting plugins for example like the checkstyle and PMD plugin.
   ]]></description>
   <inceptionYear>2011</inceptionYear>
   <organization>

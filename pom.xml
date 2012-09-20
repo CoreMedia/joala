@@ -14,22 +14,23 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.coremedia</groupId>
     <artifactId>coremedia-parent</artifactId>
     <version>8</version>
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
   <version>0.4.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
-  <description><![CDATA[Joala is a set of libraries to assist in writing tests based on JUnit testing framework.
-    This BOM is meant to be used as dependency with scope import in dependencyManagement section
-    in order to provide all Joala artifacts managed to the same version.]]></description>
+  <description><![CDATA[
+    This is the aggregator for the Joala project as well as the BOM (Bill of Materials) POM for Joala.
+  ]]></description>
   <url>http://coremedia.github.com/joala</url>
   <inceptionYear>2011</inceptionYear>
   <organization>
@@ -270,6 +271,10 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.8.1</version>
+          <configuration>
+            <additionalJOption>-J-Xmx1024m</additionalJOption>
+            <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -387,7 +392,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence/>
                 <requireNoRepositories>
                   <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
                   </message>
@@ -398,7 +403,7 @@
                 <requirePluginVersions>
                   <message>Best Practice is to always define plugin versions!</message>
                 </requirePluginVersions>
-                <requireUpperBoundDeps />
+                <requireUpperBoundDeps/>
               </rules>
             </configuration>
           </execution>
@@ -418,6 +423,16 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>2.5.2</version>
+        <configuration>
+          <xmlOutput>true</xmlOutput>
+          <!-- Optional directory to put findbugs xdoc xml report -->
+          <xmlOutputDirectory>${project.build.directory}/site</xmlOutputDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-pmd-plugin</artifactId>
         <version>2.7.1</version>
@@ -432,6 +447,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.8.1</version>
+        <configuration>
+          <additionalJOption>-J-Xmx1024m</additionalJOption>
+          <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

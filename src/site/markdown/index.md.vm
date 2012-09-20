@@ -4,6 +4,11 @@
 
 ${project.description}
 
+<h3>About Joala</h3>
+
+Joala is a set of libraries to assist in writing tests based on [JUnit][] testing framework.
+The origin of Joala is the concept of waiting in tests implemented in the module `joala-conditions`.
+
 <h3>Dependency</h3>
 
 ```xml
@@ -30,3 +35,7 @@ ${project.description}
   <dependencies>
 <dependencyManagement>
 ```
+
+<!-- Links -->
+
+[JUnit]: <http://www.junit.org/> "JUnit.org Resources for Test Driven Development"
