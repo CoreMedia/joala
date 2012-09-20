@@ -63,9 +63,9 @@
   <custom>
     <fluidoSkin>
       <!-- see http://maven.apache.org/skins/maven-fluido-skin/ -->
-      <topBarEnabled>true</topBarEnabled>
+      <topBarEnabled>false</topBarEnabled>
       <topBarContainerStyle>width: 80%;</topBarContainerStyle>
-      <sideBarEnabled>false</sideBarEnabled>
+      <sideBarEnabled>true</sideBarEnabled>
       <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
     </fluidoSkin>
   </custom>
