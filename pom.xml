@@ -273,7 +273,11 @@
           <version>2.8.1</version>
           <configuration>
             <additionalJOption>-J-Xmx1024m</additionalJOption>
-            <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+            <stylesheetfile>${basedir}/src/main/javadoc/bootstrap.css</stylesheetfile>
+            <detectLinks>true</detectLinks>
+            <links>
+              <link>http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/</link>
+            </links>
           </configuration>
         </plugin>
         <plugin>
@@ -449,7 +453,11 @@
         <version>2.8.1</version>
         <configuration>
           <additionalJOption>-J-Xmx1024m</additionalJOption>
-          <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+          <stylesheetfile>${basedir}/src/main/javadoc/bootstrap.css</stylesheetfile>
+          <detectLinks>true</detectLinks>
+          <links>
+            <link>http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/</link>
+          </links>
         </configuration>
       </plugin>
       <plugin>
