@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright 2012 CoreMedia AG
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!--
+ Include with appenders prepared for logging.
+
+ Usage:
+
+  <include resource="bdd-logback-appender.xml"/>
+
+  <logger name="${bdd.story.logger.name}" additivity="false" level="${bdd.log.level}">
+    <appender-ref ref="story-console"/>
+    ... Additional appenders, if you like
+  </logger>
+
+  <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
+    <appender-ref ref="step-console"/>
+    ... Additional appenders, if you like
+  </logger>
+-->
+<included>
+  <!-- BDD Log Configuration -->
+  <property name="bdd.step.indent" value="..... "/>
+  <property name="bdd.log.pattern" value="%message%n%xEx{5}"/>
+  <property name="bdd.log.level" value="info"/>
+  <property name="bdd.steps.logger.name" value="com.coremedia.uitesting.junit.bdd.aop.JUnitAopStepsLogger"/>
+  <property name="bdd.story.logger.name" value="com.coremedia.uitesting.junit.bdd.watcher.JUnitScenarioWatcher"/>
+
+  <appender name="step-console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${bdd.step.indent}${bdd.log.pattern}</pattern>
+    </encoder>
+  </appender>
+  <appender name="story-console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>${bdd.log.pattern}</pattern>
+    </encoder>
+  </appender>
+</included>

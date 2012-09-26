@@ -36,6 +36,7 @@
     <module>conditions</module>
     <module>matchers</module>
     <module>data</module>
+    <module>bdd</module>
   </modules>
 
   <dependencyManagement>
