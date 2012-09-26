@@ -1,0 +1,23 @@
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+# idea:
+*.iml
+*.ipr
+*.iws
+.idea/
+# maven:
+target/
+overlays/
+*.releaseBackup
+# eclipse:
+.classpath
+.project
+.settings/
+# Logs:
+*.log
+*.err
+*.out
+# Git:
+*.orig
+
