@@ -21,34 +21,40 @@
 
  Usage:
 
-  <include resource="bdd-logback-appender.xml"/>
+  <include resource="bdd-logback.xml"/>
 
   <logger name="${bdd.story.logger.name}" additivity="false" level="${bdd.log.level}">
-    <appender-ref ref="story-console"/>
+    <appender-ref ref="joala-story-console"/>
     ... Additional appenders, if you like
   </logger>
 
   <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
-    <appender-ref ref="step-console"/>
+    <appender-ref ref="joala-step-console"/>
     ... Additional appenders, if you like
   </logger>
 -->
 <included>
   <!-- BDD Log Configuration -->
-  <property name="bdd.step.indent" value="..... "/>
-  <property name="bdd.log.pattern" value="%message%n%xEx{5}"/>
-  <property name="bdd.log.level" value="info"/>
-  <property name="bdd.steps.logger.name" value="com.coremedia.uitesting.junit.bdd.aop.JUnitAopStepsLogger"/>
-  <property name="bdd.story.logger.name" value="com.coremedia.uitesting.junit.bdd.watcher.JUnitScenarioWatcher"/>
+  <property resource="META-INF/joala/bdd/bdd-logback.properties"/>
 
-  <appender name="step-console" class="ch.qos.logback.core.ConsoleAppender">
+  <appender name="joala-step-console" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>${bdd.step.indent}${bdd.log.pattern}</pattern>
+      <pattern>${bdd.step.pattern}</pattern>
     </encoder>
   </appender>
-  <appender name="story-console" class="ch.qos.logback.core.ConsoleAppender">
+
+  <appender name="joala-story-console" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
-      <pattern>${bdd.log.pattern}</pattern>
+      <pattern>${bdd.story.pattern}</pattern>
     </encoder>
   </appender>
+
+  <logger name="${bdd.story.logger.name}" level="${bdd.log.level}">
+    <appender-ref ref="joala-story-console"/>
+  </logger>
+
+  <logger name="${bdd.steps.logger.name}" level="${bdd.log.level}">
+    <appender-ref ref="joala-step-console"/>
+  </logger>
+
 </included>

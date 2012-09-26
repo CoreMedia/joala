@@ -17,13 +17,18 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd">
-  <import resource="classpath:META-INF/joala/bdd/bdd-context.xml"/>
-  <context:component-scan
-          base-package="net.joala.bdd.aop"
-          scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"/>
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+  <description><![CDATA[
+    Provides importable steps logger with AOP setup.
+  ]]></description>
+
+  <aop:aspectj-autoproxy/>
+
+  <bean id="defaultJUnitAopStepsLogger" class="net.joala.bdd.aop.JUnitAopStepsLogger" scope="singleton"/>
+
 </beans>

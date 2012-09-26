@@ -26,8 +26,9 @@ import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -65,7 +66,9 @@ import java.util.List;
  *             http://www.springframework.org/schema/context
  *             http://www.springframework.org/schema/context/spring-context.xsd">
  *       <aop:aspectj-autoproxy/>
- *       <context:component-scan base-package="com.coremedia.uitesting.junit.bdd.aop"/>
+ *       <context:component-scan
+ *           base-package="net.joala.bdd.aop"
+ *           scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"/>
  *     </beans>
  *     }
  *   </pre>
@@ -76,7 +79,6 @@ import java.util.List;
  */
 @SuppressWarnings("JavaDoc")
 @Aspect
-@Component
 public class JUnitAopStepsLogger {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitAopStepsLogger.class);
 
@@ -105,7 +107,8 @@ public class JUnitAopStepsLogger {
         return (input instanceof SelfDescribing);
       }
     });
-    if (describableArgs.size() > 0) {
+    final boolean hasDescribableArgs = !describableArgs.isEmpty();
+    if (hasDescribableArgs) {
       stepDescription.appendText(" (");
     }
     for (Iterator<Object> argumentIterator = describableArgs.iterator(); argumentIterator.hasNext(); ) {
@@ -115,7 +118,7 @@ public class JUnitAopStepsLogger {
         stepDescription.appendText(", ");
       }
     }
-    if (describableArgs.size() > 0) {
+    if (hasDescribableArgs) {
       stepDescription.appendText(")");
     }
   }

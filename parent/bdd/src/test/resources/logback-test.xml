@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration>
+  <include resource="META-INF/joala/bdd/bdd-logback.xml"/>
+
   <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>%date{ISO8601} [%5level] %logger{0}: %message%n%xEx{5}</pattern>
@@ -15,15 +17,13 @@
     </encoder>
   </appender>
 
-  <appender name="CUSTOM" class="com.coremedia.uitesting.junit.bdd.aop.JUnitAopStepsLoggerTestAppender">
+  <appender name="CUSTOM" class="net.joala.bdd.aop.JUnitAopStepsLoggerTestAppender">
     <encoder>
       <pattern>%logger{0} - %msg%n</pattern>
     </encoder>
   </appender>
 
-  <logger name="com.coremedia.uitesting.junit.bdd" level="debug"/>
-
-  <logger name="com.coremedia.uitesting.junit.bdd.aop.JUnitAopStepsLogger" level="info">
+  <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
     <appender-ref ref="CUSTOM"/>
   </logger>
 

@@ -5,6 +5,7 @@ import ch.qos.logback.core.AppenderBase;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Used to trace logging events during tests.
@@ -24,6 +25,6 @@ public class JUnitAopStepsLoggerTestAppender extends AppenderBase<ILoggingEvent>
   }
 
   public static Collection<ILoggingEvent> getEvents() {
-    return events;
+    return Collections.unmodifiableCollection(events);
   }
 }
