@@ -21,6 +21,7 @@
     <groupId>com.coremedia</groupId>
     <artifactId>coremedia-parent</artifactId>
     <version>8</version>
+    <!--suppress MavenModelInspection -->
     <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
