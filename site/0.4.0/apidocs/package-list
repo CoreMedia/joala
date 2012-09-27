@@ -1,0 +1,12 @@
+net.joala.bdd
+net.joala.bdd.aop
+net.joala.bdd.reference
+net.joala.bdd.watcher
+net.joala.condition
+net.joala.condition.timing
+net.joala.data
+net.joala.data.random
+net.joala.matcher
+net.joala.matcher.decorator
+net.joala.matcher.exception
+net.joala.matcher.text
