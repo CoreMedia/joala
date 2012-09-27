@@ -23,7 +23,7 @@
     </encoder>
   </appender>
 
-  <logger name="com.coremedia.uitesting" additivity="false" level="debug">
+  <logger name="net.joala.condition" additivity="false" level="debug">
     <appender-ref ref="stdout"/>
   </logger>
 

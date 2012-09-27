@@ -2,6 +2,8 @@ package net.joala.bdd.reference;
 
 import org.hamcrest.SelfDescribing;
 
+import javax.annotation.Nullable;
+
 /**
  * <p>
  * Self describable references may be printed to log along with the steps where they are used.
@@ -14,5 +16,6 @@ public interface SelfDescribingReference<T> extends SelfDescribing, Reference<T>
    * Retrieve the name of this reference.
    * @return name
    */
+  @Nullable
   String getName();
 }

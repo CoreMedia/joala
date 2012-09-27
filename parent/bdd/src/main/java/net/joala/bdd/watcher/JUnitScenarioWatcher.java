@@ -5,6 +5,7 @@ import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import java.util.regex.Pattern;
 
 /**
@@ -35,12 +36,13 @@ public class JUnitScenarioWatcher extends ExtendedTestWatcher {
     return INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN.matcher(withoutTest).replaceAll(" $1").trim();
   }
 
-  private String formatScenario(final String rawScenario) {
+  @Nonnull
+  private String formatScenario(@Nonnull final String rawScenario) {
     return rawScenario.replace('_', ' ').replace("scenario", "").trim();
   }
 
   @Override
-  protected void starting(final Description description) {
+  protected void starting(@Nonnull final Description description) {
     if (isScenario(description)) {
       LOG.info("STORY: ...... {}", formatStory(description.getTestClass().getSimpleName()));
       LOG.info("SCENARIO: ... {}", formatScenario(description.getMethodName()));
@@ -48,27 +50,27 @@ public class JUnitScenarioWatcher extends ExtendedTestWatcher {
   }
 
   @Override
-  protected void failed(final Throwable e, final Description description) {
+  protected void failed(final Throwable e, @Nonnull final Description description) {
     if (isScenario(description)) {
       LOG.info("SCENARIO: ... {} (FAILED)", formatScenario(description.getMethodName()));
     }
   }
 
   @Override
-  protected void skipped(final AssumptionViolatedException e, final Description description) {
+  protected void skipped(final AssumptionViolatedException e, @Nonnull final Description description) {
     if (isScenario(description)) {
       LOG.info("SCENARIO: ... {} (SKIPPED)", formatScenario(description.getMethodName()));
     }
   }
 
   @Override
-  protected void succeeded(final Description description) {
+  protected void succeeded(@Nonnull final Description description) {
     if (isScenario(description)) {
       LOG.info("SCENARIO: ... {} (SUCCESS)", formatScenario(description.getMethodName()));
     }
   }
 
-  private boolean isScenario(final Description description) {
+  private boolean isScenario(@Nonnull final Description description) {
     return description.getMethodName().contains("scenario");
   }
 

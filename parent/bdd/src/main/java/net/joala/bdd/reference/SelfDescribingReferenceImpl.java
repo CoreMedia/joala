@@ -1,6 +1,10 @@
 package net.joala.bdd.reference;
 
+import com.google.common.base.Objects;
 import org.hamcrest.Description;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * <p>
@@ -10,19 +14,21 @@ import org.hamcrest.Description;
  * @since 6/21/12
  */
 public class SelfDescribingReferenceImpl<T> extends ReferenceImpl<T> implements SelfDescribingReference<T> {
+  @Nullable
   private final String name;
 
-  public SelfDescribingReferenceImpl(final String name) {
+  public SelfDescribingReferenceImpl(@Nullable final String name) {
     this.name = name;
   }
 
   @Override
+  @Nullable
   public String getName() {
     return name;
   }
 
   @Override
-  public void describeTo(final Description description) {
+  public void describeTo(@Nonnull final Description description) {
     description.appendText(name != null ? getName() : "<noname>");
     description.appendText("=");
     describeValue(description);
@@ -37,11 +43,18 @@ public class SelfDescribingReferenceImpl<T> extends ReferenceImpl<T> implements 
    *
    * @param description description to append the value to
    */
-  protected void describeValue(final Description description) {
+  protected void describeValue(@Nonnull final Description description) {
     if (hasValue()) {
       description.appendValue(get());
     } else {
       description.appendText("<none>");
     }
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("name", name)
+            .toString();
   }
 }

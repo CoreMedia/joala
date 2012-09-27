@@ -42,6 +42,7 @@ import static org.junit.Assert.fail;
 @ContextConfiguration
 public class JUnitAopStepsLoggerTest {
   @Inject
+  @Singleton
   private Steps _;
 
   @Before

@@ -16,23 +16,6 @@
   ~ limitations under the License.
   -->
 
-<!--
- Include with appenders prepared for logging.
-
- Usage:
-
-  <include resource="bdd-logback.xml"/>
-
-  <logger name="${bdd.story.logger.name}" additivity="false" level="${bdd.log.level}">
-    <appender-ref ref="joala-story-console"/>
-    ... Additional appenders, if you like
-  </logger>
-
-  <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
-    <appender-ref ref="joala-step-console"/>
-    ... Additional appenders, if you like
-  </logger>
--->
 <included>
   <!-- BDD Log Configuration -->
   <property resource="META-INF/joala/bdd/bdd-logback.properties"/>

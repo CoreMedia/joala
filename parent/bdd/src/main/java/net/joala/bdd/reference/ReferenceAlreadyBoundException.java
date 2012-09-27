@@ -1,5 +1,7 @@
 package net.joala.bdd.reference;
 
+import javax.annotation.Nullable;
+
 /**
  * <p>
  * Denotes that a {@link Reference} already has a value. You must not set a reference value twice.
@@ -8,18 +10,16 @@ package net.joala.bdd.reference;
  * @since 6/5/12
  */
 public class ReferenceAlreadyBoundException extends RuntimeException {
-  public ReferenceAlreadyBoundException() {
-  }
 
-  public ReferenceAlreadyBoundException(final Throwable cause) {
-    super(cause);
-  }
-
-  public ReferenceAlreadyBoundException(final String message) {
+  /**
+   * <p>
+   * Constructor setting a message.
+   * </p>
+   *
+   * @param message a failure message
+   */
+  public ReferenceAlreadyBoundException(@Nullable final String message) {
     super(message);
   }
 
-  public ReferenceAlreadyBoundException(final String message, final Throwable cause) {
-    super(message, cause);
-  }
 }

@@ -1,9 +1,15 @@
 package net.joala.bdd.reference;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * <p>
  * A reference is meant to be used to be shared among steps of BDD tests written in JUnit. It is typically
  * created before a test, filled once with a value during the tests and then can be read multiple times.
+ * </p>
+ * <p>
+ * References can hold properties that can be used for later assertions.
  * </p>
  *
  * @param <T> the type of the reference value
@@ -17,9 +23,9 @@ public interface Reference<T> {
    *
    * @param value the value of the reference
    * @throws ReferenceAlreadyBoundException if the reference already has a value
-   * @throws NullPointerException         if the value set is null
+   * @throws NullPointerException           if the value set is null
    */
-  void set(T value);
+  void set(@Nonnull T value);
 
   /**
    * <p>
@@ -29,6 +35,7 @@ public interface Reference<T> {
    * @return the value of the reference
    * @throws ReferenceNotBoundException if the reference does not contain a value yet
    */
+  @Nonnull
   T get();
 
   /**
@@ -39,11 +46,10 @@ public interface Reference<T> {
    *
    * @param key   the name of the property
    * @param value the value of the property
-   * @param <P>   the property value's type
-   * @throws NullPointerException if the key is {@code null}
+   * @throws NullPointerException        if the key is {@code null}
    * @throws PropertyAlreadySetException if you already set this property
    */
-  <P> void setProperty(String key, P value);
+  void setProperty(@Nonnull String key, @Nullable Object value);
 
   /**
    * <p>
@@ -54,7 +60,8 @@ public interface Reference<T> {
    * @return property value
    * @throws PropertyNotSetException if you did not define that property before
    */
-  Object getProperty(String key);
+  @Nullable
+  Object getProperty(@Nonnull String key);
 
   /**
    * <p>
@@ -67,5 +74,6 @@ public interface Reference<T> {
    * @return property value
    * @throws PropertyNotSetException if you did not define that property before
    */
-  <P> P getProperty(String key, Class<P> clazz);
+  @Nullable
+  <P> P getProperty(@Nonnull String key, @Nonnull Class<P> clazz);
 }

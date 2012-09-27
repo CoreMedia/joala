@@ -9,13 +9,9 @@
     </encoder>
   </appender>
 
-  <appender name="file" class="ch.qos.logback.core.FileAppender">
-    <file>${log.dir}/${project.artifactId}.log</file>
-    <append>false</append>
-    <encoder>
-      <pattern>%date{ISO8601} [%5level] [%thread] %logger: %message%n%xEx{5}</pattern>
-    </encoder>
-  </appender>
+  <logger name="net.joala.bdd" additivity="false" level="debug">
+    <appender-ref ref="stdout"/>
+  </logger>
 
   <appender name="CUSTOM" class="net.joala.bdd.aop.JUnitAopStepsLoggerTestAppender">
     <encoder>
@@ -28,7 +24,6 @@
   </logger>
 
   <root level="warn">
-    <appender-ref ref="file"/>
     <appender-ref ref="stdout"/>
   </root>
 </configuration>

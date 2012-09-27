@@ -16,6 +16,8 @@
 
 package net.joala.bdd.reference;
 
+import javax.annotation.Nullable;
+
 /**
  * <p>
  * Denotes that you try to read a reference which is not yet bound to a value.
@@ -24,18 +26,16 @@ package net.joala.bdd.reference;
  * @since 6/5/12
  */
 public class ReferenceNotBoundException extends RuntimeException {
-  public ReferenceNotBoundException() {
-  }
 
-  public ReferenceNotBoundException(final Throwable cause) {
-    super(cause);
-  }
-
-  public ReferenceNotBoundException(final String message) {
+  /**
+   * <p>
+   * Constructor setting a message.
+   * </p>
+   *
+   * @param message a failure message
+   */
+  public ReferenceNotBoundException(@Nullable final String message) {
     super(message);
   }
 
-  public ReferenceNotBoundException(final String message, final Throwable cause) {
-    super(message, cause);
-  }
 }

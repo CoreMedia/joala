@@ -27,6 +27,8 @@ import org.hamcrest.StringDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -51,25 +53,18 @@ import java.util.List;
  * <li>your steps come from a Spring Bean (thus from a class injected to your test),</li>
  * <li>if you use an internal class it must not be final and must be public,</li>
  * <li>that you have a context configuration similar to:
- * <pre>
- * {@code <?xml version="1.0" encoding="UTF-8"?>
- *   <beans xmlns="http://www.springframework.org/schema/beans"
- *          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- *          xmlns:aop="http://www.springframework.org/schema/aop"
- *          xmlns:context="http://www.springframework.org/schema/context"
- *          xsi:schemaLocation="http://www.springframework.org/schema/beans
- *             http://www.springframework.org/schema/beans/spring-beans.xsd
- *             http://www.springframework.org/schema/aop
- *             http://www.springframework.org/schema/aop/spring-aop.xsd
- *             http://www.springframework.org/schema/context
- *             http://www.springframework.org/schema/context/spring-context.xsd">
- *       <aop:aspectj-autoproxy/>
- *       <context:component-scan
- *           base-package="net.joala.bdd.aop"
- *           scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"/>
- *     </beans>
- *     }
- *   </pre>
+ * <pre>{@code
+ * <beans xmlns="http://www.springframework.org/schema/beans"
+ *        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ *        xmlns:context="http://www.springframework.org/schema/context"
+ *        xsi:schemaLocation="http://www.springframework.org/schema/beans
+ *            http://www.springframework.org/schema/beans/spring-beans.xsd
+ *            http://www.springframework.org/schema/context
+ *            http://www.springframework.org/schema/context/spring-context.xsd">
+ *  <import resource="classpath:META-INF/joala/bdd/bdd-context.xml"/>
+ *  <context:component-scan base-package="your.test.package"/>
+ * </beans>
+ * }</pre>
  * </li>
  * </ul>
  *
@@ -80,8 +75,17 @@ import java.util.List;
 public class JUnitAopStepsLogger {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitAopStepsLogger.class);
 
+  /**
+   * <p>
+   * Advisor to log steps.
+   * </p>
+   *
+   * @param joinPoint where we are
+   * @return the result of the step call
+   * @throws Throwable in case of any error
+   */
   @Around("execution(* given_*(..))||execution(* when_*(..))||execution(* then_*(..))")
-  public Object logGivenWhenThen(final ProceedingJoinPoint joinPoint) throws Throwable {
+  public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable {
     final Description stepDescription = new StringDescription();
     final String stepName = joinPoint.getSignature().getName();
     stepDescription.appendText(stepName.replace('_', ' ').trim());
@@ -97,14 +101,18 @@ public class JUnitAopStepsLogger {
     return result;
   }
 
-  private void describeArguments(final Description stepDescription, final Object[] args) {
+  /**
+   * <p>
+   * Describe the step arguments (most likely references) if they are describable. Ignore them if
+   * they are not self describable.
+   * </p>
+   *
+   * @param stepDescription description to add description of arguments to
+   * @param args            arguments to describe
+   */
+  private void describeArguments(@Nonnull final Description stepDescription, @Nonnull final Object[] args) {
     final List<Object> argsList = Arrays.asList(args);
-    final Collection<Object> describableArgs = Collections2.filter(argsList, new Predicate<Object>() {
-      @Override
-      public boolean apply(final Object input) {
-        return (input instanceof SelfDescribing);
-      }
-    });
+    final Collection<Object> describableArgs = Collections2.filter(argsList, new IsSelfDescribing());
     final boolean hasDescribableArgs = !describableArgs.isEmpty();
     if (hasDescribableArgs) {
       stepDescription.appendText(" (");
@@ -118,6 +126,18 @@ public class JUnitAopStepsLogger {
     }
     if (hasDescribableArgs) {
       stepDescription.appendText(")");
+    }
+  }
+
+  /**
+   * <p>
+   * Filter to locate self describing arguments.
+   * </p>
+   */
+  private static class IsSelfDescribing implements Predicate<Object> {
+    @Override
+    public boolean apply(@Nullable final Object input) {
+      return (input instanceof SelfDescribing);
     }
   }
 }

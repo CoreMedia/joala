@@ -23,42 +23,25 @@ import org.junit.runners.model.Statement;
 
 /**
  * <p>
- * The {@link org.junit.rules.TestWatcher} extended by reporting of skipped tests because of an
- * {@link org.junit.internal.AssumptionViolatedException}.
+ * The {@link TestWatcher} extended by reporting of skipped tests because of an
+ * {@link AssumptionViolatedException}.
  * </p>
  * <p>
  * This is actually caused by the change for <a href="https://github.com/KentBeck/junit/issues/296">issue 296</a> which caused the
- * {@link org.junit.internal.AssumptionViolatedException} to be completely ignored.
+ * {@link AssumptionViolatedException} to be completely ignored.
  * </p>
  *
  * @since 6/25/12
  */
-public class ExtendedTestWatcher extends TestWatcher {
+class ExtendedTestWatcher extends TestWatcher {
   @Override
   public Statement apply(final Statement base, final Description description) {
-    // Copy from TestWatcher in junit v4.10. We need to add the skipped method.
-    return new Statement() {
-      @Override
-      public void evaluate() throws Throwable {
-        starting(description);
-        try {
-          base.evaluate();
-          succeeded(description);
-        } catch (AssumptionViolatedException e) {
-          skipped(e, description);
-          throw e;
-        } catch (Throwable t) {
-          failed(t, description);
-          throw t;
-        } finally {
-          finished(description);
-        }
-      }
-    };
+    // Copy from TestWatcher in JUnit v4.10. We need to add the skipped method.
+    return new WrapperStatement(description, base);
   }
 
   /**
-   * Invoked when a test is skipped because of an {@link org.junit.internal.AssumptionViolatedException}.
+   * Invoked when a test is skipped because of an {@link AssumptionViolatedException}.
    *
    * @param e           the exception
    * @param description the description
@@ -67,4 +50,35 @@ public class ExtendedTestWatcher extends TestWatcher {
     // Empty, override if you like
   }
 
+  /**
+   * <p>
+   * Wrapping statement which provides hooks for different test states.
+   * </p>
+   */
+  private class WrapperStatement extends Statement {
+    private final Description description;
+    private final Statement base;
+
+    private WrapperStatement(final Description description, final Statement base) {
+      this.description = description;
+      this.base = base;
+    }
+
+    @Override
+    public void evaluate() throws Throwable {
+      starting(description);
+      try {
+        base.evaluate();
+        succeeded(description);
+      } catch (AssumptionViolatedException e) {
+        skipped(e, description);
+        throw e;
+      } catch (Throwable t) {
+        failed(t, description);
+        throw t;
+      } finally {
+        finished(description);
+      }
+    }
+  }
 }
