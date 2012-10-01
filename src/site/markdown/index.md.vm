@@ -36,6 +36,11 @@ The origin of Joala is the concept of waiting in tests implemented in the module
 <dependencyManagement>
 ```
 
+<h3>Thanks to...</h3>
+
+* [Lucidchart][], used to create documentation graphics
+
 <!-- Links -->
 
 [JUnit]: <http://www.junit.org/> "JUnit.org Resources for Test Driven Development"
+[Lucidchart]: <https://www.lucidchart.com/> "Flow Chart Maker  &amp; Online Diagram Software"
