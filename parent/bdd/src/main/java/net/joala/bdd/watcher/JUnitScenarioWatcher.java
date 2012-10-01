@@ -1,12 +1,16 @@
 package net.joala.bdd.watcher;
 
+import com.google.common.base.Strings;
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
+import java.util.Formatter;
 import java.util.regex.Pattern;
+
+import static java.lang.Math.max;
 
 /**
  * <p>
@@ -26,10 +30,12 @@ import java.util.regex.Pattern;
  *
  * @since 6/2/12
  */
-public class JUnitScenarioWatcher extends ExtendedTestWatcher {
+public class JUnitScenarioWatcher extends TestWatcher {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitScenarioWatcher.class);
   private static final Pattern INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN = Pattern.compile("([A-Z][^A-Z0-9]*|[0-9]+)");
   private static final Pattern REMOVE_TEST_SUFFIX_PATTERN = Pattern.compile("I?Test$");
+  private static final int MIN_DOTS = 3;
+  private static final int MAX_TYPE_PADDING = 15;
 
   private String formatStory(final CharSequence rawStory) {
     final String withoutTest = REMOVE_TEST_SUFFIX_PATTERN.matcher(rawStory).replaceFirst("");
@@ -44,29 +50,29 @@ public class JUnitScenarioWatcher extends ExtendedTestWatcher {
   @Override
   protected void starting(@Nonnull final Description description) {
     if (isScenario(description)) {
-      LOG.info("STORY: ...... {}", formatStory(description.getTestClass().getSimpleName()));
-      LOG.info("SCENARIO: ... {}", formatScenario(description.getMethodName()));
+      reportStart("Story", formatStory(description.getTestClass().getSimpleName()));
+      reportStart("Scenario", formatScenario(description.getMethodName()));
+    }
+  }
+
+  @Override
+  protected void skipped(final AssumptionViolatedException e, final Description description) {
+    if (isScenario(description)) {
+      reportEnd("Scenario", formatScenario(description.getMethodName()), "skipped");
     }
   }
 
   @Override
   protected void failed(final Throwable e, @Nonnull final Description description) {
     if (isScenario(description)) {
-      LOG.info("SCENARIO: ... {} (FAILED)", formatScenario(description.getMethodName()));
-    }
-  }
-
-  @Override
-  protected void skipped(final AssumptionViolatedException e, @Nonnull final Description description) {
-    if (isScenario(description)) {
-      LOG.info("SCENARIO: ... {} (SKIPPED)", formatScenario(description.getMethodName()));
+      reportEnd("Scenario", formatScenario(description.getMethodName()), "failed");
     }
   }
 
   @Override
   protected void succeeded(@Nonnull final Description description) {
     if (isScenario(description)) {
-      LOG.info("SCENARIO: ... {} (SUCCESS)", formatScenario(description.getMethodName()));
+      reportEnd("Scenario", formatScenario(description.getMethodName()), "success");
     }
   }
 
@@ -74,4 +80,19 @@ public class JUnitScenarioWatcher extends ExtendedTestWatcher {
     return description.getMethodName().contains("scenario");
   }
 
+  protected void reportStart(final String type, final String message) {
+    report(new Formatter().format("%1$S: %2$s %3$s", type, typePadding(type), message).toString());
+  }
+
+  protected void reportEnd(final String type, final String message, final String result) {
+    report(new Formatter().format("%1$S: %2$s %3$s (%4$S)", type, typePadding(type), message, result).toString());
+  }
+
+  protected void report(final String message) {
+    LOG.info(message);
+  }
+
+  private String typePadding(final CharSequence type) {
+    return Strings.repeat(".", max(MIN_DOTS, MAX_TYPE_PADDING - type.length()));
+  }
 }
