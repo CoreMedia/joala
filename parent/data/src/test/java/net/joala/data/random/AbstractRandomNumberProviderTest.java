@@ -34,16 +34,22 @@ import static org.junit.Assert.assertThat;
  * @since 9/17/12
  */
 @RunWith(MockitoJUnitRunner.class)
-public class AbstractRandomNumberProviderTest {
+public final class AbstractRandomNumberProviderTest {
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private RandomNumberType<Integer> numberType;
 
   @Test
   public void toString_should_contain_number_type_information() throws Exception {
-    final AbstractRandomNumberProvider<Integer> numberProvider = new AbstractRandomNumberProvider<Integer>(numberType) {
-    };
+    final AbstractRandomNumberProvider<Integer> numberProvider = new SimpleRandomNumberProvider(numberType);
     final String type = "LoremIpsumType";
     Mockito.when(numberType.toString()).thenReturn(type);
     assertThat("Number type class should be contained in toString().", numberProvider.toString(), containsString(type));
+  }
+
+  private static class SimpleRandomNumberProvider extends AbstractRandomNumberProvider<Integer> {
+    private SimpleRandomNumberProvider(final RandomNumberType<Integer> numberType1) {
+      super(numberType1);
+    }
   }
 }
