@@ -26,7 +26,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-build-tools</artifactId>
-  <version>0.4.1</version>
+  <version>0.4.2-SNAPSHOT</version>
   <name>Joala build-tools</name>
   <description><![CDATA[
     Support for Build-Tooling. Module can be taken as dependency to provide configuration
@@ -50,7 +50,7 @@
   <scm>
     <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
-    <tag>joala-bom-0.4.1</tag>
+    <tag>HEAD</tag>
     <url>https://github.com/CoreMedia/joala</url>
   </scm>
   <issueManagement>
