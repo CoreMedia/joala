@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import net.joala.condition.timing.WaitTimeoutException; // NOSONAR
+import net.joala.condition.timing.WaitTimeoutException;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;

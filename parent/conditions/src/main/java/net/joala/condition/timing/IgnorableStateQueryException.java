@@ -18,7 +18,7 @@ package net.joala.condition.timing;
 
 import com.google.common.base.Function;
 import org.hamcrest.Description;
-import org.hamcrest.SelfDescribing; // NOSONAR
+import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 
 import javax.annotation.Nonnull;

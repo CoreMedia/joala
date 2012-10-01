@@ -17,7 +17,7 @@
 package net.joala.condition;
 
 import net.joala.condition.timing.SimpleSelfDescribing;
-import org.hamcrest.Description; // NOSONAR
+import org.hamcrest.Description;
 
 import javax.annotation.Nullable;
 
