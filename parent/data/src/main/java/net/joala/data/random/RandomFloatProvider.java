@@ -16,6 +16,8 @@
 
 package net.joala.data.random;
 
+import javax.annotation.Nonnull;
+
 /**
  * <p>
  * Random number provider for float values.
@@ -33,6 +35,11 @@ public class RandomFloatProvider extends AbstractRandomNumberProvider<Float> {
     super(new FloatRandomNumberType());
   }
 
+  /**
+   * <p>
+   * Describe the float number type as needed to provide random data.
+   * </p>
+   */
   private static final class FloatRandomNumberType extends AbstractRandomNumberType<Float> {
 
     private FloatRandomNumberType() {
@@ -40,22 +47,27 @@ public class RandomFloatProvider extends AbstractRandomNumberProvider<Float> {
     }
 
     @Override
+    @Nonnull
     public Float min() {
       return Float.MIN_VALUE;
     }
 
     @Override
+    @Nonnull
     public Float max() {
       return Float.MAX_VALUE;
     }
 
     @Override
+    @Nonnull
     public Float sum(final Float value1, final Float value2) {
       return value1 + value2;
     }
 
     @Override
+    @Nonnull
     public Float percentOf(final double percent, final Float value) {
+      checkPercentageArgument(percent);
       return (float) percent * value;
     }
   }

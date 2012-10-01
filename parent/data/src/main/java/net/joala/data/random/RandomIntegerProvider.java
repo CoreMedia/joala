@@ -16,6 +16,8 @@
 
 package net.joala.data.random;
 
+import javax.annotation.Nonnull;
+
 /**
  * <p>
  * Random number provider for integer values.
@@ -33,6 +35,11 @@ public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer>
     super(new IntegerRandomNumberType());
   }
 
+  /**
+   * <p>
+   * Describe the integer number type as needed to provide random data.
+   * </p>
+   */
   private static final class IntegerRandomNumberType extends AbstractRandomNumberType<Integer> {
 
     private IntegerRandomNumberType() {
@@ -40,22 +47,27 @@ public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer>
     }
 
     @Override
+    @Nonnull
     public Integer min() {
       return Integer.MIN_VALUE;
     }
 
     @Override
+    @Nonnull
     public Integer max() {
       return Integer.MAX_VALUE;
     }
 
     @Override
+    @Nonnull
     public Integer sum(final Integer value1, final Integer value2) {
       return value1 + value2;
     }
 
     @Override
+    @Nonnull
     public Integer percentOf(final double percent, final Integer value) {
+      checkPercentageArgument(percent);
       return (int) percent * value;
     }
   }

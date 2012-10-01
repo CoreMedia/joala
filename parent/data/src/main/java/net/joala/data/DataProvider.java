@@ -17,8 +17,19 @@
 package net.joala.data;
 
 /**
+ * <p>
+ * Interface for providing test data of the given type.
+ * </p>
+ *
+ * @param <T> the type of data returned
  * @since 9/16/12
  */
 public interface DataProvider<T> {
+  /**
+   * Retrieve a random data.
+   *
+   * @return random data
+   * @throws DataProvidingException if an error occurred during data generation
+   */
   T get() throws DataProvidingException;
 }

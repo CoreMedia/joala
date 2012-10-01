@@ -28,6 +28,11 @@
   <artifactId>joala-bdd</artifactId>
   <name>Joala BDD</name>
 
+  <description><![CDATA[
+    Provide support for writing your tests in JUnit with BDD style Gherkin Syntax. Especially supports
+    logging of steps as well as handing over variables from step to step.
+  ]]></description>
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>

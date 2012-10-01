@@ -16,6 +16,8 @@
 
 package net.joala.data.random;
 
+import javax.annotation.Nonnull;
+
 /**
  * <p>
  * Random number provider for long values.
@@ -33,6 +35,11 @@ public class RandomLongProvider extends AbstractRandomNumberProvider<Long> {
     super(new LongRandomNumberType());
   }
 
+  /**
+   * <p>
+   * Describe the long number type as needed to provide random data.
+   * </p>
+   */
   private static final class LongRandomNumberType extends AbstractRandomNumberType<Long> {
 
     private LongRandomNumberType() {
@@ -40,22 +47,27 @@ public class RandomLongProvider extends AbstractRandomNumberProvider<Long> {
     }
 
     @Override
+    @Nonnull
     public Long min() {
       return Long.MIN_VALUE;
     }
 
     @Override
+    @Nonnull
     public Long max() {
       return Long.MAX_VALUE;
     }
 
     @Override
+    @Nonnull
     public Long sum(final Long value1, final Long value2) {
       return value1 + value2;
     }
 
     @Override
+    @Nonnull
     public Long percentOf(final double percent, final Long value) {
+      checkPercentageArgument(percent);
       return (long) percent * value;
     }
   }

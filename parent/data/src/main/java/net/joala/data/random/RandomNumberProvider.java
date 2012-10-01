@@ -16,6 +16,8 @@
 
 package net.joala.data.random;
 
+import javax.annotation.Nullable;
+
 /**
  * <p>
  * Provides random numbers. Configuration methods always return self-references.
@@ -29,18 +31,18 @@ public interface RandomNumberProvider<T extends Comparable<? extends Number>> ex
    * Specifies the minimum value to retrieve via random.
    * </p>
    *
-   * @param minValue the minimum value
+   * @param minValue the minimum value; {@code null} will cause to reset to minimum value of number type
    * @return self-reference
    */
-  RandomNumberProvider<T> min(T minValue);
+  RandomNumberProvider<T> min(@Nullable T minValue);
 
   /**
    * <p>
    * Specifies the maximum value to retrieve via random.
    * </p>
    *
-   * @param maxValue the maximum value
+   * @param maxValue the maximum value; {@code null} will cause to reset to maximum value of number type
    * @return self-reference
    */
-  RandomNumberProvider<T> max(T maxValue);
+  RandomNumberProvider<T> max(@Nullable T maxValue);
 }

@@ -17,20 +17,45 @@
 package net.joala.data;
 
 /**
+ * <p>
+ * Exception thrown when creating data for tests failed for any reason. Reasons might be misconfiguration
+ * of the random generator or runtime failures like random files which cannot be created.
+ * </p>
+ *
  * @since 9/16/12
  */
 public class DataProvidingException extends Exception {
+  /**
+   * Exception without cause and message. Discouraged to use. Please assist your testers to provide meaningful
+   * exceptions for easier debugging.
+   */
   public DataProvidingException() {
   }
 
+  /**
+   * Exception with a given cause.
+   *
+   * @param cause causing exception
+   */
   public DataProvidingException(final Throwable cause) {
     super(cause);
   }
 
+  /**
+   * Exception with a given message.
+   *
+   * @param message message
+   */
   public DataProvidingException(final String message) {
     super(message);
   }
 
+  /**
+   * Exception with given cause and message.
+   *
+   * @param message message
+   * @param cause   causing exception
+   */
   public DataProvidingException(final String message, final Throwable cause) {
     super(message, cause);
   }

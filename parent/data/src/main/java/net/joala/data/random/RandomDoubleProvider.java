@@ -16,6 +16,11 @@
 
 package net.joala.data.random;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Ranges;
+
+import javax.annotation.Nonnull;
+
 /**
  * <p>
  * Random number provider for double values.
@@ -33,6 +38,11 @@ public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
     super(new DoubleRandomNumberType());
   }
 
+  /**
+   * <p>
+   * Describe the double number type as needed to provide random data.
+   * </p>
+   */
   private static final class DoubleRandomNumberType extends AbstractRandomNumberType<Double> {
 
     private DoubleRandomNumberType() {
@@ -40,23 +50,29 @@ public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
     }
 
     @Override
+    @Nonnull
     public Double min() {
       return Double.MIN_VALUE;
     }
 
     @Override
+    @Nonnull
     public Double max() {
       return Double.MAX_VALUE;
     }
 
     @Override
+    @Nonnull
     public Double sum(final Double value1, final Double value2) {
       return value1 + value2;
     }
 
     @Override
+    @Nonnull
     public Double percentOf(final double percent, final Double value) {
+      checkPercentageArgument(percent);
       return percent * value;
     }
+
   }
 }
