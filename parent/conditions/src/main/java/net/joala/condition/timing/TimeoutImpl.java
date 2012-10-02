@@ -16,15 +16,9 @@
 
 package net.joala.condition.timing;
 
-import com.google.common.base.Objects;
-
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import java.util.concurrent.TimeUnit;
-
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static java.lang.Math.round;
 
 /**
  * <p>
@@ -32,40 +26,26 @@ import static java.lang.Math.round;
  * </p>
  *
  * @since 8/22/12
+ * @deprecated since 0.5.0; use {@link net.joala.time.TimeoutImpl} instead
  */
-public class TimeoutImpl implements Timeout {
-  private final long amount;
-  private final TimeUnit unit;
-
+@Deprecated
+public class TimeoutImpl extends net.joala.time.TimeoutImpl implements Timeout {
   public TimeoutImpl(@Nonnegative final long amount, @Nonnull final TimeUnit unit) {
-    checkArgument(amount >= 0l, "amount must be positive: %s", amount);
-    checkNotNull(unit, "time unit must not be null");
-    this.amount = amount;
-    this.unit = unit;
+    super(amount, unit);
   }
 
   @Override
   @Nonnegative
   @SuppressWarnings("PMD.ShortMethodName")
   public long in(@Nonnull final TimeUnit targetUnit) {
-    checkNotNull(targetUnit, "time unit must not be null");
-    return targetUnit.convert(amount, unit);
+    return super.in(targetUnit);
   }
 
   @Override
   @Nonnegative
   @SuppressWarnings("PMD.ShortMethodName")
   public long in(@Nonnull final TimeUnit targetUnit, @Nonnegative final double factor) {
-    checkArgument(Double.compare(factor, 0d) >= 0, "factor must be positive: %s", factor);
-    return round(in(targetUnit) * factor);
-  }
-
-  @Override
-  public String toString() {
-    return Objects.toStringHelper(this)
-            .add("amount", amount)
-            .add("unit", unit)
-            .toString();
+    return super.in(targetUnit, factor);
   }
 
 }
