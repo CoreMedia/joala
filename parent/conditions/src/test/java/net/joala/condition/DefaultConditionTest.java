@@ -51,7 +51,7 @@ public class DefaultConditionTest {
     condition = new DefaultCondition<String>(expression, timeout);
     expressionValue = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(expressionValue);
-    when(timeout.in(any(TimeUnit.class), any(Double.class))).thenReturn(0l);
+    when(timeout.in(any(TimeUnit.class), any(Double.class))).thenReturn(0L);
   }
 
   @Test

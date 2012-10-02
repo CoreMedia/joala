@@ -38,7 +38,7 @@ public class TimeoutImpl implements Timeout {
   private final TimeUnit unit;
 
   public TimeoutImpl(@Nonnegative final long amount, @Nonnull final TimeUnit unit) {
-    checkArgument(amount >= 0l, "amount must be positive: %s", amount);
+    checkArgument(amount >= 0L, "amount must be positive: %s", amount);
     checkNotNull(unit, "time unit must not be null");
     this.amount = amount;
     this.unit = unit;

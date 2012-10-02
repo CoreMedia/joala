@@ -77,8 +77,8 @@ public class DeceleratingWaitTest {
   @Test
   public void until_returns_immediately_if_first_evaluation_succeeds() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, true)
             .build();
     assertSuccessfulWait();
@@ -87,10 +87,10 @@ public class DeceleratingWaitTest {
   @Test
   public void until_retries_once_and_then_succeeds() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, false)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.SLEEP, DeceleratingWait.INITIAL_DELAY)
             .add(WaitCall.NOW, DeceleratingWait.INITIAL_DELAY)
             .add(WaitCall.FUNCTION_RESULT, true)
@@ -102,10 +102,10 @@ public class DeceleratingWaitTest {
   @Test
   public void until_retries_once_with_exception_and_then_succeeds() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, stateQueryException)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.SLEEP, DeceleratingWait.INITIAL_DELAY)
             .add(WaitCall.NOW, DeceleratingWait.INITIAL_DELAY)
             .add(WaitCall.FUNCTION_RESULT, true)
@@ -116,11 +116,11 @@ public class DeceleratingWaitTest {
   @Test
   public void until_retries_until_timeout_and_fails() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, false)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
             .build();
     assertFailedWait();
   }
@@ -128,11 +128,11 @@ public class DeceleratingWaitTest {
   @Test
   public void until_retries_with_exceptions_until_timeout_and_fails() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, stateQueryException)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
             .build();
     assertFailedWait();
   }
@@ -140,8 +140,8 @@ public class DeceleratingWaitTest {
   @Test
   public void until_retries_with_exponential_backoff() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, false)
             .add(WaitCall.NOW, DeceleratingWait.INITIAL_DELAY)
             .add(WaitCall.SLEEP, DeceleratingWait.INITIAL_DELAY)
@@ -158,8 +158,8 @@ public class DeceleratingWaitTest {
   @Test
   public void until_polling_should_adopt_to_evaluation_duration() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l) // used to calculate deadline
-            .add(WaitCall.NOW, 0l) // used to get timestamp before evaluation
+            .add(WaitCall.NOW, 0L) // used to calculate deadline
+            .add(WaitCall.NOW, 0L) // used to get timestamp before evaluation
             .add(WaitCall.FUNCTION_RESULT, false) // call function but fail
             .add(WaitCall.NOW, DeceleratingWait.INITIAL_DELAY * 2) // get time after evaluation; bigger than last (initial) delay
             .add(WaitCall.SLEEP, DeceleratingWait.INITIAL_DELAY * 2) // assertion: Now sleep interval should be equal to last duration
@@ -172,7 +172,7 @@ public class DeceleratingWaitTest {
   @SuppressWarnings("MagicNumber")
   @Test
   public void sleep_should_sleep_for_specified_millis() throws Exception {
-    final long sleepMillis = 200l;
+    final long sleepMillis = 200L;
     final long before = System.currentTimeMillis();
     new DeceleratingWait(timeout, mockWaitFailStrategy).sleep(sleepMillis);
     final long after = System.currentTimeMillis();
@@ -206,8 +206,8 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_noarg_should_correctly_initialize_wait_for_successful_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, true)
             .build();
     assertSuccessfulWait(new TestedDeceleratingWait());
@@ -216,11 +216,11 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_noarg_should_correctly_initialize_wait_for_timeout_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, false)
-            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2L)
             .build();
     assertFailedWait(new TestedDeceleratingWait());
   }
@@ -228,11 +228,11 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_noarg_should_correctly_initialize_wait_for_timeout_on_exception_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, stateQueryException)
-            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, DeceleratingWait.DEFAULT_TIMEOUT_MILLIS * 2L)
             .build();
     assertFailedWait(new TestedDeceleratingWait());
   }
@@ -240,8 +240,8 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_timeoutArg_should_correctly_initialize_wait_for_successful_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, true)
             .build();
     assertSuccessfulWait(new TestedDeceleratingWait(timeout));
@@ -250,11 +250,11 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_timeoutArg_should_correctly_initialize_wait_for_timeout_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, false)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
             .build();
     assertFailedWait(new TestedDeceleratingWait(timeout));
   }
@@ -262,11 +262,11 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_timeoutArg_should_correctly_initialize_wait_for_timeout_on_exception_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, stateQueryException)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
             .build();
     assertFailedWait(new TestedDeceleratingWait(timeout));
   }
@@ -274,8 +274,8 @@ public class DeceleratingWaitTest {
   @Test
   public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_successful_run() throws Exception {
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, true)
             .build();
     assertSuccessfulWait(new TestedDeceleratingWait(timeout));
@@ -285,12 +285,12 @@ public class DeceleratingWaitTest {
   public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_timeout_run() throws Exception {
     final double timeoutFactor = TEST_TIMEOUT_FACTOR;
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, false)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.SLEEP, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.SLEEP, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
             .add(WaitCall.FUNCTION_RESULT, false)
             .add(WaitCall.NOW, TIMEOUT_MILLIS * (timeoutFactor + 1))
             .build();
@@ -301,19 +301,19 @@ public class DeceleratingWaitTest {
   public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_timeout_on_exception_run() throws Exception {
     final double timeoutFactor = TEST_TIMEOUT_FACTOR;
     expectedCalls = new ExpectedCallsBuilder()
-            .add(WaitCall.NOW, 0l)
-            .add(WaitCall.NOW, 0l)
+            .add(WaitCall.NOW, 0L)
+            .add(WaitCall.NOW, 0L)
             .add(WaitCall.FUNCTION_RESULT, stateQueryException)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.SLEEP, TIMEOUT_MILLIS * 2l)
-            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2l)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.SLEEP, TIMEOUT_MILLIS * 2L)
+            .add(WaitCall.NOW, TIMEOUT_MILLIS * 2L)
             .add(WaitCall.FUNCTION_RESULT, stateQueryException)
             .add(WaitCall.NOW, TIMEOUT_MILLIS * (timeoutFactor + 1))
             .build();
     assertFailedWait(new TestedDeceleratingWait(timeout, timeoutFactor));
   }
 
-  private static final long TIMEOUT_MILLIS = 500l;
+  private static final long TIMEOUT_MILLIS = 500L;
   private static final DataProvider<Double> TIMEOUT_FACTOR_PROVIDER = new RandomDoubleProvider().min(0d).fixate();
 
   @Mock

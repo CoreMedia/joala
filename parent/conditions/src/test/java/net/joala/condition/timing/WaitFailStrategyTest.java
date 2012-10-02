@@ -47,7 +47,7 @@ import static org.mockito.Mockito.when;
 public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends Throwable> {
   private static final DataProvider<String> FAIL_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("failMessage").fixate();
   private static final DataProvider<String> EXCEPTION_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("exceptionMessage").fixate();
-  private static final DataProvider<Long> CONSUMED_MILLIS_PROVIDER = new RandomLongProvider().min(0l).max(1000l).fixate();
+  private static final DataProvider<Long> CONSUMED_MILLIS_PROVIDER = new RandomLongProvider().min(0L).max(1000L).fixate();
 
   @Mock
   private Object failedFunction;

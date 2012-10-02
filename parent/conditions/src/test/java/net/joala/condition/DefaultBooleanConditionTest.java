@@ -67,7 +67,7 @@ public class DefaultBooleanConditionTest {
   public void assumeTrue_should_fail_if_expression_is_false() throws Exception {
     final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
     when(expression.get()).thenReturn(false);
-    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1l);
+    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1L);
     try {
       condition.assumeTrue();
       fail("Should have failed.");
@@ -92,7 +92,7 @@ public class DefaultBooleanConditionTest {
   public void assumeFalse_should_fail_if_expression_is_true() throws Exception {
     final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
     when(expression.get()).thenReturn(true);
-    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1l);
+    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1L);
     try {
       condition.assumeFalse();
       fail("Should have failed.");
@@ -117,7 +117,7 @@ public class DefaultBooleanConditionTest {
   public void assertTrue_should_fail_if_expression_is_false() throws Exception {
     final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
     when(expression.get()).thenReturn(false);
-    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1l);
+    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1L);
     boolean assertionPassed = false;
     try {
       condition.assertTrue();
@@ -144,7 +144,7 @@ public class DefaultBooleanConditionTest {
   public void assertFalse_should_fail_if_expression_is_true() throws Exception {
     final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
     when(expression.get()).thenReturn(true);
-    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1l);
+    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1L);
     boolean assertionPassed = false;
     try {
       condition.assertFalse();

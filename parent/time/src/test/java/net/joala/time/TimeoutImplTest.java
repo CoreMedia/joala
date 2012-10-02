@@ -40,7 +40,7 @@ public class TimeoutImplTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void constructor_should_throw_exception_on_negative_timeout() throws Exception {
-    new TimeoutImpl(-1l, TimeUnit.MILLISECONDS);
+    new TimeoutImpl(-1L, TimeUnit.MILLISECONDS);
   }
 
   @SuppressWarnings("ConstantConditions")
