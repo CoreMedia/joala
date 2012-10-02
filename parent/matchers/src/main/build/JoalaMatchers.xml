@@ -23,4 +23,5 @@
   <factory class="net.joala.matcher.exception.CausedBy"/>
   <factory class="net.joala.matcher.exception.MessageContains"/>
   <factory class="net.joala.matcher.text.MatchesPattern"/>
+  <factory class="net.joala.matcher.net.KnownHost"/>
 </matchers>
