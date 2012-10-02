@@ -22,6 +22,7 @@ import net.joala.data.DataProvider;
 import net.joala.data.DataProvidingException;
 import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.data.random.RandomDoubleProvider;
+import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -318,7 +319,7 @@ public class DeceleratingWaitTest {
 
   @Mock
   private WaitFailStrategy mockWaitFailStrategy;
-  private net.joala.time.Timeout timeout;
+  private Timeout timeout;
   @Mock
   private IgnorableStateQueryException stateQueryException;
   @Mock
@@ -356,15 +357,15 @@ public class DeceleratingWaitTest {
     private TestedDeceleratingWait() {
     }
 
-    private TestedDeceleratingWait(@Nonnull final net.joala.time.Timeout timeout) {
+    private TestedDeceleratingWait(@Nonnull final Timeout timeout) {
       super(timeout);
     }
 
-    private TestedDeceleratingWait(@Nonnull final net.joala.time.Timeout timeout, @Nonnull final WaitFailStrategy failStrategy) {
+    private TestedDeceleratingWait(@Nonnull final Timeout timeout, @Nonnull final WaitFailStrategy failStrategy) {
       super(timeout, failStrategy);
     }
 
-    private TestedDeceleratingWait(@Nonnull final net.joala.time.Timeout timeout, @Nonnegative final double timeoutFactor) {
+    private TestedDeceleratingWait(@Nonnull final Timeout timeout, @Nonnegative final double timeoutFactor) {
       super(timeout, timeoutFactor);
     }
 
