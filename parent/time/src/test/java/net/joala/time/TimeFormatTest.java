@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition.timing;
+package net.joala.time;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,13 +67,13 @@ public class TimeFormatTest {
             {TimeUnit.DAYS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^47\\sh$"},
             {TimeUnit.DAYS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\sd$"},
             {Long.MAX_VALUE, TimeUnit.MILLISECONDS, "^\\d+\\sd$"},
-            {0l, TimeUnit.NANOSECONDS, "^0\\sns$"},
-            {0l, TimeUnit.MICROSECONDS, "^0\\sµs$"},
-            {0l, TimeUnit.MILLISECONDS, "^0\\sms$"},
-            {0l, TimeUnit.SECONDS, "^0\\ss$"},
-            {0l, TimeUnit.MINUTES, "^0\\smin$"},
-            {0l, TimeUnit.HOURS, "^0\\sh$"},
-            {0l, TimeUnit.DAYS, "^0\\sd$"},
+            {0L, TimeUnit.NANOSECONDS, "^0\\sns$"},
+            {0L, TimeUnit.MICROSECONDS, "^0\\sµs$"},
+            {0L, TimeUnit.MILLISECONDS, "^0\\sms$"},
+            {0L, TimeUnit.SECONDS, "^0\\ss$"},
+            {0L, TimeUnit.MINUTES, "^0\\smin$"},
+            {0L, TimeUnit.HOURS, "^0\\sh$"},
+            {0L, TimeUnit.DAYS, "^0\\sd$"},
     });
   }
 
