@@ -19,6 +19,8 @@ package net.joala.condition.timing;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import net.joala.time.Timeout;
+import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
@@ -59,6 +61,26 @@ public class DeceleratingWait implements Wait {
 
   public DeceleratingWait() {
     this(new TimeoutImpl(DEFAULT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
+  }
+
+  @Deprecated
+  public DeceleratingWait(@Nonnull final net.joala.condition.timing.Timeout timeout) {
+    this(timeout, new WaitTimeoutFailStrategy());
+  }
+
+  @Deprecated
+  public DeceleratingWait(@Nonnull final net.joala.condition.timing.Timeout timeout, @Nonnegative final double timeoutFactor) {
+    this(timeout, timeoutFactor, new WaitTimeoutFailStrategy());
+  }
+
+  @Deprecated
+  public DeceleratingWait(@Nonnull final net.joala.condition.timing.Timeout timeout, @Nonnull final WaitFailStrategy failStrategy) {
+    this(timeout, 1d, failStrategy);
+  }
+
+  @Deprecated
+  public DeceleratingWait(@Nonnull final net.joala.condition.timing.Timeout timeout, @Nonnegative final double timeoutFactor, @Nonnull final WaitFailStrategy failStrategy) {
+    this(((net.joala.condition.timing.TimeoutImpl)timeout).getWrapped(), timeoutFactor, failStrategy);
   }
 
   public DeceleratingWait(@Nonnull final Timeout timeout) {

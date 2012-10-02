@@ -16,6 +16,10 @@
 
 package net.joala.condition.timing;
 
+import javax.annotation.Nonnegative;
+import javax.annotation.Nonnull;
+import java.util.concurrent.TimeUnit;
+
 /**
  * <p>
  * A timeout which can be converted to different time-units.
@@ -25,5 +29,27 @@ package net.joala.condition.timing;
  * @deprecated since 0.5.0; use {@link net.joala.time.Timeout} instead
  */
 @Deprecated
-public interface Timeout extends net.joala.time.Timeout {
+public interface Timeout {
+  /**
+   * Get the timeout in the given unit.
+   *
+   * @param targetUnit the timeunit to use
+   * @return timeout in the given unit
+   */
+  @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
+  long in(@Nonnull TimeUnit targetUnit);
+
+  /**
+   * <p>
+   * Get the timeout in the given unit adjusted by the given factor.
+   * </p>
+   *
+   * @param targetUnit the timeunit to use
+   * @param factor     factor to adjust the timeout
+   * @return timeout adjust by factor
+   */
+  @Nonnegative
+  @SuppressWarnings("PMD.ShortMethodName")
+  long in(@Nonnull TimeUnit targetUnit, @Nonnegative double factor);
 }

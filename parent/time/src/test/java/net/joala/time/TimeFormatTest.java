@@ -16,6 +16,8 @@
 
 package net.joala.time;
 
+import org.hamcrest.Description;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -25,7 +27,6 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import static net.joala.matcher.text.MatchesPattern.matchesPattern;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -40,11 +41,11 @@ public class TimeFormatTest {
   private final String message;
   private final long amount;
   private final TimeUnit timeUnit;
-  private final Pattern exepectedTimePattern;
+  private final Pattern expectedTimePattern;
 
-  public TimeFormatTest(final long amount, final TimeUnit timeUnit, final String exepectedTimePattern) {
+  public TimeFormatTest(final long amount, final TimeUnit timeUnit, final String expectedTimePattern) {
     this.timeUnit = timeUnit;
-    this.exepectedTimePattern = Pattern.compile(exepectedTimePattern);
+    this.expectedTimePattern = Pattern.compile(expectedTimePattern);
     this.message = String.format("Format amount %d of %s.", amount, timeUnit);
     this.amount = amount;
   }
@@ -52,7 +53,7 @@ public class TimeFormatTest {
   @Test
   public void time_should_be_formatted_as_expected() throws Exception {
     final String description = TimeFormat.format(amount, timeUnit);
-    assertThat(message, description, matchesPattern(exepectedTimePattern));
+    assertThat(message, description, new MatchesPattern(expectedTimePattern));
   }
 
   @Parameterized.Parameters
@@ -77,4 +78,23 @@ public class TimeFormatTest {
     });
   }
 
+  // Duplicate in order to remove dependency cycles between modules.
+  private static final class MatchesPattern extends TypeSafeMatcher<CharSequence> {
+    private final Pattern pattern;
+
+    private MatchesPattern(final Pattern pattern) {
+      this.pattern = pattern;
+    }
+
+    @Override
+    public void describeTo(final Description description) {
+      description.appendText("a sequence of characters matching pattern ");
+      description.appendValue(pattern);
+    }
+
+    @Override
+    protected boolean matchesSafely(final CharSequence item) {
+      return pattern.matcher(item).matches();
+    }
+  }
 }

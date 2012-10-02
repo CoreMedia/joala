@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import net.joala.condition.timing.Timeout;
+import net.joala.time.Timeout;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -29,6 +29,11 @@ import static java.lang.Boolean.TRUE;
  * @since 2/26/12
  */
 public class DefaultBooleanCondition extends DefaultCondition<Boolean> implements BooleanCondition {
+  @Deprecated
+  public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final net.joala.condition.timing.Timeout timeout) {
+    super(expression, timeout);
+  }
+
   public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final Timeout timeout) {
     super(expression, timeout);
   }

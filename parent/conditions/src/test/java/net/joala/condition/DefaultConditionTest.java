@@ -16,7 +16,7 @@
 
 package net.joala.condition;
 
-import net.joala.condition.timing.Timeout;
+import net.joala.time.Timeout;
 import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
@@ -75,7 +75,7 @@ public class DefaultConditionTest {
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() throws Exception {
-    new DefaultCondition<String>(expression, null);
+    new DefaultCondition<String>(expression, (Timeout)null);
   }
 
   @Test
