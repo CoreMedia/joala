@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @since 9/18/12
  * @deprecated since 0.5.0; Use {@link net.joala.time.TimeFormat} instead
  */
+@SuppressWarnings("UnusedDeclaration")
 @Deprecated
 public final class TimeFormat {
   private TimeFormat() {

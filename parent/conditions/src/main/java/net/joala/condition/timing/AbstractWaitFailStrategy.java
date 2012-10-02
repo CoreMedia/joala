@@ -16,6 +16,7 @@
 
 package net.joala.condition.timing;
 
+import net.joala.time.TimeFormat;
 import org.hamcrest.Description;
 import org.hamcrest.StringDescription;
 
