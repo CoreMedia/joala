@@ -145,6 +145,11 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
+        <artifactId>joala-expressions</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
         <artifactId>joala-matchers</artifactId>
         <version>${project.version}</version>
       </dependency>

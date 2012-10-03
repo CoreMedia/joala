@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>joala-parent</artifactId>
+    <groupId>net.joala</groupId>
+    <version>0.5.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>joala-expressions</artifactId>
+  <name>Joala Expressions</name>
+  <description><![CDATA[
+    Expressions are used to evaluate the current state of a given
+    system. Such as a web address you want to get the status code
+    from. Typical expressions are evaluated multiple times in order
+    to wait for a given state. Thus expressions are typically evaluated
+    fast and should denote by expression if they fail to evaluate.
+  ]]></description>
+
+
+</project>

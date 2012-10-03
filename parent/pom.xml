@@ -37,6 +37,7 @@
     <module>data</module>
     <module>bdd</module>
     <module>time</module>
+    <module>expressions</module>
   </modules>
 
   <dependencyManagement>
