@@ -457,9 +457,23 @@
             </goals>
             <configuration>
               <failOnWarning>true</failOnWarning>
-<!--
-              <ignoreNonCompile>true</ignoreNonCompile>
--->
+            </configuration>
+          </execution>
+          <execution>
+            <id>analyze-dependency-duplicates</id>
+            <goals>
+              <goal>analyze-duplicate</goal>
+            </goals>
+            <phase>verify</phase>
+          </execution>
+          <execution>
+            <id>analyze-dependency-management</id>
+            <goals>
+              <goal>analyze-dep-mgt</goal>
+            </goals>
+            <phase>verify</phase>
+            <configuration>
+              <failBuild>true</failBuild>
             </configuration>
           </execution>
         </executions>
