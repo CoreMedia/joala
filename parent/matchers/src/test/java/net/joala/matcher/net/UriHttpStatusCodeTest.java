@@ -1,5 +1,8 @@
 package net.joala.matcher.net;
 
+import net.joala.lab.net.DelayedTestResponse;
+import net.joala.lab.net.EmbeddedWebservice;
+import net.joala.lab.net.TestResponse;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Description;
