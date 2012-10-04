@@ -18,7 +18,6 @@ package net.joala.expression;
 
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
-import net.joala.expression.ExpressionEvaluationException;
 import org.junit.Test;
 
 import static org.hamcrest.core.StringContains.containsString;
@@ -28,7 +27,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 
 /**
- * Tests {@link net.joala.expression.ExpressionEvaluationException}.
+ * Tests {@link ExpressionEvaluationException}.
  *
  * @since 8/25/12
  */
