@@ -2,8 +2,11 @@ package net.joala.lab.net;
 
 import com.sun.net.httpserver.HttpExchange;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.io.OutputStream;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * <p>
@@ -25,7 +28,8 @@ public class StatusCodeResponse implements Response {
   }
 
   @Override
-  public void write(final HttpExchange exchange) throws IOException {
+  public void write(@Nonnull final HttpExchange exchange) throws IOException {
+    checkNotNull(exchange, "Exchange must not be null.");
     exchange.sendResponseHeaders(statusCode, 0L);
 
     final OutputStream os = exchange.getResponseBody();

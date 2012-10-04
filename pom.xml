@@ -425,6 +425,8 @@
                   <excludes>
                     <exclude>*:commons-logging</exclude>
                     <exclude>*:log4j</exclude>
+                    <!-- Use junit-dep instead -->
+                    <exclude>junit:junit</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>
@@ -441,6 +443,24 @@
             <goals>
               <goal>attach-descriptor</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>analyze-dependencies</id>
+            <goals>
+              <goal>analyze-only</goal>
+            </goals>
+            <configuration>
+              <failOnWarning>true</failOnWarning>
+<!--
+              <ignoreNonCompile>true</ignoreNonCompile>
+-->
+            </configuration>
           </execution>
         </executions>
       </plugin>

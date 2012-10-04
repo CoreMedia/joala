@@ -13,11 +13,7 @@
     <appender-ref ref="stdout"/>
   </logger>
 
-  <appender name="CUSTOM" class="net.joala.bdd.aop.JUnitAopStepsLoggerTestAppender">
-    <encoder>
-      <pattern>%logger{0} - %msg%n</pattern>
-    </encoder>
-  </appender>
+  <appender name="CUSTOM" class="net.joala.bdd.aop.JUnitAopStepsLoggerTestAppender" />
 
   <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
     <appender-ref ref="CUSTOM"/>

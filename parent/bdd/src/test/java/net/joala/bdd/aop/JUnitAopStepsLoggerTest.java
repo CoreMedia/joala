@@ -75,14 +75,14 @@ public class JUnitAopStepsLoggerTest {
   @Test
   public void testGivenPointcut() throws Exception {
     Assume.assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
-    _.given_this_is_a_test___();
+    _.given_this_is_a_test();
     assertMessagesContainsStepDescription("given this is a test");
   }
 
   @Test
   public void testWhenPointcut() throws Exception {
     Assume.assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
-    _.when_this_is_a_test___();
+    _.when_this_is_a_test();
     assertMessagesContainsStepDescription("when this is a test");
   }
 
@@ -90,7 +90,7 @@ public class JUnitAopStepsLoggerTest {
   public void testFailingWhenPointcut() throws Exception {
     Assume.assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     try {
-      _.when_assumption_fails___();
+      _.when_assumption_fails();
     } catch (AssumptionViolatedException ignored) {
     }
     assertMessagesContainsStepDescription("when assumption fails");
@@ -100,7 +100,7 @@ public class JUnitAopStepsLoggerTest {
   @Test
   public void testThenPointcut() throws Exception {
     Assume.assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
-    _.then_this_is_a_test___();
+    _.then_this_is_a_test();
     assertMessagesContainsStepDescription("then this is a test");
   }
 
@@ -108,7 +108,7 @@ public class JUnitAopStepsLoggerTest {
   public void testFailingThenPointcut() throws Exception {
     Assume.assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     try {
-      _.then_I_fail___();
+      _.then_I_fail();
     } catch (AssertionError ignored) {
     }
     assertMessagesContainsStepDescription("then I fail");
@@ -118,20 +118,20 @@ public class JUnitAopStepsLoggerTest {
   @Named
   @Singleton
   public static class Steps {
-    public void given_this_is_a_test___() {
+    public void given_this_is_a_test() {
     }
 
-    public void when_this_is_a_test___() {
+    public void when_this_is_a_test() {
     }
 
-    public void when_assumption_fails___() {
+    public void when_assumption_fails() {
       Assume.assumeTrue(false);
     }
 
-    public void then_this_is_a_test___() {
+    public void then_this_is_a_test() {
     }
 
-    public void then_I_fail___() {
+    public void then_I_fail() {
       fail("I will fail.");
     }
 

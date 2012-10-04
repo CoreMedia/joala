@@ -2,6 +2,7 @@ package net.joala.lab.net;
 
 import com.sun.net.httpserver.HttpExchange;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 
 /**
@@ -16,5 +17,5 @@ public interface Response {
    * @param exchange request to handle
    * @throws IOException in case of an error
    */
-  void write(final HttpExchange exchange) throws IOException;
+  void write(@Nonnull final HttpExchange exchange) throws IOException;
 }

@@ -5,10 +5,13 @@ import com.sun.net.httpserver.HttpServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
 import static java.net.InetAddress.getByName;
 import static net.joala.lab.net.PortUtils.freePort;
 
@@ -33,14 +36,17 @@ public class EmbeddedWebservice {
   /**
    * Http Handler which will provide prepared responses on each request.
    */
+  @Nonnull
   private final PreparedResponsesHttpHandler preparedResponsesHttpHandler;
   /**
    * The URI you can send requests to, which will reach this webservice.
    */
+  @Nonnull
   private final URI clientUri;
   /**
    * Context the service is bound to.
    */
+  @Nonnull
   private final String context;
   /**
    * Port the service is bound to.
@@ -66,7 +72,7 @@ public class EmbeddedWebservice {
    * @param context context, for example {@code /lorem} for lorem-context
    * @throws IOException on failure
    */
-  public EmbeddedWebservice(final String context) throws IOException {
+  public EmbeddedWebservice(@Nonnull final String context) throws IOException {
     this(context, freePort());
   }
 
@@ -79,7 +85,8 @@ public class EmbeddedWebservice {
    * @param port    port to bind the service to
    * @throws IOException on failure
    */
-  public EmbeddedWebservice(final String context, final int port) throws IOException {
+  public EmbeddedWebservice(@Nonnull final String context, final int port) throws IOException {
+    checkNotNull(context, "Context must not be null. For root context use '/'.");
     this.context = context;
     this.port = port;
     final InetSocketAddress address = new InetSocketAddress(port);
@@ -97,6 +104,7 @@ public class EmbeddedWebservice {
    *
    * @return client URI
    */
+  @Nonnull
   public URI getClientUri() {
     return clientUri;
   }
@@ -105,6 +113,7 @@ public class EmbeddedWebservice {
    * Start the webservice.
    */
   public void start() {
+    checkState(server != null, "Server cannot be restarted.");
     server.start();
     LOG.debug("Started embedded webservice at port {} with context {}.", port, context);
   }
@@ -126,6 +135,7 @@ public class EmbeddedWebservice {
    *
    * @return handler to provide responses
    */
+  @Nonnull
   public PreparedResponsesHttpHandler getHttpHandler() {
     return preparedResponsesHttpHandler;
   }
