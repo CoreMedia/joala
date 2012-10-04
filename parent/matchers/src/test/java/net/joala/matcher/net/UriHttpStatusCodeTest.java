@@ -1,8 +1,5 @@
 package net.joala.matcher.net;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Description;
@@ -17,14 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.URI;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -150,98 +142,4 @@ public class UriHttpStatusCodeTest {
     }
   }
 
-  private static class EmbeddedWebservice {
-    private volatile HttpServer server;
-    private final TestHandler testHandler;
-    private final URI clientUri;
-
-    private EmbeddedWebservice(final String context, final int port) throws IOException {
-      final InetSocketAddress address = new InetSocketAddress(port);
-      server = HttpServer.create(address, 0);
-      testHandler = new TestHandler();
-      server.createContext(context, testHandler);
-      server.setExecutor(null);
-      server.start();
-      clientUri = URI.create(String.format("http://%s:%d%s", getByName(null).getHostName(), port, context));
-      LOG.debug("Started embedded webservice at port {} with context {}.", port, context);
-    }
-
-    public URI getClientUri() {
-      return clientUri;
-    }
-
-    private void stop() throws Exception {
-      server.stop(1);
-      testHandler.clearResponses();
-      server = null;
-      LOG.debug("Stopped embedded webservice");
-    }
-
-    public TestHandler getTestHandler() {
-      return testHandler;
-    }
-  }
-
-  private static class TestHandler implements HttpHandler {
-    private final Deque<TestResponse> responses = new LinkedList<TestResponse>();
-
-    private void feedResponses(final TestResponse... responses) {
-      this.responses.addAll(Arrays.asList(responses));
-    }
-
-    private void clearResponses() {
-      this.responses.clear();
-    }
-
-    private int availableResponses() {
-      return responses.size();
-    }
-
-    @Override
-    public void handle(final HttpExchange exchange) throws IOException {
-      checkState(!responses.isEmpty(), "No responses available anymore.");
-      responses.pollFirst().write(exchange);
-    }
-  }
-
-  private static class TestResponse {
-    private final int responseCode;
-    private final String responseBody;
-
-    private TestResponse(final int responseCode, final String responseBody) {
-      this.responseCode = responseCode;
-      this.responseBody = responseBody;
-    }
-
-    protected void write(final HttpExchange exchange) throws IOException {
-      exchange.sendResponseHeaders(responseCode, responseBody.length());
-
-      // need GET params here
-
-      final OutputStream os = exchange.getResponseBody();
-      try {
-        os.write(responseBody.getBytes());
-      } finally {
-        os.close();
-      }
-    }
-  }
-
-  private static class DelayedTestResponse extends TestResponse {
-    private final long delayMillis;
-
-    private DelayedTestResponse(final long delayMillis, final int responseCode, final String responseBody) {
-      super(responseCode, responseBody);
-      this.delayMillis = delayMillis;
-    }
-
-    @Override
-    protected void write(final HttpExchange exchange) throws IOException {
-      try {
-        Thread.sleep(delayMillis);
-      } catch (InterruptedException ignored) {
-      }
-      super.write(exchange);
-    }
-  }
 }

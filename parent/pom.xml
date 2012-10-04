@@ -38,6 +38,7 @@
     <module>bdd</module>
     <module>time</module>
     <module>expressions</module>
+    <module>labs</module>
   </modules>
 
   <dependencyManagement>
