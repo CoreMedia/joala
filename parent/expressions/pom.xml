@@ -22,11 +22,6 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>joala-expressions</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>joala-labs</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
