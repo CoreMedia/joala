@@ -1,8 +1,6 @@
 package net.joala.matcher.net;
 
-import net.joala.lab.net.DelayedTestResponse;
 import net.joala.lab.net.EmbeddedWebservice;
-import net.joala.lab.net.TestResponse;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Description;
@@ -13,8 +11,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -23,8 +19,9 @@ import java.net.URI;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import static com.google.common.base.Preconditions.checkState;
 import static java.net.InetAddress.getByName;
+import static net.joala.lab.net.DelayedResponse.delay;
+import static net.joala.lab.net.StatusCodeResponse.statusCode;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.containsString;
@@ -40,8 +37,6 @@ import static org.junit.Assert.assertThat;
  * @since 10/2/12
  */
 public class UriHttpStatusCodeTest {
-  private static final Logger LOG = LoggerFactory.getLogger(UriHttpStatusCodeTest.class);
-
   private static EmbeddedWebservice webservice;
   private static final int SOME_PORT = 12345;
   private static final long TIMED_OUT_RESPONSE_DELAY_MILLIS = 5L;
@@ -49,7 +44,8 @@ public class UriHttpStatusCodeTest {
 
   @BeforeClass
   public static void setUpClass() throws Exception {
-    webservice = new EmbeddedWebservice("/" + randomAlphabetic(5), getFreePort());
+    webservice = new EmbeddedWebservice();
+    webservice.start();
   }
 
   @AfterClass
@@ -59,12 +55,12 @@ public class UriHttpStatusCodeTest {
 
   @Before
   public void setUp() throws Exception {
-    webservice.getTestHandler().clearResponses();
+    webservice.getHttpHandler().clearResponses();
   }
 
   @After
   public void tearDown() throws Exception {
-    webservice.getTestHandler().clearResponses();
+    webservice.getHttpHandler().clearResponses();
   }
 
   @Test
@@ -75,37 +71,37 @@ public class UriHttpStatusCodeTest {
 
   @Test
   public void httpStatusCodeSuccess_should_work_for_HTTP_OK() throws Exception {
-    webservice.getTestHandler().feedResponses(new TestResponse(HttpURLConnection.HTTP_OK, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(statusCode(HttpURLConnection.HTTP_OK));
     assertThat(webservice.getClientUri(), UriHttpStatusCode.httpStatusCodeSuccess());
-    assertEquals("All fed responses should have been read.", 0, webservice.getTestHandler().availableResponses());
+    assertEquals("All fed responses should have been read.", 0, webservice.getHttpHandler().availableResponses());
   }
 
   @Test
   public void httpStatusCodeSuccess_should_fail_for_HTTP_NOT_FOUND() throws Exception {
-    webservice.getTestHandler().feedResponses(new TestResponse(HttpURLConnection.HTTP_NOT_FOUND, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(statusCode(HttpURLConnection.HTTP_NOT_FOUND));
     assertThat(webservice.getClientUri(), not(UriHttpStatusCode.httpStatusCodeSuccess()));
-    assertEquals("All fed responses should have been read.", 0, webservice.getTestHandler().availableResponses());
+    assertEquals("All fed responses should have been read.", 0, webservice.getHttpHandler().availableResponses());
   }
 
   @Test
   public void httpStatusCodeIn_should_work_for_response_match() throws Exception {
-    webservice.getTestHandler().feedResponses(new TestResponse(HttpURLConnection.HTTP_OK, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(statusCode(HttpURLConnection.HTTP_OK));
     assertThat(webservice.getClientUri(), UriHttpStatusCode.httpStatusCodeIn(HttpURLConnection.HTTP_OK));
-    assertEquals("All fed responses should have been read.", 0, webservice.getTestHandler().availableResponses());
+    assertEquals("All fed responses should have been read.", 0, webservice.getHttpHandler().availableResponses());
   }
 
   @Test
   public void httpStatusCodeIn_should_work_for_one_of_responses_match() throws Exception {
-    webservice.getTestHandler().feedResponses(new TestResponse(HttpURLConnection.HTTP_OK, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(statusCode(HttpURLConnection.HTTP_OK));
     assertThat(webservice.getClientUri(), UriHttpStatusCode.httpStatusCodeIn(HttpURLConnection.HTTP_ACCEPTED, HttpURLConnection.HTTP_OK, HttpURLConnection.HTTP_NO_CONTENT));
-    assertEquals("All fed responses should have been read.", 0, webservice.getTestHandler().availableResponses());
+    assertEquals("All fed responses should have been read.", 0, webservice.getHttpHandler().availableResponses());
   }
 
   @Test
   public void httpStatusCodeIn_should_fail_for_response_mismatch() throws Exception {
-    webservice.getTestHandler().feedResponses(new TestResponse(HttpURLConnection.HTTP_NOT_FOUND, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(statusCode(HttpURLConnection.HTTP_NOT_FOUND));
     assertThat(webservice.getClientUri(), not(UriHttpStatusCode.httpStatusCodeIn(HttpURLConnection.HTTP_OK)));
-    assertEquals("All fed responses should have been read.", 0, webservice.getTestHandler().availableResponses());
+    assertEquals("All fed responses should have been read.", 0, webservice.getHttpHandler().availableResponses());
   }
 
   @Test
@@ -116,13 +112,13 @@ public class UriHttpStatusCodeTest {
 
   @Test
   public void httpStatusCodeIn_ping_should_fail_for_response_not_provided_within_timeout() throws Exception {
-    webservice.getTestHandler().feedResponses(new DelayedTestResponse(TIMED_OUT_RESPONSE_DELAY_MILLIS, HttpURLConnection.HTTP_OK, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(delay(TIMED_OUT_RESPONSE_DELAY_MILLIS, statusCode(HttpURLConnection.HTTP_OK)));
     assertThat(webservice.getClientUri(), not(UriHttpStatusCode.httpStatusCodeIn(FAST_TIMEOUT, HttpURLConnection.HTTP_OK)));
   }
 
   @Test
   public void httpStatusCodeSuccess_ping_should_fail_for_response_not_provided_within_timeout() throws Exception {
-    webservice.getTestHandler().feedResponses(new DelayedTestResponse(TIMED_OUT_RESPONSE_DELAY_MILLIS, HttpURLConnection.HTTP_OK, randomAlphabetic(10)));
+    webservice.getHttpHandler().feedResponses(delay(TIMED_OUT_RESPONSE_DELAY_MILLIS, statusCode(HttpURLConnection.HTTP_OK)));
     assertThat(webservice.getClientUri(), not(UriHttpStatusCode.httpStatusCodeSuccess(FAST_TIMEOUT)));
   }
 
