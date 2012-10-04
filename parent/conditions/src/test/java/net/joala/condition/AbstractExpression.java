@@ -16,25 +16,28 @@
 
 package net.joala.condition;
 
-import net.joala.expression.SimpleSelfDescribing;
+import org.hamcrest.Description;
 
 import javax.annotation.Nullable;
 
 /**
  * <p>
  * Convenience abstract implementation of {@link Expression} which has an empty
- * implementation of {@link #describeTo(org.hamcrest.Description)}.
+ * implementation of {@link #describeTo(Description)}.
  * </p>
  *
  * @param <T> the result type of the expression
  * @since 2/27/12
+ * @deprecated since 0.5.0; use {@code net.joala.expression.AbstractExpression} instead.
  */
-public abstract class AbstractExpression<T> extends SimpleSelfDescribing implements Expression<T> {
+@Deprecated
+public abstract class AbstractExpression<T> extends net.joala.expression.AbstractExpression<T> {
   /**
    * <p>
    * Constructor providing an empty description.
    * </p>
    */
+  @SuppressWarnings("UnusedDeclaration")
   protected AbstractExpression() {
     this(null);
   }

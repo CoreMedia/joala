@@ -17,10 +17,13 @@
 package net.joala.condition;
 
 /**
- * This exception is thrown by {@link net.joala.condition.Expression#get()} when the
+ * This exception is thrown by {@link Expression#get()} when the
  * expression cannot (yet) be computed and contains a root cause.
+ * @deprecated since 0.5.0; use {@code net.joala.expression.ExpressionEvaluationException} instead.
  */
-public class ExpressionEvaluationException extends RuntimeException {
+@SuppressWarnings("UnusedDeclaration")
+@Deprecated
+public class ExpressionEvaluationException extends net.joala.expression.ExpressionEvaluationException {
 
   /**
    * Exception without message and cause.

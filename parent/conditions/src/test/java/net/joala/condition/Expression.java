@@ -16,28 +16,18 @@
 
 package net.joala.condition;
 
-import org.hamcrest.SelfDescribing;
-
-import javax.annotation.Nullable;
+import org.hamcrest.Description;
 
 /**
  * An expression is handed over to conditions to be evaluated again and again.
- * To implement it is recommended to extend {@link net.joala.condition.AbstractExpression} which ensures
+ * To implement it is recommended to extend {@link AbstractExpression} which ensures
  * to stay compatible with future changes and for convenience provides an empty implementation
- * of {@link #describeTo(org.hamcrest.Description)}.
+ * of {@link #describeTo(Description)}.
  *
  * @param <T> the result type of the expression
  * @since 2/27/12
+ * @deprecated since 0.5.0; use {@code net.joala.expressions.Expression} instead.
  */
-public interface Expression<T> extends SelfDescribing {
-  /**
-   * Retrieve the result of the expression.
-   *
-   * @return expression result
-   * @throws net.joala.condition.ExpressionEvaluationException when the expression cannot (yet) be computed, but this failure is
-   *                                       "volatile", i.&nbsp;e. it is expected to vanish later, so it makes sense
-   *                                       to re-evaluate the expression
-   */
-  @Nullable
-  T get();
+@Deprecated
+public interface Expression<T> extends net.joala.expression.Expression {
 }
