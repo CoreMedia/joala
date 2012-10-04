@@ -23,6 +23,7 @@ import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
+import static net.joala.lab.junit.template.TestToString.testToString;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -59,10 +60,9 @@ public class AbstractExpressionTest {
   }
 
   @Test
-  public void expression_description_should_be_contained_in_toString() throws Exception {
-    final String simpleDescription = DESCRIPTION_PROVIDER.get();
-    final SelfDescribing expression = new MockExpression(simpleDescription);
-    assertThat("toString should contain description.", expression.toString(), containsString(simpleDescription));
+  public void toString_should_contain_necessary_information() throws Throwable {
+    final SelfDescribing expression = new MockExpression(DESCRIPTION_PROVIDER.get());
+    testToString(expression, expression.getClass().getSuperclass());
   }
 
   private static class MockExpression extends AbstractExpression<Object> {
