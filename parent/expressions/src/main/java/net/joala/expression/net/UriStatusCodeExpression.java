@@ -68,6 +68,7 @@ public class UriStatusCodeExpression extends AbstractExpression<Integer> {
   }
 
   @Override
+  @Nonnull
   public Integer get() {
     final String host = uri.getHost();
     checkState(knownHost().matches(host), "Host %s from URI %s is unknown.", host, uri);
