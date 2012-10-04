@@ -40,12 +40,7 @@ public class AbstractExpressionTest {
 
   @Test
   public void empty_simple_description_should_not_cause_update_of_description() throws Exception {
-    final SelfDescribing expression = new AbstractExpression<Object>() {
-      @Override
-      public Object get() {
-        return null;
-      }
-    };
+    final SelfDescribing expression = new MockExpression();
     final String text = TEXT_PROVIDER.get();
     final Description description = new StringDescription().appendText(text);
     expression.describeTo(description);
@@ -55,12 +50,7 @@ public class AbstractExpressionTest {
   @Test
   public void non_empty_simple_description_should_be_added_to_description() throws Exception {
     final String simpleDescription = DESCRIPTION_PROVIDER.get();
-    final SelfDescribing expression = new AbstractExpression<Object>(simpleDescription) {
-      @Override
-      public Object get() {
-        return null;
-      }
-    };
+    final SelfDescribing expression = new MockExpression(simpleDescription);
     final String text = TEXT_PROVIDER.get();
     final Description description = new StringDescription().appendText(text);
     expression.describeTo(description);
@@ -71,12 +61,21 @@ public class AbstractExpressionTest {
   @Test
   public void expression_description_should_be_contained_in_toString() throws Exception {
     final String simpleDescription = DESCRIPTION_PROVIDER.get();
-    final SelfDescribing expression = new AbstractExpression<Object>(simpleDescription) {
-      @Override
-      public Object get() {
-        return null;
-      }
-    };
+    final SelfDescribing expression = new MockExpression(simpleDescription);
     assertThat("toString should contain description.", expression.toString(), containsString(simpleDescription));
+  }
+
+  private static class MockExpression extends AbstractExpression<Object> {
+    private MockExpression() {
+    }
+
+    private MockExpression(final String simpleDescription) {
+      super(simpleDescription);
+    }
+
+    @Override
+    public Object get() {
+      return null;
+    }
   }
 }
