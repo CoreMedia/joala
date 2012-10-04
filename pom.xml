@@ -517,7 +517,6 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>2.9</version>
         <configuration>
-          <source>${maven.compiler.source}</source>
           <!-- JavaDoc Plugin Options -->
           <additionalJOption>-J-Xmx1024m</additionalJOption>
           <docfilessubdirs>true</docfilessubdirs>
@@ -532,6 +531,20 @@
             <link>http://docs.mockito.googlecode.com/hg/latest/</link>
           </links>
         </configuration>
+        <reportSets>
+          <reportSet>
+            <id>default</id>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>aggregate</id>
+            <reports>
+              <report>aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
