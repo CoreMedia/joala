@@ -18,6 +18,8 @@ package net.joala.condition;
 
 import com.google.common.base.Function;
 import net.joala.condition.timing.IgnorableStateQueryException;
+import net.joala.expression.Expression;
+import net.joala.expression.ExpressionEvaluationException;
 
 import javax.annotation.Nullable;
 
@@ -26,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * <p>
  * A function to evaluate an expression. It especially wraps exceptions of type
- * {@link ExpressionEvaluationException} into {@link IgnorableStateQueryException}.
+ * {@link net.joala.expression.ExpressionEvaluationException} into {@link IgnorableStateQueryException}.
  * </p>
  *
  * @param <T> the type of the value the expression returns
@@ -35,7 +37,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 final class ExpressionFunction<T> implements Function<Expression<T>, T> {
   /**
    * <p>
-   * Evaluates expression and makes any {@link ExpressionEvaluationException} ignorable.
+   * Evaluates expression and makes any {@link net.joala.expression.ExpressionEvaluationException} ignorable.
    * </p>
    *
    * @param input the expression to evaluate

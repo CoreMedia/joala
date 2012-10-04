@@ -16,6 +16,7 @@
 
 package net.joala.condition;
 
+import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;

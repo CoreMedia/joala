@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.expression;
 
 /**
  * This exception is thrown by {@link Expression#get()} when the

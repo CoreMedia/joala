@@ -18,6 +18,7 @@ package net.joala.condition;
 
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.expression.Expression;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

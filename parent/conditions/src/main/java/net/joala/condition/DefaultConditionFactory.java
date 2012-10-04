@@ -17,6 +17,7 @@
 package net.joala.condition;
 
 import net.joala.condition.timing.TimeoutImpl;
+import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 
 import javax.annotation.Nonnull;

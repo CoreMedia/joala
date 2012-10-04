@@ -16,6 +16,8 @@
 
 package net.joala.condition;
 
+import net.joala.expression.Expression;
+import net.joala.expression.ExpressionEvaluationException;
 import net.joala.time.Timeout;
 import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.data.DataProvider;

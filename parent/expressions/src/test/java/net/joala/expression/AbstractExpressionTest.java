@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.expression;
 
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.expression.AbstractExpression;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
@@ -29,7 +30,7 @@ import static org.junit.Assert.assertThat;
 
 /**
  * <p>
- * Tests {@link AbstractExpression}.
+ * Tests {@link net.joala.expression.AbstractExpression}.
  * </p>
  *
  * @since 8/26/12

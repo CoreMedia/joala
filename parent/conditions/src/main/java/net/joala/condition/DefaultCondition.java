@@ -22,6 +22,7 @@ import net.joala.condition.timing.TimeoutImpl;
 import net.joala.condition.timing.Wait;
 import net.joala.condition.timing.WaitFailStrategy;
 import net.joala.condition.timing.WaitTimeoutFailStrategy;
+import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsAnything;

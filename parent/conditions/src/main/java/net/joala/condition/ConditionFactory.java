@@ -16,6 +16,8 @@
 
 package net.joala.condition;
 
+import net.joala.expression.Expression;
+
 import javax.annotation.Nonnull;
 
 /**

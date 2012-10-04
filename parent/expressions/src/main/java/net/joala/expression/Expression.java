@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.expression;
 
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;

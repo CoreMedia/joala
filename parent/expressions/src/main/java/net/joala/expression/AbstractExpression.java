@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package net.joala.condition;
+package net.joala.expression;
 
-import net.joala.expression.SimpleSelfDescribing;
 import org.hamcrest.Description;
 
 import javax.annotation.Nullable;

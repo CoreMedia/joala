@@ -36,10 +36,10 @@ public interface Condition<T> {
    * which will be checked.
    *
    * @return the value
-   * @throws ExpressionEvaluationException when the actual value cannot be evaluated. Consider calling any of the
+   * @throws net.joala.expression.ExpressionEvaluationException when the actual value cannot be evaluated. Consider calling any of the
    *                                       {@code await} or {@code assume} methods to wait for the value to
    *                                       become available.
-   * @see Expression#get()
+   * @see net.joala.expression.Expression#get()
    */
   @Nullable
   T get();
