@@ -22,6 +22,7 @@ import net.joala.data.DataProvider;
 import net.joala.data.DataProvidingException;
 import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.data.random.RandomDoubleProvider;
+import net.joala.lab.junit.template.TestToString;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
@@ -42,8 +43,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.core.StringContains.containsString;
+import static net.joala.lab.junit.template.TestToString.testToString;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -192,16 +192,9 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void toString_should_contain_parameters_as_hints() throws Exception {
-    final double timeoutFactor = TIMEOUT_FACTOR_PROVIDER.get();
-    final DeceleratingWait wait = new DeceleratingWait(timeout, timeoutFactor, mockWaitFailStrategy);
-    assertThat("All parameters should be contained in toString.",
-            wait.toString(),
-            allOf(
-                    containsString(String.valueOf(mockWaitFailStrategy)),
-                    containsString(String.valueOf(timeout)),
-                    containsString(String.valueOf(timeoutFactor))
-            ));
+  public void toString_should_contain_necessary_information() throws Throwable {
+    final DeceleratingWait wait = new DeceleratingWait(timeout, TIMEOUT_FACTOR_PROVIDER.get(), mockWaitFailStrategy);
+    testToString(wait);
   }
 
   @Test

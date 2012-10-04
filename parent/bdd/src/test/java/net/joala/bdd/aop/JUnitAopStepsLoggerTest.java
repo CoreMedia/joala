@@ -32,8 +32,10 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.Collection;
 
+import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
+import static org.junit.Assume.assumeThat;
 
 /**
  * @since 6/1/12
@@ -57,6 +59,7 @@ public class JUnitAopStepsLoggerTest {
 
   public void assertMessagesContainsStepDescription(final String expectedString) {
     final Collection<ILoggingEvent> events = JUnitAopStepsLoggerTestAppender.getEvents();
+    assertThat("Should have recorded some logging events. Please verify logback configuration.", events.size(), greaterThan(0));
     boolean passedAtLeastOnce = false;
     AssertionError lastError = null;
     for (final ILoggingEvent event : events) {

@@ -19,12 +19,14 @@ package net.joala.time;
 import net.joala.data.DataProvider;
 import net.joala.data.random.RandomDoubleProvider;
 import net.joala.data.random.RandomIntegerProvider;
+import org.hamcrest.SelfDescribing;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
+import static net.joala.lab.junit.template.TestToString.testToString;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -96,12 +98,11 @@ public class TimeoutImplTest {
   }
 
   @Test
-  public void toString_should_contain_parameters() throws Exception {
+  public void toString_should_contain_necessary_information() throws Throwable {
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
-    final String str = timeout.toString();
-    assertThat(str, containsString(String.valueOf(amount)));
-    assertThat(str, containsString(String.valueOf(unit)));
+    testToString(timeout);
   }
+
 }

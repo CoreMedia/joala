@@ -21,6 +21,7 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.Map;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
 /**
@@ -66,6 +67,15 @@ public class ReferenceImplTest {
     reference.setProperty(propertyKey, propertyValue);
     assertSame("Uncasted property value should be same.", propertyValue, reference.getProperty(propertyKey));
     assertSame("Casted property value should be same.", propertyValue, reference.getProperty(propertyKey, propertyValue.getClass()));
+  }
+
+  @Test
+  public void should_hold_null_property_value() throws Exception {
+    final String propertyKey = "lorem";
+    final Reference<String> reference = new ReferenceImpl<String>();
+    reference.setProperty(propertyKey, null);
+    assertNull("Uncasted property value should be same.", reference.getProperty(propertyKey));
+    assertNull("Casted property value should be same.", reference.getProperty(propertyKey, String.class));
   }
 
   @Test(expected = PropertyNotSetException.class)
