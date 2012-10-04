@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package net.joala.condition.timing;
+package net.joala.expression;
 
 import com.google.common.base.Objects;
 import org.hamcrest.Description;
