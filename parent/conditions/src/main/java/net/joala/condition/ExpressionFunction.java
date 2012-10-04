@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * <p>
  * A function to evaluate an expression. It especially wraps exceptions of type
- * {@link net.joala.expression.ExpressionEvaluationException} into {@link IgnorableStateQueryException}.
+ * {@link ExpressionEvaluationException} into {@link IgnorableStateQueryException}.
  * </p>
  *
  * @param <T> the type of the value the expression returns
@@ -37,7 +37,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 final class ExpressionFunction<T> implements Function<Expression<T>, T> {
   /**
    * <p>
-   * Evaluates expression and makes any {@link net.joala.expression.ExpressionEvaluationException} ignorable.
+   * Evaluates expression and makes any {@link ExpressionEvaluationException} ignorable.
    * </p>
    *
    * @param input the expression to evaluate

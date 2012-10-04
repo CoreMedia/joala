@@ -317,13 +317,17 @@ public class DeceleratingWaitTest {
   private static final long TIMEOUT_MILLIS = 500L;
   private static final DataProvider<Double> TIMEOUT_FACTOR_PROVIDER = new RandomDoubleProvider().min(0d).fixate();
 
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private WaitFailStrategy mockWaitFailStrategy;
   private Timeout timeout;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private IgnorableStateQueryException stateQueryException;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private RuntimeException mockFailException;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Object mockInput;
   private final Function<? super Object, Boolean> stateQuery = new StateQueryFunction();

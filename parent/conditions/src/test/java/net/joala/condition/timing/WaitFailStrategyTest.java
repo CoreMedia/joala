@@ -49,12 +49,16 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   private static final DataProvider<String> EXCEPTION_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("exceptionMessage").fixate();
   private static final DataProvider<Long> CONSUMED_MILLIS_PROVIDER = new RandomLongProvider().min(0L).max(1000L).fixate();
 
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Object failedFunction;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Object failedInput;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Object failedLastValue;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Throwable lastFailure;
 

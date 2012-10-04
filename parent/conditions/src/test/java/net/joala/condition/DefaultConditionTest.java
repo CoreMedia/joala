@@ -321,10 +321,13 @@ public class DefaultConditionTest {
 
   private Condition<String> condition;
   private String expressionValue;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Timeout timeout;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Expression<String> expression;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Runnable runnable;
 

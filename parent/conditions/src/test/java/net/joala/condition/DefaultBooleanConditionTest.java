@@ -45,10 +45,13 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultBooleanConditionTest {
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Expression<Boolean> expression;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Timeout timeout;
+  @SuppressWarnings("UnusedDeclaration")
   @Mock
   private Runnable runnable;
 

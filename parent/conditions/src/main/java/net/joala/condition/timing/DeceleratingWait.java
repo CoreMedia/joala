@@ -63,11 +63,13 @@ public class DeceleratingWait implements Wait {
     this(new TimeoutImpl(DEFAULT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
   }
 
+  @SuppressWarnings("UnusedDeclaration")
   @Deprecated
   public DeceleratingWait(@Nonnull final net.joala.condition.timing.Timeout timeout) {
     this(timeout, new WaitTimeoutFailStrategy());
   }
 
+  @SuppressWarnings("UnusedDeclaration")
   @Deprecated
   public DeceleratingWait(@Nonnull final net.joala.condition.timing.Timeout timeout, @Nonnegative final double timeoutFactor) {
     this(timeout, timeoutFactor, new WaitTimeoutFailStrategy());

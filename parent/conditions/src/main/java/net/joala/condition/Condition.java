@@ -17,6 +17,8 @@
 package net.joala.condition;
 
 import net.joala.condition.timing.WaitTimeoutException;
+import net.joala.expression.Expression;
+import net.joala.expression.ExpressionEvaluationException;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;
@@ -36,10 +38,10 @@ public interface Condition<T> {
    * which will be checked.
    *
    * @return the value
-   * @throws net.joala.expression.ExpressionEvaluationException when the actual value cannot be evaluated. Consider calling any of the
+   * @throws ExpressionEvaluationException when the actual value cannot be evaluated. Consider calling any of the
    *                                       {@code await} or {@code assume} methods to wait for the value to
    *                                       become available.
-   * @see net.joala.expression.Expression#get()
+   * @see Expression#get()
    */
   @Nullable
   T get();
