@@ -66,17 +66,20 @@ In minor versions deprecations might be introduced but existing API will not be 
 Major releases might contain strong refactorings and possibly breaking API changes. Typically breaking API
 changes are introduced by deprecations in previous minor version releases.
 
-## Cleanup Tasks
+## Finishing Tasks
 
-### Cleaning old Snapshot Site Versions
+### Close/Promote Arifacts
 
-Change to branch `gh-pages` and delete the latest snapshot artifacts of the site below the site-folder:
+If a staging repository is used, don't forget to close/promote the just released artifacts.
 
-```
-site$ git rm -rf "*-SNAPSHOT"
-site$ git commit -m "Delete old Snapshot Version of GitHub Pages Site"
-site$ git push origin gh-pages
-```
+### Clean `checkout` folders
+
+Your IDE might complain on additional git-folders after a release. They are located in `target/checkout`. In order to
+make your IDE happy again, just call `mvn clean`.
+
+### Update GitHub Pages
+
+Change to branch `gh-pages` and update the page `index.html` to point to the new released Maven site.
 
 ## Troubleshooting
 
