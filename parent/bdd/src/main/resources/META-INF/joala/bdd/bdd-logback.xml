@@ -32,11 +32,11 @@
     </encoder>
   </appender>
 
-  <logger name="${bdd.story.logger.name}" level="${bdd.log.level}">
+  <logger name="${bdd.story.logger.name}" additivity="false" level="${bdd.log.level}">
     <appender-ref ref="joala-story-console"/>
   </logger>
 
-  <logger name="${bdd.steps.logger.name}" level="${bdd.log.level}">
+  <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
     <appender-ref ref="joala-step-console"/>
   </logger>
 
