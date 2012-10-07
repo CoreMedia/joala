@@ -1,22 +1,19 @@
 package net.joala.dns;
 
 /**
+ * <p>
+ * Signals a call triggered with reflections failed.
+ * </p>
+ *
  * @since 10/7/12
  */
 final class ReflectionCallException extends Exception {
-  ReflectionCallException() {
-  }
-
+  /**
+   * Constructor.
+   *
+   * @param cause cause for the failure
+   */
   ReflectionCallException(final Throwable cause) {
     super(cause);
   }
-
-  ReflectionCallException(final String message) {
-    super(message);
-  }
-
-  ReflectionCallException(final String message, final Throwable cause) {
-    super(message, cause);
-  }
-
 }

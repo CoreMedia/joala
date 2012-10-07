@@ -14,9 +14,21 @@ import sun.net.spi.nameservice.NameServiceDescriptor;
  */
 public class LocalDNSNameServiceDescriptor implements NameServiceDescriptor {
 
+  /**
+   * Convention. Supported type to report.
+   */
   private static final String DNS_TYPE = "dns";
+  /**
+   * Name of this DNS service.
+   */
   private static final String DNS_PROVIDER_NAME = "joala";
+  /**
+   * Complete ID of this service to specify as system property.
+   */
   public static final String NAME_SERVICE_ID = DNS_TYPE + "," + DNS_PROVIDER_NAME;
+  /**
+   * The name service which will be returned by this descriptor.
+   */
   private static final NameService NAME_SERVICE = new LocalDNSNameService();
 
   @Override

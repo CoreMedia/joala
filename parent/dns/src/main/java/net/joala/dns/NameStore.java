@@ -2,17 +2,13 @@ package net.joala.dns;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.common.net.InetAddresses;
-import org.junit.internal.AssumptionViolatedException;
 import org.xbill.DNS.Address;
 import org.xbill.DNS.Name;
 import org.xbill.DNS.TextParseException;
-import sun.net.spi.nameservice.NameService;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -21,7 +17,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -29,8 +24,6 @@ import java.util.Set;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.lang.String.format;
-import static net.joala.dns.LocalDNSNameServiceDescriptor.NAME_SERVICE_ID;
-import static org.junit.Assume.assumeTrue;
 
 /**
  * <p>
@@ -42,108 +35,52 @@ import static org.junit.Assume.assumeTrue;
  */
 @ThreadSafe
 public final class NameStore {
-  private static final String VALIDATION_HOST = NameStore.class.getName() + ".validat.ion";
-  private static final InetAddress VALIDATION_IP = InetAddresses.forString("127.0.0.1");
-  private Boolean joalaDNSInstalled;
+  /**
+   * A logger using System-PrintStreams.
+   */
   private static final SystemLogger LOG = SystemLogger.getLogger(NameStore.class);
 
+  /**
+   * Mapper to map a string to an {@code InetAddress}.
+   */
   private static final Function<String, InetAddress> STRING_TO_INET_ADDRESS = new String2InetAddress();
-  private static final String ASSUMPTION_FAILURE_MESSAGE = format("Joala DNS not installed. Please verify that you have set sun.net.spi.nameservice.provider.1=%s before java.net.InetAddress first got loaded. For runtime modification you might call ensureJoalaDnsInstalled() instead.", NAME_SERVICE_ID);
+  /**
+   * Store which contains the hosts to map to specified internet addresses.
+   */
   private final Map<Name, Set<InetAddress>> store = Maps.newHashMap();
+  /**
+   * Singleton instance.
+   */
   private static final NameStore ourInstance = new NameStore();
-  private static final List<ReflectionNameServiceInstaller> REFLECTION_NAME_SERVICE_INSTALLERS;
-  private static final ReflectionInetCacheDisabler REFLECTION_INET_CACHE_DISABLER = new ReflectionInetCacheDisabler();
 
-  static {
-    final ImmutableList.Builder<ReflectionNameServiceInstaller> builder = ImmutableList.builder();
-    builder.add(new ReflectionJava6NameServiceInstaller());
-    builder.add(new ReflectionJava7NameServiceInstaller());
-    REFLECTION_NAME_SERVICE_INSTALLERS = builder.build();
-  }
-
+  /**
+   * Use {@link #nameStore()} to get an instance.
+   */
   private NameStore() {
   }
 
+  /**
+   * <p>
+   * Get singleton instance of name store.
+   * </p>
+   *
+   * @return name store instance
+   */
   @Nonnull
   public static NameStore nameStore() {
     return ourInstance;
   }
 
-  private void forceJoalaDnsInstalled() {
-    final NameService nameService = new LocalDNSNameServiceDescriptor().createNameService();
-    boolean passed = false;
-    for (final ReflectionNameServiceInstaller installer : REFLECTION_NAME_SERVICE_INSTALLERS) {
-      try {
-        installer.install(nameService);
-        passed = true;
-        break;
-      } catch (ReflectionCallException e) {
-        LOG.info("Failed to force Joala DNS installation. Will retry with next strategy.", e);
-      }
-    }
-    if (!passed) {
-      LOG.warn("Failed to install name service by reflection. Please use the name provider system properties instead.");
-    }
-  }
-
-  private void forceCacheDisabled() {
-    try {
-      REFLECTION_INET_CACHE_DISABLER.disable();
-    } catch (ReflectionCallException e) {
-      LOG.info("Failed to disable DNS Cache. Please use appropriate policy file.", e);
-    }
-  }
-
-  public void ensureJoalaDnsInstalled() {
-    if (Boolean.TRUE.equals(joalaDNSInstalled)) {
-      // Save time, don't try again. Assume we are save.
-      return;
-    } else if (Boolean.FALSE.equals(joalaDNSInstalled)) {
-      // Don't try again, we failed once.
-      assumeTrue(joalaDNSInstalled);
-    }
-    forceJoalaDnsSetup();
-    assumeJoalaDnsInstalled();
-  }
-
-  private void assumeJoalaDnsInstalled() {
-    joalaDNSInstalled = verifyValidationHostResolved();
-    if (Boolean.FALSE.equals(joalaDNSInstalled)) {
-      throw new AssumptionViolatedException(ASSUMPTION_FAILURE_MESSAGE);
-    }
-  }
-
-  private void forceJoalaDnsSetup() {
-    if (!verifyValidationHostResolved()) {
-      forceJoalaDnsInstalled();
-      forceCacheDisabled();
-    }
-  }
-
-  private String registerValidationHost() {
-    try {
-      // Require to add random hosts in case cashing is enabled.
-      final String validationHostName = VALIDATION_HOST + "." + System.currentTimeMillis();
-      register(Name.fromString(validationHostName), Collections.singleton(VALIDATION_IP));
-      return validationHostName;
-    } catch (TextParseException e) {
-      throw new RuntimeException("Failure in validation host name. Please file a bug report.", e);
-    }
-  }
-
-  private boolean verifyValidationHostResolved() {
-    final InetAddress byName;
-    final String host = registerValidationHost();
-    try {
-      byName = InetAddress.getByName(host);
-    } catch (UnknownHostException ignored) {
-      return false;
-    } finally {
-      unregister(host);
-    }
-    return VALIDATION_IP.equals(byName);
-  }
-
+  /**
+   * <p>
+   * Register name with the given addresses.
+   * If name is already registered for some inet addresses
+   * the given addresses will be added to the known ones.
+   * </p>
+   *
+   * @param name      host name representation
+   * @param addresses list of addresses to register for name
+   */
   private void register(@Nonnull final Name name, @Nonnull final Collection<InetAddress> addresses) {
     checkNotNull(name, "Name must not be null.");
     checkNotNull(addresses, "Addresses must not be null.");
@@ -160,6 +97,16 @@ public final class NameStore {
     }
   }
 
+  /**
+   * <p>
+   * Register name with the given addresses.
+   * If name is already registered for some inet addresses
+   * the given addresses will be added to the known ones.
+   * </p>
+   *
+   * @param name      host name
+   * @param addresses list of addresses to register for name
+   */
   public void register(@Nonnull final String name, @Nonnull final InetAddress... addresses) {
     checkNotNull(name, "Name must not be null.");
     try {
@@ -169,6 +116,16 @@ public final class NameStore {
     }
   }
 
+  /**
+   * <p>
+   * Register name with the given addresses.
+   * If name is already registered for some inet addresses
+   * the given addresses will be added to the known ones.
+   * </p>
+   *
+   * @param name      host name
+   * @param addresses list of addresses to register for name
+   */
   public void register(@Nonnull final String name, @Nonnull final String... addresses) {
     checkNotNull(name, "Name must not be null.");
     final List<InetAddress> inetAddresses = Lists.transform(Arrays.asList(addresses), STRING_TO_INET_ADDRESS);
@@ -179,6 +136,13 @@ public final class NameStore {
     }
   }
 
+  /**
+   * <p>
+   * Unregister name with all its addresses. Requires DNS cache to be disabled.
+   * </p>
+   *
+   * @param name host name
+   */
   public void unregister(@Nonnull final String name) {
     checkNotNull(name, "Name must not be null.");
     try {
@@ -192,6 +156,10 @@ public final class NameStore {
     }
   }
 
+  /**
+   * Clear the complete name store. Recommended before and after running the tests
+   * in order to prevent that tests influence each other.
+   */
   public void clear() {
     synchronized (store) {
       store.clear();
@@ -199,6 +167,14 @@ public final class NameStore {
     }
   }
 
+  /**
+   * <p>
+   * Try to find a host name in the store based on the given address.
+   * </p>
+   *
+   * @param inetAddress the internet address to search the host name for
+   * @return the name found &ndash; or {@code null}, if the internet address could not be found in store
+   */
   @Nullable
   Name reverseLookup(@Nullable final InetAddress inetAddress) {
     synchronized (store) {
@@ -212,6 +188,14 @@ public final class NameStore {
     return null;
   }
 
+  /**
+   * <p>
+   * Lookup registered inet addresses for given name.
+   * </p>
+   *
+   * @param name the host name
+   * @return the inet addresses found for the given name; empty list if none
+   */
   @Nonnull
   InetAddress[] lookup(@Nonnull final String name) {
     checkNotNull(name, "Name must not be null.");
@@ -224,6 +208,14 @@ public final class NameStore {
     return lookup(someName);
   }
 
+  /**
+   * <p>
+   * Lookup registered inet addresses for given name.
+   * </p>
+   *
+   * @param name the host name
+   * @return the inet addresses found for the given name; empty list if none
+   */
   @Nonnull
   InetAddress[] lookup(@Nonnull final Name name) {
     checkNotNull(name, "Name must not be null.");
@@ -237,6 +229,11 @@ public final class NameStore {
     return new InetAddress[0];
   }
 
+  /**
+   * <p>
+   * Mapper to create InetAddresses from Strings.
+   * </p>
+   */
   private static class String2InetAddress implements Function<String, InetAddress> {
     @Override
     @Nonnull

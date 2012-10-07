@@ -36,11 +36,29 @@ public class LocalDNSNameService implements NameService {
    * List of fallback name services to use.
    */
   private static final ImmutableList<NameService> FALLBACKS;
+  /**
+   * Separator for fallback strategies.
+   */
   private static final String FALLBACK_SEPARATOR_CHAR = ",";
+  /**
+   * Pattern to separate fallback strategy ids.
+   */
   private static final Pattern FALLBACK_SEPARATOR = Pattern.compile(FALLBACK_SEPARATOR_CHAR);
+  /**
+   * Fallback ID for DNS Java.
+   */
   private static final String FALLBACK_DNSJAVA_ID = "dnsjava";
+  /**
+   * Fallback ID for using JVM Default.
+   */
   private static final String FALLBACK_DEFAULT_ID = "default";
+  /**
+   * Default fallback strategies to use.
+   */
   private static final String FALLBACK_DEFAULTS = FALLBACK_DNSJAVA_ID + FALLBACK_SEPARATOR_CHAR + FALLBACK_DEFAULT_ID;
+  /**
+   * Property to set to control fallback strategies.
+   */
   private static final String FALLBACKS_PROPERTY = "net.joala.dns.fallbacks";
 
   /**
