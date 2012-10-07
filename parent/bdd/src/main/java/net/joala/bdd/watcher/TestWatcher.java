@@ -3,12 +3,12 @@
 package net.joala.bdd.watcher;
 
 import org.junit.internal.AssumptionViolatedException;
-import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.MultipleFailureException;
 import org.junit.runners.model.Statement;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -46,75 +46,10 @@ import java.util.List;
  *
  * @since 4.9
  */
-abstract class TestWatcher implements TestRule {
+public abstract class TestWatcher extends org.junit.rules.TestWatcher {
+  @Override
   public Statement apply(final Statement base, final Description description) {
-    return new Statement() {
-      @Override
-      public void evaluate() throws Throwable {
-        List<Throwable> errors = new ArrayList<Throwable>();
-
-        startingQuietly(description, errors);
-        try {
-          base.evaluate();
-          succeededQuietly(description, errors);
-        } catch (AssumptionViolatedException e) {
-          errors.add(e);
-          skippedQuietly(e, description, errors);
-        } catch (Throwable t) {
-          errors.add(t);
-          failedQuietly(t, description, errors);
-        } finally {
-          finishedQuietly(description, errors);
-        }
-
-        MultipleFailureException.assertEmpty(errors);
-      }
-    };
-  }
-
-  private void succeededQuietly(Description description,
-                                List<Throwable> errors) {
-    try {
-      succeeded(description);
-    } catch (Throwable t) {
-      errors.add(t);
-    }
-  }
-
-  private void failedQuietly(Throwable t, Description description,
-                             List<Throwable> errors) {
-    try {
-      failed(t, description);
-    } catch (Throwable t1) {
-      errors.add(t1);
-    }
-  }
-
-  private void skippedQuietly(AssumptionViolatedException t, Description description,
-                              List<Throwable> errors) {
-    try {
-      skipped(t, description);
-    } catch (Throwable t1) {
-      errors.add(t1);
-    }
-  }
-
-  private void startingQuietly(Description description,
-                               List<Throwable> errors) {
-    try {
-      starting(description);
-    } catch (Throwable t) {
-      errors.add(t);
-    }
-  }
-
-  private void finishedQuietly(Description description,
-                               List<Throwable> errors) {
-    try {
-      finished(description);
-    } catch (Throwable t) {
-      errors.add(t);
-    }
+    return new ReportingStatement(description, base);
   }
 
   /**
@@ -122,7 +57,8 @@ abstract class TestWatcher implements TestRule {
    *
    * @param description
    */
-  protected void succeeded(Description description) {
+  @Override
+  protected void succeeded(final Description description) {
   }
 
   /**
@@ -131,7 +67,8 @@ abstract class TestWatcher implements TestRule {
    * @param e
    * @param description
    */
-  protected void failed(Throwable e, Description description) {
+  @Override
+  protected void failed(final Throwable e, final Description description) {
   }
 
   /**
@@ -140,7 +77,7 @@ abstract class TestWatcher implements TestRule {
    * @param e
    * @param description
    */
-  protected void skipped(AssumptionViolatedException e, Description description) {
+  protected void skipped(final AssumptionViolatedException e, final Description description) {
   }
 
   /**
@@ -148,7 +85,8 @@ abstract class TestWatcher implements TestRule {
    *
    * @param description
    */
-  protected void starting(Description description) {
+  @Override
+  protected void starting(final Description description) {
   }
 
   /**
@@ -156,6 +94,84 @@ abstract class TestWatcher implements TestRule {
    *
    * @param description
    */
-  protected void finished(Description description) {
+  @Override
+  protected void finished(final Description description) {
+  }
+
+  private class ReportingStatement extends Statement {
+    private final Description description;
+    private final Statement base;
+
+    private ReportingStatement(final Description description, final Statement base) {
+      this.description = description;
+      this.base = base;
+    }
+
+    @Override
+    public void evaluate() throws Throwable {
+      final List<Throwable> errors = new ArrayList<Throwable>();
+
+      startingQuietly(description, errors);
+      try {
+        base.evaluate();
+        succeededQuietly(description, errors);
+      } catch (AssumptionViolatedException e) {
+        errors.add(e);
+        skippedQuietly(e, description, errors);
+      } catch (Throwable t) {
+        errors.add(t);
+        failedQuietly(t, description, errors);
+      } finally {
+        finishedQuietly(description, errors);
+      }
+
+      MultipleFailureException.assertEmpty(errors);
+    }
+
+    private void succeededQuietly(final Description description,
+                                  final Collection<Throwable> errors) {
+      try {
+        succeeded(description);
+      } catch (Throwable t) {
+        errors.add(t);
+      }
+    }
+
+    private void failedQuietly(final Throwable t, final Description description,
+                               final Collection<Throwable> errors) {
+      try {
+        failed(t, description);
+      } catch (Throwable t1) {
+        errors.add(t1);
+      }
+    }
+
+    private void skippedQuietly(final AssumptionViolatedException t, final Description description,
+                                final Collection<Throwable> errors) {
+      try {
+        skipped(t, description);
+      } catch (Throwable t1) {
+        errors.add(t1);
+      }
+    }
+
+    private void startingQuietly(final Description description,
+                                 final Collection<Throwable> errors) {
+      try {
+        starting(description);
+      } catch (Throwable t) {
+        errors.add(t);
+      }
+    }
+
+    private void finishedQuietly(final Description description,
+                                 final Collection<Throwable> errors) {
+      try {
+        finished(description);
+      } catch (Throwable t) {
+        errors.add(t);
+      }
+    }
+
   }
 }

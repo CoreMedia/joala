@@ -126,7 +126,7 @@
             org.springframework:spring-beans
             org.springframework:spring-context
           -->
-          <ignoreNonCompile>true</ignoreNonCompile>
+          <ignoreNonCompile>${dependency.ignore.approved.noncompile}</ignoreNonCompile>
         </configuration>
       </plugin>
     </plugins>

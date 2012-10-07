@@ -39,6 +39,7 @@
     <module>time</module>
     <module>expressions</module>
     <module>labs</module>
+    <module>dns</module>
   </modules>
 
   <dependencyManagement>

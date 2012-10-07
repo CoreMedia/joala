@@ -93,7 +93,7 @@
           <!-- Ignore for:
             org.slf4j:jcl-over-slf4j:jar:1.7.1:runtime
           -->
-          <ignoreNonCompile>true</ignoreNonCompile>
+          <ignoreNonCompile>${dependency.ignore.approved.noncompile}</ignoreNonCompile>
         </configuration>
       </plugin>
     </plugins>
