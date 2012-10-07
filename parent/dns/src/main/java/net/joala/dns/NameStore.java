@@ -2,6 +2,7 @@ package net.joala.dns;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -11,11 +12,11 @@ import org.junit.internal.AssumptionViolatedException;
 import org.xbill.DNS.Address;
 import org.xbill.DNS.Name;
 import org.xbill.DNS.TextParseException;
+import sun.net.spi.nameservice.NameService;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.ThreadSafe;
-import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -47,9 +48,18 @@ public final class NameStore {
   private static final SystemLogger LOG = SystemLogger.getLogger(NameStore.class);
 
   private static final Function<String, InetAddress> STRING_TO_INET_ADDRESS = new String2InetAddress();
-  private static final String ASSUMPTION_FAILURE_MESSAGE = format("Joala DNS not installed. Please verify that you have set sun.net.spi.nameservice.provider.1=%s before java.net.InetAddress first got loaded. For runtime modification you might call forceJoalaDnsInstalled() instead.", NAME_SERVICE_ID);
+  private static final String ASSUMPTION_FAILURE_MESSAGE = format("Joala DNS not installed. Please verify that you have set sun.net.spi.nameservice.provider.1=%s before java.net.InetAddress first got loaded. For runtime modification you might call ensureJoalaDnsInstalled() instead.", NAME_SERVICE_ID);
   private final Map<Name, Set<InetAddress>> store = Maps.newHashMap();
   private static final NameStore ourInstance = new NameStore();
+  private static final List<ReflectionNameServiceInstaller> REFLECTION_NAME_SERVICE_INSTALLERS;
+  private static final ReflectionInetCacheDisabler REFLECTION_INET_CACHE_DISABLER = new ReflectionInetCacheDisabler();
+
+  static {
+    final ImmutableList.Builder<ReflectionNameServiceInstaller> builder = ImmutableList.builder();
+    builder.add(new ReflectionJava6NameServiceInstaller());
+    builder.add(new ReflectionJava7NameServiceInstaller());
+    REFLECTION_NAME_SERVICE_INSTALLERS = builder.build();
+  }
 
   private NameStore() {
   }
@@ -59,18 +69,29 @@ public final class NameStore {
     return ourInstance;
   }
 
-  public void forceJoalaDnsInstalled() throws NoSuchFieldException, IllegalAccessException {
-    final Field field = InetAddress.class.getDeclaredField("nameService");
-    field.setAccessible(true);
-    field.set(null, new LocalDNSNameService());
+  private void forceJoalaDnsInstalled() {
+    final NameService nameService = new LocalDNSNameServiceDescriptor().createNameService();
+    boolean passed = false;
+    for (final ReflectionNameServiceInstaller installer : REFLECTION_NAME_SERVICE_INSTALLERS) {
+      try {
+        installer.install(nameService);
+        passed = true;
+        break;
+      } catch (ReflectionCallException e) {
+        LOG.info("Failed to force Joala DNS installation. Will retry with next strategy.", e);
+      }
+    }
+    if (!passed) {
+      LOG.warn("Failed to install name service by reflection. Please use the name provider system properties instead.");
+    }
   }
 
-  public void forceCacheDisabled() throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
-    final Class<?> policyClass = Class.forName("sun.net.InetAddressCachePolicy", true, InetAddress.class.getClassLoader());
-    final Field cachePolicyField = policyClass.getDeclaredField("cachePolicy");
-    final Field negativeCachePolicyField = policyClass.getDeclaredField("negativeCachePolicy");
-    cachePolicyField.set(null, 0);
-    negativeCachePolicyField.set(null, 0);
+  private void forceCacheDisabled() {
+    try {
+      REFLECTION_INET_CACHE_DISABLER.disable();
+    } catch (ReflectionCallException e) {
+      LOG.info("Failed to disable DNS Cache. Please use appropriate policy file.", e);
+    }
   }
 
   public void ensureJoalaDnsInstalled() {
@@ -81,7 +102,6 @@ public final class NameStore {
       // Don't try again, we failed once.
       assumeTrue(joalaDNSInstalled);
     }
-    registerValidationHost();
     forceJoalaDnsSetup();
     assumeJoalaDnsInstalled();
   }
@@ -95,27 +115,17 @@ public final class NameStore {
 
   private void forceJoalaDnsSetup() {
     if (!verifyValidationHostResolved()) {
-      try {
-        forceJoalaDnsInstalled();
-        LOG.warn(format("Forced Joala DNS lookup. This is a hack. For proper usage set JVM system property: sun.net.spi.nameservice.provider.1=%s", NAME_SERVICE_ID));
-      } catch (Exception e) {
-        LOG.error(format("Failed to force Joala DNS installation. To ensure Joala DNS please set JVM system property sun.net.spi.nameservice.provider.1=%s", NAME_SERVICE_ID), e);
-        joalaDNSInstalled = Boolean.FALSE;
-      }
-      try {
-        forceCacheDisabled();
-      } catch (Exception e) {
-        // see http://docs.oracle.com/javase/7/docs/api/java/net/doc-files/net-properties.html
-        LOG.warn("Failed to disable caching. Removing/overriding already resolved hosts will not work. To ensure Joala DNS will be requeried follow instructions to set JVM security policy properties networkaddress.cache.ttl and networkaddress.cache.negative.ttl to 0 (zero).", e);
-      }
+      forceJoalaDnsInstalled();
+      forceCacheDisabled();
     }
   }
 
-  private void registerValidationHost() {
+  private String registerValidationHost() {
     try {
-      synchronized (store) {
-        store.put(Name.fromString(VALIDATION_HOST), Collections.singleton(VALIDATION_IP));
-      }
+      // Require to add random hosts in case cashing is enabled.
+      final String validationHostName = VALIDATION_HOST + "." + System.currentTimeMillis();
+      register(Name.fromString(validationHostName), Collections.singleton(VALIDATION_IP));
+      return validationHostName;
     } catch (TextParseException e) {
       throw new RuntimeException("Failure in validation host name. Please file a bug report.", e);
     }
@@ -123,10 +133,13 @@ public final class NameStore {
 
   private boolean verifyValidationHostResolved() {
     final InetAddress byName;
+    final String host = registerValidationHost();
     try {
-      byName = InetAddress.getByName(VALIDATION_HOST);
+      byName = InetAddress.getByName(host);
     } catch (UnknownHostException ignored) {
       return false;
+    } finally {
+      unregister(host);
     }
     return VALIDATION_IP.equals(byName);
   }

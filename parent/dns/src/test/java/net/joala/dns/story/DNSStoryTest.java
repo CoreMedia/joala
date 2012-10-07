@@ -88,7 +88,6 @@ public class DNSStoryTest extends StoryBaseTest {
 
   @BeforeClass
   public static void setUpClass() throws Exception {
-    nameStore().forceJoalaDnsInstalled();
     if (LOG.isDebugEnabled()) {
       LOG.debug("Enabling DNS verbose logging because Debug logging is enabled.");
       Options.set("verbose");
@@ -111,6 +110,7 @@ public class DNSStoryTest extends StoryBaseTest {
     private static final String P_PORT = "port";
     private static final String P_CONTEXT = "context";
     private static final String P_RESPONSE = "response";
+    private static final String P_ADDRESS = "address";
 
     @Inject
     private ConditionFactory conditionFactory;
@@ -184,6 +184,7 @@ public class DNSStoryTest extends StoryBaseTest {
       final String hostName = RandomStringUtils.randomAlphabetic(10);
       final InetAddress normalIP = InetAddresses.increment(InetAddress.getLocalHost());
       h.set(hostName);
+      h.setProperty(P_ADDRESS, normalIP);
       io.set(normalIP.getHostAddress());
       nameStore().register(hostName, normalIP);
       assumeThat(InetAddress.getByName(hostName), equalTo(normalIP));
@@ -191,15 +192,20 @@ public class DNSStoryTest extends StoryBaseTest {
     }
 
     public void given_host_H_was_mapped_and_resolved_to_IP_I(final Reference<String> h, final Reference<String> i) throws UnknownHostException {
-      final InetAddress inetAddress = InetAddresses.increment(InetAddress.getLocalHost());
+      final InetAddress previousAddress = (InetAddress) h.getProperty(P_ADDRESS);
+      final InetAddress inetAddress = InetAddresses.increment(previousAddress);
       i.set(inetAddress.getHostAddress());
       nameStore().register(h.get(), inetAddress);
       final InetAddress byName = InetAddress.getByName(h.get());
       assumeThat(byName, equalTo(inetAddress));
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void when_mapping_for_host_H_is_removed(final Reference<String> h) {
       nameStore().unregister(h.get());
+      // Actually this only tests the disabled cache; this is because we cannot
+      // rely on any external address for this test.
+      nameStore().register(h.get(), h.getProperty(P_ADDRESS, InetAddress.class));
     }
 
     public void then_host_H_will_be_resolved_to_original_IP_IO_again(final Reference<String> h, final Reference<String> io) throws UnknownHostException {

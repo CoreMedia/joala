@@ -5,15 +5,12 @@ import sun.net.spi.nameservice.NameServiceDescriptor;
 
 /**
  * <p>
- * Constructs the LocalManagedDns and returns references to it.
- * </p>
- * <p/>
- * <p>
- * This class assigns the name of this name service provider, which is "dns,LocalManagedDns".
+ * Constructs the {@link LocalDNSNameService} and returns references to it. Is referenced from the
+ * NameServiceDescriptor in {@code META-INF/services}.
  * </p>
  *
- * @see <a href="http://rkuzmik.blogspot.de/2006/08/local-managed-dns-java_11.html">Roman Kuzmik &ndash; Local Managed DNS (Java); 2006-08-11</a>
  * @since 10/5/12
+ * @see net.joala.dns package documentation
  */
 public class LocalDNSNameServiceDescriptor implements NameServiceDescriptor {
 
@@ -23,7 +20,7 @@ public class LocalDNSNameServiceDescriptor implements NameServiceDescriptor {
   private static final NameService NAME_SERVICE = new LocalDNSNameService();
 
   @Override
-  public NameService createNameService() throws Exception {
+  public NameService createNameService() {
     return NAME_SERVICE;
   }
 

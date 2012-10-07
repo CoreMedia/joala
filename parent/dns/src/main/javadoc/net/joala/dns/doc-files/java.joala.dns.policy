@@ -1,0 +1,10 @@
+// Disable caching to be able to remap when using Joala DNS.
+// This is the officially supported way for Java - while Joala DNS tries
+// its best effort via reflection that you don't need to do that.
+//
+// Usage:
+// * Copy this file for example to your user.home-folder
+// * Start your JVM with -Djava.security.properties=&lt;user-home>/.java.joala.dns.policy
+//
+networkaddress.cache.ttl=0
+networkaddress.cache.negative.ttl=0
