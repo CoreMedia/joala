@@ -127,7 +127,7 @@
           <!-- Ignore for:
             org.slf4j:jcl-over-slf4j
           -->
-          <ignoreNonCompile>true</ignoreNonCompile>
+          <ignoreNonCompile>${dependency.ignore.approved.noncompile}</ignoreNonCompile>
         </configuration>
       </plugin>
     </plugins>

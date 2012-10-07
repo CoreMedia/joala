@@ -9,7 +9,7 @@
     </encoder>
   </appender>
 
-  <logger name="net.joala.dns" additivity="false" level="debug">
+  <logger name="net.joala.dns" additivity="false" level="info">
     <appender-ref ref="stdout"/>
   </logger>
 

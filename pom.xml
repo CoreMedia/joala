@@ -133,6 +133,9 @@
     <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
     <github.global.server>github</github.global.server>
     <generated.sources.root>${project.build.directory}/generated-sources</generated.sources.root>
+    <!-- Signals to ignore approved noncompile dependencies which are recoginzed as unused. -->
+    <dependency.ignore.approved.noncompile>true</dependency.ignore.approved.noncompile>
+    <dependency.fail.onwarning>true</dependency.fail.onwarning>
   </properties>
 
   <dependencyManagement>
@@ -460,7 +463,7 @@
               <goal>analyze-only</goal>
             </goals>
             <configuration>
-              <failOnWarning>true</failOnWarning>
+              <failOnWarning>${dependency.fail.onwarning}</failOnWarning>
             </configuration>
           </execution>
           <execution>
@@ -477,7 +480,7 @@
             </goals>
             <phase>verify</phase>
             <configuration>
-              <failBuild>true</failBuild>
+              <failBuild>${dependency.fail.onwarning}</failBuild>
             </configuration>
           </execution>
         </executions>

@@ -95,5 +95,26 @@
       <artifactId>javax.inject</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <!-- Ignore for:
+            logback
+            jcl-over-slf4j
+          -->
+          <ignoreNonCompile>${dependency.ignore.approved.noncompile}</ignoreNonCompile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
