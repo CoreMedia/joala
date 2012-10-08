@@ -11,6 +11,7 @@ import java.util.Collection;
 
 import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static net.joala.lab.junit.template.TestToString.testToString;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
@@ -58,7 +59,7 @@ public class RandomStringTypeTest {
       final Matcher<Character> upperBoundMatcher = lessThanOrEqualTo((char) endChr);
       final Matcher<Character> lowerBoundMatcher = greaterThanOrEqualTo((char) startChr);
       assertThat("Character should be within type limits",
-              chr, Matchers.both(lowerBoundMatcher).and(upperBoundMatcher));
+              chr, allOf(lowerBoundMatcher, upperBoundMatcher));
     }
   }
 
