@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-10-08T12:14:10.189">
+<file name="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/AbstractExpression.java">
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Import Statement Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.hamcrest.Description'
+</violation>
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Type Resolution Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.hamcrest.Description'
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/Condition.java">
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="55" rule="UnusedImports" ruleset="Import Statement Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'net.joala.condition.timing.WaitTimeoutException'
+</violation>
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="55" rule="UnusedImports" ruleset="Type Resolution Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'net.joala.condition.timing.WaitTimeoutException'
+</violation>
+<violation beginline="21" endline="21" begincolumn="1" endcolumn="58" rule="UnusedImports" ruleset="Import Statement Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'net.joala.expression.ExpressionEvaluationException'
+</violation>
+<violation beginline="21" endline="21" begincolumn="1" endcolumn="58" rule="UnusedImports" ruleset="Type Resolution Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'net.joala.expression.ExpressionEvaluationException'
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/DefaultCondition.java">
+<violation beginline="50" endline="191" begincolumn="80" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="net.joala.condition" class="DefaultCondition" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/Expression.java">
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Import Statement Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.hamcrest.Description'
+</violation>
+<violation beginline="19" endline="19" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Type Resolution Rules" package="net.joala.condition" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.hamcrest.Description'
+</violation>
+</file>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/timing/Timeout.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/timing/Timeout.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/timing/TimeoutImpl.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/conditions/src/main/java/net/joala/condition/timing/TimeoutImpl.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+</pmd>
