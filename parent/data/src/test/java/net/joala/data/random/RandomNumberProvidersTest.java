@@ -20,11 +20,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
-import static net.joala.lab.junit.template.TestToString.testToString;
+import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -38,6 +37,7 @@ import static org.mockito.Mockito.when;
  *
  * @since 9/14/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(Parameterized.class)
 public class RandomNumberProvidersTest<T extends Comparable<? extends Number>> {
   private static final Random GENERATOR = new Random(System.currentTimeMillis());
@@ -87,11 +87,11 @@ public class RandomNumberProvidersTest<T extends Comparable<? extends Number>> {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-    return Arrays.asList(new Object[][]{
-            {new RandomDoubleProvider()},
-            {new RandomFloatProvider()},
-            {new RandomIntegerProvider()},
-            {new RandomLongProvider()},
-    });
+    return singletonParametersBuilder(RandomNumberProvidersTest.class)
+            .add(new RandomDoubleProvider(),
+                    new RandomFloatProvider(),
+                    new RandomIntegerProvider(),
+                    new RandomLongProvider())
+            .build();
   }
 }

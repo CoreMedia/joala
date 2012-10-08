@@ -22,11 +22,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
+import static net.joala.lab.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -36,6 +36,7 @@ import static org.junit.Assert.assertThat;
  *
  * @since 9/19/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(Parameterized.class)
 public class TimeFormatTest {
   private final String message;
@@ -58,24 +59,24 @@ public class TimeFormatTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-    return Arrays.asList(new Object[][]{
-            {TimeUnit.SECONDS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^1999\\sms$"},
-            {TimeUnit.SECONDS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\ss$"},
-            {TimeUnit.MINUTES.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^119\\ss$"},
-            {TimeUnit.MINUTES.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\smin$"},
-            {TimeUnit.HOURS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^119\\smin$"},
-            {TimeUnit.HOURS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\sh$"},
-            {TimeUnit.DAYS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^47\\sh$"},
-            {TimeUnit.DAYS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\sd$"},
-            {Long.MAX_VALUE, TimeUnit.MILLISECONDS, "^\\d+\\sd$"},
-            {0L, TimeUnit.NANOSECONDS, "^0\\sns$"},
-            {0L, TimeUnit.MICROSECONDS, "^0\\sµs$"},
-            {0L, TimeUnit.MILLISECONDS, "^0\\sms$"},
-            {0L, TimeUnit.SECONDS, "^0\\ss$"},
-            {0L, TimeUnit.MINUTES, "^0\\smin$"},
-            {0L, TimeUnit.HOURS, "^0\\sh$"},
-            {0L, TimeUnit.DAYS, "^0\\sd$"},
-    });
+    return defaultParametersBuilder(TimeFormatTest.class)
+            .add(TimeUnit.SECONDS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^1999\\sms$")
+            .add(TimeUnit.SECONDS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\ss$")
+            .add(TimeUnit.MINUTES.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^119\\ss$")
+            .add(TimeUnit.MINUTES.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\smin$")
+            .add(TimeUnit.HOURS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^119\\smin$")
+            .add(TimeUnit.HOURS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\sh$")
+            .add(TimeUnit.DAYS.toMillis(TimeFormat.TIMEUNIT_LIMIT) - 1, TimeUnit.MILLISECONDS, "^47\\sh$")
+            .add(TimeUnit.DAYS.toMillis(TimeFormat.TIMEUNIT_LIMIT), TimeUnit.MILLISECONDS, "^2\\sd$")
+            .add(Long.MAX_VALUE, TimeUnit.MILLISECONDS, "^\\d+\\sd$")
+            .add(0L, TimeUnit.NANOSECONDS, "^0\\sns$")
+            .add(0L, TimeUnit.MICROSECONDS, "^0\\sµs$")
+            .add(0L, TimeUnit.MILLISECONDS, "^0\\sms$")
+            .add(0L, TimeUnit.SECONDS, "^0\\ss$")
+            .add(0L, TimeUnit.MINUTES, "^0\\smin$")
+            .add(0L, TimeUnit.HOURS, "^0\\sh$")
+            .add(0L, TimeUnit.DAYS, "^0\\sd$")
+            .build();
   }
 
   // Duplicate in order to remove dependency cycles between modules.

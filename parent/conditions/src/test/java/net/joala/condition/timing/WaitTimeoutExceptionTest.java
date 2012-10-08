@@ -25,9 +25,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.util.Arrays;
 import java.util.Collection;
 
+import static net.joala.lab.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -36,6 +36,7 @@ import static org.junit.Assert.assertSame;
  *
  * @since 8/24/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(Parameterized.class)
 public class WaitTimeoutExceptionTest {
   private static final DataProvider<String> STRING_PROVIDER = new DefaultRandomStringProvider().fixate();
@@ -65,13 +66,12 @@ public class WaitTimeoutExceptionTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> parameters() throws DataProvidingException {
-    Math.random();
-    return Arrays.asList(new Object[][]{
-            {"Should except both, message and cause to be null.", null, null},
-            {"Should except both, message and cause not to be null.", STRING_PROVIDER.get(), new Exception(STRING_PROVIDER.get())},
-            {"Should except message to be null, while cause is non-null.", null, new Exception(STRING_PROVIDER.get())},
-            {"Should except cause to be null, while message is non-null.", STRING_PROVIDER.get(), null},
-    });
+    return defaultParametersBuilder(WaitTimeoutExceptionTest.class)
+            .add("Should except both, message and cause to be null.", null, null)
+            .add("Should except both, message and cause not to be null.", STRING_PROVIDER.get(), new Exception(STRING_PROVIDER.get()))
+            .add("Should except message to be null, while cause is non-null.", null, new Exception(STRING_PROVIDER.get()))
+            .add("Should except cause to be null, while message is non-null.", STRING_PROVIDER.get(), null)
+            .build();
   }
 
   private final String testMessage;
