@@ -85,7 +85,7 @@ public class JUnitAopStepsLogger {
    * @throws Throwable in case of any error
    */
   @Around("execution(* given_*(..))||execution(* when_*(..))||execution(* then_*(..))")
-  public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable {
+  public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to deal with generic throwables here
     final Description stepDescription = new StringDescription();
     final String stepName = joinPoint.getSignature().getName();
     stepDescription.appendText(stepName.replace('_', ' ').trim());
@@ -94,7 +94,7 @@ public class JUnitAopStepsLogger {
     try {
       LOG.info("{}", stepDescription);
       result = joinPoint.proceed();
-    } catch (Throwable throwable) {
+    } catch (Throwable throwable) { // NOSONAR: Need to deal with generic throwables here
       LOG.info("{} (FAILED)", stepDescription);
       throw throwable;
     }
