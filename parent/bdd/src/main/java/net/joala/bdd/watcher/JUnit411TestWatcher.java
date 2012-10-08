@@ -56,7 +56,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
   /**
    * Invoked when a test succeeds
    *
-   * @param description
+   * @param description description of the current test-case
    */
   @Override
   protected void succeeded(final Description description) {
@@ -65,8 +65,8 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
   /**
    * Invoked when a test fails
    *
-   * @param e
-   * @param description
+   * @param e causing exception
+   * @param description description of the current test-case
    */
   @Override
   protected void failed(final Throwable e, final Description description) {
@@ -75,8 +75,8 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
   /**
    * Invoked when a test is skipped due to a failed assumption.
    *
-   * @param e
-   * @param description
+   * @param e causing exception
+   * @param description description of the current test-case
    */
   protected void skipped(final AssumptionViolatedException e, final Description description) {
   }
@@ -84,7 +84,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
   /**
    * Invoked when a test is about to start
    *
-   * @param description
+   * @param description description of the current test-case
    */
   @Override
   protected void starting(final Description description) {
@@ -93,7 +93,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
   /**
    * Invoked when a test method finishes (whether passing or failing)
    *
-   * @param description
+   * @param description description of the current test-case
    */
   @Override
   protected void finished(final Description description) {
@@ -109,7 +109,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
     }
 
     @Override
-    public void evaluate() throws Throwable {
+    public void evaluate() throws Throwable { // NOSONAR: Copied from original class
       final List<Throwable> errors = new ArrayList<Throwable>();
 
       startingQuietly(description, errors);
