@@ -36,6 +36,8 @@ public class JUnitScenarioWatcher extends JUnit411TestWatcher {
   private static final Pattern REMOVE_TEST_SUFFIX_PATTERN = Pattern.compile("I?Test$");
   private static final int MIN_DOTS = 3;
   private static final int MAX_TYPE_PADDING = 15;
+  private static final String STORY_HEADING = "Story";
+  private static final String SCENARIO_HEADING = "Scenario";
 
   private String formatStory(final CharSequence rawStory) {
     final String withoutTest = REMOVE_TEST_SUFFIX_PATTERN.matcher(rawStory).replaceFirst("");
@@ -50,29 +52,29 @@ public class JUnitScenarioWatcher extends JUnit411TestWatcher {
   @Override
   protected void starting(@Nonnull final Description description) {
     if (isScenario(description)) {
-      reportStart("Story", formatStory(description.getTestClass().getSimpleName()));
-      reportStart("Scenario", formatScenario(description.getMethodName()));
+      reportStart(STORY_HEADING, formatStory(description.getTestClass().getSimpleName()));
+      reportStart(SCENARIO_HEADING, formatScenario(description.getMethodName()));
     }
   }
 
   @Override
   protected void skipped(final AssumptionViolatedException e, final Description description) {
     if (isScenario(description)) {
-      reportEnd("Scenario", formatScenario(description.getMethodName()), "skipped");
+      reportEnd(SCENARIO_HEADING, formatScenario(description.getMethodName()), "skipped");
     }
   }
 
   @Override
   protected void failed(final Throwable e, @Nonnull final Description description) {
     if (isScenario(description)) {
-      reportEnd("Scenario", formatScenario(description.getMethodName()), "failed");
+      reportEnd(SCENARIO_HEADING, formatScenario(description.getMethodName()), "failed");
     }
   }
 
   @Override
   protected void succeeded(@Nonnull final Description description) {
     if (isScenario(description)) {
-      reportEnd("Scenario", formatScenario(description.getMethodName()), "success");
+      reportEnd(SCENARIO_HEADING, formatScenario(description.getMethodName()), "success");
     }
   }
 
