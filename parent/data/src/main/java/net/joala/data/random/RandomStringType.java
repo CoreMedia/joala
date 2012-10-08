@@ -16,8 +16,11 @@
 
 package net.joala.data.random;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import org.apache.commons.lang3.RandomStringUtils;
+
+import javax.annotation.Nonnull;
 
 import static org.apache.commons.lang3.RandomStringUtils.random;
 
@@ -102,8 +105,19 @@ public enum RandomStringType {
    * @param count number of characters
    * @return random string of the given length
    */
+  @Nonnull
   public String get(final int count) {
     return random(count, startChr, endChr, containsAlphabetic, containsNumbers);
+  }
+
+  @VisibleForTesting
+  int getEndChr() {
+    return endChr;
+  }
+
+  @VisibleForTesting
+  int getStartChr() {
+    return startChr;
   }
 
   @Override
@@ -111,8 +125,8 @@ public enum RandomStringType {
     return Objects.toStringHelper(this)
             .add("startChr", startChr)
             .add("endChr", endChr)
-            .add("onlyAlphabetic", containsAlphabetic)
-            .add("onlyNumbers", containsNumbers)
+            .add("containsAlphabetic", containsAlphabetic)
+            .add("containsNumbers", containsNumbers)
             .toString();
   }
 }

@@ -11,7 +11,8 @@ final class AssertTemplateTest {
   private AssertTemplateTest() {
   }
 
-  static void assertNoFailures(@Nonnull final Object testClassInstance) throws Throwable {
+  @SuppressWarnings("ProhibitedExceptionDeclared")
+  static void assertNoFailures(@Nonnull final Object testClassInstance) throws Throwable {  // NOSONAR: Throwable comes from JUnit API
     final TestClassInstanceRunner runner = new TestClassInstanceRunner(testClassInstance);
     final JUnitCore jUnitCore = new JUnitCore();
     final ExceptionCollectingRunListener listener = new ExceptionCollectingRunListener();

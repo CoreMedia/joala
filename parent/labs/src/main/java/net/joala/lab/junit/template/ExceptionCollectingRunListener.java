@@ -24,7 +24,7 @@ class ExceptionCollectingRunListener extends RunListener {
     exceptions.add(failure.getException());
   }
 
-  public void assertNoFailures() throws Throwable {
+  public void assertNoFailures() throws Throwable { // NOSONAR: Throwable comes from JUnit API
     MultipleFailureException.assertEmpty(exceptions);
   }
 }

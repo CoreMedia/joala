@@ -68,14 +68,16 @@ public abstract class TestToString {
     assertThat("toString should contain all fields and their values", objectUnderTest.toString(), allOf(fieldMatchers));
   }
 
-  public static void testToString(@Nonnull final Object objectUnderTest) throws Throwable {
+  @SuppressWarnings("ProhibitedExceptionDeclared")
+  public static void testToString(@Nonnull final Object objectUnderTest) throws Throwable { // NOSONAR: Throwable comes from JUnit API
     checkNotNull(objectUnderTest, "Object under Test must not be null.");
     //noinspection AnonymousInnerClass
     assertNoFailures(new TestToString(objectUnderTest) {
     });
   }
 
-  public static void testToString(@Nonnull final Object objectUnderTest, @Nonnull final Class<?> fieldDeclaringClass) throws Throwable {
+  @SuppressWarnings("ProhibitedExceptionDeclared")
+  public static void testToString(@Nonnull final Object objectUnderTest, @Nonnull final Class<?> fieldDeclaringClass) throws Throwable { // NOSONAR: Throwable comes from JUnit API
     checkNotNull(objectUnderTest, "Object under Test must not be null.");
     checkNotNull(fieldDeclaringClass, "Field declaring class must not be null.");
     //noinspection AnonymousInnerClass

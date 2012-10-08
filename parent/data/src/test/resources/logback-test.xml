@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date{ISO8601} [%5level] %logger{0}: %message%n%xEx{5}</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="net.joala.data" additivity="false" level="debug">
+    <appender-ref ref="stdout"/>
+  </logger>
+
+  <root level="warn">
+    <appender-ref ref="stdout"/>
+  </root>
+</configuration>
