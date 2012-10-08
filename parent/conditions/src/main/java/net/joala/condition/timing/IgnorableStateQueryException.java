@@ -42,6 +42,7 @@ import static net.joala.matcher.DescriptionUtil.describeTo;
  * @since 9/14/12
  */
 public class IgnorableStateQueryException extends RuntimeException {
+  private static final String CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL = "Query function must not be null";
   @Nonnull
   private final Function<?, ?> stateQuery;
 
@@ -54,7 +55,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    */
   public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery) {
     super();
-    checkNotNull(stateQuery, "Query function must not be null");
+    checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
   }
 
@@ -68,7 +69,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    */
   public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery, final Throwable cause) {
     super(cause);
-    checkNotNull(stateQuery, "Query function must not be null");
+    checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
   }
 
@@ -82,7 +83,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    */
   public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery, final String message) {
     super(message);
-    checkNotNull(stateQuery, "Query function must not be null");
+    checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
   }
 
@@ -97,7 +98,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    */
   public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery, final String message, final Throwable cause) {
     super(message, cause);
-    checkNotNull(stateQuery, "Query function must not be null");
+    checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
   }
 
