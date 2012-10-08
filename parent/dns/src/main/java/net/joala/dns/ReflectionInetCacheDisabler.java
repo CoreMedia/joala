@@ -3,6 +3,8 @@ package net.joala.dns;
 import java.lang.reflect.Field;
 import java.net.InetAddress;
 
+import static java.security.AccessController.doPrivileged;
+
 /**
  * <p>
  * Disable caching for inet addresses by reflection.
@@ -35,16 +37,17 @@ class ReflectionInetCacheDisabler {
    *
    * @throws ReflectionCallException if disabling cache failed
    */
+  @SuppressWarnings("unchecked")
   public void disable() throws ReflectionCallException {
     try {
       final Class<?> policyClass = Class.forName(SUN_NET_INET_ADDRESS_CACHE_POLICY, true, InetAddress.class.getClassLoader());
       final Field cachePolicyField = policyClass.getDeclaredField(CACHE_POLICY);
       final Field negativeCachePolicyField = policyClass.getDeclaredField(NEGATIVE_CACHE_POLICY);
-      cachePolicyField.setAccessible(true);
-      negativeCachePolicyField.setAccessible(true);
+      doPrivileged(new SetAccessibleAction(cachePolicyField));
+      doPrivileged(new SetAccessibleAction(negativeCachePolicyField));
       cachePolicyField.set(null, CACHE_NEVER);
       negativeCachePolicyField.set(null, CACHE_NEVER);
-    } catch (Exception e) {
+    } catch (Exception e) { // NOSONAR: We want to be as robust as possible; thus catching all exceptions
       throw new ReflectionCallException(e);
     }
   }

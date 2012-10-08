@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static java.security.AccessController.doPrivileged;
 
 /**
  * <p>
@@ -24,7 +25,7 @@ class ReflectionJava7NameServiceInstaller extends ReflectionNameServiceInstaller
     checkNotNull(nameService, "Name Service must not be null");
     try {
       final Field field = InetAddress.class.getDeclaredField("nameServices");
-      field.setAccessible(true);
+      doPrivileged(new SetAccessibleAction(field));
       final Collection<NameService> fieldValue = (Collection<NameService>) field.get(null);
       final Collection<NameService> newValue = new ArrayList<NameService>(fieldValue.size() + 1);
       newValue.add(nameService);
