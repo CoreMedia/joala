@@ -1,7 +1,7 @@
 package net.joala.lab.junit.template;
 
+import net.joala.core.reflection.SetAccessibleAction;
 import org.hamcrest.Matcher;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static java.security.AccessController.doPrivileged;
 import static net.joala.lab.junit.template.AssertTemplateTest.assertNoFailures;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.StringContains.containsString;
@@ -49,6 +50,7 @@ public abstract class TestToString {
     assertThat("toString should contain classname", objectUnderTest.toString(), containsString(objectUnderTest.getClass().getSimpleName()));
   }
 
+  @SuppressWarnings("unchecked")
   @Test
   public void toString_should_contain_all_fields_and_their_values() throws IllegalAccessException {
     final Field[] declaredFields = fieldDeclaringClass.getDeclaredFields();
@@ -56,7 +58,7 @@ public abstract class TestToString {
     final Collection<Matcher<? super String>> fieldMatchers = new ArrayList<Matcher<? super String>>(declaredFields.length * 2);
     for (final Field declaredField : declaredFields) {
       if (!Modifier.isStatic(declaredField.getModifiers())) {
-        declaredField.setAccessible(true);
+        doPrivileged(new SetAccessibleAction(declaredField));
         final String fieldName = declaredField.getName();
         fieldMatchers.add(containsString(fieldName));
         fieldMatchers.add(containsString(String.valueOf(declaredField.get(objectUnderTest))));
@@ -69,14 +71,16 @@ public abstract class TestToString {
   public static void testToString(@Nonnull final Object objectUnderTest) throws Throwable {
     checkNotNull(objectUnderTest, "Object under Test must not be null.");
     //noinspection AnonymousInnerClass
-    assertNoFailures(new TestToString(objectUnderTest){});
+    assertNoFailures(new TestToString(objectUnderTest) {
+    });
   }
 
   public static void testToString(@Nonnull final Object objectUnderTest, @Nonnull final Class<?> fieldDeclaringClass) throws Throwable {
     checkNotNull(objectUnderTest, "Object under Test must not be null.");
     checkNotNull(fieldDeclaringClass, "Field declaring class must not be null.");
     //noinspection AnonymousInnerClass
-    assertNoFailures(new TestToString(objectUnderTest, fieldDeclaringClass){});
+    assertNoFailures(new TestToString(objectUnderTest, fieldDeclaringClass) {
+    });
   }
 
 }

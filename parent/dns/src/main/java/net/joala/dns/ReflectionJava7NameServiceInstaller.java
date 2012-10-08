@@ -1,5 +1,6 @@
 package net.joala.dns;
 
+import net.joala.core.reflection.SetAccessibleAction;
 import sun.net.spi.nameservice.NameService;
 
 import javax.annotation.Nonnull;

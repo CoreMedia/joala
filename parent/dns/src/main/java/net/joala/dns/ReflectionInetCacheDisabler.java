@@ -1,5 +1,7 @@
 package net.joala.dns;
 
+import net.joala.core.reflection.SetAccessibleAction;
+
 import java.lang.reflect.Field;
 import java.net.InetAddress;
 

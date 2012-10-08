@@ -40,6 +40,7 @@
     <module>expressions</module>
     <module>labs</module>
     <module>dns</module>
+    <module>core</module>
   </modules>
 
   <dependencyManagement>
