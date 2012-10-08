@@ -42,9 +42,12 @@ class FallbackInetAddressNameService implements NameService {
   private static final String GET_HOST_BY_ADDR = "getHostByAddr";
 
   /**
-   * Singleton Instance.
+   * Threadsafe lazy initialization pattern.
    */
-  private static FallbackInetAddressNameService ourInstance;
+  @SuppressWarnings("UtilityClassWithoutPrivateConstructor")
+  private static class NameServiceHolder {
+    private static final FallbackInetAddressNameService ourInstance = new FallbackInetAddressNameService();
+  }
 
   /**
    * <p>
@@ -53,15 +56,9 @@ class FallbackInetAddressNameService implements NameService {
    * </p>
    *
    * @return instance of the fallback service
-   * @throws InstantiationException if the service could not be instantiated as it would be non-operational because
-   *                                of a JVM which does not meet the requirements.
    */
-  @SuppressWarnings("NonThreadSafeLazyInitialization")
-  public static FallbackInetAddressNameService fallbackNameService() throws InstantiationException {
-    if (ourInstance == null) {
-      ourInstance = new FallbackInetAddressNameService();
-    }
-    return ourInstance;
+  public static FallbackInetAddressNameService fallbackNameService() {
+    return NameServiceHolder.ourInstance;
   }
 
   /**
@@ -82,19 +79,14 @@ class FallbackInetAddressNameService implements NameService {
    * Constructor. On failure it is expected that either the JVM does not provide the classes/methods
    * accessed in here or that the installed SecurityManager prohibits any access.
    * </p>
-   *
-   * @throws InstantiationException if the service could not be instantiated as it would be non-operational because
-   *                                of a JVM which does not meet the requirements.
    */
-  private FallbackInetAddressNameService() throws InstantiationException {
+  private FallbackInetAddressNameService() {
     try {
       inetAddressImpl = getInetAddressImpl();
       lookupAllHostAddrMethod = getLookupAllHostAddrMethod();
       getHostByAddrMethod = getGetHostByAddrMethod();
     } catch (Exception e) {
-      final InstantiationException exception = new InstantiationException("Unable to access JVM private API as it seems.");
-      exception.initCause(e);
-      throw exception;
+      throw new RuntimeException("Unable to access JVM private API as it seems.", e);
     }
   }
 
