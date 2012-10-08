@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-10-08T12:11:07.539">
+<file name="/home/mark/dev/joala/target/checkout/parent/matchers/src/main/java/net/joala/matcher/net/KnownHost.java">
+<violation beginline="29" endline="29" begincolumn="7" endcolumn="19" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.matcher.net" class="KnownHost" method="matchesSafely" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/matchers/target/generated-sources/hamcrest/net/joala/matcher/JoalaMatchers.java">
+<violation beginline="4" endline="45" begincolumn="28" endcolumn="1" rule="UseSingleton" ruleset="Design Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UseSingleton" priority="3">
+All methods are static.  Consider using Singleton instead.  Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+</violation>
+<violation beginline="6" endline="6" begincolumn="66" endcolumn="101" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'descriptionTemplate' is not assigned and could be declared final
+</violation>
+<violation beginline="6" endline="6" begincolumn="104" endcolumn="134" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'matcher' is not assigned and could be declared final
+</violation>
+<violation beginline="6" endline="6" begincolumn="137" endcolumn="162" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'values' is not assigned and could be declared final
+</violation>
+<violation beginline="10" endline="10" begincolumn="57" endcolumn="79" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'param1' is not assigned and could be declared final
+</violation>
+<violation beginline="10" endline="10" begincolumn="82" endcolumn="111" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'param2' is not assigned and could be declared final
+</violation>
+<violation beginline="10" endline="10" begincolumn="114" endcolumn="139" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'param3' is not assigned and could be declared final
+</violation>
+<violation beginline="14" endline="14" begincolumn="68" endcolumn="95" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="causedBy" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'expected' is not assigned and could be declared final
+</violation>
+<violation beginline="18" endline="18" begincolumn="75" endcolumn="106" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'expectedMessage' is not assigned and could be declared final
+</violation>
+<violation beginline="22" endline="22" begincolumn="75" endcolumn="106" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'expectedMessage' is not assigned and could be declared final
+</violation>
+<violation beginline="22" endline="22" begincolumn="109" endcolumn="129" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'recurseCauses' is not assigned and could be declared final
+</violation>
+<violation beginline="26" endline="26" begincolumn="77" endcolumn="100" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="matchesPattern" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'pattern' is not assigned and could be declared final
+</violation>
+<violation beginline="30" endline="30" begincolumn="77" endcolumn="107" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="matchesPattern" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'pattern' is not assigned and could be declared final
+</violation>
+</file>
+</pmd>
