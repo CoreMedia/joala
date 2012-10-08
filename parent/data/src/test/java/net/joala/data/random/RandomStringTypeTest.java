@@ -1,7 +1,6 @@
 package net.joala.data.random;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableList;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -10,6 +9,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Collection;
 
+import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static net.joala.lab.junit.template.TestToString.testToString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -89,12 +89,7 @@ public class RandomStringTypeTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-    final RandomStringType[] values = RandomStringType.values();
-    final ImmutableList.Builder<Object[]> builder = ImmutableList.builder();
-    for (final RandomStringType value : values) {
-      builder.add(new RandomStringType[]{value});
-    }
-    return builder.build();
+    return singletonParametersBuilder(RandomStringTypeTest.class).add(RandomStringType.values()).build();
   }
 
   @Override
