@@ -3,6 +3,7 @@
 package net.joala.bdd.watcher;
 
 import org.junit.internal.AssumptionViolatedException;
+import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.junit.runners.model.MultipleFailureException;
 import org.junit.runners.model.Statement;
@@ -46,7 +47,7 @@ import java.util.List;
  *
  * @since 4.9
  */
-public abstract class TestWatcher extends org.junit.rules.TestWatcher {
+public abstract class JUnit411TestWatcher extends TestWatcher {
   @Override
   public Statement apply(final Statement base, final Description description) {
     return new ReportingStatement(description, base);

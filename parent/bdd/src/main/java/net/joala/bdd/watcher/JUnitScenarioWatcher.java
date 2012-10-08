@@ -30,7 +30,7 @@ import static java.lang.Math.max;
  *
  * @since 6/2/12
  */
-public class JUnitScenarioWatcher extends TestWatcher {
+public class JUnitScenarioWatcher extends JUnit411TestWatcher {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitScenarioWatcher.class);
   private static final Pattern INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN = Pattern.compile("([A-Z][^A-Z0-9]*|[0-9]+)");
   private static final Pattern REMOVE_TEST_SUFFIX_PATTERN = Pattern.compile("I?Test$");
