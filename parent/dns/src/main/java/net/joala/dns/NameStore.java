@@ -237,7 +237,7 @@ public final class NameStore {
   private static class String2InetAddress implements Function<String, InetAddress> {
     @Override
     @Nonnull
-    public InetAddress apply(@Nullable final String input) {
+    public InetAddress apply(final String input) {
       try {
         checkNotNull(input, "Address must not be null.");
         return Address.getByAddress(input);
