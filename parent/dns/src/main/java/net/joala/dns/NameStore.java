@@ -44,6 +44,9 @@ public final class NameStore {
    * Mapper to map a string to an {@code InetAddress}.
    */
   private static final Function<String, InetAddress> STRING_TO_INET_ADDRESS = new String2InetAddress();
+  private static final String CHECK_NAME_MUST_NOT_BE_NULL = "Name must not be null.";
+  private static final String CHECK_ADDRESSES_MUST_NOT_BE_NULL = "Addresses must not be null.";
+  private static final String CHECK_ADDRESSES_MUST_NOT_BE_EMPTY = "Addresses must not be empty.";
   /**
    * Store which contains the hosts to map to specified internet addresses.
    */
@@ -82,9 +85,10 @@ public final class NameStore {
    * @param addresses list of addresses to register for name
    */
   private void register(@Nonnull final Name name, @Nonnull final Collection<InetAddress> addresses) {
-    checkNotNull(name, "Name must not be null.");
-    checkNotNull(addresses, "Addresses must not be null.");
-    checkArgument(!addresses.isEmpty(), "Addresses must not be empty.");
+    checkNotNull(name, CHECK_NAME_MUST_NOT_BE_NULL);
+    final String errorMessage = CHECK_ADDRESSES_MUST_NOT_BE_NULL;
+    checkNotNull(addresses, errorMessage);
+    checkArgument(!addresses.isEmpty(), CHECK_ADDRESSES_MUST_NOT_BE_EMPTY);
     synchronized (store) {
       if (store.containsKey(name)) {
         final Set<InetAddress> set = store.get(name);
@@ -108,7 +112,7 @@ public final class NameStore {
    * @param addresses list of addresses to register for name
    */
   public void register(@Nonnull final String name, @Nonnull final InetAddress... addresses) {
-    checkNotNull(name, "Name must not be null.");
+    checkNotNull(name, CHECK_NAME_MUST_NOT_BE_NULL);
     try {
       register(Name.fromString(name), Arrays.asList(addresses));
     } catch (TextParseException e) {
@@ -127,7 +131,7 @@ public final class NameStore {
    * @param addresses list of addresses to register for name
    */
   public void register(@Nonnull final String name, @Nonnull final String... addresses) {
-    checkNotNull(name, "Name must not be null.");
+    checkNotNull(name, CHECK_NAME_MUST_NOT_BE_NULL);
     final List<InetAddress> inetAddresses = Lists.transform(Arrays.asList(addresses), STRING_TO_INET_ADDRESS);
     try {
       register(Name.fromString(name), inetAddresses);
@@ -144,7 +148,7 @@ public final class NameStore {
    * @param name host name
    */
   public void unregister(@Nonnull final String name) {
-    checkNotNull(name, "Name must not be null.");
+    checkNotNull(name, CHECK_NAME_MUST_NOT_BE_NULL);
     try {
       synchronized (store) {
         if (null != store.remove(Name.fromString(name))) {
@@ -198,7 +202,7 @@ public final class NameStore {
    */
   @Nonnull
   InetAddress[] lookup(@Nonnull final String name) {
-    checkNotNull(name, "Name must not be null.");
+    checkNotNull(name, CHECK_NAME_MUST_NOT_BE_NULL);
     final Name someName;
     try {
       someName = Name.fromString(name);
@@ -218,7 +222,7 @@ public final class NameStore {
    */
   @Nonnull
   InetAddress[] lookup(@Nonnull final Name name) {
-    checkNotNull(name, "Name must not be null.");
+    checkNotNull(name, CHECK_NAME_MUST_NOT_BE_NULL);
     synchronized (store) {
       if (store.containsKey(name)) {
         LOG.info(format("Succeeded to lookup %s.", name));
