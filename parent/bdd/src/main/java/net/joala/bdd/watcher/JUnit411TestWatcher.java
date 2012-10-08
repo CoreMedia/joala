@@ -119,7 +119,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
       } catch (AssumptionViolatedException e) {
         errors.add(e);
         skippedQuietly(e, description, errors);
-      } catch (Throwable t) {
+      } catch (Throwable t) { // NOSONAR: Copied from original class
         errors.add(t);
         failedQuietly(t, description, errors);
       } finally {
@@ -133,7 +133,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
                                   final Collection<Throwable> errors) {
       try {
         succeeded(description);
-      } catch (Throwable t) {
+      } catch (Throwable t) { // NOSONAR: Copied from original class
         errors.add(t);
       }
     }
@@ -142,7 +142,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
                                final Collection<Throwable> errors) {
       try {
         failed(t, description);
-      } catch (Throwable t1) {
+      } catch (Throwable t1) { // NOSONAR: Copied from original class
         errors.add(t1);
       }
     }
@@ -151,7 +151,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
                                 final Collection<Throwable> errors) {
       try {
         skipped(t, description);
-      } catch (Throwable t1) {
+      } catch (Throwable t1) { // NOSONAR: Copied from original class
         errors.add(t1);
       }
     }
@@ -160,7 +160,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
                                  final Collection<Throwable> errors) {
       try {
         starting(description);
-      } catch (Throwable t) {
+      } catch (Throwable t) { // NOSONAR: Copied from original class
         errors.add(t);
       }
     }
@@ -169,7 +169,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
                                  final Collection<Throwable> errors) {
       try {
         finished(description);
-      } catch (Throwable t) {
+      } catch (Throwable t) { // NOSONAR: Copied from original class
         errors.add(t);
       }
     }
