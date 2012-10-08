@@ -99,7 +99,7 @@ public abstract class JUnit411TestWatcher extends TestWatcher {
   protected void finished(final Description description) {
   }
 
-  private class ReportingStatement extends Statement {
+  private final class ReportingStatement extends Statement {
     private final Description description;
     private final Statement base;
 
