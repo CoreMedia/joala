@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-10-08T12:15:57.425">
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/aop/JUnitAopStepsLogger.java">
+<violation beginline="97" endline="97" begincolumn="14" endcolumn="22" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="logGivenWhenThen" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="120" endline="120" begincolumn="10" endcolumn="71" rule="LocalVariableCouldBeFinal" ruleset="Optimization Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="describeArguments" variable="argumentIterator" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#LocalVariableCouldBeFinal" priority="3">
+Local variable 'argumentIterator' could be declared final
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/reference/ReferenceImpl.java">
+<violation beginline="23" endline="23" begincolumn="17" endcolumn="35" rule="UseConcurrentHashMap" ruleset="Controversial Rules" package="net.joala.bdd.reference" class="ReferenceImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UseConcurrentHashMap" priority="3">
+If you run in Java5 and have concurrent access, you should use ConcurrentHashMap implementation
+</violation>
+<violation beginline="76" endline="76" begincolumn="7" endcolumn="18" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.bdd.reference" class="ReferenceImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/reference/SelfDescribingReferenceImpl.java">
+<violation beginline="32" endline="32" begincolumn="28" endcolumn="64" rule="ConfusingTernary" ruleset="Design Rules" package="net.joala.bdd.reference" class="SelfDescribingReferenceImpl" method="describeTo" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/watcher/JUnit411TestWatcher.java">
+<violation beginline="50" endline="178" begincolumn="17" endcolumn="1" rule="AbstractNaming" ruleset="Naming Rules" package="net.joala.bdd.watcher" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#AbstractNaming" priority="3">
+Abstract classes should be named AbstractXXX
+</violation>
+<violation beginline="50" endline="178" begincolumn="63" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+<violation beginline="53" endline="53" begincolumn="12" endcolumn="52" rule="AccessorClassGeneration" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="apply" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AccessorClassGeneration" priority="3">
+Avoid instantiation through private constructors from outside of the constructor's class.
+</violation>
+<violation beginline="62" endline="63" begincolumn="13" endcolumn="3" rule="EmptyMethodInAbstractClassShouldBeAbstract" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#EmptyMethodInAbstractClassShouldBeAbstract" priority="1">
+An empty method in an abstract class should be abstract instead
+</violation>
+<violation beginline="62" endline="63" begincolumn="59" endcolumn="3" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="succeeded" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="72" endline="73" begincolumn="13" endcolumn="3" rule="EmptyMethodInAbstractClassShouldBeAbstract" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#EmptyMethodInAbstractClassShouldBeAbstract" priority="1">
+An empty method in an abstract class should be abstract instead
+</violation>
+<violation beginline="72" endline="72" begincolumn="41" endcolumn="41" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="failed" variable="e" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+<violation beginline="72" endline="73" begincolumn="75" endcolumn="3" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="failed" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="81" endline="82" begincolumn="13" endcolumn="3" rule="EmptyMethodInAbstractClassShouldBeAbstract" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#EmptyMethodInAbstractClassShouldBeAbstract" priority="1">
+An empty method in an abstract class should be abstract instead
+</violation>
+<violation beginline="81" endline="81" begincolumn="60" endcolumn="60" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="skipped" variable="e" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+<violation beginline="81" endline="82" begincolumn="94" endcolumn="3" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="skipped" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="90" endline="91" begincolumn="13" endcolumn="3" rule="EmptyMethodInAbstractClassShouldBeAbstract" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#EmptyMethodInAbstractClassShouldBeAbstract" priority="1">
+An empty method in an abstract class should be abstract instead
+</violation>
+<violation beginline="90" endline="91" begincolumn="58" endcolumn="3" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="starting" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="99" endline="100" begincolumn="13" endcolumn="3" rule="EmptyMethodInAbstractClassShouldBeAbstract" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#EmptyMethodInAbstractClassShouldBeAbstract" priority="1">
+An empty method in an abstract class should be abstract instead
+</violation>
+<violation beginline="99" endline="100" begincolumn="58" endcolumn="3" rule="UncommentedEmptyMethod" ruleset="Design Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher" method="finished" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyMethod" priority="3">
+Document empty method
+</violation>
+<violation beginline="122" endline="122" begincolumn="16" endcolumn="24" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="evaluate" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="136" endline="136" begincolumn="16" endcolumn="24" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="succeededQuietly" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="141" endline="141" begincolumn="48" endcolumn="48" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="failedQuietly" variable="t" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like t
+</violation>
+<violation beginline="145" endline="145" begincolumn="16" endcolumn="24" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="failedQuietly" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="150" endline="150" begincolumn="67" endcolumn="67" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="skippedQuietly" variable="t" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like t
+</violation>
+<violation beginline="154" endline="154" begincolumn="16" endcolumn="24" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="skippedQuietly" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="163" endline="163" begincolumn="16" endcolumn="24" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="startingQuietly" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="172" endline="172" begincolumn="16" endcolumn="24" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.watcher" class="JUnit411TestWatcher$ReportingStatement" method="finishedQuietly" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/watcher/JUnitScenarioWatcher.java">
+<violation beginline="61" endline="61" begincolumn="60" endcolumn="60" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnitScenarioWatcher" method="skipped" variable="e" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+<violation beginline="68" endline="68" begincolumn="41" endcolumn="41" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnitScenarioWatcher" method="failed" variable="e" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+</file>
+</pmd>
