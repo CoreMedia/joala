@@ -22,7 +22,7 @@ import static java.lang.String.format;
  * @since 10/6/12
  * @see net.joala.dns package documentation
  */
-class FallbackInetAddressNameService implements NameService {
+final class FallbackInetAddressNameService implements NameService {
   /**
    * A logger using System-PrintStreams.
    */
@@ -143,9 +143,9 @@ class FallbackInetAddressNameService implements NameService {
       LOG.info("Redirecting lookupAllHostAddr() to " + inetAddressImpl.getClass().getName());
       return (InetAddress[]) lookupAllHostAddrMethod.invoke(inetAddressImpl, host);
     } catch (IllegalAccessException e) {
-      throw createForwardException("lookupAllHostAddr", e);
+      throw createForwardException(LOOKUP_ALL_HOST_ADDR, e);
     } catch (InvocationTargetException e) {
-      throw createForwardException("lookupAllHostAddr", e);
+      throw createForwardException(LOOKUP_ALL_HOST_ADDR, e);
     }
   }
 
@@ -155,9 +155,9 @@ class FallbackInetAddressNameService implements NameService {
       LOG.info("Redirecting getHostByAddr() to " + inetAddressImpl.getClass().getName());
       return (String) getHostByAddrMethod.invoke(inetAddressImpl, new Object[]{addr});
     } catch (IllegalAccessException e) {
-      throw createForwardException("lookupAllHostAddr", e);
+      throw createForwardException(GET_HOST_BY_ADDR, e);
     } catch (InvocationTargetException e) {
-      throw createForwardException("lookupAllHostAddr", e);
+      throw createForwardException(GET_HOST_BY_ADDR, e);
     }
   }
 
