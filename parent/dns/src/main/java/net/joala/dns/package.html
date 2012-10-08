@@ -24,7 +24,7 @@
   In order to be able to redefine a hostname at runtime you have to disable caching as described in
   {@link java.net.InetAddress} which is to set the JVM security properties <code>networkaddress.cache.ttl</code> and
   <code>networkaddress.cache.negative.ttl</code> to <code>0</code> (zero). To do so add the following entries to
-  a file for example named <a href="doc-files/java.joala.dns.policy"><code>.java.joala.dns.policy</code></a> in your
+  a file for example named <a href="doc-files/java.joala.dns.security"><code>.java.joala.dns.security</code></a> in your
   user home folder:
 </p>
 <pre>
@@ -34,7 +34,7 @@
   //
   // Usage:
   // * Copy for example to your user.home-folder
-  // * Start your JVM with -Djava.security.properties=&lt;user-home>/.java.joala.dns.policy
+  // * Start your JVM with -Djava.security.properties=&lt;user-home>/.java.joala.dns.security
   //
   networkaddress.cache.ttl=0
   networkaddress.cache.negative.ttl=0

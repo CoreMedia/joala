@@ -4,7 +4,7 @@
 //
 // Usage:
 // * Copy this file for example to your user.home-folder
-// * Start your JVM with -Djava.security.properties=&lt;user-home>/.java.joala.dns.policy
+// * Start your JVM with -Djava.security.properties=&lt;user-home>/.java.joala.dns.security
 //
 networkaddress.cache.ttl=0
 networkaddress.cache.negative.ttl=0
