@@ -18,12 +18,12 @@ package net.joala.expression;
 
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
-import net.joala.lab.junit.testlet.ToStringTestlet;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
+import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -64,7 +64,7 @@ public class AbstractExpressionTest {
   @Test
   public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: Adopted from JUnit standard
     final AbstractExpression<?> expression = new MockExpression(DESCRIPTION_PROVIDER.get());
-    ToStringTestlet.toStringTestlet(expression).fieldsFromClass(AbstractExpression.class).run();
+    toStringTestlet(expression).fieldsFromClass(AbstractExpression.class).run();
   }
 
   private static class MockExpression extends AbstractExpression<Object> {

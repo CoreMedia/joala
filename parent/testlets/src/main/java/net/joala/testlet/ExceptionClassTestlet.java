@@ -1,23 +1,20 @@
 package net.joala.testlet;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ErrorCollector;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
-import java.util.concurrent.Callable;
 
-import static java.lang.String.format;
-import static java.lang.reflect.Modifier.isFinal;
+import static net.joala.matcher.reflect.ClassHasModifier.classIsPublic;
+import static net.joala.matcher.reflect.IsAccessible.isAccessible;
+import static net.joala.matcher.reflect.MemberHasModifier.memberIsPublic;
 import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.Matchers.typeCompatibleWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.junit.Assume.assumeThat;
 
 /**
  * <p>
@@ -31,9 +28,9 @@ import static org.junit.Assume.assumeThat;
  */
 @SuppressWarnings("JUnitTestClassNamingConvention")
 @Ignore("Don't execute Testlets in IDE and alike.")
-public class ExceptionClassTestlet<T extends Throwable> extends AbstractTestlet<Class<? super T>> {
-  @Rule
-  public ErrorCollector collector = new ErrorCollector();
+public class ExceptionClassTestlet<T extends Throwable> extends AbstractTestlet<Class<T>> {
+  private static final int RANDOM_MESSAGE_LENGTH = 64;
+
   /**
    * <p>
    * Builds the testlet with the specified class under test.
@@ -41,70 +38,79 @@ public class ExceptionClassTestlet<T extends Throwable> extends AbstractTestlet<
    *
    * @param testling artifact under test
    */
-  protected ExceptionClassTestlet(@Nonnull final Class<? super T> testling) {
+  protected ExceptionClassTestlet(@Nonnull final Class<T> testling) {
     super(testling);
   }
 
-  @Test(expected = NoSuchMethodError.class) // ignore, we are fine
-  public void noarg_constructor_should_meet_requirements() throws Exception {
-    final Constructor<? super T> constructor;
-    constructor = getTestling().getDeclaredConstructor();
-    collector.checkThat(constructor, net.joala.matcher.reflect.isAccessible());
-    commonConstructorAssertions(constructor);
-    collector.checkSucceeds(new Callable<Object>() {
-      @Override
-      public Object call() throws Exception {
-        return constructor.newInstance();
-      }
-    });
-    collector.
-    try {
-      constructor.newInstance()
-    } catch (Exception e) {
-      fail("");
-    } catch (RuntimeException e) {
-    }
-  }
-
-  private void commonConstructorAssertions(final Constructor<? super T> constructor) {
-    assertTrue("Constructor should be accessible.", constructor.isAccessible());
-    assertTrue("Constructor should be public.", Modifier.isPublic(constructor.getModifiers()));
+  @Test
+  public void exception_should_be_public() {
+    assertThat(getTestling(), classIsPublic());
   }
 
   @Test
-  public void utilityClass_should_have_private_noarg_constructor() {
+  public void constructor_noarg_should_meet_requirements() throws NoSuchMethodException {
+    validateConstructor();
+  }
+
+  @Test
+  public void constructor_string_should_meet_requirements() throws NoSuchMethodException {
+    validateConstructor(String.class);
+  }
+
+  @Test
+  public void constructor_throwable_should_meet_requirements() throws NoSuchMethodException {
+    validateConstructor(Throwable.class);
+  }
+
+  @Test
+  public void constructor_string_throwable_should_meet_requirements() throws NoSuchMethodException {
+    validateConstructor(String.class, Throwable.class);
+  }
+
+  @SuppressWarnings("ThrowableResultOfMethodCallIgnored")
+  private void validateConstructor(final Class<?>... parameterTypes) {
+    final Constructor<T> constructor;
     try {
-      final Constructor<?> declaredConstructor = getTestling().getDeclaredConstructor();
-      final int modifiers = declaredConstructor.getModifiers();
-      assertTrue("Noarg constructor must be private.", Modifier.isPrivate(modifiers));
+      constructor = getTestling().getDeclaredConstructor(parameterTypes);
     } catch (NoSuchMethodException ignored) {
-      fail(format("Class %s has no noarg constructor.", getTestling()));
+      return; // ignore... the constructor just does not seem to exist
     }
-  }
-
-  @Test
-  public void utilityClass_should_be_final() {
-    assertTrue("Utility Class should be final.", isFinal(getTestling().getModifiers()));
-  }
-
-  @Test
-  public void utilityClass_noarg_constructor_should_pass() throws InvocationTargetException, IllegalAccessException, InstantiationException {
-    try {
-      final Constructor<?> declaredConstructor = getTestling().getDeclaredConstructor();
-      declaredConstructor.setAccessible(true);
-      try {
-        declaredConstructor.newInstance();
-      } catch (Exception e) {
-        assertThat("Should have called noarg constructor without failure.", e, nullValue());
+    assertThat(constructor, memberIsPublic());
+    String message = null;
+    Throwable cause = null;
+    final Object[] initArgs = new Object[parameterTypes.length];
+    if (parameterTypes.length > 0) {
+      if (String.class.equals(parameterTypes[0])) {
+        message = RandomStringUtils.random(RANDOM_MESSAGE_LENGTH);
+        initArgs[0] = message;
+      } else {
+        assertThat("Single arg constructor: Must be either String or Throwable.", parameterTypes[0], typeCompatibleWith(Throwable.class));
+        cause = new Exception(RandomStringUtils.random(RANDOM_MESSAGE_LENGTH));
+        initArgs[0] = cause;
       }
-    } catch (NoSuchMethodException e) {
-      assumeThat(e, nullValue());
+      if (parameterTypes.length > 1) {
+        assertThat("Two arg constructor: First arg must be String.", parameterTypes[0], typeCompatibleWith(String.class));
+        assertThat("Two arg constructor: Second arg must be Throwable.", parameterTypes[1], typeCompatibleWith(Throwable.class));
+        cause = new Exception(RandomStringUtils.random(RANDOM_MESSAGE_LENGTH));
+        initArgs[1] = cause;
+      }
+    }
+    try {
+      final T thr = constructor.newInstance(initArgs);
+      if (message != null) {
+        assertEquals("Message should have been set correctly.", message, thr.getMessage());
+      }
+      if (cause != null) {
+        assertSame("Cause should have been set correctly.", cause, thr.getCause());
+      }
+    } catch (Exception e) {
+      assertThat("Constructor must have passed without exception.", e, nullValue());
     }
   }
 
   @SuppressWarnings("ProhibitedExceptionDeclared")
-  public static ExceptionClassTestlet utilityClassTestlet(@Nonnull final Class<?> utilityClassUnderTest) throws Throwable { // NOSONAR: Throwable inherited from JUnit
-    return new ExceptionClassTestlet(utilityClassUnderTest);
+  public static <T extends Throwable> ExceptionClassTestlet<T> exceptionClassTestlet(@Nonnull final Class<T> exceptionClassUnderTest) throws Throwable { // NOSONAR: Throwable inherited from JUnit
+    return new ExceptionClassTestlet<T>(exceptionClassUnderTest);
   }
 
 }

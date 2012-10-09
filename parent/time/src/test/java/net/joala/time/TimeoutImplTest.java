@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.lab.junit.testlet.ToStringTestlet.toStringTestlet;
+import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.junit.Assert.assertEquals;
 
 /**

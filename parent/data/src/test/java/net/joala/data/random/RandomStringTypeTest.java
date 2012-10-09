@@ -9,7 +9,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
-import static net.joala.lab.junit.testlet.ToStringTestlet.toStringTestlet;
+import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
