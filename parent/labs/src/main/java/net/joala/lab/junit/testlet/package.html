@@ -4,12 +4,19 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>net.joala.lab.junit.template</title>
+  <title>net.joala.lab.junit.testlet</title>
 </head>
 <body>
 <p>
-  Contains experimental classes to provide common test patterns like testing
-  methods like <code>toString()</code>, <code>hashCode()</code> and <code>equals()</code> and alike.
+  Testlets are set of tests to apply to a software under test (SUT). Testlets itself
+  contain multiple tests which are run with the provided SUT to see if it meets
+  a bunch of requirements specified through the testlet.
+</p>
+<p>
+  A typical testlet is the {@link net.joala.lab.junit.testlet.TestToString toString() testlet}:
+  It assumes that you want to put all fields of a class into the toString() output and that the
+  classname itself should be mentioned in the resulting output. The testlet verifies these
+  assumptions.
 </p>
 @since 10/4/12
 </body>

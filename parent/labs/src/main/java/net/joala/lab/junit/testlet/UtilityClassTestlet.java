@@ -1,6 +1,6 @@
 package net.joala.lab.junit.testlet;
 
-import com.google.common.base.Objects;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.annotation.Nonnull;
@@ -8,9 +8,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static java.lang.String.format;
-import static net.joala.lab.junit.testlet.AssertTemplateTest.assertNoFailures;
+import static java.lang.reflect.Modifier.isFinal;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -26,35 +25,42 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 10/5/12
  */
-// Class is abstract in order to prevent that running all tests from within your IDE
-// also starts this test.
-public abstract class TestUtilityClass {
-  private final Class<?> utilityClassUnderTest;
+@SuppressWarnings("JUnitTestClassNamingConvention")
+@Ignore("Don't execute Testlets in IDE and alike.")
+public class UtilityClassTestlet extends AbstractTestlet<Class<?>> {
 
-  private TestUtilityClass(final Class<?> utilityClassUnderTest) {
-    this.utilityClassUnderTest = utilityClassUnderTest;
+
+  /**
+   * <p>
+   * Builds the testlet with the specified class under test.
+   * </p>
+   *
+   * @param testling artifact under test
+   */
+  protected UtilityClassTestlet(@Nonnull final Class<?> testling) {
+    super(testling);
   }
 
   @Test
   public void utilityClass_should_have_private_noarg_constructor() {
     try {
-      final Constructor<?> declaredConstructor = utilityClassUnderTest.getDeclaredConstructor();
+      final Constructor<?> declaredConstructor = getTestling().getDeclaredConstructor();
       final int modifiers = declaredConstructor.getModifiers();
       assertTrue("Noarg constructor must be private.", Modifier.isPrivate(modifiers));
     } catch (NoSuchMethodException ignored) {
-      fail(format("Class %s has no noarg constructor.", utilityClassUnderTest));
+      fail(format("Class %s has no noarg constructor.", getTestling()));
     }
   }
 
   @Test
   public void utilityClass_should_be_final() {
-    assertTrue("Utility Class should be final.", Modifier.isFinal(utilityClassUnderTest.getModifiers()));
+    assertTrue("Utility Class should be final.", isFinal(getTestling().getModifiers()));
   }
 
   @Test
   public void utilityClass_noarg_constructor_should_pass() throws InvocationTargetException, IllegalAccessException, InstantiationException {
     try {
-      final Constructor<?> declaredConstructor = utilityClassUnderTest.getDeclaredConstructor();
+      final Constructor<?> declaredConstructor = getTestling().getDeclaredConstructor();
       declaredConstructor.setAccessible(true);
       try {
         declaredConstructor.newInstance();
@@ -66,17 +72,9 @@ public abstract class TestUtilityClass {
     }
   }
 
-  public static void testUtilityClass(@Nonnull final Class<?> utilityClassUnderTest) throws Throwable {
-    checkNotNull(utilityClassUnderTest, "Class under test must not be null.");
-    //noinspection AnonymousInnerClass
-    assertNoFailures(new TestUtilityClass(utilityClassUnderTest) {
-    });
+  @SuppressWarnings("ProhibitedExceptionDeclared")
+  public static UtilityClassTestlet utilityClassTestlet(@Nonnull final Class<?> utilityClassUnderTest) throws Throwable { // NOSONAR: Throwable inherited from JUnit
+    return new UtilityClassTestlet(utilityClassUnderTest);
   }
 
-  @Override
-  public String toString() {
-    return Objects.toStringHelper(this)
-            .add("utilityClassUnderTest", utilityClassUnderTest)
-            .toString();
-  }
 }

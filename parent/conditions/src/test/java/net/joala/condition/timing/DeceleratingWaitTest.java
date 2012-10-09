@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.lab.junit.testlet.TestToString.testToString;
+import static net.joala.lab.junit.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -61,6 +61,7 @@ import static org.mockito.Mockito.doThrow;
  *
  * @since 8/27/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(MockitoJUnitRunner.class)
 public class DeceleratingWaitTest {
 
@@ -191,9 +192,9 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void toString_should_contain_necessary_information() throws Throwable {
+  public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: from JUnit
     final DeceleratingWait wait = new DeceleratingWait(timeout, TIMEOUT_FACTOR_PROVIDER.get(), mockWaitFailStrategy);
-    testToString(wait);
+    toStringTestlet(wait).run();
   }
 
   @Test

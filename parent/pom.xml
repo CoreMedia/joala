@@ -41,6 +41,7 @@
     <module>labs</module>
     <module>dns</module>
     <module>core</module>
+    <module>testlets</module>
   </modules>
 
   <dependencyManagement>

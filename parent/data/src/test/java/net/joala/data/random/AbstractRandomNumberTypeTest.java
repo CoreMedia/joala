@@ -16,6 +16,7 @@
 
 package net.joala.data.random;
 
+import net.joala.lab.junit.testlet.ToStringTestlet;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
@@ -23,7 +24,6 @@ import javax.annotation.Nonnull;
 import java.util.Random;
 
 import static java.lang.Math.random;
-import static net.joala.lab.junit.testlet.TestToString.testToString;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
@@ -68,7 +68,7 @@ public class AbstractRandomNumberTypeTest {
 
   @Test
   public void toString_should_contain_necessary_information() throws Throwable {
-    testToString(new SimpleRandomNumberType(type));
+    ToStringTestlet.toStringTestlet(new SimpleRandomNumberType(type)).run();
   }
 
   @SuppressWarnings("unchecked")

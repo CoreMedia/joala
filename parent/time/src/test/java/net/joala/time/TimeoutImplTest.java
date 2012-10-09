@@ -25,15 +25,15 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.lab.junit.testlet.TestToString.testToString;
+import static net.joala.lab.junit.testlet.ToStringTestlet.toStringTestlet;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@link TimeoutImpl}.
  *
  * @since 8/25/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 public class TimeoutImplTest {
   private final DataProvider<Integer> randomPositiveInt = new RandomIntegerProvider().min(0).max(Integer.MAX_VALUE).fixate();
   private final DataProvider<Double> randomPositiveDouble = new RandomDoubleProvider().min(0d).max(Double.MAX_VALUE).fixate();
@@ -100,7 +100,7 @@ public class TimeoutImplTest {
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
-    testToString(timeout);
+    toStringTestlet(timeout).run();
   }
 
 }

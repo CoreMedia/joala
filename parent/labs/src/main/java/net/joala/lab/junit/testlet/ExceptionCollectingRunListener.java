@@ -8,14 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <p>
+ *   Listener while running the testlets which will collect any failures.
+ * </p>
  * @since 10/4/12
  */
 class ExceptionCollectingRunListener extends RunListener {
+  /**
+   * Assumption on number of test failures.
+   */
   private static final int INITIALLY_EXPECTED_FAILURE_COUNT = 5;
+  /**
+   * List of collected exceptions.
+   */
   private final List<Throwable> exceptions = new ArrayList<Throwable>(INITIALLY_EXPECTED_FAILURE_COUNT);
 
   @Override
-  public void testFailure(final Failure failure) throws Exception {
+  public void testFailure(final Failure failure) {
     exceptions.add(failure.getException());
   }
 
@@ -24,7 +33,16 @@ class ExceptionCollectingRunListener extends RunListener {
     exceptions.add(failure.getException());
   }
 
-  public void assertNoFailures() throws Throwable { // NOSONAR: Throwable comes from JUnit API
+  /**
+   * <p>
+   * Asserts that no exceptions occurred. See {@link MultipleFailureException#assertEmpty(List)}
+   * for details.
+   * </p>
+   *
+   * @throws Throwable raised by {@link MultipleFailureException#assertEmpty(List)} if any errors got reported
+   */
+  @SuppressWarnings("ProhibitedExceptionDeclared")
+  public void assertNoFailures() throws Throwable { // NOSONAR: exception Throwable inherited from JUnit API
     MultipleFailureException.assertEmpty(exceptions);
   }
 }

@@ -18,12 +18,12 @@ package net.joala.expression;
 
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.lab.junit.testlet.ToStringTestlet;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
-import static net.joala.lab.junit.testlet.TestToString.testToString;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -35,6 +35,7 @@ import static org.junit.Assert.assertThat;
  *
  * @since 8/26/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 public class AbstractExpressionTest {
   private static final DataProvider<String> TEXT_PROVIDER = new DefaultRandomStringProvider().prefix("text").fixate();
   private static final DataProvider<String> DESCRIPTION_PROVIDER = new DefaultRandomStringProvider().prefix("description").fixate();
@@ -59,10 +60,11 @@ public class AbstractExpressionTest {
     assertThat("Description should be enriched by expression's description.", description.toString(), containsString(simpleDescription));
   }
 
+  @SuppressWarnings("ProhibitedExceptionDeclared")
   @Test
-  public void toString_should_contain_necessary_information() throws Throwable {
-    final SelfDescribing expression = new MockExpression(DESCRIPTION_PROVIDER.get());
-    testToString(expression, expression.getClass().getSuperclass());
+  public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: Adopted from JUnit standard
+    final AbstractExpression<?> expression = new MockExpression(DESCRIPTION_PROVIDER.get());
+    ToStringTestlet.toStringTestlet(expression).fieldsFromClass(AbstractExpression.class).run();
   }
 
   private static class MockExpression extends AbstractExpression<Object> {

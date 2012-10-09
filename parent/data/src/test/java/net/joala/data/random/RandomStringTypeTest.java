@@ -9,7 +9,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
-import static net.joala.lab.junit.testlet.TestToString.testToString;
+import static net.joala.lab.junit.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -84,7 +84,7 @@ public class RandomStringTypeTest {
 
   @Test
   public void toString_should_meet_requirements() throws Throwable {
-    testToString(type);
+    toStringTestlet(type).run();
   }
 
   @Parameterized.Parameters
