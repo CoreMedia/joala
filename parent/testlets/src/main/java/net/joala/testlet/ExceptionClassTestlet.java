@@ -1,10 +1,9 @@
-package net.joala.lab.junit.testlet;
+package net.joala.testlet;
 
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
-import org.junit.rules.ExpectedException;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;

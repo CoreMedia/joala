@@ -1,4 +1,4 @@
-package net.joala.lab.junit.testlet;
+package net.joala.testlet;
 
 /**
  * <p>

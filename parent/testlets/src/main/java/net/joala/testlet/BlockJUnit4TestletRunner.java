@@ -1,4 +1,4 @@
-package net.joala.lab.junit.testlet;
+package net.joala.testlet;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;

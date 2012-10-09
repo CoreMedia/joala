@@ -1,4 +1,4 @@
-package net.joala.lab.junit.testlet;
+package net.joala.testlet;
 
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
