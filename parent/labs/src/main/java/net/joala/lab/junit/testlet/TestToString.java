@@ -1,4 +1,4 @@
-package net.joala.lab.junit.template;
+package net.joala.lab.junit.testlet;
 
 import net.joala.core.reflection.SetAccessibleAction;
 import org.hamcrest.Matcher;
@@ -14,7 +14,7 @@ import java.util.Collection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.security.AccessController.doPrivileged;
-import static net.joala.lab.junit.template.AssertTemplateTest.assertNoFailures;
+import static net.joala.lab.junit.testlet.AssertTemplateTest.assertNoFailures;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;

@@ -23,7 +23,7 @@ import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
-import static net.joala.lab.junit.template.TestToString.testToString;
+import static net.joala.lab.junit.testlet.TestToString.testToString;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;

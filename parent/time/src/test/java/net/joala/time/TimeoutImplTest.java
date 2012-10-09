@@ -19,15 +19,13 @@ package net.joala.time;
 import net.joala.data.DataProvider;
 import net.joala.data.random.RandomDoubleProvider;
 import net.joala.data.random.RandomIntegerProvider;
-import org.hamcrest.SelfDescribing;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.lab.junit.template.TestToString.testToString;
-import static org.hamcrest.core.StringContains.containsString;
+import static net.joala.lab.junit.testlet.TestToString.testToString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 

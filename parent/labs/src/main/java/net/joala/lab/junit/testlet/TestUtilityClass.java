@@ -1,4 +1,4 @@
-package net.joala.lab.junit.template;
+package net.joala.lab.junit.testlet;
 
 import com.google.common.base.Objects;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import java.lang.reflect.Modifier;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static java.lang.String.format;
-import static net.joala.lab.junit.template.AssertTemplateTest.assertNoFailures;
+import static net.joala.lab.junit.testlet.AssertTemplateTest.assertNoFailures;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;

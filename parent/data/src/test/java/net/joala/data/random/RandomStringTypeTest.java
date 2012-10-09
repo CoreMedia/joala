@@ -2,7 +2,6 @@ package net.joala.data.random;
 
 import com.google.common.base.Objects;
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,7 +9,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 
 import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
-import static net.joala.lab.junit.template.TestToString.testToString;
+import static net.joala.lab.junit.testlet.TestToString.testToString;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;

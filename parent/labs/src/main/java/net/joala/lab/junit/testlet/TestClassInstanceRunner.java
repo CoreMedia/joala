@@ -1,4 +1,4 @@
-package net.joala.lab.junit.template;
+package net.joala.lab.junit.testlet;
 
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.BlockJUnit4ClassRunner;

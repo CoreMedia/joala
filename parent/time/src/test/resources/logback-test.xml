@@ -27,7 +27,7 @@
     <appender-ref ref="stdout"/>
   </logger>
 
-  <logger name="net.joala.lab.junit.template" additivity="false" level="debug">
+  <logger name="net.joala.lab.junit.testlet" additivity="false" level="debug">
     <appender-ref ref="stdout"/>
   </logger>
 

@@ -22,7 +22,6 @@ import net.joala.data.DataProvider;
 import net.joala.data.DataProvidingException;
 import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.data.random.RandomDoubleProvider;
-import net.joala.lab.junit.template.TestToString;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
@@ -43,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.lab.junit.template.TestToString.testToString;
+import static net.joala.lab.junit.testlet.TestToString.testToString;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
