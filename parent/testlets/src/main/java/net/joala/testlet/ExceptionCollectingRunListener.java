@@ -1,5 +1,6 @@
 package net.joala.testlet;
 
+import com.google.common.base.Objects;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 import org.junit.runners.model.MultipleFailureException;
@@ -44,5 +45,12 @@ class ExceptionCollectingRunListener extends RunListener {
   @SuppressWarnings("ProhibitedExceptionDeclared")
   public void assertNoFailures() throws Throwable { // NOSONAR: exception Throwable inherited from JUnit API
     MultipleFailureException.assertEmpty(exceptions);
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("exceptions", exceptions)
+            .toString();
   }
 }
