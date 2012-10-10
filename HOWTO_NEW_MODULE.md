@@ -3,8 +3,8 @@
 Here are the steps to perform if you want to create a new Joala module. Let's assume you want to create a new
 module named `dolor`.
 
-1. Create a folder below `parent/` named `dolor`
-2. Use this initial POM (a typical IDE will create it for you automatically):
+1. **Create a folder** below `parent/` named `dolor`
+2. **Use this initial POM** (a typical IDE will create it for you automatically):
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -22,13 +22,13 @@ module named `dolor`.
         <version>0.3.0-SNAPSHOT</version>
       </parent>
 
-      <artifactId>joala-base</artifactId>
+      <artifactId>joala-dolor</artifactId>
 
     </project>
     ```
-3. Set a name prefixed with *Joala*. Here: *Joala Dolor*.
+3. **Set a name** prefixed with *Joala*. Here: *Joala Dolor*.
     This name will be used especially on site generation.
-4. Set a description. It is recommended to place it into `CDATA`:
+4. **Set a description.** It is recommended to place it into `CDATA`:
 
     ```xml
     <description><![CDATA[
@@ -37,3 +37,5 @@ module named `dolor`.
 
    The description will be automatically rendered in the Maven site as description of this module. (Default behavior
    of `maven-site-plugin`.)
+5. **Create a Java package** corresponding to the module name. Thus here `net.joala.dolor` is recommended.
+    This eases locating classes in module hierarchy a lot.
