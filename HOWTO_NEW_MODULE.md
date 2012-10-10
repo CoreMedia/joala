@@ -34,6 +34,7 @@ module named `dolor`.
     <description><![CDATA[
       Provides some dolor for ipsum and sit amet... Lorem!
     ]]></description>
+    ```
 
    The description will be automatically rendered in the Maven site as description of this module. (Default behavior
    of `maven-site-plugin`.)
