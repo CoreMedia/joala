@@ -14,14 +14,15 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.coremedia</groupId>
     <artifactId>coremedia-parent</artifactId>
     <version>8</version>
     <!--suppress MavenModelInspection -->
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
@@ -425,7 +426,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence/>
                 <requireNoRepositories>
                   <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
                   </message>
@@ -436,13 +437,28 @@
                 <requirePluginVersions>
                   <message>Best Practice is to always define plugin versions!</message>
                 </requirePluginVersions>
-                <requireUpperBoundDeps />
+                <requireUpperBoundDeps/>
                 <bannedDependencies>
+                  <message><![CDATA[
+Joala tries to avoid having any of the following dependencies:
+
+  * Logging frameworks different to slf4j because we recommend and use slf4j. Use
+    appropriate slf4j bridges to support commons-logging etc. from thirdparty
+    dependencies.
+  * JUnit - as Joala uses Hamcrest Libraries for Matchers they collide with
+    junit:junit. It is preferred to use junit:junit-dep instead.
+  * Joala Labs: Joala Labs are experimental and thus they must not leak into
+    any transitive dependency inside the Joala project.
+                  ]]></message>
+                  <searchTransitive>true</searchTransitive>
                   <excludes>
                     <exclude>*:commons-logging</exclude>
                     <exclude>*:log4j</exclude>
                     <!-- Use junit-dep instead -->
                     <exclude>junit:junit</exclude>
+                    <!-- joala-labs must only be used internally -->
+                    <exclude>${project.groupId}:joala-labs:*:jar:compile</exclude>
+                    <exclude>${project.groupId}:joala-labs:*:jar:runtime</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>
