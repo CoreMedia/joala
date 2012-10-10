@@ -58,6 +58,26 @@
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-core</artifactId>
     </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <scope>runtime</scope>
+    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <!-- Ignore for:
+            org.slf4j:jcl-over-slf4j:jar:1.7.1:runtime
+          -->
+          <ignoreNonCompile>${dependency.ignore.approved.noncompile}</ignoreNonCompile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
