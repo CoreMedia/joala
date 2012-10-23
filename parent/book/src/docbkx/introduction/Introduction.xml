@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0"
+      xml:lang="en"
+      xml:id="book-introduction"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml5.0/xsd/docbook.xsd"
+        >
+  <chapter xml:id="introduction">
+    <info>
+      <abstract>
+        <para>
+          Get to know a small history of Joala and what you can expect from this book.
+        </para>
+      </abstract>
+    </info>
+    <title>Introduction</title>
+    <para>
+      Joala is an offspring of an internal development project started in 2011 at CoreMedia AG.
+      The origin of Joala is the module conditions. <glossterm baseform="condition">Conditions</glossterm>
+      implement a concept of busy waiting in your tests in order to execute the tests as fast as possible
+      still being able to wait for a state of a given system.
+    </para>
+  </chapter>
+</book>

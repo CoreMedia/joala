@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0"
+      xml:lang="en"
+      xml:id="JoalaADay"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml5.0/xsd/docbook.xsd"
+        >
+  <info>
+    <productname>Joala</productname>
+    <productnumber>
+      <?eval ${project.version}?>
+    </productnumber>
+    <title>Joala A Day</title>
+    <subtitle>... keeps the bug fixer away</subtitle>
+    <copyright>
+      <year><?eval ${project.inceptionYear}?></year>
+      <holder><?eval ${project.organization.name}?></holder>
+    </copyright>
+    <xi:include href="info/Authors.xml" xpointer="mmichael"/>
+  </info>
+  <xi:include href="introduction/Introduction.xml" xpointer="introduction"/>
+  <!--
+    <xi:include href="day1/Matchers.xml"/>
+    <xi:include href="day2/Expressions.xml"/>
+    <xi:include href="day3/Conditions.xml"/>
+  -->
+  <index/>
+  <xi:include href="glossary/Glossary.xml" xpointer="glossary"/>
+</book>

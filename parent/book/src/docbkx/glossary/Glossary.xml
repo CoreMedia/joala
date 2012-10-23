@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0"
+      xml:lang="en"
+      xml:id="book-glossary"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml5.0/xsd/docbook.xsd"
+        >
+  <glossary xml:id="glossary">
+    <info>
+      <title>Glossary</title>
+    </info>
+    <glossdiv>
+      <glossentry xml:id="condition">
+        <glossterm>Condition</glossterm>
+        <glossdef>
+          <para>
+            ... about conditions.
+          </para>
+          <glossseealso otherterm="expression"/>
+          <glossseealso otherterm="matcher"/>
+          <glossseealso otherterm="timeout"/>
+        </glossdef>
+      </glossentry>
+      <glossentry xml:id="expression">
+        <glossterm>Expression</glossterm>
+        <glossdef>
+          <para>
+            ... about expressions.
+          </para>
+          <glossseealso otherterm="condition"/>
+          <glossseealso otherterm="matcher"/>
+          <glossseealso otherterm="timeout"/>
+        </glossdef>
+      </glossentry>
+      <glossentry xml:id="matcher">
+        <glossterm>Matcher</glossterm>
+        <glossdef>
+          <para>
+            ... about matchers.
+          </para>
+          <glossseealso otherterm="condition"/>
+          <glossseealso otherterm="expression"/>
+          <glossseealso otherterm="timeout"/>
+        </glossdef>
+      </glossentry>
+      <glossentry xml:id="timeout">
+        <glossterm>Timeout</glossterm>
+        <glossdef>
+          <para>
+            ... about timeouts.
+          </para>
+          <glossseealso otherterm="condition"/>
+          <glossseealso otherterm="expression"/>
+          <glossseealso otherterm="matcher"/>
+        </glossdef>
+      </glossentry>
+    </glossdiv>
+  </glossary>
+</book>

@@ -42,6 +42,7 @@
     <module>dns</module>
     <module>core</module>
     <module>testlets</module>
+    <module>book</module>
   </modules>
 
   <dependencyManagement>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0"
+      xml:lang="en"
+      xml:id="Authors"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml5.0/xsd/docbook.xsd"
+        >
+  <info>
+    <productnumber>
+      <?eval ${project.version}?>
+    </productnumber>
+    <title>Authors</title>
+    <authorgroup xml:id="authors">
+      <author xml:id="mmichael">
+        <personname>Mark Michaelis</personname>
+        <orgname>CoreMedia</orgname>
+        <address>Hamburg, Germany</address>
+        <email>mark.michaelis@coremedia.com</email>
+      </author>
+    </authorgroup>
+  </info>
+</book>
