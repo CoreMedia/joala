@@ -22,6 +22,8 @@ import com.google.common.base.Objects;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -44,6 +46,7 @@ import java.util.concurrent.TimeUnit;
 // This class was in part derived from org.openqa.selenium.support.ui.FluentWait,
 // which is available under an Apache 2.0 license.
 public class DeceleratingWait implements Wait {
+  private static final Logger LOG = LoggerFactory.getLogger(DeceleratingWait.class);
 
   @VisibleForTesting
   static final long DEFAULT_TIMEOUT_MILLIS = 500L;
@@ -143,6 +146,12 @@ public class DeceleratingWait implements Wait {
     final long startTimeMillis = nowMillis();
     final long timeoutMillis = timeout.in(TimeUnit.MILLISECONDS, timeoutFactor);
     final long deadlineTimeMillis = startTimeMillis + timeoutMillis;
+    if (LOG.isDebugEnabled()) {
+      LOG.debug("Start waiting for:");
+      LOG.debug("  state query: .... {}", stateQuery);
+      LOG.debug("  matcher: ........ {}", matcher);
+      LOG.debug("  timeout (ms): ... {}", timeoutMillis);
+    }
     // At first, wait 10ms between checks.
     long delay = INITIAL_DELAY;
     // We keep track of the last exception to be able to rethrow it.
@@ -160,6 +169,7 @@ public class DeceleratingWait implements Wait {
         lastState = result;
       } catch (IgnorableStateQueryException e) {
         // Remember the exception for rethrowing.
+        LOG.trace("Ignoring exception for now. Might rethrow later if failed with error.", e);
         lastException = e;
       }
       final long afterEvaluationTimeMillis = nowMillis();
