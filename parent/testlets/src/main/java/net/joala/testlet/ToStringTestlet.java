@@ -24,6 +24,7 @@ import static java.security.AccessController.doPrivileged;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assume.assumeTrue;
 
 /**
  * <p>
@@ -52,6 +53,7 @@ public class ToStringTestlet<T> extends AbstractTestlet<T> {
   private boolean enumFields = true;
   private Pattern excludeNamePattern;
   private Pattern excludeTypeNamePattern;
+  private boolean ignoreClassname;
 
   /**
    * <p>
@@ -68,7 +70,9 @@ public class ToStringTestlet<T> extends AbstractTestlet<T> {
 
   @Test
   public void toString_should_contain_classname() {
-    assertThat("toString should contain classname", getTestling().toString(), containsString(getTestling().getClass().getSimpleName()));
+    if (!ignoreClassname) {
+      assertThat("toString should contain classname", getTestling().toString(), containsString(getTestling().getClass().getSimpleName()));
+    }
   }
 
   @SuppressWarnings("unchecked")
@@ -106,6 +110,19 @@ public class ToStringTestlet<T> extends AbstractTestlet<T> {
   @Nonnull
   public ToStringTestlet<T> includeConstantFields() {
     constantFields = true;
+    return this;
+  }
+
+  /**
+   * <p>
+   * Especially if you use mocking frameworks the class name might be modified and thus
+   * be untestable. In these cases it is recommended to ignore the classname test.
+   * </p>
+   *
+   * @return self reference
+   */
+  public ToStringTestlet<T> ignoreClassname() {
+    ignoreClassname = true;
     return this;
   }
 
@@ -184,6 +201,7 @@ public class ToStringTestlet<T> extends AbstractTestlet<T> {
    * @param fromClass class to take the declared fields from
    * @return self reference
    */
+  @Nonnull
   public ToStringTestlet<T> fieldsFromClass(@Nonnull final Class<? super T> fromClass) {
     fieldsFromClass = checkNotNull(fromClass, "fromClass must not be null.");
     return this;
