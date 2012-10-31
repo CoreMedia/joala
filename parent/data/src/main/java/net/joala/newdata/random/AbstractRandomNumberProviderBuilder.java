@@ -84,31 +84,13 @@ public abstract class AbstractRandomNumberProviderBuilder<T extends Number>
    * In this case it is expected that further configuration is prohibited.
    */
   protected final void checkBuiltState() {
-    checkState(gotBuilt, "An instance of the random number provider already got created. Further configuration " +
+    checkState(!gotBuilt, "An instance of the random number provider already got created. Further configuration " +
             "prohibited.");
   }
-
-  /**
-   * <p>
-   * Validate if the given number range is valid. If lower bound is equal to upper bound it is
-   * considered to be valid although only the very exact number will be provided.
-   * </p>
-   *
-   * @param lowerBound lower bound of the random range
-   * @param upperBound upper bound of the random range
-   * @return {@code true} if the range is valid; {@code false} if it is not; if false {@link #build()} will
-   *         raise an exception to signal that there is a configuration error.
-   */
-  protected abstract boolean isValidRange(@Nonnull T lowerBound, @Nonnull T upperBound);
 
   @Override
   @Nonnull
   public Provider<T> build() {
-    checkState(
-            minValue == null
-                    || maxValue == null
-                    || isValidRange(minValue, maxValue),
-            "Maximum value must be greater or equal to minimum value.");
     gotBuilt = true;
     // For if to use checkState here to prevent multiple calls to build see bottom of class.
     return newProvider(minValue, maxValue, randomProvider);

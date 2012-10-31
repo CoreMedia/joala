@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 import javax.inject.Provider;
 import java.util.Random;
 
+import static net.joala.newdata.random.PoorMansReference.ref;
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
@@ -315,25 +316,6 @@ public class AbstractRandomNumberProviderTest {
     @Override
     public FluentNumberRange<Long> max(@Nonnull final Long maxValue) {
       throw new UnsupportedOperationException("Unsupported here.");
-    }
-  }
-
-
-  private static <T> PoorMansReference<T> ref() {
-    return new PoorMansReference<T>();
-  }
-
-  // In order to prevent cyclic dependencies to joala-data we have to use our
-  // own reference here.
-  private static final class PoorMansReference<T> {
-    private T value;
-
-    public T get() {
-      return value;
-    }
-
-    public void set(final T value) {
-      this.value = value;
     }
   }
 
