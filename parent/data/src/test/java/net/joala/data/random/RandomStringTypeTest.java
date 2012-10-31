@@ -1,7 +1,8 @@
 package net.joala.data.random;
 
 import com.google.common.base.Objects;
-import org.hamcrest.Matcher;
+import org.hamcrest.core.AllOf;
+import org.hamcrest.number.OrderingComparison;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,10 +11,8 @@ import java.util.Collection;
 
 import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
 
@@ -55,10 +54,12 @@ public class RandomStringTypeTest {
     final String str = type.get(rangeChr);
     for (int i = 0; i < str.length(); i++) {
       final char chr = str.charAt(i);
-      final Matcher<Character> upperBoundMatcher = lessThanOrEqualTo((char) endChr);
-      final Matcher<Character> lowerBoundMatcher = greaterThanOrEqualTo((char) startChr);
       assertThat("Character should be within type limits",
-              chr, allOf(lowerBoundMatcher, upperBoundMatcher));
+              chr,
+              AllOf.<Character>allOf(
+                      OrderingComparison.<Character>greaterThanOrEqualTo((char) startChr),
+                      OrderingComparison.<Character>lessThanOrEqualTo((char) endChr))
+      );
     }
   }
 
