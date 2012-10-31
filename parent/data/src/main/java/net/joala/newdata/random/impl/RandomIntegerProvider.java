@@ -70,6 +70,7 @@ public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer>
     }
 
     @Override
+    @Nonnull
     protected Provider<Integer> newProvider(final Integer minValue, final Integer maxValue, final Provider<Random> randomProvider) {
       return new RandomIntegerProvider(minValue, maxValue, randomProvider);
     }

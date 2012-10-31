@@ -1,5 +1,6 @@
 package net.joala.newdata.random;
 
+import javax.annotation.Nonnull;
 import javax.inject.Provider;
 
 /**
@@ -16,5 +17,6 @@ public interface NumberProviderBuilder<T extends Number, P extends Provider<T>>
    * </p>
    * @return prepared and configured number provider
    */
+  @Nonnull
   P build();
 }
