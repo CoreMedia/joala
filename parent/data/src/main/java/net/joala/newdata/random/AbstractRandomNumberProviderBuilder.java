@@ -1,5 +1,7 @@
 package net.joala.newdata.random;
 
+import com.google.common.base.Objects;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.NotThreadSafe;
@@ -14,6 +16,7 @@ import static com.google.common.base.Preconditions.checkState;
  * inner classes of the NumberProvider implementations.
  * </p>
  *
+ * @param <T> type of the numbers generated
  * @since 10/24/12
  */
 @NotThreadSafe
@@ -128,6 +131,16 @@ public abstract class AbstractRandomNumberProviderBuilder<T extends Number>
   @Override
   public T get() {
     return build().get();
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("minValue", minValue)
+            .add("maxValue", maxValue)
+            .add("randomProvider", randomProvider)
+            .add("gotBuilt", gotBuilt)
+            .toString();
   }
 }
 

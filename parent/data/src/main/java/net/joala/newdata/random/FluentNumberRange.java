@@ -15,6 +15,7 @@ import javax.annotation.Nonnull;
  * <li><em>uninitialized</em> means to use a convenient default value.</li>
  * </ul>
  *
+ * @param <T> type of the numbers generated
  * @since 10/23/12
  */
 public interface FluentNumberRange<T extends Number> {
@@ -23,6 +24,7 @@ public interface FluentNumberRange<T extends Number> {
    * <p>
    * Set minimum value the random numbers might reach.
    * </p>
+   *
    * @param minValue minimum value
    * @return self reference
    */
@@ -33,6 +35,7 @@ public interface FluentNumberRange<T extends Number> {
    * <p>
    * Set maximum value the random numbers might reach.
    * </p>
+   *
    * @param maxValue maximum value
    * @return self reference
    */
