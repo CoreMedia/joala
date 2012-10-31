@@ -137,11 +137,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <configuration>
-          <!-- Ignore for:
-            org.springframework:spring-core
-            org.springframework:spring-beans
-            org.springframework:spring-context
-          -->
           <ignoreNonCompile>${dependency.ignore.approved.noncompile}</ignoreNonCompile>
         </configuration>
       </plugin>
