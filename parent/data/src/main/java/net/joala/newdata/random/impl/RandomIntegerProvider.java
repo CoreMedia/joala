@@ -9,6 +9,9 @@ import javax.inject.Provider;
 import java.util.Random;
 
 /**
+ * <p>
+ *   Provides random integer values.
+ * </p>
  * @since 10/23/12
  */
 public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer> {
