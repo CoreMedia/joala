@@ -1,24 +1,22 @@
 package net.joala.newdata.random;
 
-import org.hamcrest.core.AllOf;
-import org.hamcrest.number.OrderingComparison;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
 import org.mockito.Mock;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Provider;
 import java.util.Random;
 
-import static net.joala.newdata.random.PoorMansReference.ref;
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
-import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
@@ -235,9 +233,9 @@ public class AbstractRandomNumberProviderTest {
     final MockedProvider numberProvider = p.get();
     numberProvider.get();
     assertThat(numberProvider.getCapturedPercentage(),
-            AllOf.<Double>allOf(
-                    OrderingComparison.<Double>greaterThanOrEqualTo(0d),
-                    OrderingComparison.<Double>lessThanOrEqualTo(1d))
+            allOf(greaterThanOrEqualTo(0d),
+                    lessThanOrEqualTo(1d)
+            )
     );
   }
 
@@ -317,6 +315,25 @@ public class AbstractRandomNumberProviderTest {
     @Override
     public FluentNumberRange<Long> max(@Nonnull final Long maxValue) {
       throw new UnsupportedOperationException("Unsupported here.");
+    }
+  }
+
+
+  private static <T> PoorMansReference<T> ref() {
+    return new PoorMansReference<T>();
+  }
+
+  // In order to prevent cyclic dependencies to joala-data we have to use our
+  // own reference here.
+  private static final class PoorMansReference<T> {
+    private T value;
+
+    public T get() {
+      return value;
+    }
+
+    public void set(final T value) {
+      this.value = value;
     }
   }
 

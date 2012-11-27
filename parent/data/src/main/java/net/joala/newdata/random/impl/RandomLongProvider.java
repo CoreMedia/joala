@@ -65,7 +65,11 @@ public class RandomLongProvider extends AbstractRandomNumberProvider<Long> {
     }
 
     @Override
-    @Nonnull
+    protected boolean isValidRange(@Nonnull final Long lowerBound, @Nonnull final Long upperBound) {
+      return Long.compare(lowerBound, upperBound) <= 0;
+    }
+
+    @Override
     protected Provider<Long> newProvider(final Long minValue, final Long maxValue, final Provider<Random> randomProvider) {
       return new RandomLongProvider(minValue, maxValue, randomProvider);
     }

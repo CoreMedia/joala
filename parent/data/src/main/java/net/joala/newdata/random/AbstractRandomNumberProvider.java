@@ -15,7 +15,6 @@ import static com.google.common.base.Optional.fromNullable;
  * Convenience base class for random number providers.
  * </p>
  *
- * @param <T> type of the numbers generated
  * @since 10/24/12
  */
 public abstract class AbstractRandomNumberProvider<T extends Number>

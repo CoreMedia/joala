@@ -9,9 +9,6 @@ import javax.inject.Provider;
 import java.util.Random;
 
 /**
- * <p>
- *   Provides random integer values.
- * </p>
  * @since 10/23/12
  */
 public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer> {
@@ -68,7 +65,11 @@ public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer>
     }
 
     @Override
-    @Nonnull
+    protected boolean isValidRange(@Nonnull final Integer lowerBound, @Nonnull final Integer upperBound) {
+      return Integer.compare(lowerBound, upperBound) <= 0;
+    }
+
+    @Override
     protected Provider<Integer> newProvider(final Integer minValue, final Integer maxValue, final Provider<Random> randomProvider) {
       return new RandomIntegerProvider(minValue, maxValue, randomProvider);
     }
