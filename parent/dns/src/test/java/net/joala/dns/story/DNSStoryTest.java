@@ -8,7 +8,6 @@ import net.joala.expression.Expression;
 import net.joala.expression.net.UriStatusCodeExpression;
 import net.joala.lab.net.EmbeddedWebservice;
 import net.joala.lab.net.Response;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -45,6 +44,7 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 10/6/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 public class DNSStoryTest extends StoryBaseTest {
   @Rule
   public final TestWatcher nameStoreTestWatcher = new NameStoreTestWatcher();
@@ -106,6 +106,13 @@ public class DNSStoryTest extends StoryBaseTest {
   @Named
   @Singleton
   public static class Steps {
+    // This constant replaces a random value which actually might be a
+    // matching host by random. Thus to provide repeatable results the
+    // hostname is fixed here. If for some reason this name is ever
+    // registered, replace by a different host.
+    private static final String UNKNOWN_HOST_1 = "vcpoisadfjh.cghq.fdao";
+    private static final String UNKNOWN_HOST_2 = "bizoxy.roueipqw.vuf";
+
     private static final String P_HOST = "host";
     private static final String P_PORT = "port";
     private static final String P_CONTEXT = "context";
@@ -126,7 +133,7 @@ public class DNSStoryTest extends StoryBaseTest {
     }
 
     public void given_an_URI_U_with_unknown_host(final Reference<URI> u) throws IOException {
-      final String host = RandomStringUtils.randomAlphabetic(10);
+      final String host = UNKNOWN_HOST_1;
       final int port = freePort();
       final String context = "/";
       final URI uri = URI.create(String.format("http://%s:%d%s", host, port, context));
@@ -181,7 +188,7 @@ public class DNSStoryTest extends StoryBaseTest {
     }
 
     public void given_host_H_is_normally_resolved_to_IP_IO(final Reference<String> h, final Reference<String> io) throws UnknownHostException {
-      final String hostName = RandomStringUtils.randomAlphabetic(10);
+      final String hostName = UNKNOWN_HOST_2;
       final InetAddress normalIP = InetAddresses.increment(InetAddress.getLocalHost());
       h.set(hostName);
       h.setProperty(P_ADDRESS, normalIP);
