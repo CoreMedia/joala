@@ -80,10 +80,9 @@
       <artifactId>javax.inject</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- Using junit-dep as we include hamcrest-matchers ourselves. -->
     <dependency>
       <groupId>junit</groupId>
-      <artifactId>junit-dep</artifactId>
+      <artifactId>junit</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>

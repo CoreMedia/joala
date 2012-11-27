@@ -376,7 +376,7 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.12.3</version>
           <configuration>
-            <junitArtifactName>junit:junit-dep</junitArtifactName>
+            <junitArtifactName>junit:junit</junitArtifactName>
           </configuration>
         </plugin>
         <!-- Used to check dependency/plugin versions for updates or to adjust the version for Joala -->
@@ -459,8 +459,8 @@ Joala tries to avoid having any of the following dependencies:
                   <excludes>
                     <exclude>*:commons-logging</exclude>
                     <exclude>*:log4j</exclude>
-                    <!-- Use junit-dep instead -->
-                    <exclude>junit:junit</exclude>
+                    <!-- Use junit instead; since JUnit 4.11 -->
+                    <exclude>junit:junit-dep</exclude>
                     <!-- joala-labs must only be used internally -->
                     <exclude>${project.groupId}:joala-labs:*:jar:compile</exclude>
                     <exclude>${project.groupId}:joala-labs:*:jar:runtime</exclude>
