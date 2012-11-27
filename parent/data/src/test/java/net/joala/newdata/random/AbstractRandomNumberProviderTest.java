@@ -13,10 +13,10 @@ import javax.inject.Provider;
 import java.util.Random;
 
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.number.OrderingComparison.greaterThanOrEqualTo;
+import static org.hamcrest.number.OrderingComparison.lessThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assume.assumeThat;
@@ -104,7 +104,7 @@ public class AbstractRandomNumberProviderTest {
     final PoorMansReference<MockedProvider> P = ref();
     given_random_generator_R(R);
     when_I_create_a_random_number_provider_P_with_random_generator_R(P, R);
-    then_random_generator_is_used_for_random_number_generation(P, R);
+    then_random_generator_R_is_used_for_random_numbers_created_with_provider_P(P, R);
   }
 
   @Test
@@ -239,7 +239,7 @@ public class AbstractRandomNumberProviderTest {
     );
   }
 
-  private void then_random_generator_is_used_for_random_number_generation(
+  private void then_random_generator_R_is_used_for_random_numbers_created_with_provider_P(
           final PoorMansReference<MockedProvider> p,
           final PoorMansReference<Random> r) {
     final MockedProvider mockedProvider = p.get();
