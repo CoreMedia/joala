@@ -106,14 +106,19 @@ public class EmbeddedWebservice {
    */
   public EmbeddedWebservice(@Nonnull final String context, final int port) throws IOException {
     checkNotNull(context, "Context must not be null. For root context use '/'.");
-    this.context = context;
-    this.port = port;
-    final InetSocketAddress address = new InetSocketAddress(port);
-    server = HttpServer.create(address, 0);
-    preparedResponsesHttpHandler = new PreparedResponsesHttpHandlerImpl();
-    server.createContext(this.context, preparedResponsesHttpHandler);
-    server.setExecutor(null);
-    clientUri = URI.create(String.format("http://%s:%d%s", getByName(null).getHostName(), this.port, context));
+    try {
+      this.context = context;
+      this.port = port;
+      final InetSocketAddress address = new InetSocketAddress(port);
+      server = HttpServer.create(address, 0);
+      preparedResponsesHttpHandler = new PreparedResponsesHttpHandlerImpl();
+      server.createContext(this.context, preparedResponsesHttpHandler);
+      server.setExecutor(null);
+      clientUri = URI.create(String.format("http://%s:%d%s", getByName(null).getHostName(), this.port, context));
+    } catch (IOException e) {
+      throw new IOException("Failed to prepare embedded webservice for " + context + ':' + port, e);
+    }
+    LOG.info("Embedded Webservice ready to start for " + context + ':' + port);
   }
 
   /**
@@ -134,7 +139,7 @@ public class EmbeddedWebservice {
   public void start() {
     checkState(server != null, "Server cannot be restarted.");
     server.start();
-    LOG.debug("Started embedded webservice at port {} with context {}.", port, context);
+    LOG.info("Started embedded webservice at port {} with context {}.", port, context);
   }
 
   /**
@@ -144,7 +149,7 @@ public class EmbeddedWebservice {
     server.stop(1);
     preparedResponsesHttpHandler.clearResponses();
     server = null;
-    LOG.debug("Stopped embedded webservice");
+    LOG.info("Stopped embedded webservice");
   }
 
   /**

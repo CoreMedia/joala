@@ -21,6 +21,7 @@ package net.joala.bdd.watcher;
 
 import com.google.common.base.Strings;
 import org.junit.internal.AssumptionViolatedException;
+import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,7 @@ import static java.lang.Math.max;
  *
  * @since 6/2/12
  */
-public class JUnitScenarioWatcher extends JUnit411TestWatcher {
+public class JUnitScenarioWatcher extends TestWatcher {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitScenarioWatcher.class);
   private static final Pattern INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN = Pattern.compile("([A-Z][^A-Z0-9]*|[0-9]+)");
   private static final Pattern REMOVE_TEST_SUFFIX_PATTERN = Pattern.compile("I?Test$");
