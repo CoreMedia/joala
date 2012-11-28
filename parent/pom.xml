@@ -46,6 +46,7 @@
     <module>core</module>
     <module>testlets</module>
     <module>book</module>
+    <module>expressions-library</module>
   </modules>
 
   <dependencyManagement>
