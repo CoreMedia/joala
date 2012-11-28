@@ -27,7 +27,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.net.HttpURLConnection;
@@ -92,7 +91,6 @@ public class UriStatusCodeExpressionTest {
   }
 
   @Test
-  @Ignore
   public void get_should_work_for_HTTP_NOT_FOUND() throws Exception {
     final int expectedStatusCode = HttpURLConnection.HTTP_NOT_FOUND;
     webservice.getHttpHandler().feedResponses(statusCode(expectedStatusCode));

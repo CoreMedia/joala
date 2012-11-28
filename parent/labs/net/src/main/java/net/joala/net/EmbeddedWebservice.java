@@ -21,18 +21,37 @@ package net.joala.net;
 
 import com.google.common.base.Objects;
 import com.sun.net.httpserver.HttpServer;
+import net.joala.condition.Condition;
+import net.joala.condition.DefaultConditionFactory;
+import net.joala.expression.AbstractExpression;
+import net.joala.expression.ExpressionEvaluationException;
+import net.joala.time.TimeoutImpl;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.InetSocketAddress;
 import java.net.URI;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
+import static java.lang.String.format;
 import static java.net.InetAddress.getByName;
 import static net.joala.net.PortUtils.freePort;
+import static net.joala.net.StatusCodeResponse.statusCode;
+import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
  * <p>
@@ -47,6 +66,7 @@ public class EmbeddedWebservice {
    * Logging instance.
    */
   private static final Logger LOG = LoggerFactory.getLogger(EmbeddedWebservice.class);
+  private static final TimeoutImpl SERVER_STARTUP_TIMEOUT = new TimeoutImpl(5L, TimeUnit.SECONDS);
 
   /**
    * Server to bind to port.
@@ -114,7 +134,7 @@ public class EmbeddedWebservice {
       preparedResponsesHttpHandler = new PreparedResponsesHttpHandlerImpl();
       server.createContext(this.context, preparedResponsesHttpHandler);
       server.setExecutor(null);
-      clientUri = URI.create(String.format("http://%s:%d%s", getByName(null).getHostName(), this.port, context));
+      clientUri = URI.create(format("http://%s:%d%s", getByName(null).getHostName(), this.port, context));
     } catch (IOException e) {
       throw new IOException("Failed to prepare embedded webservice for " + context + ':' + port, e);
     }
@@ -139,7 +159,26 @@ public class EmbeddedWebservice {
   public void start() {
     checkState(server != null, "Server cannot be restarted.");
     server.start();
+    preparedResponsesHttpHandler.feedResponses(statusCode(HttpURLConnection.HTTP_OK));
+    final DefaultHttpClient httpClient = getStartupHttpClient();
+    try {
+      getStartupCondition(httpClient).assumeThat(equalTo(HttpURLConnection.HTTP_OK));
+    } finally {
+      httpClient.getConnectionManager().shutdown();
+    }
     LOG.info("Started embedded webservice at port {} with context {}.", port, context);
+  }
+
+  private Condition<Integer> getStartupCondition(final DefaultHttpClient httpClient) {
+    return new DefaultConditionFactory(SERVER_STARTUP_TIMEOUT).condition(new ServerStartupStatusCodeExpression(httpClient));
+  }
+
+  private DefaultHttpClient getStartupHttpClient() {
+    final DefaultHttpClient httpClient = new DefaultHttpClient();
+    final HttpParams httpParams = httpClient.getParams();
+    HttpConnectionParams.setConnectionTimeout(httpParams, (int) SERVER_STARTUP_TIMEOUT.in(TimeUnit.MILLISECONDS));
+    HttpConnectionParams.setSoTimeout(httpParams, (int) SERVER_STARTUP_TIMEOUT.in(TimeUnit.MILLISECONDS));
+    return httpClient;
   }
 
   /**
@@ -173,5 +212,30 @@ public class EmbeddedWebservice {
             .add("context", context)
             .add("port", port)
             .toString();
+  }
+
+  private class ServerStartupStatusCodeExpression extends AbstractExpression<Integer> {
+    private final DefaultHttpClient httpClient;
+
+    private ServerStartupStatusCodeExpression(final DefaultHttpClient httpClient) {
+      this.httpClient = httpClient;
+    }
+
+    @Override
+    public Integer get() {
+      final HttpUriRequest httpHead = new HttpHead(clientUri);
+      try {
+        final HttpResponse response = httpClient.execute(httpHead);
+        final HttpEntity httpEntity = response.getEntity();
+        final StatusLine statusLine = response.getStatusLine();
+        final int statusCode = statusLine.getStatusCode();
+        if (httpEntity != null) {
+          EntityUtils.consume(httpEntity);
+        }
+        return statusCode;
+      } catch (IOException e) {
+        throw new ExpressionEvaluationException(format("Failure reading from URI %s.", clientUri), e);
+      }
+    }
   }
 }
