@@ -24,7 +24,6 @@
       xmlns:xi="http://www.w3.org/2001/XInclude"
       xmlns="http://docbook.org/ns/docbook"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
       xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0/xsd/docbook.xsd"
         >
   <info>
@@ -32,8 +31,25 @@
     <productnumber>
       <?eval ${project.version}?>
     </productnumber>
-    <title>Joala A Day</title>
-    <subtitle>... keeps the bug fixer away</subtitle>
+    <title>Joala</title>
+    <subtitle>
+      Enjoy Testing!
+    </subtitle>
+    <cover>
+      <para>
+        Cover, cover, cover
+      </para>
+      <mediaobject>
+        <imageobject>
+          <imagedata scale="25" fileref="media/Joala-Logo-Black.png"/>
+        </imageobject>
+      </mediaobject>
+    </cover>
+    <mediaobject>
+      <imageobject>
+        <imagedata scale="25" fileref="media/Joala-Logo-Black.png"/>
+      </imageobject>
+    </mediaobject>
     <copyright>
       <year><?eval ${project.inceptionYear}?></year>
       <holder><?eval ${project.organization.name}?></holder>
