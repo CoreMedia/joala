@@ -30,7 +30,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Collection;
 
-import static net.joala.lab.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
+import static net.joala.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 

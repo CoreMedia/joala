@@ -27,7 +27,7 @@ import org.junit.runners.Parameterized;
 
 import java.util.Collection;
 
-import static net.joala.lab.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
+import static net.joala.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;

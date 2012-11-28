@@ -17,7 +17,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.lab.junit;
+package net.joala.junit;
 
 /**
  * <p>
