@@ -168,7 +168,7 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>joala-data</artifactId>
+        <artifactId>joala-labs-data</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -481,6 +481,8 @@ Joala tries to avoid having any of the following dependencies:
                     <exclude>${project.groupId}:joala-labs-junit:*:jar:runtime</exclude>
                     <exclude>${project.groupId}:joala-labs-net:*:jar:compile</exclude>
                     <exclude>${project.groupId}:joala-labs-net:*:jar:runtime</exclude>
+                    <exclude>${project.groupId}:joala-labs-data:*:jar:compile</exclude>
+                    <exclude>${project.groupId}:joala-labs-data:*:jar:runtime</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>

@@ -45,7 +45,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>joala-data</artifactId>
+      <artifactId>joala-labs-data</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
