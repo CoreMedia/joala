@@ -17,7 +17,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.lab.net;
+package net.joala.net;
 
 import com.google.common.base.Objects;
 import com.sun.net.httpserver.HttpServer;
@@ -32,7 +32,7 @@ import java.net.URI;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 import static java.net.InetAddress.getByName;
-import static net.joala.lab.net.PortUtils.freePort;
+import static net.joala.net.PortUtils.freePort;
 
 /**
  * <p>

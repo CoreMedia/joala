@@ -17,7 +17,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.lab.net;
+package net.joala.net;
 
 import com.sun.net.httpserver.HttpExchange;
 

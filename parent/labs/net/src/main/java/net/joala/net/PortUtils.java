@@ -17,24 +17,37 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.lab.net;
+package net.joala.net;
 
-import com.sun.net.httpserver.HttpExchange;
-
-import javax.annotation.Nonnull;
 import java.io.IOException;
+import java.net.ServerSocket;
 
 /**
  * <p>
- *   A response provided by a {@link PreparedResponsesHttpHandlerImpl}.
+ * Utility methods to deal with ports.
  * </p>
+ *
  * @since 10/4/12
  */
-public interface Response {
+public final class PortUtils {
   /**
-   * Write a response to the given request.
-   * @param exchange request to handle
-   * @throws IOException in case of an error
+   * Forbid instantiation.
    */
-  void write(@Nonnull final HttpExchange exchange) throws IOException;
+  private PortUtils() {
+  }
+
+  /**
+   * Retrieve a free port on the current system.
+   *
+   * @return free port - if available
+   * @throws IOException in case of an error retrieving a free port
+   */
+  public static int freePort() throws IOException {
+    final ServerSocket server = new ServerSocket(0);
+    try {
+      return server.getLocalPort();
+    } finally {
+      server.close();
+    }
+  }
 }

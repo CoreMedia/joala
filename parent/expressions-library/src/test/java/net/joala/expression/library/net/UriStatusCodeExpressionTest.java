@@ -20,7 +20,7 @@
 package net.joala.expression.library.net;
 
 import net.joala.expression.ExpressionEvaluationException;
-import net.joala.lab.net.EmbeddedWebservice;
+import net.joala.net.EmbeddedWebservice;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.junit.After;
@@ -35,9 +35,9 @@ import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
 import static java.net.InetAddress.getByName;
-import static net.joala.lab.net.DelayedResponse.delay;
-import static net.joala.lab.net.PortUtils.freePort;
-import static net.joala.lab.net.StatusCodeResponse.statusCode;
+import static net.joala.net.DelayedResponse.delay;
+import static net.joala.net.PortUtils.freePort;
+import static net.joala.net.StatusCodeResponse.statusCode;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
 
