@@ -477,8 +477,10 @@ Joala tries to avoid having any of the following dependencies:
                     <!-- Use junit instead; since JUnit 4.11 -->
                     <exclude>junit:junit-dep</exclude>
                     <!-- joala-labs must only be used internally -->
-                    <exclude>${project.groupId}:joala-labs:*:jar:compile</exclude>
-                    <exclude>${project.groupId}:joala-labs:*:jar:runtime</exclude>
+                    <exclude>${project.groupId}:joala-labs-junit:*:jar:compile</exclude>
+                    <exclude>${project.groupId}:joala-labs-junit:*:jar:runtime</exclude>
+                    <exclude>${project.groupId}:joala-labs-net:*:jar:compile</exclude>
+                    <exclude>${project.groupId}:joala-labs-net:*:jar:runtime</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>
