@@ -24,7 +24,7 @@ import net.joala.bdd.reference.Reference;
 import net.joala.condition.ConditionFactory;
 import net.joala.dns.NameStoreTestWatcher;
 import net.joala.expression.Expression;
-import net.joala.expression.net.UriStatusCodeExpression;
+import net.joala.expression.library.net.UriStatusCodeExpression;
 import net.joala.lab.net.EmbeddedWebservice;
 import net.joala.lab.net.Response;
 import org.junit.BeforeClass;

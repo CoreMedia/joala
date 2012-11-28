@@ -17,7 +17,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.expression.net;
+package net.joala.expression.library.net;
 
 import net.joala.expression.AbstractExpression;
 import net.joala.expression.ExpressionEvaluationException;
