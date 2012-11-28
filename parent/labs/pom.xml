@@ -27,36 +27,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>joala-labs</artifactId>
+  <packaging>pom</packaging>
   <name>Joala Labs</name>
   <description><![CDATA[
     Joala Labs is a module which provides experimental features. These experimental features
     might be removed at any time without notice. Typically you will find classes in here which
     might once make it into Joala's Public API.
   ]]></description>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-  </dependencies>
+  <modules>
+    <module>junit</module>
+    <module>net</module>
+  </modules>
 
 </project>

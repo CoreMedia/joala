@@ -19,8 +19,6 @@
 
 package net.joala.lab.junit;
 
-import java.util.List;
-
 /**
  * <p>
  * Builder for parameters assuming that all parameters are singletons. Thus each single

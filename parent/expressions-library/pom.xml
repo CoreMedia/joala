@@ -37,7 +37,7 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>joala-labs</artifactId>
+      <artifactId>joala-labs-net</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
