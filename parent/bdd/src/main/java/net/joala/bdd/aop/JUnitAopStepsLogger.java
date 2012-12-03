@@ -73,14 +73,14 @@ import java.util.List;
  *
  * @since 6/1/12
  */
-@SuppressWarnings("JavaDoc")
+@SuppressWarnings({"JavaDoc", "ProhibitedExceptionDeclared", "ProhibitedExceptionThrown"})
 @Aspect
 public class JUnitAopStepsLogger {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitAopStepsLogger.class);
 
   /**
    * <p>
-   * Advisor to log steps.
+   * Adviser to log steps.
    * </p>
    *
    * @param joinPoint where we are
