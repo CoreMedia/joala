@@ -24,7 +24,6 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
 import org.hamcrest.SelfDescribing;
-import org.hamcrest.internal.SelfDescribingValue;
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
@@ -39,6 +38,8 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.Collection;
 
+import static org.hamcrest.core.AllOf.allOf;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
@@ -120,9 +121,9 @@ public class JUnitAopStepsLoggerTest {
     final SelfDescribing pseudoRef1 = new TestSelfDescribing(TEST_VALUE_1);
     final SelfDescribing pseudoRef2 = new TestSelfDescribing(TEST_VALUE_2);
     _.given_this_is_a_step_with_two_logged_arguments(pseudoRef1, pseudoRef2);
-    assertThatMessages(Matchers.allOf(
-            Matchers.containsString(TEST_VALUE_1),
-            Matchers.containsString(TEST_VALUE_2)
+    assertThatMessages(allOf(
+            containsString(TEST_VALUE_1),
+            containsString(TEST_VALUE_2)
     ));
   }
 
@@ -133,9 +134,9 @@ public class JUnitAopStepsLoggerTest {
     final SelfDescribing pseudoRef1 = new TestSelfDescribing(TEST_VALUE_1);
     final SelfDescribing pseudoRef2 = new TestSelfDescribing(TEST_VALUE_2);
     _.given_this_is_a_step_with_two_logged_vararg_arguments(pseudoRef1, pseudoRef2);
-    assertThatMessages(Matchers.allOf(
-            Matchers.containsString(TEST_VALUE_1),
-            Matchers.containsString(TEST_VALUE_2)
+    assertThatMessages(allOf(
+            containsString(TEST_VALUE_1),
+            containsString(TEST_VALUE_2)
     ));
   }
 
