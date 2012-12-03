@@ -20,7 +20,11 @@
 package net.joala.bdd.aop;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
+import org.hamcrest.SelfDescribing;
+import org.hamcrest.internal.SelfDescribingValue;
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
@@ -61,14 +65,22 @@ public class JUnitAopStepsLoggerTest {
     JUnitAopStepsLoggerTestAppender.clearEvents();
   }
 
-  public void assertMessagesContainsStepDescription(final String expectedString) {
+  public void assertMessagesContains(final String expectedString) {
+    assertThatMessages(Matchers.containsString(expectedString));
+  }
+
+  public void assertMessagesDontContain(final String expectedString) {
+    assertThatMessages(Matchers.not(Matchers.containsString(expectedString)));
+  }
+
+  private void assertThatMessages(final Matcher<String> matcher) {
     final Collection<ILoggingEvent> events = JUnitAopStepsLoggerTestAppender.getEvents();
     assertThat("Should have recorded some logging events. Please verify logback configuration.", events.size(), greaterThan(0));
     boolean passedAtLeastOnce = false;
     AssertionError lastError = null;
     for (final ILoggingEvent event : events) {
       try {
-        assertThat(event.getFormattedMessage(), Matchers.containsString(expectedString));
+        assertThat(event.getFormattedMessage(), matcher);
         passedAtLeastOnce = true;
       } catch (AssertionError e) {
         lastError = e;
@@ -83,14 +95,55 @@ public class JUnitAopStepsLoggerTest {
   public void testGivenPointcut() throws Exception {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     _.given_this_is_a_test();
-    assertMessagesContainsStepDescription("given this is a test");
+    assertMessagesContains("given this is a test");
+  }
+
+  @Test
+  public void testSingleArgumentLogged() throws Exception {
+    final String TEST_VALUE = "cxyvhkah";
+    final SelfDescribing pseudoRef = new TestSelfDescribing(TEST_VALUE);
+    _.given_this_is_a_step_with_a_logged_argument(pseudoRef);
+    assertMessagesContains(TEST_VALUE);
+  }
+
+  @Test
+  public void testSingleArgumentNotLogged() throws Exception {
+    final String TEST_VALUE = "cxyvhkah";
+    _.given_this_is_a_step_with_a_not_logged_argument(TEST_VALUE);
+    assertMessagesDontContain(TEST_VALUE);
+  }
+
+  @Test
+  public void testMultipleLoggedArgumentsAreLogged() throws Exception {
+    final String TEST_VALUE_1 = "cxyvhkah";
+    final String TEST_VALUE_2 = "sdfahvhs";
+    final SelfDescribing pseudoRef1 = new TestSelfDescribing(TEST_VALUE_1);
+    final SelfDescribing pseudoRef2 = new TestSelfDescribing(TEST_VALUE_2);
+    _.given_this_is_a_step_with_two_logged_arguments(pseudoRef1, pseudoRef2);
+    assertThatMessages(Matchers.allOf(
+            Matchers.containsString(TEST_VALUE_1),
+            Matchers.containsString(TEST_VALUE_2)
+    ));
+  }
+
+  @Test
+  public void testMultipleLoggedVarargArgumentsAreLogged() throws Exception {
+    final String TEST_VALUE_1 = "cxyvhkah";
+    final String TEST_VALUE_2 = "sdfahvhs";
+    final SelfDescribing pseudoRef1 = new TestSelfDescribing(TEST_VALUE_1);
+    final SelfDescribing pseudoRef2 = new TestSelfDescribing(TEST_VALUE_2);
+    _.given_this_is_a_step_with_two_logged_vararg_arguments(pseudoRef1, pseudoRef2);
+    assertThatMessages(Matchers.allOf(
+            Matchers.containsString(TEST_VALUE_1),
+            Matchers.containsString(TEST_VALUE_2)
+    ));
   }
 
   @Test
   public void testWhenPointcut() throws Exception {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     _.when_this_is_a_test();
-    assertMessagesContainsStepDescription("when this is a test");
+    assertMessagesContains("when this is a test");
   }
 
   @Test
@@ -100,15 +153,15 @@ public class JUnitAopStepsLoggerTest {
       _.when_assumption_fails();
     } catch (AssumptionViolatedException ignored) {
     }
-    assertMessagesContainsStepDescription("when assumption fails");
-    assertMessagesContainsStepDescription("FAILED");
+    assertMessagesContains("when assumption fails");
+    assertMessagesContains("FAILED");
   }
 
   @Test
   public void testThenPointcut() throws Exception {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     _.then_this_is_a_test();
-    assertMessagesContainsStepDescription("then this is a test");
+    assertMessagesContains("then this is a test");
   }
 
   @Test
@@ -118,8 +171,8 @@ public class JUnitAopStepsLoggerTest {
       _.then_I_fail();
     } catch (AssertionError ignored) {
     }
-    assertMessagesContainsStepDescription("then I fail");
-    assertMessagesContainsStepDescription("FAILED");
+    assertMessagesContains("then I fail");
+    assertMessagesContains("FAILED");
   }
 
   @Named
@@ -142,6 +195,33 @@ public class JUnitAopStepsLoggerTest {
       fail("I will fail.");
     }
 
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_a_logged_argument(final SelfDescribing pseudoRef) {
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_a_not_logged_argument(final String val) {
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_two_logged_arguments(final SelfDescribing pseudoRef1, final SelfDescribing pseudoRef2) {
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_two_logged_vararg_arguments(final SelfDescribing... pseudoRef1) {
+    }
   }
 
+  private static class TestSelfDescribing implements SelfDescribing {
+    private final String value;
+
+    private TestSelfDescribing(final String value) {
+      this.value = value;
+    }
+
+    @Override
+    public void describeTo(final Description description) {
+      description.appendText(value);
+    }
+  }
 }

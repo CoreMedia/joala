@@ -19,8 +19,10 @@
 
 package net.joala.bdd.aop;
 
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
+import com.google.common.collect.Iterables;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -33,8 +35,6 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -115,19 +115,12 @@ public class JUnitAopStepsLogger {
    */
   private void describeArguments(@Nonnull final Description stepDescription, @Nonnull final Object[] args) {
     final List<Object> argsList = Arrays.asList(args);
-    final Collection<Object> describableArgs = Collections2.filter(argsList, new IsSelfDescribing());
-    final boolean hasDescribableArgs = !describableArgs.isEmpty();
+    final Iterable<Object> descArgs = Iterables.filter(argsList, new IsSelfDescribing());
+    final boolean hasDescribableArgs = !Iterables.isEmpty(descArgs);
     if (hasDescribableArgs) {
       stepDescription.appendText(" (");
-    }
-    for (Iterator<Object> argumentIterator = describableArgs.iterator(); argumentIterator.hasNext(); ) {
-      final SelfDescribing describableArg = (SelfDescribing) argumentIterator.next();
-      describableArg.describeTo(stepDescription);
-      if (argumentIterator.hasNext()) {
-        stepDescription.appendText(", ");
-      }
-    }
-    if (hasDescribableArgs) {
+      final Iterable<String> transformed = Iterables.transform(descArgs, new DescribeArgument());
+      stepDescription.appendText(Joiner.on(',').join(transformed));
       stepDescription.appendText(")");
     }
   }
@@ -140,7 +133,20 @@ public class JUnitAopStepsLogger {
   private static class IsSelfDescribing implements Predicate<Object> {
     @Override
     public boolean apply(@Nullable final Object input) {
-      return (input instanceof SelfDescribing);
+      return input instanceof SelfDescribing || input instanceof SelfDescribing[];
+    }
+  }
+
+  private static class DescribeArgument implements Function<Object, String> {
+    @Override
+    public String apply(@Nullable final Object input) {
+      final Description description = new StringDescription();
+      if (input instanceof SelfDescribing) {
+        description.appendDescriptionOf((SelfDescribing) input);
+      } else if (input instanceof SelfDescribing[]) {
+        description.appendList("{", ",", "}", Arrays.asList((SelfDescribing[]) input));
+      }
+      return description.toString();
     }
   }
 }
