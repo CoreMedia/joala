@@ -34,6 +34,7 @@ import static org.junit.Assert.assertSame;
  *
  * @since 6/5/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 public class ReferenceImplTest {
   @Test
   public void should_hold_value() throws Exception {
@@ -56,6 +57,7 @@ public class ReferenceImplTest {
     reference.get();
   }
 
+  @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void should_fail_for_reference_value_null() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
@@ -94,6 +96,7 @@ public class ReferenceImplTest {
     reference.setProperty("lorem", null);
   }
 
+  @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void should_fail_for_set_with_property_key_null() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
