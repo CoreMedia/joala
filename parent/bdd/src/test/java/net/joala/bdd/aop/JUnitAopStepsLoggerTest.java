@@ -74,7 +74,7 @@ public class JUnitAopStepsLoggerTest {
     assertThatMessages(Matchers.not(Matchers.containsString(expectedString)));
   }
 
-  private void assertThatMessages(final Matcher<String> matcher) {
+  private void assertThatMessages(final Matcher<? super String> matcher) {
     final Collection<ILoggingEvent> events = JUnitAopStepsLoggerTestAppender.getEvents();
     assertThat("Should have recorded some logging events. Please verify logback configuration.", events.size(), greaterThan(0));
     boolean passedAtLeastOnce = false;
