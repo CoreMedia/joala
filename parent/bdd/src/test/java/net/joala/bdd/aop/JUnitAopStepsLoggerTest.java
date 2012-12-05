@@ -20,6 +20,7 @@
 package net.joala.bdd.aop;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import net.joala.bdd.reference.SelfDescribingReferenceImpl;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -176,6 +177,49 @@ public class JUnitAopStepsLoggerTest {
     assertMessagesContains("FAILED");
   }
 
+  @Test
+  public void testInsertedNumberArgument() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_an_inserted_argument_$0(42);
+    assertMessagesContains("given this is a step with an inserted argument 42");
+  }
+
+  @Test
+  public void testInsertedNumberArgumentInTheMiddle() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(42);
+    assertMessagesContains("given this is a step with an inserted argument 42 in the middle of the method name");
+  }
+
+  @Test
+  public void testInsertedNullArgument() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_an_inserted_argument_$0(null);
+    assertMessagesContains("given this is a step with an inserted argument <null>");
+  }
+
+  @Test
+  public void testInsertedStringArgument() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_an_inserted_argument_$0("foo");
+    assertMessagesContains("given this is a step with an inserted argument \"foo\"");
+  }
+
+  @Test
+  public void testInsertedReferenceArgument() throws Exception {
+    SelfDescribingReferenceImpl<Object> ref = new SelfDescribingReferenceImpl<Object>("bar");
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_an_inserted_argument_$0(ref);
+    assertMessagesContains("given this is a step with an inserted argument <bar>");
+  }
+
+  @Test
+  public void testFakePlaceholder() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_a_fake_placeholder_$42();
+    assertMessagesContains("given this is a step with a fake placeholder $42");
+  }
+
   @Named
   @Singleton
   public static class Steps {
@@ -210,6 +254,17 @@ public class JUnitAopStepsLoggerTest {
 
     @SuppressWarnings("UnusedParameters")
     public void given_this_is_a_step_with_two_logged_vararg_arguments(final SelfDescribing... pseudoRef1) {
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_an_inserted_argument_$0(Object o) {
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(Object o) {
+    }
+
+    public void given_this_is_a_step_with_a_fake_placeholder_$42() {
     }
   }
 

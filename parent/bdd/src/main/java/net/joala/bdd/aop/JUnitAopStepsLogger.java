@@ -23,6 +23,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import net.joala.bdd.reference.SelfDescribingReference;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -89,10 +90,9 @@ public class JUnitAopStepsLogger {
    */
   @Around("execution(* given_*(..))||execution(* when_*(..))||execution(* then_*(..))")
   public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to deal with generic throwables here
-    final Description stepDescription = new StringDescription();
     final String stepName = joinPoint.getSignature().getName();
-    stepDescription.appendText(stepName.replace('_', ' ').trim());
-    describeArguments(stepDescription, joinPoint.getArgs());
+    Object[] arguments = joinPoint.getArgs();
+    final Description stepDescription = describeStep(stepName, arguments);
     final Object result;
     try {
       LOG.info("{}", stepDescription);
@@ -102,6 +102,64 @@ public class JUnitAopStepsLogger {
       throw throwable;
     }
     return result;
+  }
+
+  /**
+   * Describe the step, either inserting argument descriptions
+   * into the placeholders of the step name or appending them.
+   * 
+   * @param stepName the step name
+   * @param arguments the arguments
+   * @return the description
+   */
+  private Description describeStep(String stepName, Object[] arguments) {
+    StringBuilder text = new StringBuilder();
+    int pos = 0;
+    boolean placeholderFound = false;
+    while (pos < stepName.length()) {
+      char c = stepName.charAt(pos++);
+      if (c == '$') {
+        int index = 0;
+        while (pos < stepName.length()) {
+          int digit = Character.digit(stepName.charAt(pos++), 10);
+          if (digit == -1) {
+            pos --;
+            break;
+          }
+          index = index * 10 + digit;
+        }
+        if (index < arguments.length) {
+          Object argument = arguments[index];
+          text.append(describeArgument(argument));
+          placeholderFound = true;
+        } else {
+          text.append('$').append(index);
+        }
+      } else if (c == '_') {
+        text.append(' ');
+      } else {
+        text.append(c);
+      }
+    }
+    
+    final Description stepDescription = new StringDescription();
+    stepDescription.appendText(text.toString().trim());
+    if (!placeholderFound) {
+      describeArguments(stepDescription, arguments);
+    }
+    return stepDescription;
+  }
+
+  private Object describeArgument(Object argument) {
+    if (argument == null) {
+      return "<null>";
+    } else if (argument instanceof String) {
+      return "\"" + argument + "\"";
+    } else if (argument instanceof SelfDescribingReference) {
+      return "<" + ((SelfDescribingReference)argument).getName() + ">";
+    } else {
+      return argument.toString();
+    }
   }
 
   /**

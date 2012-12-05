@@ -97,6 +97,17 @@
       </roles>
       <timezone>+1</timezone>
     </developer>
+    <developer>
+      <id>mwester</id>
+      <name>Matthias Wester-Ebbinghaus</name>
+      <email>matthias.wester-ebbinghaus@coremedia.com</email>
+      <organization>CoreMedia AG</organization>
+      <organizationUrl>http://www.coremedia.com/</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
   </developers>
   <prerequisites>
     <maven>3.0.4</maven>
