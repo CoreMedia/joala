@@ -20,6 +20,7 @@
 * [joala-32][]: **Log steps parameters using placeholders in step names**
     In order to provide a better reusage of test steps and to enhance the logging experience for tests
     written with Gherkin language step parameters can now be referenced in the step description:
+
     ```java
 _.given_this_is_a_step_with_an_inserted_argument_$0(42);
     ```
@@ -33,11 +34,11 @@ to change.
     Building parametrized tests in JUnit is sometimes pain. You forget to fill additional arguments to the
     objects array and such. The builder introduced makes it much easier and also provides reasonable error
     reports for misconfigured parameters. Example:
+
     ```java
 public TimeFormatTest(long amount, TimeUnit timeUnit, String expectedTimePattern) {
   ...
 }
-
 @Parameterized.Parameters
 public static Collection<Object[]> data() {
   return defaultParametersBuilder(TimeFormatTest.class)
@@ -49,6 +50,7 @@ public static Collection<Object[]> data() {
           .build();
   }
     ```
+
 * [joala-31][]: **Make joala-labs Multimodule**
     In order to provide better incubation behavior for labs features they are now seperated into different
     modules. Mind that if you depended on joala-labs before you need to update to the matching submodule.
