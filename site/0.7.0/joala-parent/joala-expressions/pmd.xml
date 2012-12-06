@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-12-06T12:10:59.443">
+<file name="/home/mark/dev/joala/target/checkout/parent/expressions/src/main/java/net/joala/expression/Expression.java">
+<violation beginline="22" endline="22" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Import Statement Rules" package="net.joala.expression" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.hamcrest.Description'
+</violation>
+<violation beginline="22" endline="22" begincolumn="1" endcolumn="32" rule="UnusedImports" ruleset="Type Resolution Rules" package="net.joala.expression" externalInfoUrl="http://pmd.sourceforge.net/rules/typeresolution.html#UnusedImports" priority="4">
+Avoid unused imports such as 'org.hamcrest.Description'
+</violation>
+</file>
+</pmd>
