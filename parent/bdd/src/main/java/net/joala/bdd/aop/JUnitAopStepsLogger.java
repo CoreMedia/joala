@@ -91,7 +91,7 @@ public class JUnitAopStepsLogger {
   @Around("execution(* given_*(..))||execution(* when_*(..))||execution(* then_*(..))")
   public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to deal with generic throwables here
     final String stepName = joinPoint.getSignature().getName();
-    Object[] arguments = joinPoint.getArgs();
+    final Object[] arguments = joinPoint.getArgs();
     final Description stepDescription = describeStep(stepName, arguments);
     final Object result;
     try {
@@ -112,16 +112,16 @@ public class JUnitAopStepsLogger {
    * @param arguments the arguments
    * @return the description
    */
-  private Description describeStep(String stepName, Object[] arguments) {
-    StringBuilder text = new StringBuilder();
+  private Description describeStep(final CharSequence stepName, final Object[] arguments) {
+    final StringBuilder text = new StringBuilder();
     int pos = 0;
     boolean placeholderFound = false;
     while (pos < stepName.length()) {
-      char c = stepName.charAt(pos++);
+      final char c = stepName.charAt(pos++);
       if (c == '$') {
         int index = 0;
         while (pos < stepName.length()) {
-          int digit = Character.digit(stepName.charAt(pos++), 10);
+          final int digit = Character.digit(stepName.charAt(pos++), 10);
           if (digit == -1) {
             pos --;
             break;
@@ -129,7 +129,7 @@ public class JUnitAopStepsLogger {
           index = index * 10 + digit;
         }
         if (index < arguments.length) {
-          Object argument = arguments[index];
+          final Object argument = arguments[index];
           text.append(describeArgument(argument));
           placeholderFound = true;
         } else {
@@ -150,13 +150,13 @@ public class JUnitAopStepsLogger {
     return stepDescription;
   }
 
-  private Object describeArgument(Object argument) {
+  private Object describeArgument(final Object argument) {
     if (argument == null) {
       return "<null>";
     } else if (argument instanceof String) {
-      return "\"" + argument + "\"";
+      return "\"" + argument + '"';
     } else if (argument instanceof SelfDescribingReference) {
-      return "<" + ((SelfDescribingReference)argument).getName() + ">";
+      return '<' + ((SelfDescribingReference)argument).getName() + '>';
     } else {
       return argument.toString();
     }
