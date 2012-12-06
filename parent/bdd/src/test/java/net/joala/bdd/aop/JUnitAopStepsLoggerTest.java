@@ -177,6 +177,7 @@ public class JUnitAopStepsLoggerTest {
     assertMessagesContains("FAILED");
   }
 
+  @SuppressWarnings("MagicNumber")
   @Test
   public void testInsertedNumberArgument() throws Exception {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
@@ -184,6 +185,7 @@ public class JUnitAopStepsLoggerTest {
     assertMessagesContains("given this is a step with an inserted argument 42");
   }
 
+  @SuppressWarnings("MagicNumber")
   @Test
   public void testInsertedNumberArgumentInTheMiddle() throws Exception {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
@@ -207,7 +209,7 @@ public class JUnitAopStepsLoggerTest {
 
   @Test
   public void testInsertedReferenceArgument() throws Exception {
-    SelfDescribingReferenceImpl<Object> ref = new SelfDescribingReferenceImpl<Object>("bar");
+    final SelfDescribingReferenceImpl<Object> ref = new SelfDescribingReferenceImpl<Object>("bar");
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     _.given_this_is_a_step_with_an_inserted_argument_$0(ref);
     assertMessagesContains("given this is a step with an inserted argument <bar>");
@@ -257,11 +259,11 @@ public class JUnitAopStepsLoggerTest {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_an_inserted_argument_$0(Object o) {
+    public void given_this_is_a_step_with_an_inserted_argument_$0(final Object o) {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(Object o) {
+    public void given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(final Object o) {
     }
 
     public void given_this_is_a_step_with_a_fake_placeholder_$42() {
