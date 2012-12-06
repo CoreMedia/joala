@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2012-12-06T12:12:08.099">
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/time/src/main/java/net/joala/time/Timeout.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/time/src/main/java/net/joala/time/Timeout.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/time/src/main/java/net/joala/time/TimeoutImpl.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+<suppressedviolation filename="/home/mark/dev/joala/target/checkout/parent/time/src/main/java/net/joala/time/TimeoutImpl.java" suppressiontype="annotation" msg="Avoid using short method names" usermsg=""/>
+</pmd>
