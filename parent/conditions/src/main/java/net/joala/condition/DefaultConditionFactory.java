@@ -19,7 +19,6 @@
 
 package net.joala.condition;
 
-import net.joala.condition.timing.TimeoutImpl;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 
@@ -37,18 +36,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class DefaultConditionFactory implements ConditionFactory {
   @Nonnull
   private final Timeout timeout;
-
-  /**
-   * <p>
-   * Create factory for conditions with the given timeout behavior.
-   * </p>
-   *
-   * @param timeout the timeout behavior (i. e. the default time to time out)
-   */
-  @Deprecated
-  public DefaultConditionFactory(@Nonnull final net.joala.condition.timing.Timeout timeout) {
-    this.timeout = ((TimeoutImpl)timeout).getWrapped();
-  }
 
   /**
    * <p>

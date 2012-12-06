@@ -33,12 +33,6 @@ import static java.lang.Boolean.TRUE;
  * @since 2/26/12
  */
 public class DefaultBooleanCondition extends DefaultCondition<Boolean> implements BooleanCondition {
-  @SuppressWarnings("UnusedDeclaration")
-  @Deprecated
-  public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final net.joala.condition.timing.Timeout timeout) {
-    super(expression, timeout);
-  }
-
   public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final Timeout timeout) {
     super(expression, timeout);
   }

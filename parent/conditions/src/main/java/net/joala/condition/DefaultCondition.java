@@ -21,7 +21,6 @@ package net.joala.condition;
 
 import com.google.common.base.Objects;
 import net.joala.condition.timing.DeceleratingWait;
-import net.joala.condition.timing.TimeoutImpl;
 import net.joala.condition.timing.Wait;
 import net.joala.condition.timing.WaitFailStrategy;
 import net.joala.condition.timing.WaitTimeoutFailStrategy;
@@ -82,11 +81,6 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   private final Expression<T> expression;
   @Nonnegative
   private double factor = 1.0;
-
-  @Deprecated
-  public DefaultCondition(@Nonnull final Expression<T> expression, @Nonnull final net.joala.condition.timing.Timeout timeout) {
-    this(expression, ((TimeoutImpl)timeout).getWrapped());
-  }
 
   public DefaultCondition(@Nonnull final Expression<T> expression, @Nonnull final Timeout timeout) {
     checkNotNull(expression, "Expression must not be null.");
