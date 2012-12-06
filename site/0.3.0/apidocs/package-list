@@ -1,8 +1,0 @@
-net.joala.condition
-net.joala.condition.timing
-net.joala.data
-net.joala.data.random
-net.joala.matcher
-net.joala.matcher.decorator
-net.joala.matcher.exception
-net.joala.matcher.text
