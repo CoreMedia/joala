@@ -49,6 +49,7 @@ import static org.mockito.Mockito.when;
 /**
  * @since 8/29/12
  */
+@SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultConditionTest {
   @Before
@@ -80,7 +81,7 @@ public class DefaultConditionTest {
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() throws Exception {
-    new DefaultCondition<String>(expression, (Timeout)null);
+    new DefaultCondition<String>(expression, null);
   }
 
   @Test
