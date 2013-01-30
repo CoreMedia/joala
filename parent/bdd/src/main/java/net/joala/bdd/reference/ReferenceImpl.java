@@ -20,6 +20,7 @@
 package net.joala.bdd.reference;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,25 +39,31 @@ import static java.lang.String.format;
  */
 public class ReferenceImpl<T> implements Reference<T> {
 
-  private T value;
+  private ValueHolder<T> valueHolder;
+
   private final Map<String, Object> properties = new HashMap<String, Object>(1);
 
   @Override
-  public void set(@Nonnull final T value) {
-    checkNotNull(value, "Reference value must not be null.");
+  public void set(@Nullable final T value) {
     if (hasValue()) {
-      throw new ReferenceAlreadyBoundException(format("Reference already bound to value %s of type %s.", this.value, this.value.getClass()));
+      final T oldValue = this.valueHolder.get();
+      throw new ReferenceAlreadyBoundException(format("Reference already bound to value %s.", oldValue));
     }
-    this.value = value;
+    this.valueHolder = new ValueHolder<T>(value);
   }
 
   @Override
-  @Nonnull
   public T get() {
     if (!hasValue()) {
       throw new ReferenceNotBoundException("Reference not bound to any value.");
     }
-    return value;
+    return valueHolder.get();
+  }
+
+  @Nonnull
+  @Override
+  public T getNonNull() {
+    return checkNotNull(get(), "Value must not be null.");
   }
 
   /**
@@ -65,7 +72,7 @@ public class ReferenceImpl<T> implements Reference<T> {
    * @return if this reference has a value
    */
   protected final boolean hasValue() {
-    return value != null;
+    return valueHolder != null;
   }
 
   @Override
@@ -100,8 +107,30 @@ public class ReferenceImpl<T> implements Reference<T> {
   @Override
   public String toString() {
     return Objects.toStringHelper(this)
-            .add("value", value)
+            .add("valueHolder", valueHolder)
             .add("properties", properties)
             .toString();
   }
+
+  private static final class ValueHolder<T> {
+    @Nullable
+    private final T value;
+
+    private ValueHolder(@Nullable final T value) {
+      this.value = value;
+    }
+
+    @Nullable
+    public T get() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return Objects.toStringHelper(this)
+              .add("value", value)
+              .toString();
+    }
+  }
+
 }

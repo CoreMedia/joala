@@ -57,11 +57,18 @@ public class ReferenceImplTest {
     reference.get();
   }
 
-  @SuppressWarnings("ConstantConditions")
-  @Test(expected = NullPointerException.class)
-  public void should_fail_for_reference_value_null() throws Exception {
+  @Test
+  public void should_hold_reference_value_null() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set(null);
+    assertNull("Reference is expected to be null.", reference.get());
+  }
+
+  @Test(expected = ReferenceAlreadyBoundException.class)
+  public void should_deny_to_set_value_twice_even_for_null() throws Exception {
+    final Reference<String> reference = new ReferenceImpl<String>();
+    reference.set(null);
+    reference.set("Ipsum");
   }
 
   @Test

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
   ~ Copyright 2012 CoreMedia AG
   ~
@@ -19,20 +18,14 @@
   ~ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<configuration>
-  <include resource="META-INF/joala/bdd/bdd-logback.xml"/>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%date{ISO8601} [%5level] %logger{0}: %message%n%xEx{5}</pattern>
-    </encoder>
-  </appender>
 
-  <logger name="net.joala.condition" additivity="false" level="debug">
-    <appender-ref ref="stdout"/>
-  </logger>
-
-  <root level="warn">
-    <appender-ref ref="stdout"/>
-  </root>
-</configuration>
+  <context:component-scan base-package="net.joala.condition"/>
+</beans>

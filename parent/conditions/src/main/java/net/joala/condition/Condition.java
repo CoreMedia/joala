@@ -56,6 +56,7 @@ public interface Condition<T> {
    *
    * @return the retrieved value
    * @throws WaitTimeoutException if a value could not be retrieved in time
+   * @see #awaitNonNull()
    */
   @Nullable
   T await();
@@ -68,9 +69,35 @@ public interface Condition<T> {
    * @param matcher matcher to use
    * @return the value which fulfills the given matcher
    * @throws WaitTimeoutException if a value could not be retrieved in time
+   * @see #awaitNonNull(Matcher)
    */
   @Nullable
   T await(@Nonnull Matcher<? super T> matcher);
+
+  /**
+   * <p>
+   * Retrieve the result of the condition as soon as it is evaluated without any exception.
+   * </p>
+   *
+   * @return the retrieved value; non-null guaranteed
+   * @throws WaitTimeoutException if a value could not be retrieved in time
+   * @see #await()
+   */
+  @Nonnull
+  T awaitNonNull();
+
+  /**
+   * <p>
+   * Wait for the condition value until it fulfills the given matcher and return it.
+   * </p>
+   *
+   * @param matcher matcher to use
+   * @return the value which fulfills the given matcher; non-null guaranteed in addition
+   * @throws WaitTimeoutException if a value could not be retrieved in time
+   * @see #await(Matcher)
+   */
+  @Nonnull
+  T awaitNonNull(@Nonnull Matcher<? super T> matcher);
 
   /**
    * <p>

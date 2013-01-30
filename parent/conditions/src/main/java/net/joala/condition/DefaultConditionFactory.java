@@ -19,6 +19,9 @@
 
 package net.joala.condition;
 
+import com.google.common.base.Objects;
+import net.joala.condition.timing.DeceleratingWaitFactory;
+import net.joala.condition.timing.WaitFactory;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 
@@ -35,7 +38,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class DefaultConditionFactory implements ConditionFactory {
   @Nonnull
-  private final Timeout timeout;
+  private final WaitFactory waitFactory;
 
   /**
    * <p>
@@ -45,20 +48,39 @@ public class DefaultConditionFactory implements ConditionFactory {
    * @param timeout the timeout behavior (i. e. the default time to time out)
    */
   public DefaultConditionFactory(@Nonnull final Timeout timeout) {
-    this.timeout = timeout;
+    this(new DeceleratingWaitFactory(timeout));
+  }
+
+  /**
+   * <p>
+   * Create factory for conditions with the given wait strategies as provided by the factory.
+   * </p>
+   *
+   * @param waitFactory the factory to use to retrieve wait strategies
+   * @since 0.8.0
+   */
+  public DefaultConditionFactory(@Nonnull final WaitFactory waitFactory) {
+    this.waitFactory = waitFactory;
   }
 
   @Nonnull
   @Override
   public BooleanCondition booleanCondition(@Nonnull final Expression<Boolean> expression) {
     checkNotNull(expression, "Expression must not be null");
-    return new DefaultBooleanCondition(expression, timeout);
+    return new DefaultBooleanCondition(expression, waitFactory);
   }
 
   @Nonnull
   @Override
   public <T> Condition<T> condition(@Nonnull final Expression<T> expression) {
     checkNotNull(expression, "Expression must not be null");
-    return new DefaultCondition<T>(expression, timeout);
+    return new DefaultCondition<T>(expression, waitFactory);
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("waitFactory", waitFactory)
+            .toString();
   }
 }

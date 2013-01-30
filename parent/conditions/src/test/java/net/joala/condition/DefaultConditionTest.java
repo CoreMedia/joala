@@ -19,12 +19,13 @@
 
 package net.joala.condition;
 
-import net.joala.expression.Expression;
-import net.joala.expression.ExpressionEvaluationException;
-import net.joala.time.Timeout;
+import net.joala.condition.timing.WaitFactory;
 import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.expression.Expression;
+import net.joala.expression.ExpressionEvaluationException;
+import net.joala.time.Timeout;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;
@@ -47,41 +48,28 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
+ * Tests {@link DefaultCondition}.
+ *
  * @since 8/29/12
  */
 @SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultConditionTest {
+  @Mock
+  private Expression<String> stringExpression;
+  @SuppressWarnings("UnusedDeclaration")
+  @Mock
+  private Timeout anyTimeout;
+  @SuppressWarnings("UnusedDeclaration")
+  @Mock
+  private WaitFactory anyWaitFactory;
+
   @Before
   public void setUp() throws Exception {
     condition = new DefaultCondition<String>(expression, timeout);
     expressionValue = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(expressionValue);
     when(timeout.in(any(TimeUnit.class), any(Double.class))).thenReturn(0L);
-  }
-
-  @Test
-  public void constructor_should_accept_nonnull_expression() throws Exception {
-    condition.get();
-    verify(expression).get();
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @Test(expected = NullPointerException.class)
-  public void constructor_should_throw_nullpointer_exception_if_expression_is_null() throws Exception {
-    new DefaultCondition<String>(null, timeout);
-  }
-
-  @Test
-  public void constructor_should_accept_nonnull_timeout() throws Exception {
-    condition.await();
-    verify(timeout).in(any(TimeUnit.class), any(Double.class));
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @Test(expected = NullPointerException.class)
-  public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() throws Exception {
-    new DefaultCondition<String>(expression, null);
   }
 
   @Test

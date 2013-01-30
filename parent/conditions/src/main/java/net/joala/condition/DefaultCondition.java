@@ -20,13 +20,15 @@
 package net.joala.condition;
 
 import com.google.common.base.Objects;
-import net.joala.condition.timing.DeceleratingWait;
+import net.joala.condition.timing.DeceleratingWaitFactory;
 import net.joala.condition.timing.Wait;
+import net.joala.condition.timing.WaitFactory;
 import net.joala.condition.timing.WaitFailStrategy;
 import net.joala.condition.timing.WaitTimeoutFailStrategy;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 import org.hamcrest.Matcher;
+import org.hamcrest.core.CombinableMatcher;
 import org.hamcrest.core.IsAnything;
 
 import javax.annotation.Nonnegative;
@@ -35,6 +37,7 @@ import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.hamcrest.core.IsEqual.equalTo;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 /**
  * <p>
@@ -71,9 +74,6 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   @Nullable
   private Runnable runBeforeRunnable;
 
-  @Nonnull
-  private final Timeout timeout;
-
   /**
    * The expression to retrieve the value/state while waiting.
    */
@@ -81,12 +81,37 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   private final Expression<T> expression;
   @Nonnegative
   private double factor = 1.0;
+  @Nonnull
+  private final WaitFactory waitFactory;
 
+  /**
+   * <p>
+   * Constructs a condition which evaluates the given expression and applies the given timeout.
+   * Uses a default strategy for waiting.
+   * </p>
+   *
+   * @param expression expression to evaluate until timeout or until it matches
+   * @param timeout timeout when expression evaluation will end
+   */
   public DefaultCondition(@Nonnull final Expression<T> expression, @Nonnull final Timeout timeout) {
+    this(expression, new DeceleratingWaitFactory(timeout));
+  }
+
+  /**
+   * <p>
+   * Constructs a condition which evaluates the given expression with a wait strategy
+   * supplied by the given factory.
+   * </p>
+   *
+   * @param expression expression to evaluate until timeout or until it matches
+   * @param waitFactory factory to create wait strategies
+   * @since 0.8.0
+   */
+  public DefaultCondition(@Nonnull final Expression<T> expression, @Nonnull final WaitFactory waitFactory) {
     checkNotNull(expression, "Expression must not be null.");
-    checkNotNull(timeout, "Timeout must not be null.");
+    checkNotNull(waitFactory, "WaitFactory must not be null.");
     this.expression = expression;
-    this.timeout = timeout;
+    this.waitFactory = waitFactory;
   }
 
   @Override
@@ -107,8 +132,20 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
     return until(matcher, TIMEOUT_FAIL_STRATEGY);
   }
 
+  @Nonnull
+  @Override
+  public T awaitNonNull() {
+    return until(notNullValue(), TIMEOUT_FAIL_STRATEGY);
+  }
+
+  @Nonnull
+  @Override
+  public T awaitNonNull(@Nonnull final Matcher<? super T> matcher) {
+    return until(CombinableMatcher.<T>both(matcher).and(notNullValue()), TIMEOUT_FAIL_STRATEGY);
+  }
+
   private T until(final Matcher<? super T> matcher, final WaitFailStrategy failStrategy) {
-    return until(new DeceleratingWait(timeout, factor, failStrategy), matcher);
+    return until(waitFactory.get(factor, failStrategy), matcher);
   }
 
   private T until(@Nonnull final Wait wait, @Nullable final Matcher<? super T> matcher) {
@@ -179,7 +216,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
             .add("expression", expression)
             .add("runBefore", runBeforeRunnable)
             .add("runFinally", runFinallyRunnable)
-            .add("timeout", timeout)
+            .add("waitFactory", waitFactory)
             .add("factor", factor)
             .toString();
   }

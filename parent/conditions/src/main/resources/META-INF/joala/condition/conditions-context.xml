@@ -51,10 +51,18 @@
     <constructor-arg name="unit" value="SECONDS"/>
   </bean>
 
+  <bean id="defaultWaitFactory" class="net.joala.condition.timing.DeceleratingWaitFactory" scope="singleton">
+    <description><![CDATA[
+    Provides instances of the wait strategy. The default wait strategy is a learning
+    one intelligently adopting to the system which is waited for.
+    ]]></description>
+    <constructor-arg name="timeout" ref="defaultTimeout"/>
+  </bean>
+
   <bean id="defaultConditionFactory" class="net.joala.condition.DefaultConditionFactory" scope="singleton">
     <description><![CDATA[
       Default factory for conditions.
     ]]></description>
-    <constructor-arg name="timeout" ref="defaultTimeout"/>
+    <constructor-arg name="waitFactory" ref="defaultWaitFactory"/>
   </bean>
 </beans>

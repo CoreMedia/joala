@@ -19,6 +19,7 @@
 
 package net.joala.condition;
 
+import net.joala.condition.timing.WaitFactory;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 
@@ -35,6 +36,10 @@ import static java.lang.Boolean.TRUE;
 public class DefaultBooleanCondition extends DefaultCondition<Boolean> implements BooleanCondition {
   public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final Timeout timeout) {
     super(expression, timeout);
+  }
+
+  public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final WaitFactory waitFactory) {
+    super(expression, waitFactory);
   }
 
   @Override
