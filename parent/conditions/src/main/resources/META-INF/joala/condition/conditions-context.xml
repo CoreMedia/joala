@@ -39,6 +39,7 @@
   ]]></description>
 
   <context:property-placeholder
+          ignore-unresolvable="true"
           location="classpath:/META-INF/joala/condition/conditions-context-default.properties"/>
 
   <bean id="defaultTimeout" class="net.joala.time.TimeoutImpl" scope="singleton">

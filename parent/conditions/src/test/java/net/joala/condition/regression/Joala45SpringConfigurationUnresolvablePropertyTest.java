@@ -27,6 +27,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 /**
+ * Case: The Property Placeholder from the Conditions-Context tried to resolve properties
+ * it was not responsible for. Thus if the spring context could be loaded was depending on
+ * the order of imports and property placeholder definitions in the local context.
+ *
  * @since 2013-01-30
  */
 public class Joala45SpringConfigurationUnresolvablePropertyTest {
