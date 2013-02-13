@@ -149,7 +149,7 @@
     <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
     <github.global.server>github</github.global.server>
     <generated.sources.root>${project.build.directory}/generated-sources</generated.sources.root>
-    <!-- Signals to ignore approved noncompile dependencies which are recoginzed as unused. -->
+    <!-- Signals to ignore approved non-compile dependencies which are recognized as unused. -->
     <dependency.ignore.approved.noncompile>true</dependency.ignore.approved.noncompile>
     <dependency.fail.onwarning>true</dependency.fail.onwarning>
   </properties>
