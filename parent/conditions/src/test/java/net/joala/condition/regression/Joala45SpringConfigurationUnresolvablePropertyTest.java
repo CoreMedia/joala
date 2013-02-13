@@ -20,6 +20,8 @@
 package net.joala.condition.regression;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -34,6 +36,8 @@ import static org.junit.Assert.fail;
  * @since 2013-01-30
  */
 public class Joala45SpringConfigurationUnresolvablePropertyTest {
+  private static final Logger LOG = LoggerFactory.getLogger(Joala45SpringConfigurationUnresolvablePropertyTest.class);
+
   @Test
   public void scenario_local_property_placeholder_fails_for_property_from_conditions_context_order_1() throws Exception {
     try {
@@ -60,7 +64,9 @@ public class Joala45SpringConfigurationUnresolvablePropertyTest {
     try {
       applicationContext = new ClassPathXmlApplicationContext("/META-INF/joala/condition/joala-45-context-2.xml");
     } catch (BeansException e) {
-      throw new AssertionError("Joala 45 Regression: Conditions Context should not try to resolve local properties.", e);
+      final String msg = "Joala 45 Regression: Conditions Context should not try to resolve local properties.";
+      LOG.error(msg, e);
+      throw new AssertionError(msg);
     }
     final Object myString = applicationContext.getBean("myString");
     assertEquals("Local bean should have been correctly filled with properties.", "myString", myString);
