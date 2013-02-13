@@ -107,6 +107,17 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
     return until(matcher, TIMEOUT_FAIL_STRATEGY);
   }
 
+  @Override
+  public void waitUntil(@Nonnull final Matcher<? super T> matcher) {
+    //noinspection ResultOfMethodCallIgnored
+    await(matcher); // NOSONAR; Ignoring return value by intention
+  }
+
+  @Override
+  public void waitUntilEquals(@Nullable final T expected) {
+    waitUntil(equalTo(expected));
+  }
+
   private T until(final Matcher<? super T> matcher, final WaitFailStrategy failStrategy) {
     return until(new DeceleratingWait(timeout, factor, failStrategy), matcher);
   }

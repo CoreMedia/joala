@@ -58,6 +58,16 @@ public class DefaultBooleanCondition extends DefaultCondition<Boolean> implement
   }
 
   @Override
+  public void waitUntilFalse() {
+    waitUntilEquals(FALSE);
+  }
+
+  @Override
+  public void waitUntilTrue() {
+    waitUntilEquals(TRUE);
+  }
+
+  @Override
   @Nonnull
   public DefaultBooleanCondition runFinally(@Nullable final Runnable runnable) {
     super.runFinally(runnable);

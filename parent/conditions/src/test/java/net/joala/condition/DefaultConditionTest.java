@@ -134,6 +134,16 @@ public class DefaultConditionTest {
   }
 
   @Test
+  public void waitUntil_should_timeout_if_expression_does_not_match() throws Exception {
+    try {
+      condition.waitUntil(not(anything()));
+      fail("WaitTimeoutException should have been thrown.");
+    } catch (WaitTimeoutException ignored) {
+      // fine
+    }
+  }
+
+  @Test
   public void run_before_should_be_executed_on_await() throws Exception {
     ((FailSafeCondition<String>) condition).runBefore(runnable);
     verify(runnable, times(0)).run();
@@ -274,6 +284,14 @@ public class DefaultConditionTest {
     final double factor = Math.random();
     condition.withTimeoutFactor(factor);
     condition.assertThat(anything());
+    verify(timeout).in(any(TimeUnit.class), eq(factor));
+  }
+
+  @Test
+  public void waitUntil_should_apply_timeout_factor_to_timeout() throws Exception {
+    final double factor = Math.random();
+    condition.withTimeoutFactor(factor);
+    condition.waitUntil(anything());
     verify(timeout).in(any(TimeUnit.class), eq(factor));
   }
 

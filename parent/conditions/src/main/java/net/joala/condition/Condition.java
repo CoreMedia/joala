@@ -105,6 +105,22 @@ public interface Condition<T> {
   void assertThat(@Nonnull Matcher<? super T> matcher);
 
   /**
+   * <p>
+   * Wait until the condition evaluates to the expected value within a given time.
+   * </p>
+   *
+   * @param expected expected value
+   */
+  void waitUntilEquals(@Nullable T expected);
+
+  /**
+   * Uses {@link Matcher} to wait until a condition is met in time.
+   *
+   * @param matcher the matcher to use
+   */
+  void waitUntil(@Nonnull Matcher<? super T> matcher);
+
+  /**
    * Sets a factor to speed up or slow down tests. If &lt; 1.0 the tests will speed up at least
    * for failures while a number &gt; 1.0 increases the time to wait for the condition by
    * the given factor.

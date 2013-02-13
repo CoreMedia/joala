@@ -19,6 +19,7 @@
 
 package net.joala.condition;
 
+import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 import org.junit.Test;
@@ -121,6 +122,18 @@ public class DefaultBooleanConditionTest {
   }
 
   @Test
+  public void waitUntilTrue_should_pass_if_expression_is_true() throws Exception {
+    final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
+    when(expression.get()).thenReturn(true);
+    try {
+      condition.waitUntilTrue();
+    } catch (WaitTimeoutException ignored) {
+      fail("Should have passed.");
+    }
+    verify(expression, atLeastOnce()).get();
+  }
+
+  @Test
   public void assertTrue_should_fail_if_expression_is_false() throws Exception {
     final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
     when(expression.get()).thenReturn(false);
@@ -136,12 +149,39 @@ public class DefaultBooleanConditionTest {
   }
 
   @Test
+  public void waitUntilTrue_should_fail_if_expression_is_false() throws Exception {
+    final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
+    when(expression.get()).thenReturn(false);
+    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1L);
+    boolean passed = false;
+    try {
+      condition.waitUntilTrue();
+      passed = true;
+    } catch (WaitTimeoutException ignored) {
+    }
+    assertFalse("Should have failed.", passed);
+    verify(expression, atLeastOnce()).get();
+  }
+
+  @Test
   public void assertFalse_should_pass_if_expression_is_false() throws Exception {
     final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
     when(expression.get()).thenReturn(false);
     try {
       condition.assertFalse();
     } catch (AssertionError ignored) {
+      fail("Should have passed.");
+    }
+    verify(expression, atLeastOnce()).get();
+  }
+
+  @Test
+  public void waitUntilFalse_should_pass_if_expression_is_false() throws Exception {
+    final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
+    when(expression.get()).thenReturn(false);
+    try {
+      condition.waitUntilFalse();
+    } catch (WaitTimeoutException ignored) {
       fail("Should have passed.");
     }
     verify(expression, atLeastOnce()).get();
@@ -159,6 +199,21 @@ public class DefaultBooleanConditionTest {
     } catch (AssertionError ignored) {
     }
     assertFalse("Should have failed.", assertionPassed);
+    verify(expression, atLeastOnce()).get();
+  }
+
+  @Test
+  public void waitUntilFalse_should_fail_if_expression_is_true() throws Exception {
+    final BooleanCondition condition = new DefaultBooleanCondition(expression, timeout);
+    when(expression.get()).thenReturn(true);
+    when(timeout.in(any(TimeUnit.class), anyDouble())).thenReturn(1L);
+    boolean passed = false;
+    try {
+      condition.waitUntilFalse();
+      passed = true;
+    } catch (WaitTimeoutException ignored) {
+    }
+    assertFalse("Should have failed.", passed);
     verify(expression, atLeastOnce()).get();
   }
 

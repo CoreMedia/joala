@@ -50,6 +50,16 @@ public interface BooleanCondition extends Condition<Boolean> {
    */
   void assertFalse();
 
+  /**
+   * Convenience method to wait until the condition becomes true.
+   */
+  void waitUntilTrue();
+
+  /**
+   * Convenience method to wait until the condition becomes false.
+   */
+  void waitUntilFalse();
+
   @Override
   @Nonnull
   BooleanCondition withMessage(@Nullable String message);
