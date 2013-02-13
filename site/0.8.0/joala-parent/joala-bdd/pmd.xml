@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2013-02-13T11:29:51.258">
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/aop/JUnitAopStepsLogger.java">
+<violation beginline="100" endline="100" begincolumn="14" endcolumn="22" rule="AvoidCatchingThrowable" ruleset="Strict Exception Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="logGivenWhenThen" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingThrowable" priority="3">
+A catch statement should never catch throwable since it includes errors.
+</violation>
+<violation beginline="120" endline="120" begincolumn="18" endcolumn="18" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="describeStep" variable="c" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like c
+</violation>
+<violation beginline="155" endline="155" begincolumn="7" endcolumn="22" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="describeArgument" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+<violation beginline="157" endline="157" begincolumn="7" endcolumn="35" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="describeArgument" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+<violation beginline="159" endline="159" begincolumn="7" endcolumn="71" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.bdd.aop" class="JUnitAopStepsLogger" method="describeArgument" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/reference/ReferenceImpl.java">
+<violation beginline="42" endline="42" begincolumn="17" endcolumn="35" rule="UseConcurrentHashMap" ruleset="Controversial Rules" package="net.joala.bdd.reference" class="ReferenceImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#UseConcurrentHashMap" priority="3">
+If you run in Java5 and have concurrent access, you should use ConcurrentHashMap implementation
+</violation>
+<violation beginline="95" endline="95" begincolumn="7" endcolumn="18" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.bdd.reference" class="ReferenceImpl" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/reference/SelfDescribingReferenceImpl.java">
+<violation beginline="51" endline="51" begincolumn="28" endcolumn="64" rule="ConfusingTernary" ruleset="Design Rules" package="net.joala.bdd.reference" class="SelfDescribingReferenceImpl" method="describeTo" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#ConfusingTernary" priority="3">
+Avoid if (x != y) ..; else ..;
+</violation>
+</file>
+<file name="/home/mark/dev/joala/target/checkout/parent/bdd/src/main/java/net/joala/bdd/watcher/JUnitScenarioWatcher.java">
+<violation beginline="81" endline="81" begincolumn="60" endcolumn="60" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnitScenarioWatcher" method="skipped" variable="e" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+<violation beginline="88" endline="88" begincolumn="41" endcolumn="41" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.bdd.watcher" class="JUnitScenarioWatcher" method="failed" variable="e" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
+Avoid variables with short names like e
+</violation>
+</file>
+</pmd>
