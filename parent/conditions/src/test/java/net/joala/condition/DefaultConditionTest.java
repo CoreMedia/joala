@@ -80,6 +80,7 @@ public class DefaultConditionTest {
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() throws Exception {
+    //noinspection RedundantCast
     new DefaultCondition<String>(expression, (Timeout)null);
   }
 
