@@ -20,17 +20,48 @@
   -->
 
 <configuration>
+  <!-- read configuration which can be overridden by system properties -->
+  <variable scope="system"
+            resource="logback-test.properties"/>
+
+  <include resource="META-INF/joala/bdd/bdd-logback.xml"/>
+
   <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
       <pattern>%date{ISO8601} [%5level] %logger{0}: %message%n%xEx{5}</pattern>
     </encoder>
   </appender>
 
-  <logger name="net.joala.data" additivity="false" level="debug">
-    <appender-ref ref="stdout"/>
+  <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${config.log.file}</file>
+    <encoder>
+      <pattern>${config.log.pattern}</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>10</maxIndex>
+      <FileNamePattern>${config.log.file}.%i</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>4MB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+
+  <!-- also log to file and not only to default console -->
+  <logger name="${bdd.story.logger.name}" additivity="false" level="${bdd.log.level}">
+    <appender-ref ref="file"/>
   </logger>
 
-  <root level="warn">
-    <appender-ref ref="stdout"/>
+  <!-- also log to file and not only to default console -->
+  <logger name="${bdd.steps.logger.name}" additivity="false" level="${bdd.log.level}">
+    <appender-ref ref="file"/>
+  </logger>
+
+  <logger name="net.joala.data" additivity="false" level="debug">
+    <appender-ref ref="file"/>
+  </logger>
+
+  <root level="${config.root.log.level}">
+    <appender-ref ref="file"/>
   </root>
+
 </configuration>

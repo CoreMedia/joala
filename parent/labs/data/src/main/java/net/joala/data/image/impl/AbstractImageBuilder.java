@@ -21,6 +21,7 @@ package net.joala.data.image.impl;
 
 import net.joala.data.image.ImageBuilderBuildException;
 import net.joala.data.image.config.ImageBuilderConfig;
+import net.joala.data.image.config.ImageBuilderConfigImpl;
 import net.joala.data.image.config.ImageType;
 
 import javax.annotation.CheckForNull;
@@ -77,7 +78,7 @@ abstract class AbstractImageBuilder {
   /**
    * <p>
    * Retrieve object for default configuration for image builders. If not
-   * used within Spring context a singleton instance of {@link ImageBuilderConfig}
+   * used within Spring context a singleton instance of {@link ImageBuilderConfigImpl}
    * will be used.
    * </p>
    *
@@ -85,7 +86,7 @@ abstract class AbstractImageBuilder {
    */
   @Nonnull
   protected final ImageBuilderConfig getImageBuilderConfig() {
-    return fromNullable(imageBuilderConfig).or(ImageBuilderConfig.getInstance());
+    return fromNullable(imageBuilderConfig).or(ImageBuilderConfigImpl.getInstance());
   }
 
   protected final void checkDimensions() {

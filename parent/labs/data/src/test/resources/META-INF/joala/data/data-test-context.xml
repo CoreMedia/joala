@@ -20,7 +20,14 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mockito="http://www.mockito.org/spring/mockito"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.mockito.org/spring/mockito classpath:spring/mockito.xsd">
   <import resource="classpath:META-INF/joala/data/data-context.xml"/>
+  <import resource="classpath:META-INF/joala/bdd/bdd-context.xml"/>
+
+  <!--suppress UnparsedCustomBeanInspection -->
+  <mockito:spy beanName="defaultImageBuilderConfig"/>
+
 </beans>
