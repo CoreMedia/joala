@@ -64,6 +64,13 @@
         <groupId>org.powermock</groupId>
         <artifactId>powermock-api-mockito</artifactId>
         <version>${powermock.version}</version>
+        <exclusions>
+          <!-- Must not use mockito-all as it comes with hamcrest fork included. -->
+          <exclusion>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>

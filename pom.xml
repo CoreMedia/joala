@@ -475,8 +475,9 @@ Joala tries to avoid having any of the following dependencies:
   * Logging frameworks different to slf4j because we recommend and use slf4j. Use
     appropriate slf4j bridges to support commons-logging etc. from thirdparty
     dependencies.
-  * JUnit - as Joala uses Hamcrest Libraries for Matchers they collide with
-    junit:junit. It is preferred to use junit:junit-dep instead.
+  * Alternative Hamcrest Implementations - as Joala uses Hamcrest Libraries for
+    Matchers they collide with junit:junit prior to JUnit 4.11. The same applies
+    to artifacts like mockito-all.
   * Joala Labs: Joala Labs are experimental and thus they must not leak into
     any transitive dependency inside the Joala project.
                   ]]></message>

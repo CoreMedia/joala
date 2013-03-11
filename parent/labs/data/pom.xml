@@ -66,14 +66,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
       <scope>runtime</scope>
@@ -102,10 +94,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
