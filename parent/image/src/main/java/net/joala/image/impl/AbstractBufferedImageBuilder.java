@@ -19,6 +19,7 @@
 
 package net.joala.image.impl;
 
+import com.google.common.base.Objects;
 import net.joala.image.ImagePainter;
 
 import javax.annotation.CheckForNull;
@@ -33,7 +34,7 @@ import static com.google.common.base.Optional.fromNullable;
  *
  * @since 2013-03-11
  */
-public class AbstractBufferedImageBuilder extends AbstractImageBuilder {
+abstract class AbstractBufferedImageBuilder extends AbstractImageBuilder {
   /**
    * The painter to use to draw the image. If {@code null} a default will be used.
    */
@@ -79,5 +80,12 @@ public class AbstractBufferedImageBuilder extends AbstractImageBuilder {
   @Nonnull
   private BufferedImage createImage() {
     return new BufferedImage(getWidth(), getHeight(), getImageType().getType());
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("painter", painter)
+            .toString();
   }
 }
