@@ -19,6 +19,7 @@
 
 package net.joala.data.image.impl;
 
+import com.google.common.base.Objects;
 import net.joala.data.image.ImageBuilderBuildException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import javax.activation.MimeType;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
 import java.util.Iterator;
@@ -34,26 +36,53 @@ import static com.google.common.base.Optional.fromNullable;
 import static java.lang.String.format;
 
 /**
+ * Abstract implementation for image builders which create images as file output.
+ *
  * @since 2013-02-21
  */
 abstract class AbstractImageIOImageBuilder extends AbstractImageBuilder {
   private static final Logger LOG = LoggerFactory.getLogger(DefaultByteArrayImageBuilder.class);
+  /**
+   * The mime type of the image. Use default if {@code null}.
+   */
   @CheckForNull
   private String mimeType;
 
-  protected final void setMimeType(final MimeType value) {
-    setMimeType(value.toString());
+  /**
+   * Sets the mime type.
+   *
+   * @param value mime type value; {@code null} to use default value
+   */
+  protected final void setMimeType(@Nullable final MimeType value) {
+    setMimeType(value == null ? null : value.toString());
   }
 
-  protected final void setMimeType(final String value) {
+  /**
+   * Sets the mime type.
+   *
+   * @param value mime type value; {@code null} to use default value
+   */
+  protected final void setMimeType(@Nullable final String value) {
     mimeType = value;
   }
 
+  /**
+   * Get mime type. Returns default if unset.
+   *
+   * @return mime type
+   */
   @Nonnull
   protected final String getMimeType() {
     return fromNullable(mimeType).or(getImageBuilderConfig().getDefaultMimeType());
   }
 
+  /**
+   * Provide an image writer for the configured mime type. The first matching image writer
+   * will be used if there are multiple registered image writers for the given mime type.
+   *
+   * @return image writer
+   */
+  @Nonnull
   protected final ImageWriter getImageWriter() {
     final Iterator<ImageWriter> imageWriterIterator = ImageIO.getImageWritersByMIMEType(getMimeType());
     if (!imageWriterIterator.hasNext()) {
@@ -62,5 +91,12 @@ abstract class AbstractImageIOImageBuilder extends AbstractImageBuilder {
     final ImageWriter imageWriter = imageWriterIterator.next();
     LOG.debug("Using ImageWriter {} to create image for MIME type '{}'.", imageWriter.getClass().getName(), getMimeType());
     return imageWriter;
+  }
+
+  @Override
+  public String toString() {
+    return Objects.toStringHelper(this)
+            .add("mimeType", mimeType)
+            .toString();
   }
 }
