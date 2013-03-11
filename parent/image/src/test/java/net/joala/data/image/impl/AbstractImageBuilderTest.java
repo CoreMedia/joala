@@ -19,6 +19,7 @@
 
 package net.joala.data.image.impl;
 
+import net.joala.data.image.ImageBuilderBuildException;
 import net.joala.data.image.config.ImageBuilderConfig;
 import net.joala.data.image.config.ImageType;
 import org.junit.Before;
@@ -44,12 +45,11 @@ public class AbstractImageBuilderTest {
   private static final int SOME_IMAGE_DIMENSION = 22;
   private static final int SOME_DEFAULT_IMAGE_DIMENSION = 222;
   private static final ImageType SOME_IMAGE_TYPE = ImageType.INT_RGB;
-  private ImageBuilderConfig imageBuilderConfig;
   private AbstractImageBuilder imageBuilder;
 
   @Before
   public void setUp() throws Exception {
-    imageBuilderConfig = mock(ImageBuilderConfig.class);
+    final ImageBuilderConfig imageBuilderConfig = mock(ImageBuilderConfig.class);
     imageBuilder = mock(AbstractImageBuilder.class, new CallsRealMethods());
     when(imageBuilder.getImageBuilderConfig()).thenReturn(imageBuilderConfig);
     when(imageBuilderConfig.getDefaultHeight()).thenReturn(SOME_DEFAULT_IMAGE_DIMENSION);
@@ -91,6 +91,34 @@ public class AbstractImageBuilderTest {
   @Test
   public void imageType_from_default() throws Exception {
     assertEquals("Image Type should use default.", SOME_IMAGE_TYPE, imageBuilder.getImageType());
+  }
+
+  @Test(expected = ImageBuilderBuildException.class)
+  public void checkDimensions_fail_for_all_0() throws Exception {
+    when(imageBuilder.getWidth()).thenReturn(0);
+    when(imageBuilder.getHeight()).thenReturn(0);
+    imageBuilder.checkDimensions();
+  }
+
+  @Test(expected = ImageBuilderBuildException.class)
+  public void checkDimensions_fail_for_width_0() throws Exception {
+    when(imageBuilder.getWidth()).thenReturn(0);
+    when(imageBuilder.getHeight()).thenReturn(SOME_IMAGE_DIMENSION);
+    imageBuilder.checkDimensions();
+  }
+
+  @Test(expected = ImageBuilderBuildException.class)
+  public void checkDimensions_fail_for_height_0() throws Exception {
+    when(imageBuilder.getWidth()).thenReturn(0);
+    when(imageBuilder.getHeight()).thenReturn(SOME_IMAGE_DIMENSION);
+    imageBuilder.checkDimensions();
+  }
+
+  @Test
+  public void checkDimensions_pass_for_all_greater_than_0() throws Exception {
+    when(imageBuilder.getWidth()).thenReturn(SOME_IMAGE_DIMENSION);
+    when(imageBuilder.getHeight()).thenReturn(SOME_IMAGE_DIMENSION);
+    imageBuilder.checkDimensions();
   }
 
   @Test
