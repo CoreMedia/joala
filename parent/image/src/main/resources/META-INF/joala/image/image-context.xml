@@ -45,11 +45,11 @@
   <context:component-scan base-package="net.joala.data"
                           scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"/>
 
-  <bean id="defaultImageType" class="net.joala.data.image.config.ImageType" factory-method="valueOf">
+  <bean id="defaultImageType" class="net.joala.image.config.ImageType" factory-method="valueOf">
        <constructor-arg value="${data.image.type.default}"/>
   </bean>
 
-  <bean id="defaultImageBuilderConfig" class="net.joala.data.image.config.ImageBuilderConfigImpl" scope="singleton">
+  <bean id="defaultImageBuilderConfig" class="net.joala.image.config.ImageBuilderConfigImpl" scope="singleton">
     <description><![CDATA[
       Provides default configuration for image builders.
     ]]></description>
