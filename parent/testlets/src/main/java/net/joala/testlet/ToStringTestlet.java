@@ -49,6 +49,11 @@ import static org.junit.Assert.assertThat;
  * Tests some requirements for the {@code toString()} method. See the test methods
  * for the tested requirements.
  * </p>
+ * <p>
+ * Failures of the ToStringTestlets are most of the time results of refactorings
+ * to variable names so that the toString output does not refer to a variable name
+ * anylonger.
+ * </p>
  *
  * @since 10/4/12
  */

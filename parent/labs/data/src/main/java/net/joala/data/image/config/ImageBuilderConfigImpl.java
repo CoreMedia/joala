@@ -89,7 +89,7 @@ public class ImageBuilderConfigImpl implements ImageBuilderConfig {
   @Override
   public String toString() {
     return Objects.toStringHelper(this)
-            .add("defaultColorModelType", defaultImageType)
+            .add("defaultImageType", defaultImageType)
             .add("defaultWidth", defaultWidth)
             .add("defaultHeight", defaultHeight)
             .add("defaultMimeType", defaultMimeType)
