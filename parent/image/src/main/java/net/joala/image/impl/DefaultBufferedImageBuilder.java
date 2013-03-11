@@ -19,14 +19,14 @@
 
 package net.joala.image.impl;
 
+import com.google.common.base.Optional;
 import net.joala.image.BufferedImageBuilder;
+import net.joala.image.ImagePainter;
 import net.joala.image.config.ImageType;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.inject.Named;
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
-import java.awt.Paint;
 import java.awt.image.BufferedImage;
 
 /**
@@ -38,6 +38,8 @@ import java.awt.image.BufferedImage;
  */
 @Named
 public class DefaultBufferedImageBuilder extends AbstractImageBuilder implements BufferedImageBuilder {
+  private ImagePainter painter;
+
   @Override
   public BufferedImageBuilder width(final int value) {
     setWidth(value);
@@ -57,23 +59,22 @@ public class DefaultBufferedImageBuilder extends AbstractImageBuilder implements
   }
 
   @Override
+  public BufferedImageBuilder imagePainter(@Nullable final ImagePainter painter) {
+    this.painter = painter;
+    return this;
+  }
+
+  @Nonnull
+  private ImagePainter getImagePainter() {
+    return Optional.fromNullable(painter).or(new DefaultImagePainter());
+  }
+
+  @Override
   public BufferedImage build() {
     checkDimensions();
-    final int height = getHeight();
-    final int width = getWidth();
-
-    final BufferedImage image = new BufferedImage(width, height, getImageType().getType());
-    final Graphics2D g2d = image.createGraphics();
-    try {
-      final Paint gradientWhiteBlue = new GradientPaint(0, 0, Color.WHITE, width, 0, Color.BLUE);
-      final Paint gradientBlueWhite = new GradientPaint(0, 0, Color.BLUE, width, 0, Color.WHITE);
-      g2d.setPaint(gradientWhiteBlue);
-      g2d.fillRect(0, 0, width, height);
-      g2d.setPaint(gradientBlueWhite);
-      g2d.fillOval(0, 0, width, height);
-    } finally {
-      g2d.dispose();
-    }
+    final BufferedImage image = new BufferedImage(getWidth(), getHeight(), getImageType().getType());
+    getImagePainter().paint(image);
     return image;
   }
+
 }

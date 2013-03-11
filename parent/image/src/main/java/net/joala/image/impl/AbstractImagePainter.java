@@ -17,24 +17,28 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.image;
+package net.joala.image.impl;
 
-import net.joala.image.config.ImageType;
+import net.joala.image.ImagePainter;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 /**
- * @since 2013-02-21
+ * Abstract implementation as base for image painters.
+ *
+ * @since 2013-03-11
  */
-public interface BufferedImageBuilder extends ImageBuilder<BufferedImage> {
+public abstract class AbstractImagePainter implements ImagePainter {
   @Override
-  BufferedImageBuilder width(int value);
+  public final void paint(final BufferedImage image) {
+    final Graphics2D g2d = image.createGraphics();
+    try {
+      paint(image, g2d);
+    } finally {
+      g2d.dispose();
+    }
+  }
 
-  @Override
-  BufferedImageBuilder height(int value);
-
-  @Override
-  BufferedImageBuilder imageType(ImageType value);
-
-  BufferedImageBuilder imagePainter(ImagePainter painter);
+  protected abstract void paint(final BufferedImage image, final Graphics2D g2d);
 }

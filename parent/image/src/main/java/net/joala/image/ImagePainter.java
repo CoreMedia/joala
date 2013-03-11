@@ -19,22 +19,18 @@
 
 package net.joala.image;
 
-import net.joala.image.config.ImageType;
-
 import java.awt.image.BufferedImage;
 
 /**
- * @since 2013-02-21
+ * Will paint something on a given image.
+ *
+ * @since 2013-03-11
  */
-public interface BufferedImageBuilder extends ImageBuilder<BufferedImage> {
-  @Override
-  BufferedImageBuilder width(int value);
-
-  @Override
-  BufferedImageBuilder height(int value);
-
-  @Override
-  BufferedImageBuilder imageType(ImageType value);
-
-  BufferedImageBuilder imagePainter(ImagePainter painter);
+public interface ImagePainter {
+  /**
+   * Paints onto the given image.
+   *
+   * @param image image to paint on
+   */
+  void paint(final BufferedImage image);
 }
