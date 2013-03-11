@@ -27,26 +27,19 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
   <description><![CDATA[
-    Provides importable default beans for condition factory. Usage:
-    <import resource="classpath:META-INF/joala/condition/conditions-context.xml"/>
-
-    Available beans:
-
-    * defaultTimeout <net.joala.base.TimeoutImpl>
-    * defaultConditionFactory <net.joala.condition.DefaultConditionFactory>
-
-    where defaultTimout can be configured with condition.timeout.seconds (default: 60).
+    Provides importable default beans for image providers. Usage:
+    <import resource="classpath:META-INF/joala/image/image-context.xml"/>
   ]]></description>
 
   <context:property-placeholder
           ignore-unresolvable="true"
           location="classpath:/META-INF/joala/image/image-context-default.properties"/>
 
-  <context:component-scan base-package="net.joala.data"
+  <context:component-scan base-package="net.joala.image"
                           scope-resolver="org.springframework.context.annotation.Jsr330ScopeMetadataResolver"/>
 
   <bean id="defaultImageType" class="net.joala.image.config.ImageType" factory-method="valueOf">
-       <constructor-arg value="${data.image.type.default}"/>
+    <constructor-arg value="${data.image.type.default}"/>
   </bean>
 
   <bean id="defaultImageBuilderConfig" class="net.joala.image.config.ImageBuilderConfigImpl" scope="singleton">
