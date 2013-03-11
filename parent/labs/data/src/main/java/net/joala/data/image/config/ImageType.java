@@ -56,7 +56,7 @@ public enum ImageType {
   public String toString() {
     return Objects.toStringHelper(this)
             .add("name", name)
-            .add("imageType", type)
+            .add("type", type)
             .toString();
   }
 }

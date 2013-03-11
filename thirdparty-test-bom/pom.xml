@@ -52,6 +52,13 @@
         <groupId>org.kubek2k</groupId>
         <artifactId>springockito</artifactId>
         <version>1.0.5</version>
+        <exclusions>
+          <!-- Must not use mockito-all as it comes with hamcrest fork included. -->
+          <exclusion>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
@@ -92,11 +99,6 @@
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-all</artifactId>
         <version>${mockito.version}</version>
       </dependency>
       <dependency>

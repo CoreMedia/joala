@@ -43,7 +43,6 @@ import static java.security.AccessController.doPrivileged;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assume.assumeTrue;
 
 /**
  * <p>
@@ -109,7 +108,8 @@ public class ToStringTestlet<T> extends AbstractTestlet<T> {
         LOG.debug("Added validator for field {} of class {}.", fieldName, fieldsFromClass);
       }
     }
-    assertThat("toString should contain all fields and their values", getTestling().toString(), allOf(fieldMatchers));
+    final Matcher<String> matcher = allOf(fieldMatchers);
+    assertThat("toString should contain all fields and their values", getTestling().toString(), matcher);
   }
 
   @Nonnull
