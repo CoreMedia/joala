@@ -36,7 +36,7 @@ import static com.google.common.base.Optional.fromNullable;
 import static java.lang.String.format;
 
 /**
- * Abstract implementation for image builders which create images as file output.
+ * Abstract implementation for image builders which use ImageIO for image creation.
  *
  * @since 2013-02-21
  */
