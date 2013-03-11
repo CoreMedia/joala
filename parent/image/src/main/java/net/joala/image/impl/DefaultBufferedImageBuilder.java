@@ -19,12 +19,10 @@
 
 package net.joala.image.impl;
 
-import com.google.common.base.Optional;
 import net.joala.image.BufferedImageBuilder;
 import net.joala.image.ImagePainter;
 import net.joala.image.config.ImageType;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Named;
 import java.awt.image.BufferedImage;
@@ -37,8 +35,7 @@ import java.awt.image.BufferedImage;
  * @since 2013-02-19
  */
 @Named
-public class DefaultBufferedImageBuilder extends AbstractImageBuilder implements BufferedImageBuilder {
-  private ImagePainter painter;
+public class DefaultBufferedImageBuilder extends AbstractBufferedImageBuilder implements BufferedImageBuilder {
 
   @Override
   public BufferedImageBuilder width(final int value) {
@@ -60,21 +57,12 @@ public class DefaultBufferedImageBuilder extends AbstractImageBuilder implements
 
   @Override
   public BufferedImageBuilder imagePainter(@Nullable final ImagePainter painter) {
-    this.painter = painter;
+    setImagePainter(painter);
     return this;
-  }
-
-  @Nonnull
-  private ImagePainter getImagePainter() {
-    return Optional.fromNullable(painter).or(new DefaultImagePainter());
   }
 
   @Override
   public BufferedImage build() {
-    checkDimensions();
-    final BufferedImage image = new BufferedImage(getWidth(), getHeight(), getImageType().getType());
-    getImagePainter().paint(image);
-    return image;
+    return create();
   }
-
 }
