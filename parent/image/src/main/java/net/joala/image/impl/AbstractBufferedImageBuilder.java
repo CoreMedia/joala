@@ -56,7 +56,7 @@ abstract class AbstractBufferedImageBuilder extends AbstractImageBuilder {
    * @return image painter
    */
   @Nonnull
-  private ImagePainter getImagePainter() {
+  protected ImagePainter getImagePainter() {
     return fromNullable(painter).or(new DefaultImagePainter());
   }
 
