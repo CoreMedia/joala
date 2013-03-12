@@ -15,8 +15,11 @@
     
     Mind that with `site-maven-plugin:0.7` it is not possible to have an encrypted
     password in here.
-* Ensure that you have set the passwords for `coremedia.external.releases` in
-    your `settings.xml`.
+* Ensure that you have set the passwords for Maven Central Deployment as described in
+    [Sonatype OSS Maven Repository Usage Guide][oss-usage] in your `settings.xml`.
+    Mind that you need to have an account at [Sonatype's JIRA][sonatype-jira].
+* Ensure that you have your GPG keys at hand and that you have published them to
+    `hkp://pool.sks-keyservers.net/`.
 * Ensure that you have installed Maven 3.0.4 or higher.
 
 ## Maven Release
@@ -108,3 +111,5 @@ joala$ mvn release:prepare release:perform
 [Joala GitHub Pages]: <http://coremedia.github.com/joala/> "Joala GitHub Pages"
 [versions-maven-plugin]: <http://mojo.codehaus.org/versions-maven-plugin/> "Codehaus.org: Versions Maven Plugin"
 [maven-reference-pom-syntax]: <http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-syntax.html> "Maven: The Complete Reference, 3.3. POM Syntax"
+[oss-usage]: <https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide> "Sonatype OSS Maven Repository Usage Guide"
+[sonatype-jira]: <https://issues.sonatype.org/> "Sonatype JIRA"
