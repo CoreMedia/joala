@@ -17,16 +17,17 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with Joala.  If not, see <http://www.gnu.org/licenses />.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <!-- Must not have joala-bom as parent as it must be built before joala-bom in order
        to provide artifacts to depend on during maven lifecycle. -->
   <parent>
-    <groupId>com.coremedia</groupId>
-    <artifactId>coremedia-parent</artifactId>
-    <version>8</version>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
     <!--suppress MavenModelInspection -->
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-build-tools</artifactId>
