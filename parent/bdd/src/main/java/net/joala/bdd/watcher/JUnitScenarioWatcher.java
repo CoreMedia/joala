@@ -27,6 +27,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.util.Formatter;
 import java.util.regex.Pattern;
 
@@ -51,6 +53,8 @@ import static java.lang.Math.max;
  * @see net.joala.bdd
  * @since 6/2/12
  */
+@Named
+@Singleton
 public class JUnitScenarioWatcher extends TestWatcher {
   /**
    * Logging instance.

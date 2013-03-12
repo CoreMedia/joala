@@ -21,7 +21,9 @@ package net.joala.image;
 
 import com.google.common.base.Preconditions;
 import net.joala.bdd.reference.Reference;
+import net.joala.bdd.watcher.JUnitScenarioWatcher;
 import net.joala.image.config.ImageBuilderConfig;
+import org.junit.Rule;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +51,10 @@ import static org.mockito.Mockito.verify;
  * @since 2013-02-25
  */
 public class StoryConfigurationViaSpringTest extends SpringImageTestCase {
+  @Rule
+  @Inject
+  public JUnitScenarioWatcher scenarioWatcher;
+
   /* ==========[ SCENARIOS ]========== */
 
   @Test
