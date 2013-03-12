@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T12:18:29.112">
-<file name="/home/mark/dev/joala/parent/testlets/src/main/java/net/joala/testlet/ExceptionClassTestlet.java">
+<pmd version="4.3" timestamp="2013-03-12T14:59:23.344">
+<file name="/home/mark/dev/joala/target/checkout/parent/testlets/src/main/java/net/joala/testlet/ExceptionClassTestlet.java">
 <violation beginline="20" endline="135" begincolumn="1" endcolumn="2" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="net.joala.testlet" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
@@ -47,7 +47,7 @@ Avoid throwing raw exception types.
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/testlets/src/main/java/net/joala/testlet/ExceptionCollectingRunListener.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/testlets/src/main/java/net/joala/testlet/ExceptionCollectingRunListener.java">
 <violation beginline="46" endline="49" begincolumn="3" endcolumn="3" rule="JUnit4TestShouldUseTestAnnotation" ruleset="Migration Rules" package="net.joala.testlet" class="ExceptionCollectingRunListener" externalInfoUrl="http://pmd.sourceforge.net/rules/migrating.html#JUnit4TestShouldUseTestAnnotation" priority="3">
 JUnit 4 tests that execute tests should use the @Test annotation
 </violation>
@@ -55,7 +55,7 @@ JUnit 4 tests that execute tests should use the @Test annotation
 JUnit 4 tests that execute tests should use the @Test annotation
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/testlets/src/main/java/net/joala/testlet/ToStringTestlet.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/testlets/src/main/java/net/joala/testlet/ToStringTestlet.java">
 <violation beginline="20" endline="265" begincolumn="1" endcolumn="2" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="net.joala.testlet" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
@@ -105,7 +105,7 @@ A method should have only one exit point, and that should be the last statement 
 A method should have only one exit point, and that should be the last statement in the method
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/testlets/src/main/java/net/joala/testlet/UtilityClassTestlet.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/testlets/src/main/java/net/joala/testlet/UtilityClassTestlet.java">
 <violation beginline="20" endline="99" begincolumn="1" endcolumn="2" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="net.joala.testlet" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
