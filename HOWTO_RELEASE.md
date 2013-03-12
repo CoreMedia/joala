@@ -26,7 +26,7 @@
 Here are the recommended steps to release Joala:
 
 ```
-joala$ mvn release:prepare release:perform
+joala$ mvn release:prepare release:perform -Darguments=-Dgpg.passphrase=PASSPHRASE
 joala$ git push origin master --tags
 ```
 
