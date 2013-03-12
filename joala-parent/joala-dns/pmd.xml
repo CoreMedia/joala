@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T12:32:10.632">
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/FallbackInetAddressNameService.java">
+<pmd version="4.3" timestamp="2013-03-12T15:17:42.181">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/FallbackInetAddressNameService.java">
 <violation beginline="23" endline="23" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -17,7 +17,7 @@ Avoid catching generic exceptions such as NullPointerException, RuntimeException
 Avoid throwing raw exception types.
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/LocalDNSNameService.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/LocalDNSNameService.java">
 <violation beginline="25" endline="25" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -34,7 +34,7 @@ A method should have only one exit point, and that should be the last statement 
 A method should have only one exit point, and that should be the last statement in the method
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/LocalDNSNameServiceDescriptor.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/LocalDNSNameServiceDescriptor.java">
 <violation beginline="22" endline="22" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -42,7 +42,7 @@ Avoid importing anything from the 'sun.*' packages
 Avoid importing anything from the 'sun.*' packages
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/LocalDNSNameServiceEnforcer.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/LocalDNSNameServiceEnforcer.java">
 <violation beginline="26" endline="26" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -53,7 +53,7 @@ Do not hard code IPv4 or IPv6 addresses, even 127.0.0.1 !
 A method should have only one exit point, and that should be the last statement in the method
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/NameStore.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/NameStore.java">
 <violation beginline="56" endline="279" begincolumn="30" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="net.joala.dns" class="NameStore" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
 This class has too many methods, consider refactoring it.
 </violation>
@@ -73,12 +73,12 @@ A method should have only one exit point, and that should be the last statement 
 A method should have only one exit point, and that should be the last statement in the method
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/ReflectionInetCacheDisabler.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/ReflectionInetCacheDisabler.java">
 <violation beginline="71" endline="71" begincolumn="14" endcolumn="22" rule="AvoidCatchingGenericException" ruleset="Strict Exception Rules" package="net.joala.dns" class="ReflectionInetCacheDisabler" method="disable" externalInfoUrl="http://pmd.sourceforge.net/rules/strictexception.html#AvoidCatchingGenericException" priority="3">
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/ReflectionJava6NameServiceInstaller.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/ReflectionJava6NameServiceInstaller.java">
 <violation beginline="23" endline="23" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -86,7 +86,7 @@ Avoid importing anything from the 'sun.*' packages
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/ReflectionJava7NameServiceInstaller.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/ReflectionJava7NameServiceInstaller.java">
 <violation beginline="23" endline="23" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -94,7 +94,7 @@ Avoid importing anything from the 'sun.*' packages
 Avoid catching generic exceptions such as NullPointerException, RuntimeException, Exception in try-catch block
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/ReflectionNameServiceInstaller.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/ReflectionNameServiceInstaller.java">
 <violation beginline="22" endline="22" begincolumn="1" endcolumn="43" rule="DontImportSun" ruleset="Controversial Rules" package="net.joala.dns" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#DontImportSun" priority="4">
 Avoid importing anything from the 'sun.*' packages
 </violation>
@@ -102,7 +102,7 @@ Avoid importing anything from the 'sun.*' packages
 Abstract classes should be named AbstractXXX
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/dns/src/main/java/net/joala/dns/SystemLogger.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/dns/src/main/java/net/joala/dns/SystemLogger.java">
 <violation beginline="95" endline="95" begincolumn="54" endcolumn="55" rule="ShortVariable" ruleset="Naming Rules" package="net.joala.dns" class="SystemLogger" method="info" variable="th" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#ShortVariable" priority="3">
 Avoid variables with short names like th
 </violation>
