@@ -148,7 +148,6 @@
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
     <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
-    <github.global.server>github</github.global.server>
     <generated.sources.root>${project.build.directory}/generated-sources</generated.sources.root>
     <!-- Signals to ignore approved non-compile dependencies which are recognized as unused. -->
     <dependency.ignore.approved.noncompile>true</dependency.ignore.approved.noncompile>
@@ -221,33 +220,29 @@
   </dependencyManagement>
 
   <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-provider-gitexe</artifactId>
+        <version>1.8.1</version>
+      </extension>
+      <extension>
+        <groupId>org.apache.maven.scm</groupId>
+        <artifactId>maven-scm-manager-plexus</artifactId>
+        <version>1.8.1</version>
+      </extension>
+      <extension>
+        <groupId>org.kohsuke</groupId>
+        <artifactId>wagon-gitsite</artifactId>
+        <version>0.3.5</version>
+      </extension>
+    </extensions>
     <pluginManagement>
       <plugins>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
           <version>1.2.1</version>
-        </plugin>
-        <plugin>
-          <groupId>com.github.github</groupId>
-          <artifactId>site-maven-plugin</artifactId>
-          <version>0.7</version>
-          <configuration>
-            <message>Creating site for ${project.artifactId}, ${project.version}</message>
-            <!-- Workaround for Multi-Module-Deployment -->
-            <path>${project.distributionManagement.site.url}</path>
-            <!-- Must not be false as otherwise every other content on GH-pages is deleted. -->
-            <merge>true</merge>
-          </configuration>
-          <executions>
-            <execution>
-              <id>github-site</id>
-              <goals>
-                <goal>site</goal>
-              </goals>
-              <phase>site-deploy</phase>
-            </execution>
-          </executions>
         </plugin>
         <!-- see http://code.google.com/p/sortpom/ -->
         <!-- To start: mvn com.google.code.sortpom:maven-sortpom-plugin:sort -->
@@ -650,65 +645,17 @@ Joala tries to avoid having any of the following dependencies:
 
   <profiles>
     <profile>
-      <id>test-github-site</id>
-      <!-- Used in order to test deployment of site to github pages. -->
-      <distributionManagement>
-        <!-- Workaround for Multi Module Site Deployment with GitHub Plugin -->
-        <site>
-          <id>github-pages-site</id>
-          <name>Deployment through GitHub's site deployment plugin</name>
-          <url>site/${project.version}</url>
-        </site>
-      </distributionManagement>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-site-plugin</artifactId>
-              <configuration>
-                <!-- On release deployment will be done through GitHub Site Deployment. -->
-                <skipDeploy>true</skipDeploy>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-        <plugins>
-          <plugin>
-            <groupId>com.github.github</groupId>
-            <artifactId>site-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>release</id>
       <distributionManagement>
-        <!-- Workaround for Multi Module Site Deployment with GitHub Plugin -->
+        <!-- On Release Update GitHub pages with most recent site. -->
         <site>
-          <id>github-pages-site</id>
-          <name>Deployment through GitHub's site deployment plugin</name>
-          <url>site/${project.version}</url>
+          <id>github-project-site</id>
+          <name>Deployment through wagon-gitsite</name>
+          <url>gitsite:git@github.com/CoreMedia/joala.git</url>
         </site>
       </distributionManagement>
       <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-site-plugin</artifactId>
-              <configuration>
-                <!-- On release deployment will be done through GitHub Site Deployment. -->
-                <skipDeploy>true</skipDeploy>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
         <plugins>
-          <plugin>
-            <groupId>com.github.github</groupId>
-            <artifactId>site-maven-plugin</artifactId>
-          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>

@@ -76,7 +76,6 @@
   </distributionManagement>
   <properties>
     <maven.deploy.skip>true</maven.deploy.skip>
-    <github.global.server>github</github.global.server>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -123,31 +122,13 @@
     <profile>
       <id>release</id>
       <distributionManagement>
-        <!-- Workaround for Multi Module Site Deployment with GitHub Plugin -->
+        <!-- On Release Update GitHub pages with most recent site. -->
         <site>
-          <id>github-pages-site</id>
-          <name>Deployment through GitHub's site deployment plugin</name>
-          <url>site/${project.version}/${project.artifactId}</url>
+          <id>github-project-site</id>
+          <name>Deployment through wagon-gitsite</name>
+          <url>gitsite:git@github.com/CoreMedia/joala.git</url>
         </site>
       </distributionManagement>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>com.github.github</groupId>
-              <artifactId>site-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-site-plugin</artifactId>
-              <configuration>
-                <!-- On release deployment will be done through GitHub Site Deployment. -->
-                <skipDeploy>true</skipDeploy>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
     </profile>
   </profiles>
 

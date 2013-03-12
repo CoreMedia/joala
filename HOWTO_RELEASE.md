@@ -2,19 +2,18 @@
 
 ## Release Preparations
 
-* Ensure that you have configured your GitHub credentials in your `settings.xml`.
+* Ensure that you have configured GitHub for site deployment in your `settings.xml`:
     This is required in order to deploy the Maven site to [Joala GitHub Pages][].
 
     ```xml
     <server>
-      <id>github</id>
-      <username>...</username>
-      <password>...</password>
+      <id>github-project-site</id>
+      <!-- the username really is git, do not change this -->
+      <username>git</username>
     </server>
     ```
     
-    Mind that with `site-maven-plugin:0.7` it is not possible to have an encrypted
-    password in here.
+    For deployment a fork of [wagon-gitsite][] by [kohsuke][kohsuke-wagon-gitsite] is used.
 * Ensure that you have set the passwords for Maven Central Deployment as described in
     [Sonatype OSS Maven Repository Usage Guide][oss-usage] in your `settings.xml`.
     Mind that you need to have an account at [Sonatype's JIRA][sonatype-jira].
@@ -82,10 +81,6 @@ If a staging repository is used, don't forget to close/promote the just released
 Your IDE might complain on additional git-folders after a release. They are located in `target/checkout`. In order to
 make your IDE happy again, just call `mvn clean`.
 
-### Update GitHub Pages
-
-Change to branch `gh-pages` and update the page `index.html` to point to the new released Maven site.
-
 ## Troubleshooting
 
 ### Fix Version after Release
@@ -97,9 +92,9 @@ version:
 joala$ mvn versions:set -DnewVersion=1.2.0-SNAPSHOT
 ```
 
-### site-maven-plugin fails on deployment
+### Rollback
 
-Sometimes the site-maven-plugin seems to cause failures. Such as `Not Allowed (405)`. In this case the current
+Sometimes the for example the site deployment might fail. In this case the current
 approach is to repeat the release. Assume you just were on your way release version `0.3.0` if Joala:
 
 ```
@@ -115,3 +110,5 @@ joala$ mvn release:prepare release:perform
 [maven-reference-pom-syntax]: <http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-syntax.html> "Maven: The Complete Reference, 3.3. POM Syntax"
 [oss-usage]: <https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide> "Sonatype OSS Maven Repository Usage Guide"
 [sonatype-jira]: <https://issues.sonatype.org/> "Sonatype JIRA"
+[wagon-gitsite]: <http://khuxtable.github.com/wagon-gitsite/> "Wagon Provider for GitHub Pages Site Deployment"
+[kohsuke-wagon-gitsite]: <https://github.com/kohsuke/wagon-gitsite> "Fork of Wagon Provider for GitHub Pages Site Deployment"
