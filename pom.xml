@@ -16,22 +16,21 @@
   ~ GNU General Public License for more details.
   ~
   ~ You should have received a copy of the GNU General Public License
-  ~ along with Joala.  If not, see <http://www.gnu.org/licenses/>.
+  ~ along with Joala.  If not, see <http://www.gnu.org/licenses />.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
     <!--suppress MavenModelInspection -->
-    <relativePath/>
+    <relativePath />
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
   <description><![CDATA[
@@ -121,7 +120,7 @@
   <scm>
     <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>joala-bom-1.0.0</tag>
     <url>https://github.com/CoreMedia/joala</url>
   </scm>
   <issueManagement>
@@ -452,7 +451,7 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence/>
+                <DependencyConvergence />
                 <requireNoRepositories>
                   <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
                   </message>
@@ -463,7 +462,7 @@
                 <requirePluginVersions>
                   <message>Best Practice is to always define plugin versions!</message>
                 </requirePluginVersions>
-                <requireUpperBoundDeps/>
+                <requireUpperBoundDeps />
                 <bannedDependencies>
                   <message><![CDATA[
 Joala tries to avoid having any of the following dependencies:
