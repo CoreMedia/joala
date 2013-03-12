@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-02-13T11:19:11.749">
-<file name="/home/mark/dev/joala/target/checkout/parent/labs/junit/src/main/java/net/joala/junit/ParameterizedTestMismatchException.java">
-<violation beginline="26" endline="27" begincolumn="10" endcolumn="3" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="net.joala.junit" class="ParameterizedTestMismatchException" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
-Document empty constructor
-</violation>
-</file>
-</pmd>
