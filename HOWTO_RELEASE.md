@@ -34,6 +34,8 @@ joala$ git push origin master --tags
 As you can see from the commands above Joala is configured to release locally. Thus
 it is required to push your changes after the release.
 
+During the release you will by queried two times for your GPG Passphrase.
+
 **Please don't release in batch mode** in order to choose the correct version numbers as
 mentioned below. Versions for child modules will be set automatically so that you only
 have to specify the versions once.
