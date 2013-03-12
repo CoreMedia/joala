@@ -33,6 +33,7 @@ import javax.annotation.Nullable;
  *
  * @param <T> the type of the reference value
  * @since 6/5/12
+ * @see net.joala.bdd
  */
 public interface Reference<T> {
   /**

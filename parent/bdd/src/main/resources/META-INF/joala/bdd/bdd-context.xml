@@ -32,6 +32,10 @@
 
   <aop:aspectj-autoproxy/>
 
-  <bean id="defaultJUnitAopStepsLogger" class="net.joala.bdd.aop.JUnitAopStepsLogger" scope="singleton"/>
+  <bean id="defaultJUnitAopStepsLogger" class="net.joala.bdd.aop.JUnitAopStepsLogger" scope="singleton">
+    <description><![CDATA[
+      Bean which will provide pointcuts for logging scenario-steps.
+    ]]></description>
+  </bean>
 
 </beans>

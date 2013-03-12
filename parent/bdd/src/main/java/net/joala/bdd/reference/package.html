@@ -21,16 +21,41 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <title>net.joala.bdd.reference</title>
-</head>
-<body>
-<p>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
+<head >
+  <title >net.joala.bdd.reference</title >
+</head >
+<body >
+<p >
   References are used to carry information between steps. References can be written once and read multiple times.
   As additional features references might be enriched with properties to describe the contained object in more
   detail for later assertions.
-</p>
+</p >
+
+<p >
+  For a detailed description of the BDD approach in Joala read the package documentation for
+  {@link net.joala.bdd}.
+</p >
+
+<p >
+  <strong >Standalone usage:</strong > Although the references concept got invented as part of the Joala BDD concept
+  with
+  thorough logging support you can of course use the references directly without any other setting of JUnit Rules etc.
+  Just use plain Java methods and do not rely on Spring:
+</p >
+<pre >
+public scenario_describe_title_with_underscores() throws Exception {
+  Reference&lt;File> documentD = ref("D");
+  Reference&lt;String> textU = ref("U");
+  Reference&lt;WebDriver> browserB = ref("B");
+
+  given_there_is_a_HTML_document_D(documentD);
+  when_the_HTML_document_D_contains_unicode_text_U(documentD, textU);
+  when_I_open_document_D_with_browser_B(browserB);
+  then_browser_B_correctly_renders_text_U(browserB, textU);
+}
+</pre >
 @since 9/27/12
-</body>
-</html>
+@see net.joala.bdd
+</body >
+</html >

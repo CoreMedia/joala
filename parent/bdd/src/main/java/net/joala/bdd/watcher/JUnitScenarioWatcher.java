@@ -48,22 +48,50 @@ import static java.lang.Math.max;
  * }
  * </pre>
  *
+ * @see net.joala.bdd
  * @since 6/2/12
  */
 public class JUnitScenarioWatcher extends TestWatcher {
+  /**
+   * Logging instance.
+   */
   private static final Logger LOG = LoggerFactory.getLogger(JUnitScenarioWatcher.class);
+  /**
+   * Pattern to insert spaces between words in test class names. Word delimiters are uppercase letters
+   */
   private static final Pattern INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN = Pattern.compile("([A-Z][^A-Z0-9]*|[0-9]+)");
+  /**
+   * Pattern to remove the test-suffic from test class names.
+   */
   private static final Pattern REMOVE_TEST_SUFFIX_PATTERN = Pattern.compile("I?Test$");
   private static final int MIN_DOTS = 3;
   private static final int MAX_TYPE_PADDING = 15;
+  /**
+   * Label for the Story aka test class as prefix in the logging output.
+   */
   private static final String STORY_HEADING = "Story";
+  /**
+   * Label for the Scenario aka test method as prefix in the logging output.
+   */
   private static final String SCENARIO_HEADING = "Scenario";
 
+  /**
+   * Format the story/test class name for output.
+   *
+   * @param rawStory raw name of the story/test class
+   * @return story name ready for output
+   */
   private String formatStory(final CharSequence rawStory) {
     final String withoutTest = REMOVE_TEST_SUFFIX_PATTERN.matcher(rawStory).replaceFirst("");
     return INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN.matcher(withoutTest).replaceAll(" $1").trim();
   }
 
+  /**
+   * Format the scenario/test method name for output.
+   *
+   * @param rawScenario raw name of the scenario/test method
+   * @return scenario name ready for output
+   */
   @Nonnull
   private String formatScenario(@Nonnull final String rawScenario) {
     return rawScenario.replace('_', ' ').replace("scenario", "").trim();
@@ -98,22 +126,51 @@ public class JUnitScenarioWatcher extends TestWatcher {
     }
   }
 
+  /**
+   * Determine if the given test matches the scenario-name-pattern.
+   *
+   * @param description description to retrieve the method name from
+   * @return true, if the current test method is identified as scenario
+   */
   private boolean isScenario(@Nonnull final Description description) {
     return description.getMethodName().contains("scenario");
   }
 
+  /**
+   * Report start of scenario/story.
+   *
+   * @param type    either story or scenario
+   * @param message the message to print
+   */
   protected void reportStart(final String type, final String message) {
     report(new Formatter().format("%1$S: %2$s %3$s", type, typePadding(type), message).toString());
   }
 
+  /**
+   * Report end of scenario/story.
+   *
+   * @param type    either story or scenario
+   * @param message the message to print
+   */
   protected void reportEnd(final String type, final String message, final String result) {
     report(new Formatter().format("%1$S: %2$s %3$s (%4$S)", type, typePadding(type), message, result).toString());
   }
 
+  /**
+   * Report the given message.
+   *
+   * @param message message to print
+   */
   protected void report(final String message) {
     LOG.info(message);
   }
 
+  /**
+   * Add some padding to the type to be logged (scenario/story).
+   *
+   * @param type scenario or story
+   * @return padded story/scenario name
+   */
   private String typePadding(final CharSequence type) {
     return Strings.repeat(".", max(MIN_DOTS, MAX_TYPE_PADDING - type.length()));
   }
