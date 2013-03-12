@@ -19,14 +19,15 @@
   ~ along with Joala.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
     <!--suppress MavenModelInspection -->
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
@@ -456,18 +457,18 @@
             </goals>
             <configuration>
               <rules>
-                <DependencyConvergence />
+                <DependencyConvergence/>
                 <requireNoRepositories>
                   <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)
                   </message>
                   <allowedRepositories>
-                    <allowedRepository>coremedia.external.releases</allowedRepository>
+                    <allowedRepository>sonatype-nexus-snapshots</allowedRepository>
                   </allowedRepositories>
                 </requireNoRepositories>
                 <requirePluginVersions>
                   <message>Best Practice is to always define plugin versions!</message>
                 </requirePluginVersions>
-                <requireUpperBoundDeps />
+                <requireUpperBoundDeps/>
                 <bannedDependencies>
                   <message><![CDATA[
 Joala tries to avoid having any of the following dependencies:
@@ -736,16 +737,4 @@ Joala tries to avoid having any of the following dependencies:
       </build>
     </profile>
   </profiles>
-
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>coremedia.external.releases</id>
-      <name>CoreMedia CMS</name>
-      <url>https://repository.coremedia.com/nexus/content/groups/cms/</url>
-      <layout>default</layout>
-    </repository>
-  </repositories>
 </project>

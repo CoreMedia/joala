@@ -151,16 +151,4 @@
     </profile>
   </profiles>
 
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>coremedia.external.releases</id>
-      <name>CoreMedia CMS</name>
-      <url>https://repository.coremedia.com/nexus/content/groups/cms/</url>
-      <layout>default</layout>
-    </repository>
-  </repositories>
-
 </project>
