@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+<duplication lines="25" tokens="107">
+<file line="35" path="/home/mark/dev/joala/parent/matchers/src/main/java/net/joala/matcher/reflect/ClassHasModifier.java"/>
+<file line="38" path="/home/mark/dev/joala/parent/matchers/src/main/java/net/joala/matcher/reflect/MemberHasModifier.java"/>
+<codefragment>
+<![CDATA[
+  public ClassHasModifier(final int modifierFlag) {
+    this.modifierFlag = modifierFlag;
+  }
+
+  @Override
+  protected boolean matchesSafely(final T item) {
+    return (item.getModifiers() & modifierFlag) != 0;
+  }
+
+  @Override
+  public void describeTo(final Description description) {
+    description
+            .appendText("is ")
+            .appendText(Modifier.toString(modifierFlag));
+  }
+
+  @Override
+  protected void describeMismatchSafely(final T item, final Description description) {
+    description
+            .appendText("but was ")
+            .appendText(Modifier.toString(item.getModifiers()));
+  }
+
+  @Factory
+  public static <T extends Class<?>> Matcher<T> classIsAbstract() {
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>

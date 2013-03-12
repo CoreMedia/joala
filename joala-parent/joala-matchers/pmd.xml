@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.3" timestamp="2013-03-12T12:16:28.769">
+<file name="/home/mark/dev/joala/parent/matchers/src/main/java/net/joala/matcher/net/KnownHost.java">
+<violation beginline="48" endline="48" begincolumn="7" endcolumn="19" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.matcher.net" class="KnownHost" method="matchesSafely" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
+A method should have only one exit point, and that should be the last statement in the method
+</violation>
+</file>
+<file name="/home/mark/dev/joala/parent/matchers/src/main/java/net/joala/matcher/reflect/ClassHasModifier.java">
+<violation beginline="32" endline="97" begincolumn="78" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="net.joala.matcher.reflect" class="ClassHasModifier" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+</file>
+<file name="/home/mark/dev/joala/parent/matchers/src/main/java/net/joala/matcher/reflect/MemberHasModifier.java">
+<violation beginline="35" endline="110" begincolumn="77" endcolumn="1" rule="TooManyMethods" ruleset="Code Size Rules" package="net.joala.matcher.reflect" class="MemberHasModifier" externalInfoUrl="http://pmd.sourceforge.net/rules/codesize.html#TooManyMethods" priority="3">
+This class has too many methods, consider refactoring it.
+</violation>
+</file>
+</pmd>
