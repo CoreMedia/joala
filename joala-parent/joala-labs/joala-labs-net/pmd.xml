@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T12:28:20.476">
-<file name="/home/mark/dev/joala/parent/labs/net/src/main/java/net/joala/net/EmbeddedWebservice.java">
+<pmd version="4.3" timestamp="2013-03-12T15:13:40.074">
+<file name="/home/mark/dev/joala/target/checkout/parent/labs/net/src/main/java/net/joala/net/EmbeddedWebservice.java">
 <violation beginline="20" endline="241" begincolumn="1" endcolumn="2" rule="ExcessiveImports" ruleset="Coupling Rules" package="net.joala.net" externalInfoUrl="http://pmd.sourceforge.net/rules/coupling.html#ExcessiveImports" priority="3">
 A high number of imports can indicate a high degree of coupling within an object.
 </violation>
@@ -14,7 +14,7 @@ Use of modifier volatile is not recommended.
 Avoid instantiation through private constructors from outside of the constructor's class.
 </violation>
 </file>
-<file name="/home/mark/dev/joala/parent/labs/net/src/main/java/net/joala/net/StatusCodeResponse.java">
+<file name="/home/mark/dev/joala/target/checkout/parent/labs/net/src/main/java/net/joala/net/StatusCodeResponse.java">
 <violation beginline="38" endline="38" begincolumn="17" endcolumn="31" rule="AvoidFieldNameMatchingMethodName" ruleset="Naming Rules" package="net.joala.net" class="StatusCodeResponse" variable="statusCode" externalInfoUrl="http://pmd.sourceforge.net/rules/naming.html#AvoidFieldNameMatchingMethodName" priority="3">
 It is somewhat confusing to have a field name with the same name as a method
 </violation>
