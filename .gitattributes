@@ -1,0 +1,8 @@
+# to prevent git from exporting these files using git archive
+.gitignore          export-ignore
+.gitmodules         export-ignore
+.gitattributes      export-ignore
+
+# set correct line endings on scripts
+*.sh                eol=lf
+*.bat               eol=crlf
