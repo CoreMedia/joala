@@ -33,11 +33,17 @@ joala$ git push origin master --tags
 As you can see from the commands above Joala is configured to release locally. Thus
 it is required to push your changes after the release.
 
+Current Issue: Currently the passphrase setting does not work as documented. This
+will be investigated. Thus the following applies:
+
 During the release you will by queried two times for your GPG Passphrase.
 
 **Please don't release in batch mode** in order to choose the correct version numbers as
 mentioned below. Versions for child modules will be set automatically so that you only
 have to specify the versions once.
+
+Currently the release process takes about an hour especially because of the deployment
+of the Maven site to GitHub Pages.
 
 ## Version Numbers
 
@@ -74,7 +80,14 @@ changes are introduced by deprecations in previous minor version releases.
 
 ### Close/Promote Arifacts
 
-If a staging repository is used, don't forget to close/promote the just released artifacts.
+* Visit [Sonatype's Nexus Repository][oss-sonatype].
+* Open the Staging Repositories and choose `net.joala`.
+* Close the repository.
+* Release the repository.
+    Mind that during release several checks are performed. If those checks fail it is
+    required to perform a re-release. Thus it might be wise not to push the local release
+    artifacts (see above) but to do it after the release passed the quality gate
+    in Nexus repository.
 
 ### Clean `checkout` folders
 
@@ -112,3 +125,4 @@ joala$ mvn release:prepare release:perform
 [sonatype-jira]: <https://issues.sonatype.org/> "Sonatype JIRA"
 [wagon-gitsite]: <http://khuxtable.github.com/wagon-gitsite/> "Wagon Provider for GitHub Pages Site Deployment"
 [kohsuke-wagon-gitsite]: <https://github.com/kohsuke/wagon-gitsite> "Fork of Wagon Provider for GitHub Pages Site Deployment"
+[oss-sonatype]: <https://oss.sonatype.org/> "Sonatype Nexus Repository"
