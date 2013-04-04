@@ -34,8 +34,8 @@ import static java.lang.String.format;
  * Implementation of {@link Reference}.
  * </p>
  *
- * @since 6/5/12
  * @see net.joala.bdd
+ * @since 6/5/12
  */
 public class ReferenceImpl<T> implements Reference<T> {
 
@@ -72,7 +72,7 @@ public class ReferenceImpl<T> implements Reference<T> {
   @Override
   public void setProperty(@Nonnull final String key, @Nullable final Object value) {
     checkNotNull(key, "Property key must not be null.");
-    if (properties.containsKey(key)) {
+    if (hasProperty(key)) {
       throw new PropertyAlreadySetException(format("Property '%s' already set to value %s", key, properties.get(key)));
     }
     properties.put(key, value);
@@ -81,7 +81,7 @@ public class ReferenceImpl<T> implements Reference<T> {
   @Override
   public Object getProperty(@Nonnull final String key) {
     checkNotNull(key, "Property key must not be null.");
-    if (!properties.containsKey(key)) {
+    if (!hasProperty(key)) {
       throw new PropertyNotSetException(format("Property '%s' not set.", key));
     }
     return properties.get(key);
@@ -91,11 +91,8 @@ public class ReferenceImpl<T> implements Reference<T> {
   @Nullable
   public <P> P getProperty(@Nonnull final String key, @Nonnull final Class<P> clazz) {
     checkNotNull(key, "Property key must not be null.");
-    final Object propertyValue = getProperty(key);
-    if (propertyValue == null) {
-      return null;
-    }
-    return clazz.cast(propertyValue);
+    checkNotNull(clazz, "Expected class must not be null.");
+    return clazz.cast(getProperty(key));
   }
 
   @Override
@@ -105,16 +102,20 @@ public class ReferenceImpl<T> implements Reference<T> {
   }
 
   @Override
+  public Object removeProperty(@Nonnull final String key) {
+    checkNotNull(key, "Property key must not be null.");
+    if (!hasProperty(key)) {
+      throw new PropertyNotSetException(format("Property '%s' not set.", key));
+    }
+    return properties.get(key);
+  }
+
+  @Override
   @Nullable
   public <P> P removeProperty(@Nonnull final String key, @Nonnull final Class<P> expectedClass) {
     checkNotNull(key, "Property key must not be null.");
     checkNotNull(expectedClass, "Expected class must not be null.");
-
-    final Object propertyValue = properties.remove(key);
-    if (propertyValue == null) {
-      return null;
-    }
-    return expectedClass.cast(propertyValue);
+    return expectedClass.cast(removeProperty(key));
   }
 
   @Override

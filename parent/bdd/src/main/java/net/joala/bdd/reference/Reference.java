@@ -32,8 +32,8 @@ import javax.annotation.Nullable;
  * </p>
  *
  * @param <T> the type of the reference value
- * @since 6/5/12
  * @see net.joala.bdd
+ * @since 6/5/12
  */
 public interface Reference<T> {
   /**
@@ -108,13 +108,16 @@ public interface Reference<T> {
   boolean hasProperty(@Nonnull String key);
 
   /**
-   * Removes the property with the given key if it exists, otherwise does nothing.
+   * Removes the property with the given key.
    *
-   * @param key the name of the property
-   * @param expectedClass the type of the property value to cast it to
-   * @param <P> the type of the proeprty value
-   * @return the property value if it was set, otherwise {@code null}.
+   * @param key           the name of the property
+   * @param expectedClass the type of the removed property value to cast it to
+   * @param <P>           the type of the property value
+   * @return property value
+   * @throws PropertyNotSetException if you did not define that property before
    */
   @Nullable
   <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass);
+
+  Object removeProperty(@Nonnull String key);
 }

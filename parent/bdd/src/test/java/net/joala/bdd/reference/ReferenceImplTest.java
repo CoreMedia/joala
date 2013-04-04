@@ -106,7 +106,6 @@ public class ReferenceImplTest {
     reference.setProperty(null, "value");
   }
 
-
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
   public void should_fail_for_asking_a_null_key() throws Exception {
@@ -141,11 +140,10 @@ public class ReferenceImplTest {
     reference.removeProperty("foo", null);
   }
 
-  @Test
-  public void should_remove_nothing_without_an_error() {
+  @Test(expected = PropertyNotSetException.class)
+  public void should_fail_when_trying_to_remove_unset_property() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
-    assertNull("\"foo\" must not be set.", reference.removeProperty("foo", String.class));
-    assertTrue("\"foo\" must not be set anymore.", !reference.hasProperty("foo"));
+    reference.removeProperty("foo", String.class);
   }
 
   @Test
