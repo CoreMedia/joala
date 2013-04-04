@@ -113,11 +113,18 @@ public interface Reference<T> {
    * @param key           the name of the property
    * @param expectedClass the type of the removed property value to cast it to
    * @param <P>           the type of the property value
-   * @return property value
+   * @return former property value
    * @throws PropertyNotSetException if you did not define that property before
    */
   @Nullable
   <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass);
 
+  /**
+   * Removes the property with the given key.
+   *
+   * @param key the name of the property
+   * @return former property value
+   * @throws PropertyNotSetException if you did not define that property before
+   */
   Object removeProperty(@Nonnull String key);
 }

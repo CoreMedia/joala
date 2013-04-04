@@ -147,10 +147,17 @@ public class ReferenceImplTest {
   }
 
   @Test
-  public void should_remove_foo() {
+  public void remove_property_should_return_former_property_value() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.setProperty("foo", "bar");
     assertEquals("\"foo\" must be set to \"bar\".", "bar", reference.removeProperty("foo", String.class));
-    assertTrue("\"foo\" must not be set anymore.", !reference.hasProperty("foo"));
+  }
+
+  @Test
+  public void remove_property_should_actually_remove_the_property() {
+    final Reference<String> reference = new ReferenceImpl<String>();
+    reference.setProperty("foo", "bar");
+    reference.removeProperty("foo", String.class);
+    assertFalse("\"foo\" must not be set anymore.", reference.hasProperty("foo"));
   }
 }

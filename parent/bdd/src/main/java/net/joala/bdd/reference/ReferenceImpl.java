@@ -107,7 +107,7 @@ public class ReferenceImpl<T> implements Reference<T> {
     if (!hasProperty(key)) {
       throw new PropertyNotSetException(format("Property '%s' not set.", key));
     }
-    return properties.get(key);
+    return properties.remove(key);
   }
 
   @Override
