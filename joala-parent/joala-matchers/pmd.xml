@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T15:53:32.948">
+<pmd version="4.3" timestamp="2013-04-05T00:30:24.284">
 <file name="/home/mark/dev/joala/target/checkout/parent/matchers/src/main/java/net/joala/matcher/net/KnownHost.java">
 <violation beginline="48" endline="48" begincolumn="7" endcolumn="19" rule="OnlyOneReturn" ruleset="Controversial Rules" package="net.joala.matcher.net" class="KnownHost" method="matchesSafely" externalInfoUrl="http://pmd.sourceforge.net/rules/controversial.html#OnlyOneReturn" priority="3">
 A method should have only one exit point, and that should be the last statement in the method
@@ -46,11 +46,11 @@ Parameter 'expected' is not assigned and could be declared final
 <violation beginline="18" endline="18" begincolumn="75" endcolumn="106" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
 Parameter 'expectedMessage' is not assigned and could be declared final
 </violation>
-<violation beginline="18" endline="18" begincolumn="109" endcolumn="129" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
-Parameter 'recurseCauses' is not assigned and could be declared final
-</violation>
 <violation beginline="22" endline="22" begincolumn="75" endcolumn="106" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
 Parameter 'expectedMessage' is not assigned and could be declared final
+</violation>
+<violation beginline="22" endline="22" begincolumn="109" endcolumn="129" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="messageContains" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
+Parameter 'recurseCauses' is not assigned and could be declared final
 </violation>
 <violation beginline="26" endline="26" begincolumn="77" endcolumn="100" rule="MethodArgumentCouldBeFinal" ruleset="Optimization Rules" package="net.joala.matcher" class="JoalaMatchers" method="matchesPattern" externalInfoUrl="http://pmd.sourceforge.net/rules/optimizations.html#MethodArgumentCouldBeFinal" priority="3">
 Parameter 'pattern' is not assigned and could be declared final
