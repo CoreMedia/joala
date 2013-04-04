@@ -24,8 +24,11 @@ import org.junit.Test;
 import java.util.Collections;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 /**
  * <p>
@@ -103,4 +106,53 @@ public class ReferenceImplTest {
     reference.setProperty(null, "value");
   }
 
+
+  @SuppressWarnings("ConstantConditions")
+  @Test(expected = NullPointerException.class)
+  public void should_fail_for_asking_a_null_key() throws Exception {
+    Reference<String> reference = new ReferenceImpl<String>();
+    reference.hasProperty(null);
+  }
+
+  @Test
+  public void should_acknowledge_existing_key() {
+    Reference<String> reference = new ReferenceImpl<String>();
+    reference.setProperty("foo", "bar");
+    assertTrue("Expected \"foo\" to be there.", reference.hasProperty("foo"));
+  }
+
+  @Test
+  public void should_deny_existence_of_property() {
+    Reference<String> reference = new ReferenceImpl<String>();
+    assertFalse("\"foo\" must not be set.", reference.hasProperty("foo"));
+  }
+
+  @SuppressWarnings("ConstantConditions")
+  @Test(expected = NullPointerException.class)
+  public void should_fail_for_removing_property_with_key_null() {
+    Reference<String> reference = new ReferenceImpl<String>();
+    reference.removeProperty(null, String.class);
+  }
+
+  @SuppressWarnings("ConstantConditions")
+  @Test(expected = NullPointerException.class)
+  public void should_fail_for_removing_property_with_expected_class_null() {
+    Reference<String> reference = new ReferenceImpl<String>();
+    reference.removeProperty("foo", null);
+  }
+
+  @Test
+  public void should_remove_nothing_without_an_error() {
+    Reference<String> reference = new ReferenceImpl<String>();
+    assertNull("\"foo\" must not be set.", reference.removeProperty("foo", String.class));
+    assertTrue("\"foo\" must not be set anymore.", !reference.hasProperty("foo"));
+  }
+
+  @Test
+  public void should_remove_foo() {
+    Reference<String> reference = new ReferenceImpl<String>();
+    reference.setProperty("foo", "bar");
+    assertEquals("\"foo\" must be set to \"bar\".", "bar", reference.removeProperty("foo", String.class));
+    assertTrue("\"foo\" must not be set anymore.", !reference.hasProperty("foo"));
+  }
 }
