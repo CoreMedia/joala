@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T16:07:42.583">
+<pmd version="4.3" timestamp="2013-04-05T00:51:14.801">
 <file name="/home/mark/dev/joala/target/checkout/parent/labs/net/src/main/java/net/joala/net/EmbeddedWebservice.java">
 <violation beginline="20" endline="241" begincolumn="1" endcolumn="2" rule="ExcessiveImports" ruleset="Coupling Rules" package="net.joala.net" externalInfoUrl="http://pmd.sourceforge.net/rules/coupling.html#ExcessiveImports" priority="3">
 A high number of imports can indicate a high degree of coupling within an object.
