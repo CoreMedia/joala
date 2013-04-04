@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T15:59:33.140">
+<pmd version="4.3" timestamp="2013-04-05T00:39:25.973">
 <file name="/home/mark/dev/joala/target/checkout/parent/labs/data/src/main/java/net/joala/data/DataProvidingException.java">
 <violation beginline="35" endline="36" begincolumn="10" endcolumn="3" rule="UncommentedEmptyConstructor" ruleset="Design Rules" package="net.joala.data" class="DataProvidingException" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#UncommentedEmptyConstructor" priority="3">
 Document empty constructor
