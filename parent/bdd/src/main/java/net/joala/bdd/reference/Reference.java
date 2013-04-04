@@ -43,9 +43,8 @@ public interface Reference<T> {
    *
    * @param value the value of the reference
    * @throws ReferenceAlreadyBoundException if the reference already has a value
-   * @throws NullPointerException           if the value set is null
    */
-  void set(@Nonnull T value);
+  void set(@Nullable T value);
 
   /**
    * <p>
@@ -56,7 +55,7 @@ public interface Reference<T> {
    * @throws ReferenceNotBoundException if the reference does not contain a value yet
    * @see #hasValue()
    */
-  @Nonnull
+  @Nullable
   T get();
 
   /**

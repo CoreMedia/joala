@@ -38,21 +38,21 @@ import static java.lang.String.format;
  * @since 6/5/12
  */
 public class ReferenceImpl<T> implements Reference<T> {
-
+  private boolean valueSet;
   private T value;
   private final Map<String, Object> properties = new HashMap<String, Object>(1);
 
   @Override
-  public void set(@Nonnull final T value) {
-    checkNotNull(value, "Reference value must not be null.");
+  public void set(@Nullable final T value) {
     if (hasValue()) {
       throw new ReferenceAlreadyBoundException(format("Reference already bound to value %s of type %s.", this.value, this.value.getClass()));
     }
+    valueSet = true;
     this.value = value;
   }
 
   @Override
-  @Nonnull
+  @Nullable
   public T get() {
     if (!hasValue()) {
       throw new ReferenceNotBoundException("Reference not bound to any value.");
@@ -62,7 +62,7 @@ public class ReferenceImpl<T> implements Reference<T> {
 
   @Override
   public boolean hasValue() {
-    return value != null;
+    return valueSet;
   }
 
   @Override
@@ -118,6 +118,7 @@ public class ReferenceImpl<T> implements Reference<T> {
   public String toString() {
     return Objects.toStringHelper(this)
             .add("value", value)
+            .add("valueSet", valueSet)
             .add("properties", properties)
             .toString();
   }

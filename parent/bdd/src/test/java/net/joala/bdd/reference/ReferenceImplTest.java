@@ -60,11 +60,11 @@ public class ReferenceImplTest {
     reference.get();
   }
 
-  @SuppressWarnings("ConstantConditions")
-  @Test(expected = NullPointerException.class)
-  public void should_fail_for_reference_value_null() throws Exception {
+  @Test
+  public void should_be_able_to_hold_reference_value_null() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set(null);
+    assertNull("Value null should be returned when retrieving value.", reference.get());
   }
 
   @Test
@@ -165,6 +165,13 @@ public class ReferenceImplTest {
   public void should_be_possible_to_query_if_reference_value_is_set_if_set() throws Exception {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set("Lorem");
+    assertTrue("Reference should signal to carry a value.", reference.hasValue());
+  }
+
+  @Test
+  public void hasValue_should_signal_value_set_for_reference_value_null() throws Exception {
+    final Reference<String> reference = new ReferenceImpl<String>();
+    reference.set(null);
     assertTrue("Reference should signal to carry a value.", reference.hasValue());
   }
 
