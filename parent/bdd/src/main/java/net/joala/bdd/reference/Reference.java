@@ -96,4 +96,25 @@ public interface Reference<T> {
    */
   @Nullable
   <P> P getProperty(@Nonnull String key, @Nonnull Class<P> clazz);
+
+  /**
+   * <p>
+   * Checks, whether a property with the given key is set.
+   * </p>
+   *
+   * @param key the name of the property
+   * @return <code>true</code> if the property is set, otherwise <code>false</code>
+   */
+  boolean hasProperty(@Nonnull String key);
+
+  /**
+   * Removes the property with the given key if it exists, otherwise does nothing.
+   *
+   * @param key the name of the property
+   * @param expectedClass the type of the property value to cast it to
+   * @param <P> the type of the proeprty value
+   * @return the property value if it was set, otherwise <code>null</code>.
+   */
+  @Nullable
+  <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass);
 }
