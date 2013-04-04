@@ -103,7 +103,7 @@ public interface Reference<T> {
    * </p>
    *
    * @param key the name of the property
-   * @return <code>true</code> if the property is set, otherwise <code>false</code>
+   * @return {@code true} if the property is set, otherwise {@code false}
    */
   boolean hasProperty(@Nonnull String key);
 
@@ -113,7 +113,7 @@ public interface Reference<T> {
    * @param key the name of the property
    * @param expectedClass the type of the property value to cast it to
    * @param <P> the type of the proeprty value
-   * @return the property value if it was set, otherwise <code>null</code>.
+   * @return the property value if it was set, otherwise {@code null}.
    */
   @Nullable
   <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass);

@@ -99,18 +99,18 @@ public class ReferenceImpl<T> implements Reference<T> {
   }
 
   @Override
-  public boolean hasProperty(@Nonnull String key) {
+  public boolean hasProperty(@Nonnull final String key) {
     checkNotNull(key, "Property key must not be null.");
     return properties.containsKey(key);
   }
 
   @Override
   @Nullable
-  public <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass) {
+  public <P> P removeProperty(@Nonnull final String key, @Nonnull final Class<P> expectedClass) {
     checkNotNull(key, "Property key must not be null.");
     checkNotNull(expectedClass, "Expected class must not be null.");
 
-    Object propertyValue = properties.remove(key);
+    final Object propertyValue = properties.remove(key);
     if (propertyValue == null) {
       return null;
     }
