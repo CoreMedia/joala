@@ -54,9 +54,18 @@ public interface Reference<T> {
    *
    * @return the value of the reference
    * @throws ReferenceNotBoundException if the reference does not contain a value yet
+   * @see #hasValue()
    */
   @Nonnull
   T get();
+
+  /**
+   * Signals if the reference carries a value or not.
+   *
+   * @return {@code true} if reference carries a value, {@code false} if not
+   * @since 1.1.0
+   */
+  boolean hasValue();
 
   /**
    * <p>
@@ -104,6 +113,7 @@ public interface Reference<T> {
    *
    * @param key the name of the property
    * @return {@code true} if the property is set, otherwise {@code false}
+   * @since 1.1.0
    */
   boolean hasProperty(@Nonnull String key);
 
@@ -115,6 +125,7 @@ public interface Reference<T> {
    * @param <P>           the type of the property value
    * @return former property value
    * @throws PropertyNotSetException if you did not define that property before
+   * @since 1.1.0
    */
   @Nullable
   <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass);
@@ -125,6 +136,8 @@ public interface Reference<T> {
    * @param key the name of the property
    * @return former property value
    * @throws PropertyNotSetException if you did not define that property before
+   * @since 1.1.0
    */
   Object removeProperty(@Nonnull String key);
+
 }

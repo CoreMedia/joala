@@ -60,12 +60,8 @@ public class ReferenceImpl<T> implements Reference<T> {
     return value;
   }
 
-  /**
-   * Make it possible to verify if this reference has a value.
-   *
-   * @return if this reference has a value
-   */
-  protected final boolean hasValue() {
+  @Override
+  public boolean hasValue() {
     return value != null;
   }
 

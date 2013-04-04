@@ -160,4 +160,17 @@ public class ReferenceImplTest {
     reference.removeProperty("foo", String.class);
     assertFalse("\"foo\" must not be set anymore.", reference.hasProperty("foo"));
   }
+
+  @Test
+  public void should_be_possible_to_query_if_reference_value_is_set_if_set() throws Exception {
+    final Reference<String> reference = new ReferenceImpl<String>();
+    reference.set("Lorem");
+    assertTrue("Reference should signal to carry a value.", reference.hasValue());
+  }
+
+  @Test
+  public void should_be_possible_to_query_if_reference_value_is_set_if_unset() throws Exception {
+    final Reference<String> reference = new ReferenceImpl<String>();
+    assertFalse("Reference should signal not to carry a value.", reference.hasValue());
+  }
 }
