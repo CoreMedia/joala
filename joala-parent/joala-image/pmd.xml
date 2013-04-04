@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2013-03-12T16:15:01.226">
+<pmd version="4.3" timestamp="2013-04-05T01:01:08.652">
 <file name="/home/mark/dev/joala/target/checkout/parent/image/src/main/java/net/joala/image/config/ImageBuilderConfigImpl.java">
 <violation beginline="77" endline="77" begincolumn="56" endcolumn="83" rule="AccessorClassGeneration" ruleset="Design Rules" package="net.joala.image.config" class="ImageBuilderConfigImpl$ImageBuilderConfigHolder" externalInfoUrl="http://pmd.sourceforge.net/rules/design.html#AccessorClassGeneration" priority="3">
 Avoid instantiation through private constructors from outside of the constructor's class.
