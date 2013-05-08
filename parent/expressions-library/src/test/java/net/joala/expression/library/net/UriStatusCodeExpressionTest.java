@@ -51,7 +51,7 @@ import static org.junit.Assert.assertEquals;
 public class UriStatusCodeExpressionTest {
   private static EmbeddedWebservice webservice;
   private static final int SOME_PORT = 12345;
-  private static final long TIMED_OUT_RESPONSE_DELAY_MILLIS = 5L;
+  private static final long TIMED_OUT_RESPONSE_DELAY_MILLIS = 50L;
   private static final Timeout FAST_TIMEOUT = new TimeoutImpl(1L, TimeUnit.MILLISECONDS);
 
   @BeforeClass
