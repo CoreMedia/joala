@@ -17,34 +17,26 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.net;
-
-import com.sun.net.httpserver.HttpHandler;
+package net.joala.internal.junit;
 
 /**
- * HttpHandler which can be fed with prepared responses.
+ * <p>
+ * Builder for parameters assuming that all parameters are singletons. Thus each single
+ * object added will cause a test-run.
+ * </p>
  *
- * @since 10/4/12
+ * @since 10/8/12
  */
-public interface PreparedResponsesHttpHandler extends HttpHandler {
-  /**
-   * Feed responses.
-   *
-   * @param responses responses to provide for next requests
-   */
-  void feedResponses(Response... responses);
+public class SingletonParameterizedParametersBuilder extends DefaultParameterizedParametersBuilder {
+  public SingletonParameterizedParametersBuilder(final Class<?> testClass) {
+    super(testClass);
+  }
 
-  /**
-   * Clear possibly remaining responses.
-   */
-  void clearResponses();
-
-  /**
-   * <p>
-   * Get the number of available responses.
-   * </p>
-   *
-   * @return number of remaining responses
-   */
-  int availableResponses();
+  @Override
+  public ParameterizedParametersBuilder add(final Object... objects) {
+    for (final Object object : objects) {
+      super.add(object);
+    }
+    return this;
+  }
 }

@@ -17,33 +17,34 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.junit;
+package net.joala.internal.net;
 
-import java.util.Collection;
+import com.sun.net.httpserver.HttpHandler;
 
 /**
- * <p>
- * Builder for parameters for running parametrized JUnit tests.
- * </p>
+ * HttpHandler which can be fed with prepared responses.
  *
- * @since 10/8/12
+ * @since 10/4/12
  */
-public interface ParameterizedParametersBuilder {
+public interface PreparedResponsesHttpHandler extends HttpHandler {
   /**
-   * <p>
-   * Add objects for the one test run.
-   * </p>
+   * Feed responses.
    *
-   * @param objects objects to add, each must match to one constructor argument
-   * @return self-reference
+   * @param responses responses to provide for next requests
    */
-  ParameterizedParametersBuilder add(Object... objects);
+  void feedResponses(Response... responses);
 
   /**
-   * Build the data which then should be returned by the methood annotated
-   * with {@code &#64;Parameterized.Parameters}.
-   *
-   * @return parametrized test data
+   * Clear possibly remaining responses.
    */
-  Collection<Object[]> build();
+  void clearResponses();
+
+  /**
+   * <p>
+   * Get the number of available responses.
+   * </p>
+   *
+   * @return number of remaining responses
+   */
+  int availableResponses();
 }

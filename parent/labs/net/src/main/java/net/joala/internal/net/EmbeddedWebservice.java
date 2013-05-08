@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.net;
+package net.joala.internal.net;
 
 import com.google.common.base.Objects;
 import com.sun.net.httpserver.HttpServer;
@@ -49,8 +49,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 import static java.lang.String.format;
 import static java.net.InetAddress.getByName;
-import static net.joala.net.PortUtils.freePort;
-import static net.joala.net.StatusCodeResponse.statusCode;
+import static net.joala.internal.net.PortUtils.freePort;
+import static net.joala.internal.net.StatusCodeResponse.statusCode;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**

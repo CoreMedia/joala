@@ -26,7 +26,7 @@ import org.junit.runners.Parameterized;
 import java.util.Collection;
 import java.util.Random;
 
-import static net.joala.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
+import static net.joala.internal.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;

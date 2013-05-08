@@ -17,24 +17,37 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.junit;
+package net.joala.internal.net;
+
+import java.io.IOException;
+import java.net.ServerSocket;
 
 /**
- * @since 10/8/12
+ * <p>
+ * Utility methods to deal with ports.
+ * </p>
+ *
+ * @since 10/4/12
  */
-public class ParameterizedTestMismatchException extends RuntimeException {
-  public ParameterizedTestMismatchException() {
+public final class PortUtils {
+  /**
+   * Forbid instantiation.
+   */
+  private PortUtils() {
   }
 
-  public ParameterizedTestMismatchException(final Throwable cause) {
-    super(cause);
-  }
-
-  public ParameterizedTestMismatchException(final String message) {
-    super(message);
-  }
-
-  public ParameterizedTestMismatchException(final String message, final Throwable cause) {
-    super(message, cause);
+  /**
+   * Retrieve a free port on the current system.
+   *
+   * @return free port - if available
+   * @throws IOException in case of an error retrieving a free port
+   */
+  public static int freePort() throws IOException {
+    final ServerSocket server = new ServerSocket(0);
+    try {
+      return server.getLocalPort();
+    } finally {
+      server.close();
+    }
   }
 }

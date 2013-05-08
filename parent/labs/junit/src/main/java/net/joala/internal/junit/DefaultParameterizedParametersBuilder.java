@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.junit;
+package net.joala.internal.junit;
 
 import org.junit.runner.RunWith;
 import org.junit.runner.Runner;

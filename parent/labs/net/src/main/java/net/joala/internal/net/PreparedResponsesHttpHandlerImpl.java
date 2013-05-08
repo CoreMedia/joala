@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.net;
+package net.joala.internal.net;
 
 import com.google.common.base.Objects;
 import com.sun.net.httpserver.HttpExchange;

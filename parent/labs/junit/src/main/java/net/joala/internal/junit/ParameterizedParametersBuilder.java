@@ -17,26 +17,33 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.junit;
+package net.joala.internal.junit;
+
+import java.util.Collection;
 
 /**
  * <p>
- * Builder for parameters assuming that all parameters are singletons. Thus each single
- * object added will cause a test-run.
+ * Builder for parameters for running parametrized JUnit tests.
  * </p>
  *
  * @since 10/8/12
  */
-public class SingletonParameterizedParametersBuilder extends DefaultParameterizedParametersBuilder {
-  public SingletonParameterizedParametersBuilder(final Class<?> testClass) {
-    super(testClass);
-  }
+public interface ParameterizedParametersBuilder {
+  /**
+   * <p>
+   * Add objects for the one test run.
+   * </p>
+   *
+   * @param objects objects to add, each must match to one constructor argument
+   * @return self-reference
+   */
+  ParameterizedParametersBuilder add(Object... objects);
 
-  @Override
-  public ParameterizedParametersBuilder add(final Object... objects) {
-    for (final Object object : objects) {
-      super.add(object);
-    }
-    return this;
-  }
+  /**
+   * Build the data which then should be returned by the methood annotated
+   * with {@code &#64;Parameterized.Parameters}.
+   *
+   * @return parametrized test data
+   */
+  Collection<Object[]> build();
 }

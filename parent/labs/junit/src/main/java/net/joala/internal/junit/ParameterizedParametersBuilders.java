@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.junit;
+package net.joala.internal.junit;
 
 /**
  * @since 10/8/12
