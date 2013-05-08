@@ -26,6 +26,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>joala-conditions</artifactId>
+  <packaging>bundle</packaging>
   <name>Joala Conditions</name>
   <description><![CDATA[Implements Waiting for JUnit tests. Concept contains expressions which are responsible to
     retrieve a state of the application, matcher to verify the expected state (from Hamcrest Library)

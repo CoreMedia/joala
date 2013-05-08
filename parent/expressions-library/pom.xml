@@ -27,6 +27,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>joala-expressions-library</artifactId>
+  <packaging>bundle</packaging>
   <name>Joala Expressions Library</name>
   <description><![CDATA[
     A library of convenience expressions.

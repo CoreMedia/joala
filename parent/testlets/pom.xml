@@ -27,6 +27,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>joala-testlets</artifactId>
+  <packaging>bundle</packaging>
   <name>Joala Testlets</name>
   <description><![CDATA[
     Testlets are set of tests to apply to a software under test (SUT). Testlets itself

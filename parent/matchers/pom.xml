@@ -27,6 +27,7 @@
   </parent>
 
   <artifactId>joala-matchers</artifactId>
+  <packaging>bundle</packaging>
   <name>Joala Matchers</name>
 
   <description>Matchers in addition to those provided by Hamcrest. Might be added as proposal to

@@ -27,6 +27,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>joala-labs-net</artifactId>
+  <packaging>bundle</packaging>
   <name>Joala Labs Net</name>
 
   <dependencies>
