@@ -151,6 +151,7 @@
     <!-- Signals to ignore approved non-compile dependencies which are recognized as unused. -->
     <dependency.ignore.approved.noncompile>true</dependency.ignore.approved.noncompile>
     <dependency.fail.onwarning>true</dependency.fail.onwarning>
+    <gpg.passphrase>UNSET</gpg.passphrase>
   </properties>
 
   <dependencyManagement>
@@ -339,8 +340,11 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>2.3.2</version>
+          <version>2.4.1</version>
           <configuration>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <useReleaseProfile>false</useReleaseProfile>
+            <arguments>-Psonatype-oss-release -Dgpg.passphrase=${gpg.passphrase}</arguments>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <!--
             | if we don't do clean install javadoc aggregation will fail in release:perform because
