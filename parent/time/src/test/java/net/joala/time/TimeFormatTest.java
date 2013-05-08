@@ -29,7 +29,7 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import static net.joala.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
+import static net.joala.internal.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
 import static org.junit.Assert.assertThat;
 
 /**
