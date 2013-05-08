@@ -20,13 +20,13 @@
 package net.joala.condition.timing;
 
 import org.hamcrest.Matcher;
-import org.junit.internal.AssumptionViolatedException;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static org.junit.Assume.assumeThat;
+import static net.joala.condition.timing.MatcherExecute.FailStrategy;
+import static net.joala.condition.timing.MatcherExecute.match;
 
 /**
  * <p>
@@ -52,10 +52,23 @@ public class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
                        @Nullable final T lastValue,
                        @Nonnull final Matcher<? super T> matcher,
                        @Nonnegative final long consumedMillis) {
-    try {
-      assumeThat(lastValue, matcher);
-    } catch (AssumptionViolatedException e) {
-      throw new WaitTimeoutException(addTimeoutDescription(reason, function, input, consumedMillis), e);
+    match(reason, lastValue, matcher, new WaitTimeoutExceptionFailStrategy(function, input, consumedMillis));
+  }
+
+  private class WaitTimeoutExceptionFailStrategy implements FailStrategy {
+    private final Object function;
+    private final Object input;
+    private final long consumedMillis;
+
+    private WaitTimeoutExceptionFailStrategy(final Object function, final Object input, final long consumedMillis) {
+      this.function = function;
+      this.input = input;
+      this.consumedMillis = consumedMillis;
+    }
+
+    @Override
+    public void fail(final String message) {
+      throw new WaitTimeoutException(addTimeoutDescription(message, function, input, consumedMillis));
     }
   }
 }
