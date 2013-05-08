@@ -27,8 +27,8 @@ import javax.annotation.Nonnull;
  * a shortcut to create new instances.
  * </p>
  *
- * @since 9/27/12
  * @see net.joala.bdd
+ * @since 9/27/12
  */
 public final class References {
   /**
@@ -41,12 +41,12 @@ public final class References {
    * <p>
    * Factory method for simple (unlogged) references.
    * </p>
-   * <p>
-   * <strong>Usage:</strong>
-   * </p>
-   * <pre>{@code
+   * <dl>
+   * <dt><strong>Usage:</strong></dt>
+   * <dd><pre>{@code
    * Reference<String> myString = References.ref();
-   * }</pre>
+   * }</pre></dd>
+   * </dl>
    *
    * @param <T> the type of value contained in the reference
    * @return a reference
@@ -59,18 +59,20 @@ public final class References {
   /**
    * <p>
    * Create a reference which is self-describing. This is especially meant to be
-   * used together with steps logging.
+   * used together with steps logging. If you want to have silent (not logged)
+   * references use {@link #ref()} instead.
    * </p>
-   * <p>
-   * <strong>Usage:</strong>
-   * </p>
-   * <pre>{@code
+   * <dl>
+   * <dt><strong>Usage:</strong></dt>
+   * <dd><pre>{@code
    * Reference<String> myString = References.ref("aName");
-   * }</pre>
+   * }</pre></dd>
+   * </dl>
    *
    * @param name the name (or description) of the reference used for logging
    * @param <T>  the type of value contained in the reference
    * @return a reference
+   * @see #ref()
    */
   @Nonnull
   public static <T> Reference<T> ref(final String name) {
