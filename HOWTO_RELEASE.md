@@ -26,19 +26,14 @@
 Here are the recommended steps to release Joala:
 
 ```
-joala$ mvn release:prepare release:perform -Darguments=-Dgpg.passphrase=PASSPHRASE
+joala$ mvn release:prepare release:perform -Dgpg.passphrase=PASSPHRASE
 joala$ git push origin master --tags
 ```
 
 As you can see from the commands above Joala is configured to release locally. Thus
 it is required to push your changes after the release.
 
-Current Issue: Currently the passphrase setting does not work as documented. This
-will be investigated. Thus the following applies:
-
-During the release you will by queried two times for your GPG Passphrase.
-
-**Please don't release in batch mode** in order to choose the correct version numbers as
+**Don't release in batch mode** in order to choose the correct version numbers as
 mentioned below. Versions for child modules will be set automatically so that you only
 have to specify the versions once.
 

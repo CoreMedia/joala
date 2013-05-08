@@ -342,8 +342,6 @@
           <artifactId>maven-release-plugin</artifactId>
           <version>2.4.1</version>
           <configuration>
-            <mavenExecutorId>forked-path</mavenExecutorId>
-            <useReleaseProfile>false</useReleaseProfile>
             <arguments>-Psonatype-oss-release -Dgpg.passphrase=${gpg.passphrase}</arguments>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <!--
@@ -355,6 +353,7 @@
             <pushChanges>false</pushChanges>
             <localCheckout>true</localCheckout>
             <releaseProfiles>release</releaseProfiles>
+            <tagNameFormat>joala-@{project.version}</tagNameFormat>
           </configuration>
         </plugin>
         <plugin>
