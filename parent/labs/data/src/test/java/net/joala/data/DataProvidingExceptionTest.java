@@ -19,13 +19,14 @@
 
 package net.joala.data;
 
+import net.joala.internal.data.DataProvidingException;
 import org.junit.Test;
 
 import static net.joala.testlet.ExceptionClassTestlet.exceptionClassTestlet;
 
 /**
  * <p>
- * Tests {@link DataProvidingException}.
+ * Tests {@link net.joala.internal.data.DataProvidingException}.
  * </p>
  *
  * @since 10/9/12

@@ -21,8 +21,8 @@ package net.joala.condition.timing;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
-import net.joala.data.DataProvider;
-import net.joala.data.DataProvidingException;
+import net.joala.internal.data.DataProvider;
+import net.joala.internal.data.DataProvidingException;
 import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.data.random.RandomDoubleProvider;
 import net.joala.time.Timeout;

@@ -19,7 +19,7 @@
 
 package net.joala.condition;
 
-import net.joala.data.DataProvider;
+import net.joala.internal.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.expression.Expression;
 import org.junit.Test;

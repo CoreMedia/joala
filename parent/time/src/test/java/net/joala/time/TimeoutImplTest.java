@@ -19,7 +19,7 @@
 
 package net.joala.time;
 
-import net.joala.data.DataProvider;
+import net.joala.internal.data.DataProvider;
 import net.joala.data.random.RandomDoubleProvider;
 import net.joala.data.random.RandomIntegerProvider;
 import org.junit.Test;

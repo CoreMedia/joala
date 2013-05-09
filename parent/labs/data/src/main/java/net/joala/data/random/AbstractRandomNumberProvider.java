@@ -23,7 +23,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.collect.Range;
 import com.google.common.collect.Ranges;
-import net.joala.data.DataProvidingException;
+import net.joala.internal.data.DataProvidingException;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

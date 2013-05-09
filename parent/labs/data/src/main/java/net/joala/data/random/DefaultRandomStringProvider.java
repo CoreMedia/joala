@@ -20,7 +20,7 @@
 package net.joala.data.random;
 
 import com.google.common.base.Objects;
-import net.joala.data.DataProvidingException;
+import net.joala.internal.data.DataProvidingException;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;

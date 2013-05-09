@@ -19,7 +19,7 @@
 
 package net.joala.condition.timing;
 
-import net.joala.data.DataProvider;
+import net.joala.internal.data.DataProvider;
 import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.data.random.RandomLongProvider;
 import org.hamcrest.Matchers;

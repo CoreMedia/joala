@@ -19,8 +19,8 @@
 
 package net.joala.data.random;
 
-import net.joala.data.DataProvider;
-import net.joala.data.DataProvidingException;
+import net.joala.internal.data.DataProvider;
+import net.joala.internal.data.DataProvidingException;
 import org.junit.Test;
 
 import java.lang.reflect.Method;

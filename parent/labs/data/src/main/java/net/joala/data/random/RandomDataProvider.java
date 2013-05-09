@@ -19,7 +19,7 @@
 
 package net.joala.data.random;
 
-import net.joala.data.DataProvider;
+import net.joala.internal.data.DataProvider;
 
 import javax.annotation.Nonnull;
 
