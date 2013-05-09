@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Range;

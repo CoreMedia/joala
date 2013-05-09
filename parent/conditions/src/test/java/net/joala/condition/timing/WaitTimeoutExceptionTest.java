@@ -21,7 +21,7 @@ package net.joala.condition.timing;
 
 import net.joala.internal.data.DataProvider;
 import net.joala.internal.data.DataProvidingException;
-import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.internal.data.random.DefaultRandomStringProvider;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.junit.Test;

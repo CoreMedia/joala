@@ -20,8 +20,8 @@
 package net.joala.time;
 
 import net.joala.internal.data.DataProvider;
-import net.joala.data.random.RandomDoubleProvider;
-import net.joala.data.random.RandomIntegerProvider;
+import net.joala.internal.data.random.RandomDoubleProvider;
+import net.joala.internal.data.random.RandomIntegerProvider;
 import org.junit.Test;
 
 import java.util.concurrent.TimeUnit;

@@ -19,6 +19,11 @@
 
 package net.joala.data.random;
 
+import net.joala.internal.data.random.AbstractRandomNumberProvider;
+import net.joala.internal.data.random.RandomDoubleProvider;
+import net.joala.internal.data.random.RandomFloatProvider;
+import net.joala.internal.data.random.RandomIntegerProvider;
+import net.joala.internal.data.random.RandomLongProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -35,7 +40,7 @@ import static org.mockito.Mockito.when;
 
 /**
  * <p>
- * Tests {@link RandomNumberProvider} and its implementations.
+ * Tests {@link net.joala.internal.data.random.RandomNumberProvider} and its implementations.
  * </p>
  *
  * @since 9/14/12

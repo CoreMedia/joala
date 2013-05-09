@@ -21,6 +21,8 @@ package net.joala.data.random;
 
 import net.joala.internal.data.DataProvider;
 import net.joala.internal.data.DataProvidingException;
+import net.joala.internal.data.random.AbstractRandomDataProvider;
+import net.joala.internal.data.random.RandomDataProvider;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
@@ -30,7 +32,7 @@ import static org.junit.Assert.assertSame;
 
 /**
  * <p>
- * Tests {@link AbstractRandomDataProvider}.
+ * Tests {@link net.joala.internal.data.random.AbstractRandomDataProvider}.
  * </p>
  *
  * @since 10/1/12

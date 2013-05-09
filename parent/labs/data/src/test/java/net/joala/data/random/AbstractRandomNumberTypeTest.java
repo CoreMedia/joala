@@ -19,6 +19,7 @@
 
 package net.joala.data.random;
 
+import net.joala.internal.data.random.AbstractRandomNumberType;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 
@@ -35,7 +36,7 @@ import static org.mockito.Matchers.isNull;
 
 /**
  * <p>
- * Tests {@link AbstractRandomNumberType}.
+ * Tests {@link net.joala.internal.data.random.AbstractRandomNumberType}.
  * </p>
  *
  * @since 9/17/12

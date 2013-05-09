@@ -19,6 +19,8 @@
 
 package net.joala.data.random;
 
+import net.joala.internal.data.random.AbstractRandomNumberProvider;
+import net.joala.internal.data.random.RandomNumberType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -30,7 +32,7 @@ import static org.junit.Assert.assertThat;
 
 /**
  * <p>
- * Tests {@link AbstractRandomNumberProvider}. More functionality covered in {@link RandomNumberProvidersTest}.
+ * Tests {@link net.joala.internal.data.random.AbstractRandomNumberProvider}. More functionality covered in {@link RandomNumberProvidersTest}.
  * </p>
  *
  * @see RandomNumberProvidersTest

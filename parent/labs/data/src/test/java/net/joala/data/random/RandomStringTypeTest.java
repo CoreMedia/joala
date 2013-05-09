@@ -20,6 +20,7 @@
 package net.joala.data.random;
 
 import com.google.common.base.Objects;
+import net.joala.internal.data.random.RandomStringType;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,7 @@ import static org.junit.Assume.assumeThat;
 
 /**
  * <p>
- * Tests {@link RandomStringType}.
+ * Tests {@link net.joala.internal.data.random.RandomStringType}.
  * </p>
  *
  * @since 10/8/12

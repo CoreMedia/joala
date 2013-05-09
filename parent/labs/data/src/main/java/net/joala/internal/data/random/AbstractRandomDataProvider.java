@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
 import net.joala.internal.data.DataProvider;
 

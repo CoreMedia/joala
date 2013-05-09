@@ -20,8 +20,8 @@
 package net.joala.condition.timing;
 
 import net.joala.internal.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
-import net.joala.data.random.RandomLongProvider;
+import net.joala.internal.data.random.DefaultRandomStringProvider;
+import net.joala.internal.data.random.RandomLongProvider;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;

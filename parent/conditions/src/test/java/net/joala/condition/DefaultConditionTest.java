@@ -24,7 +24,7 @@ import net.joala.expression.ExpressionEvaluationException;
 import net.joala.time.Timeout;
 import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.internal.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.internal.data.random.DefaultRandomStringProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;

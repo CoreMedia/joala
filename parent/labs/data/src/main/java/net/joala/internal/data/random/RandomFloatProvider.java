@@ -17,62 +17,61 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
 import javax.annotation.Nonnull;
 
 /**
  * <p>
- * Random number provider for double values.
+ * Random number provider for float values.
  * </p>
  *
  * @since 9/17/12
  */
-public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
+public class RandomFloatProvider extends AbstractRandomNumberProvider<Float> {
   /**
    * <p>
-   * Creates a random number provider for double values.
+   * Creates a random number provider for float values.
    * </p>
    */
-  public RandomDoubleProvider() {
-    super(new DoubleRandomNumberType());
+  public RandomFloatProvider() {
+    super(new FloatRandomNumberType());
   }
 
   /**
    * <p>
-   * Describe the double number type as needed to provide random data.
+   * Describe the float number type as needed to provide random data.
    * </p>
    */
-  private static final class DoubleRandomNumberType extends AbstractRandomNumberType<Double> {
+  private static final class FloatRandomNumberType extends AbstractRandomNumberType<Float> {
 
-    private DoubleRandomNumberType() {
-      super(Double.class);
+    private FloatRandomNumberType() {
+      super(Float.class);
     }
 
     @Override
     @Nonnull
-    public Double min() {
-      return Double.MIN_VALUE;
+    public Float min() {
+      return Float.MIN_VALUE;
     }
 
     @Override
     @Nonnull
-    public Double max() {
-      return Double.MAX_VALUE;
+    public Float max() {
+      return Float.MAX_VALUE;
     }
 
     @Override
     @Nonnull
-    public Double sum(final Double value1, final Double value2) {
+    public Float sum(final Float value1, final Float value2) {
       return value1 + value2;
     }
 
     @Override
     @Nonnull
-    public Double percentOf(final double percent, final Double value) {
+    public Float percentOf(final double percent, final Float value) {
       checkPercentageArgument(percent);
-      return percent * value;
+      return (float) percent * value;
     }
-
   }
 }

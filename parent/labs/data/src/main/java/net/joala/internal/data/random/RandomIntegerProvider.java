@@ -17,61 +17,61 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
 import javax.annotation.Nonnull;
 
 /**
  * <p>
- * Random number provider for float values.
+ * Random number provider for integer values.
  * </p>
  *
  * @since 9/17/12
  */
-public class RandomFloatProvider extends AbstractRandomNumberProvider<Float> {
+public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer> {
   /**
    * <p>
-   * Creates a random number provider for float values.
+   * Creates a random number provider for integer values.
    * </p>
    */
-  public RandomFloatProvider() {
-    super(new FloatRandomNumberType());
+  public RandomIntegerProvider() {
+    super(new IntegerRandomNumberType());
   }
 
   /**
    * <p>
-   * Describe the float number type as needed to provide random data.
+   * Describe the integer number type as needed to provide random data.
    * </p>
    */
-  private static final class FloatRandomNumberType extends AbstractRandomNumberType<Float> {
+  private static final class IntegerRandomNumberType extends AbstractRandomNumberType<Integer> {
 
-    private FloatRandomNumberType() {
-      super(Float.class);
+    private IntegerRandomNumberType() {
+      super(Integer.class);
     }
 
     @Override
     @Nonnull
-    public Float min() {
-      return Float.MIN_VALUE;
+    public Integer min() {
+      return Integer.MIN_VALUE;
     }
 
     @Override
     @Nonnull
-    public Float max() {
-      return Float.MAX_VALUE;
+    public Integer max() {
+      return Integer.MAX_VALUE;
     }
 
     @Override
     @Nonnull
-    public Float sum(final Float value1, final Float value2) {
+    public Integer sum(final Integer value1, final Integer value2) {
       return value1 + value2;
     }
 
     @Override
     @Nonnull
-    public Float percentOf(final double percent, final Float value) {
+    public Integer percentOf(final double percent, final Integer value) {
       checkPercentageArgument(percent);
-      return (float) percent * value;
+      return (int) percent * value;
     }
   }
 }

@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
 import com.google.common.base.Objects;
 import net.joala.internal.data.DataProvidingException;
@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
-import static net.joala.data.random.RandomStringType.ALL;
+import static net.joala.internal.data.random.RandomStringType.ALL;
 
 /**
  * @since 9/17/12

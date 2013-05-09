@@ -20,7 +20,7 @@
 package net.joala.expression;
 
 import net.joala.internal.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
+import net.joala.internal.data.random.DefaultRandomStringProvider;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;

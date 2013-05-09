@@ -17,61 +17,62 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
 import javax.annotation.Nonnull;
 
 /**
  * <p>
- * Random number provider for integer values.
+ * Random number provider for double values.
  * </p>
  *
  * @since 9/17/12
  */
-public class RandomIntegerProvider extends AbstractRandomNumberProvider<Integer> {
+public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
   /**
    * <p>
-   * Creates a random number provider for integer values.
+   * Creates a random number provider for double values.
    * </p>
    */
-  public RandomIntegerProvider() {
-    super(new IntegerRandomNumberType());
+  public RandomDoubleProvider() {
+    super(new DoubleRandomNumberType());
   }
 
   /**
    * <p>
-   * Describe the integer number type as needed to provide random data.
+   * Describe the double number type as needed to provide random data.
    * </p>
    */
-  private static final class IntegerRandomNumberType extends AbstractRandomNumberType<Integer> {
+  private static final class DoubleRandomNumberType extends AbstractRandomNumberType<Double> {
 
-    private IntegerRandomNumberType() {
-      super(Integer.class);
+    private DoubleRandomNumberType() {
+      super(Double.class);
     }
 
     @Override
     @Nonnull
-    public Integer min() {
-      return Integer.MIN_VALUE;
+    public Double min() {
+      return Double.MIN_VALUE;
     }
 
     @Override
     @Nonnull
-    public Integer max() {
-      return Integer.MAX_VALUE;
+    public Double max() {
+      return Double.MAX_VALUE;
     }
 
     @Override
     @Nonnull
-    public Integer sum(final Integer value1, final Integer value2) {
+    public Double sum(final Double value1, final Double value2) {
       return value1 + value2;
     }
 
     @Override
     @Nonnull
-    public Integer percentOf(final double percent, final Integer value) {
+    public Double percentOf(final double percent, final Double value) {
       checkPercentageArgument(percent);
-      return (int) percent * value;
+      return percent * value;
     }
+
   }
 }
