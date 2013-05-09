@@ -17,10 +17,8 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.data.random;
+package net.joala.internal.data.random;
 
-import net.joala.internal.data.random.AbstractRandomNumberProvider;
-import net.joala.internal.data.random.RandomNumberType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
