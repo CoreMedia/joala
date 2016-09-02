@@ -59,6 +59,6 @@ public class DefaultConditionFactory implements ConditionFactory {
   @Override
   public <T> Condition<T> condition(@Nonnull final Expression<T> expression) {
     checkNotNull(expression, "Expression must not be null");
-    return new DefaultCondition<T>(expression, timeout);
+    return new DefaultCondition<>(expression, timeout);
   }
 }

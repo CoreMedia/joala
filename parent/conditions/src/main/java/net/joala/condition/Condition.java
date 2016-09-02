@@ -46,7 +46,6 @@ public interface Condition<T> {
    *                                       become available.
    * @see Expression#get()
    */
-  @Nullable
   T get();
 
   /**
@@ -57,7 +56,6 @@ public interface Condition<T> {
    * @return the retrieved value
    * @throws WaitTimeoutException if a value could not be retrieved in time
    */
-  @Nullable
   T await();
 
   /**
@@ -69,7 +67,6 @@ public interface Condition<T> {
    * @return the value which fulfills the given matcher
    * @throws WaitTimeoutException if a value could not be retrieved in time
    */
-  @Nullable
   T await(@Nonnull Matcher<? super T> matcher);
 
   /**

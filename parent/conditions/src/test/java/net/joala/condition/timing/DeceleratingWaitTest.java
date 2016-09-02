@@ -20,11 +20,7 @@
 package net.joala.condition.timing;
 
 import com.google.common.base.Function;
-import com.google.common.base.Objects;
-import net.joala.data.DataProvider;
-import net.joala.data.DataProvidingException;
-import net.joala.data.random.DefaultRandomStringProvider;
-import net.joala.data.random.RandomDoubleProvider;
+import com.google.common.base.MoreObjects;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
@@ -41,7 +37,11 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.PrimitiveIterator.OfDouble;
+import java.util.PrimitiveIterator.OfLong;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
@@ -196,7 +196,7 @@ public class DeceleratingWaitTest {
 
   @Test
   public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: from JUnit
-    final DeceleratingWait wait = new DeceleratingWait(timeout, TIMEOUT_FACTOR_PROVIDER.get(), mockWaitFailStrategy);
+    final DeceleratingWait wait = new DeceleratingWait(timeout, TIMEOUT_FACTOR_PROVIDER.nextDouble(), mockWaitFailStrategy);
     toStringTestlet(wait).run();
   }
 
@@ -311,7 +311,9 @@ public class DeceleratingWaitTest {
   }
 
   private static final long TIMEOUT_MILLIS = 500L;
-  private static final DataProvider<Double> TIMEOUT_FACTOR_PROVIDER = new RandomDoubleProvider().min(0d).fixate();
+  private static final OfDouble TIMEOUT_FACTOR_PROVIDER = new Random(0L).doubles(0d, 10000d).iterator();
+  private static final OfLong LONG_PROVIDER = new Random(0L).longs(0L, Long.MAX_VALUE).iterator();
+  private static final Supplier<String> RANDOM_STRING_SUPPLIER = () -> format("rand%d", LONG_PROVIDER.next());
 
   @SuppressWarnings("UnusedDeclaration")
   @Mock
@@ -330,20 +332,20 @@ public class DeceleratingWaitTest {
 
   private LinkedList<ExpectedCall> expectedCalls;
 
-  private void assertSuccessfulWait() throws DataProvidingException {
+  private void assertSuccessfulWait() {
     assertSuccessfulWait(createWait());
   }
 
-  private void assertSuccessfulWait(final TestedDeceleratingWait wait) throws DataProvidingException {
+  private void assertSuccessfulWait(final TestedDeceleratingWait wait) {
     wait.until();
     assertThat("All expected commands should have been called. Thus the list of expected commands should be empty.", expectedCalls, Matchers.empty());
   }
 
-  private void assertFailedWait() throws DataProvidingException {
+  private void assertFailedWait() {
     assertFailedWait(createWait());
   }
 
-  private void assertFailedWait(final TestedDeceleratingWait wait) throws DataProvidingException {
+  private void assertFailedWait(final TestedDeceleratingWait wait) {
     try {
       wait.until();
       fail("Should have failed with timeout failure.");
@@ -369,8 +371,8 @@ public class DeceleratingWaitTest {
       super(timeout, timeoutFactor);
     }
 
-    public void until() throws DataProvidingException {
-      this.until(new DefaultRandomStringProvider().get(), mockInput, stateQuery, Matchers.equalTo(Boolean.TRUE));
+    void until() {
+      this.until(RANDOM_STRING_SUPPLIER.get(), mockInput, stateQuery, Matchers.equalTo(Boolean.TRUE));
     }
 
     @Override
@@ -413,16 +415,16 @@ public class DeceleratingWaitTest {
     return result;
   }
 
-  private final class ExpectedCallsBuilder {
-    private final Collection<ExpectedCall> localExpectedCalls = new ArrayList<ExpectedCall>();
+  private static final class ExpectedCallsBuilder {
+    private final Collection<ExpectedCall> localExpectedCalls = new ArrayList<>();
 
-    public ExpectedCallsBuilder add(final WaitCall call, final Object result) {
+    ExpectedCallsBuilder add(final WaitCall call, final Object result) {
       localExpectedCalls.add(new ExpectedCall(localExpectedCalls.size(), call, result));
       return this;
     }
 
-    public LinkedList<ExpectedCall> build() {
-      return new LinkedList<ExpectedCall>(localExpectedCalls);
+    LinkedList<ExpectedCall> build() {
+      return new LinkedList<>(localExpectedCalls);
     }
   }
 
@@ -437,28 +439,28 @@ public class DeceleratingWaitTest {
       this.result = result;
     }
 
-    public WaitCall getCall() {
+    WaitCall getCall() {
       return call;
     }
 
-    public Object getResult() {
+    Object getResult() {
       return result;
     }
 
-    public long asLong() {
+    long asLong() {
       return (Long) result;
     }
 
     @Override
     public String toString() {
-      return Objects.toStringHelper(this)
-              .add("position", position)
-              .add("call", call)
-              .add("result", result)
-              .toString();
+      return MoreObjects.toStringHelper(this)
+                        .add("position", position)
+                        .add("call", call)
+                        .add("result", result)
+                        .toString();
     }
 
-    public Boolean asBoolean() {
+    Boolean asBoolean() {
       return (Boolean) result;
     }
   }

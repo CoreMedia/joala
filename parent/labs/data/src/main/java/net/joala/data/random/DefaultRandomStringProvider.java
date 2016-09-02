@@ -34,6 +34,7 @@ import static net.joala.data.random.RandomStringType.ALL;
 /**
  * @since 9/17/12
  */
+@Deprecated
 public class DefaultRandomStringProvider extends AbstractRandomDataProvider<String> implements RandomStringProvider {
   private static final int DEFAULT_MIN_LEN = 1;
   private static final int DEFAULT_MAX_LEN = 16;

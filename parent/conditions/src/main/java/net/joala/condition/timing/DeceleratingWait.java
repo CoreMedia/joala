@@ -21,7 +21,7 @@ package net.joala.condition.timing;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
@@ -32,6 +32,8 @@ import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
+
+import static java.lang.Thread.currentThread;
 
 /**
  * <p>
@@ -174,7 +176,8 @@ public class DeceleratingWait implements Wait {
     try {
       sleep(Math.max(1, Math.min(newDelay, deadlineTimeMillis + SLEEP_NOT_MUCH_LONGER_OFFSET_MILLIS - afterEvaluationTimeMillis)));
     } catch (InterruptedException e) {
-      throw new IllegalStateException("unexpected interruption", e);
+      LOG.error("Unexpected interruption.", e);
+      currentThread().interrupt();
     }
 
     // Make checks less and less frequently.
@@ -201,10 +204,10 @@ public class DeceleratingWait implements Wait {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
-            .add("timeout", timeout)
-            .add("timeoutFactor", timeoutFactor)
-            .add("failStrategy", failStrategy)
-            .toString();
+    return MoreObjects.toStringHelper(this)
+                      .add("timeout", timeout)
+                      .add("timeoutFactor", timeoutFactor)
+                      .add("failStrategy", failStrategy)
+                      .toString();
   }
 }

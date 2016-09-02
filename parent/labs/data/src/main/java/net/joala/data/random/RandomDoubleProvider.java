@@ -28,6 +28,7 @@ import javax.annotation.Nonnull;
  *
  * @since 9/17/12
  */
+@Deprecated
 public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
   /**
    * <p>
