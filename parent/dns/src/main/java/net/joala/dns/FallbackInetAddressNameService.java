@@ -19,7 +19,7 @@
 
 package net.joala.dns;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import sun.net.spi.nameservice.NameService;
 
 import java.lang.reflect.InvocationTargetException;
@@ -197,7 +197,7 @@ final class FallbackInetAddressNameService implements NameService {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("inetAddressImpl", inetAddressImpl)
             .add("getHostByAddrMethod", getHostByAddrMethod)
             .add("lookupAllHostAddrMethod", lookupAllHostAddrMethod)

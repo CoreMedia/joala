@@ -19,7 +19,7 @@
 
 package net.joala.data.random;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Range;
 
 import javax.annotation.Nonnull;
@@ -63,7 +63,7 @@ public abstract class AbstractRandomNumberType<T extends Comparable<? extends Nu
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("type", type)
             .toString();
   }

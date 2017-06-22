@@ -20,7 +20,7 @@
 package net.joala.data.random;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Range;
 import net.joala.data.DataProvidingException;
 
@@ -136,7 +136,7 @@ public abstract class AbstractRandomNumberProvider<T extends Comparable<? extend
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("numberType", numberType)
             .add("minValue", minValue)
             .add("maxValue", maxValue)

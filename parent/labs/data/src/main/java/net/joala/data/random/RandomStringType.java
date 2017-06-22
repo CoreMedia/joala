@@ -20,7 +20,7 @@
 package net.joala.data.random;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.annotation.Nonnull;
@@ -125,7 +125,7 @@ public enum RandomStringType {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("startChr", startChr)
             .add("endChr", endChr)
             .add("containsAlphabetic", containsAlphabetic)

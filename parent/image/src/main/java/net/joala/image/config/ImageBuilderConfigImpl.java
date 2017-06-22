@@ -19,7 +19,7 @@
 
 package net.joala.image.config;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 /**
  * <p>
@@ -88,7 +88,7 @@ public class ImageBuilderConfigImpl implements ImageBuilderConfig {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("defaultImageType", defaultImageType)
             .add("defaultWidth", defaultWidth)
             .add("defaultHeight", defaultHeight)

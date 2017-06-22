@@ -19,7 +19,7 @@
 
 package net.joala.testlet;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 import org.junit.runners.model.MultipleFailureException;
@@ -68,7 +68,7 @@ class ExceptionCollectingRunListener extends RunListener {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("exceptions", exceptions)
             .toString();
   }

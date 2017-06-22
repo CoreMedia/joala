@@ -19,7 +19,7 @@
 
 package net.joala.expression;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.hamcrest.Description;
 
 import javax.annotation.Nonnull;
@@ -83,7 +83,7 @@ public abstract class AbstractExpression<T> implements Expression<T> {
    */
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("simpleDescription", simpleDescription)
             .toString();
   }

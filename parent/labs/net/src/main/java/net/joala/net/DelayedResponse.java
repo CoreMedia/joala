@@ -19,7 +19,7 @@
 
 package net.joala.net;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.sun.net.httpserver.HttpExchange;
 
 import javax.annotation.Nonnull;
@@ -81,7 +81,7 @@ public class DelayedResponse implements Response {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("delayMillis", delayMillis)
             .add("response", response)
             .toString();

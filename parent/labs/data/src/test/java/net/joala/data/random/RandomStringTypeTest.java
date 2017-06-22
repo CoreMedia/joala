@@ -19,7 +19,7 @@
 
 package net.joala.data.random;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -113,7 +113,7 @@ public class RandomStringTypeTest {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("type", type)
             .toString();
   }

@@ -19,7 +19,7 @@
 
 package net.joala.core.reflection;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 import java.lang.reflect.AccessibleObject;
 import java.security.PrivilegedAction;
@@ -48,7 +48,7 @@ public class SetAccessibleAction<T extends AccessibleObject> implements Privileg
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("object", object)
             .toString();
   }

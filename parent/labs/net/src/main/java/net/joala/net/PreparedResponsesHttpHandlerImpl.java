@@ -19,7 +19,7 @@
 
 package net.joala.net;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.sun.net.httpserver.HttpExchange;
 
 import java.io.IOException;
@@ -62,7 +62,7 @@ class PreparedResponsesHttpHandlerImpl implements PreparedResponsesHttpHandler {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("responses", responses)
             .toString();
   }

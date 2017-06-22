@@ -19,7 +19,7 @@
 
 package net.joala.image.impl;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import net.joala.image.BufferedImageBuilder;
 import net.joala.image.ImageBuilderBuildException;
 
@@ -134,7 +134,7 @@ abstract class AbstractOutputImageBuilder extends AbstractImageIOImageBuilder {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("imageBuilder", imageBuilder)
             .add("output", output)
             .toString();
