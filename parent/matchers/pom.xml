@@ -103,10 +103,6 @@
             <configuration>
               <includeProjectDependencies>true</includeProjectDependencies>
               <includePluginDependencies>true</includePluginDependencies>
-              <executableDependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-generator</artifactId>
-              </executableDependency>
               <mainClass>org.hamcrest.generator.config.XmlConfigurator</mainClass>
               <arguments>
                 <!-- config-file -->
