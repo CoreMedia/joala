@@ -22,7 +22,6 @@ package net.joala.data.random;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.collect.Range;
-import com.google.common.collect.Ranges;
 import net.joala.data.DataProvidingException;
 
 import javax.annotation.Nonnull;
@@ -99,7 +98,7 @@ public abstract class AbstractRandomNumberProvider<T extends Comparable<? extend
   @Override
   public T get() throws DataProvidingException {
     try {
-      return nextRandom(Ranges.closed(minValue, maxValue));
+      return nextRandom(Range.closed(minValue, maxValue));
     } catch (IllegalArgumentException e) {
       throw new DataProvidingException("Illegal range.", e);
     }

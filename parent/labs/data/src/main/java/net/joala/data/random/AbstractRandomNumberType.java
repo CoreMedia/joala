@@ -21,7 +21,6 @@ package net.joala.data.random;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Range;
-import com.google.common.collect.Ranges;
 
 import javax.annotation.Nonnull;
 
@@ -37,7 +36,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @since 9/17/12
  */
 public abstract class AbstractRandomNumberType<T extends Comparable<? extends Number>> implements RandomNumberType<T> {
-  private static final Range<Double> VALID_PERCENTAGE_RANGE = Ranges.closed(0d, 1d);
+  private static final Range<Double> VALID_PERCENTAGE_RANGE = Range.closed(0d, 1d);
   /**
    * Type of numbers to create.
    */
