@@ -37,8 +37,10 @@ import static com.google.common.base.Preconditions.checkState;
  * </p>
  *
  * @param <T> the number type you can retrieve from this data provider
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public abstract class AbstractRandomNumberProvider<T extends Comparable<? extends Number>> extends AbstractRandomDataProvider<T> implements RandomNumberProvider<T> {
   /**
    * Random number generator.

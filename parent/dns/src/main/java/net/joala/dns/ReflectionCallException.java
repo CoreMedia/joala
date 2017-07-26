@@ -24,8 +24,9 @@ package net.joala.dns;
  * Signals a call triggered with reflections failed.
  * </p>
  *
- * @since 10/7/12
+ * @deprecated Will be removed soon.
  */
+@Deprecated
 final class ReflectionCallException extends Exception {
   /**
    * Constructor.

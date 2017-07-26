@@ -19,14 +19,17 @@
 
 package net.joala.condition.timing;
 
-import net.joala.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
-import net.joala.data.random.RandomLongProvider;
+import org.apache.commons.text.RandomStringGenerator;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import java.io.PrintWriter;
+import java.util.PrimitiveIterator;
+import java.util.Random;
+import java.util.function.Supplier;
 
 import static java.lang.String.format;
 import static net.joala.matcher.exception.CausedBy.causedBy;
@@ -37,7 +40,8 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doAnswer;
 
 /**
  * <p>
@@ -48,9 +52,12 @@ import static org.mockito.Mockito.when;
  */
 @RunWith(MockitoJUnitRunner.class)
 public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends Throwable> {
-  private static final DataProvider<String> FAIL_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("failMessage").fixate();
-  private static final DataProvider<String> EXCEPTION_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("exceptionMessage").fixate();
-  private static final DataProvider<Long> CONSUMED_MILLIS_PROVIDER = new RandomLongProvider().min(0L).max(1000L).fixate();
+  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+  private static final PrimitiveIterator.OfLong LONGS = new Random().longs(0L, 1000L).iterator();
+
+  private static final Supplier<String> FAIL_MESSAGE_PROVIDER = () -> "failMessage_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> EXCEPTION_MESSAGE_PROVIDER = () -> "exceptionMessage_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<Long> CONSUMED_MILLIS_PROVIDER = LONGS::next;
 
   @SuppressWarnings("UnusedDeclaration")
   @Mock
@@ -137,7 +144,10 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   public void cause_when_failed_with_exception_should_be_contained_in_exception() throws Throwable {
     final S strategy = getFailStrategy();
     final String evaluationExceptionMessage = EXCEPTION_MESSAGE_PROVIDER.get();
-    when(lastFailure.getMessage()).thenReturn(evaluationExceptionMessage);
+    doAnswer(invocation -> {
+      invocation.getArgumentAt(0, PrintWriter.class).append(evaluationExceptionMessage);
+      return null;
+    }).when(lastFailure).printStackTrace(any(PrintWriter.class));
     boolean success = false;
     try {
       strategy.fail(FAIL_MESSAGE_PROVIDER.get(), failedFunction, failedInput, lastFailure, CONSUMED_MILLIS_PROVIDER.get());
@@ -149,7 +159,7 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
       assertThat("Cause should be mentioned in failure.", t,
               anyOf(
                       causedBy(lastFailure),
-                      messageContains(lastFailure.getMessage(), true)
+                      messageContains(evaluationExceptionMessage, true)
               )
       );
     }

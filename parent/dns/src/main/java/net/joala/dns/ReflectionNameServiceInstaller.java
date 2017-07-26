@@ -29,8 +29,10 @@ import javax.annotation.Nonnull;
  * been installed in the standard Java way.
  * </p>
  *
- * @since 10/7/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 abstract class ReflectionNameServiceInstaller {
   /**
    * Installs the given name service.

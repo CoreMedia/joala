@@ -25,8 +25,9 @@ package net.joala.data;
  * of the random generator or runtime failures like random files which cannot be created.
  * </p>
  *
- * @since 9/16/12
+ * @deprecated Will be removed soon.
  */
+@Deprecated
 public class DataProvidingException extends Exception {
   /**
    * Exception without cause and message. Discouraged to use. Please assist your testers to provide meaningful

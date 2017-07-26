@@ -20,7 +20,7 @@
 package net.joala.bdd.watcher;
 
 import com.google.common.base.Strings;
-import org.junit.internal.AssumptionViolatedException;
+import org.junit.AssumptionViolatedException;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.slf4j.Logger;

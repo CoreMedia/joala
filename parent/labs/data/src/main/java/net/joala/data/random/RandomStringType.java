@@ -33,8 +33,10 @@ import static org.apache.commons.lang3.RandomStringUtils.random;
  * are derived from {@link RandomStringUtils}.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public enum RandomStringType {
   /**
    * Use all available characters.

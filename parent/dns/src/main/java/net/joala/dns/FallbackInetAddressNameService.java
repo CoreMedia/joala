@@ -40,7 +40,10 @@ import static java.lang.String.format;
  *
  * @since 10/6/12
  * @see net.joala.dns package documentation
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 final class FallbackInetAddressNameService implements NameService {
   /**
    * A logger using System-PrintStreams.

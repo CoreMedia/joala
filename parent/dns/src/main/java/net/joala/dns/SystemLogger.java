@@ -45,9 +45,10 @@ import static java.lang.System.out;
  * or set the property {@code dnsjava.options} to {@code verbose}.
  * </p>
  *
- * @since 10/6/12
+ * @deprecated Will be removed soon.
  */
-@SuppressWarnings("UseOfSystemOutOrSystemErr")
+@Deprecated
+@SuppressWarnings({"UseOfSystemOutOrSystemErr", "deprecation"})
 final class SystemLogger {
   /**
    * The name of the logger.

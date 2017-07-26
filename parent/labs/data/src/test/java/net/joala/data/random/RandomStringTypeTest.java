@@ -43,7 +43,7 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 10/8/12
  */
-@SuppressWarnings("ProhibitedExceptionDeclared")
+@SuppressWarnings({"ProhibitedExceptionDeclared", "deprecation"})
 @RunWith(Parameterized.class)
 public class RandomStringTypeTest {
   private static final int GREAT_LENGTH = 1024;

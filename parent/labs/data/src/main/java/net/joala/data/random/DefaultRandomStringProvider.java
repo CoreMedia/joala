@@ -32,8 +32,9 @@ import static com.google.common.base.Preconditions.checkState;
 import static net.joala.data.random.RandomStringType.ALL;
 
 /**
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
 @Deprecated
 public class DefaultRandomStringProvider extends AbstractRandomDataProvider<String> implements RandomStringProvider {
   private static final int DEFAULT_MIN_LEN = 1;

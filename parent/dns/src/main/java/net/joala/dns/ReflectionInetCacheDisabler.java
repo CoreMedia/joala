@@ -31,8 +31,10 @@ import static java.security.AccessController.doPrivileged;
  * Disable caching for inet addresses by reflection.
  * </p>
  *
- * @since 10/7/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 class ReflectionInetCacheDisabler {
   /**
    * Class to access by reflection.

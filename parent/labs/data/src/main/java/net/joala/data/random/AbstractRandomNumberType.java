@@ -33,8 +33,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * </p>
  *
  * @param <T> number type to generate
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public abstract class AbstractRandomNumberType<T extends Comparable<? extends Number>> implements RandomNumberType<T> {
   private static final Range<Double> VALID_PERCENTAGE_RANGE = Range.closed(0d, 1d);
   /**

@@ -19,16 +19,15 @@
 
 package net.joala.condition.timing;
 
-import net.joala.data.DataProvider;
-import net.joala.data.DataProvidingException;
-import net.joala.data.random.DefaultRandomStringProvider;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.text.RandomStringGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.Collection;
+import java.util.function.Supplier;
 
 import static net.joala.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
 import static org.junit.Assert.assertEquals;
@@ -42,7 +41,8 @@ import static org.junit.Assert.assertSame;
 @SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(Parameterized.class)
 public class WaitTimeoutExceptionTest {
-  private static final DataProvider<String> STRING_PROVIDER = new DefaultRandomStringProvider().fixate();
+  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+  private static final Supplier<String> STRING_PROVIDER = () -> RANDOM_STRING_GENERATOR.generate(20);
 
   @Test(expected = WaitTimeoutException.class)
   public void should_be_able_to_call_constructor_without_exception() throws Exception {
@@ -68,7 +68,7 @@ public class WaitTimeoutExceptionTest {
   }
 
   @Parameterized.Parameters
-  public static Collection<Object[]> parameters() throws DataProvidingException {
+  public static Collection<Object[]> parameters() {
     return defaultParametersBuilder(WaitTimeoutExceptionTest.class)
             .add("Should except both, message and cause to be null.", null, null)
             .add("Should except both, message and cause not to be null.", STRING_PROVIDER.get(), new Exception(STRING_PROVIDER.get()))

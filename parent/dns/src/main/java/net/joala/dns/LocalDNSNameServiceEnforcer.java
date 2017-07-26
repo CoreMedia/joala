@@ -22,7 +22,7 @@ package net.joala.dns;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.ImmutableList;
 import com.google.common.net.InetAddresses;
-import org.junit.internal.AssumptionViolatedException;
+import org.junit.AssumptionViolatedException;
 import sun.net.spi.nameservice.NameService;
 
 import java.net.InetAddress;
@@ -40,8 +40,10 @@ import static org.junit.Assume.assumeTrue;
  * relies on the JVM implementation which is private API.
  * </p>
  *
- * @since 10/7/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 class LocalDNSNameServiceEnforcer {
   /**
    * A logger using System-PrintStreams.

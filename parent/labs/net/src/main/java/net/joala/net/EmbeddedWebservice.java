@@ -59,8 +59,10 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * it with prepared responses which will then be sent on each request.
  * </p>
  *
- * @since 10/4/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class EmbeddedWebservice {
   /**
    * Logging instance.

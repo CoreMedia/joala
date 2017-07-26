@@ -50,8 +50,10 @@ import static java.lang.String.format;
  * add and remove known hosts during your tests.
  * </p>
  *
- * @since 10/5/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 @ThreadSafe
 public final class NameStore {
   /**

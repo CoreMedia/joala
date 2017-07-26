@@ -40,6 +40,7 @@ import static org.mockito.Matchers.isNull;
  *
  * @since 9/17/12
  */
+@SuppressWarnings({"ProhibitedExceptionCaught", "deprecation"})
 public class AbstractRandomNumberTypeTest {
   private final Class<Integer> type = Integer.class;
   private static final int SOME_INTEGER = new Random().nextInt();
@@ -115,6 +116,7 @@ public class AbstractRandomNumberTypeTest {
     }
   }
 
+  @SuppressWarnings("deprecation")
   private static final class SimpleRandomNumberType extends AbstractRandomNumberType<Integer> {
 
     /**

@@ -30,7 +30,7 @@ import static net.joala.testlet.ExceptionClassTestlet.exceptionClassTestlet;
  *
  * @since 10/9/12
  */
-@SuppressWarnings("ProhibitedExceptionDeclared")
+@SuppressWarnings({"ProhibitedExceptionDeclared", "deprecation"})
 public class DataProvidingExceptionTest {
   @Test
   public void verify_exception_class_requirements() throws Throwable {

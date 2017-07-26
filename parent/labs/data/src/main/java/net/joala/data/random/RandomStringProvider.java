@@ -29,8 +29,10 @@ import javax.annotation.Nullable;
  * types of characters contained.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public interface RandomStringProvider extends RandomDataProvider<String> {
   /**
    * <p>

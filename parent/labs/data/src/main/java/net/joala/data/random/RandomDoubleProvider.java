@@ -26,8 +26,9 @@ import javax.annotation.Nonnull;
  * Random number provider for double values.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
 @Deprecated
 public class RandomDoubleProvider extends AbstractRandomNumberProvider<Double> {
   /**

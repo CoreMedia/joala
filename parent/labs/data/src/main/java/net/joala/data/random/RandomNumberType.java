@@ -26,8 +26,10 @@ import javax.annotation.Nonnull;
  *   Describes random numbers to create. This interface is required by {@link AbstractRandomNumberProvider}
  *   in order to calculate a random number in the given range.
  * </p>
- * @since 9/14/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public interface RandomNumberType<T extends Comparable<? extends Number>> {
   /**
    * Type of the number.
