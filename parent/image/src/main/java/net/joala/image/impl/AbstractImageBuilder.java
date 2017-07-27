@@ -73,7 +73,7 @@ abstract class AbstractImageBuilder {
    * </p>
    *
    * @param width image width
-   * @throws IllegalArgumentException if width <= 0
+   * @throws IllegalArgumentException if width &lt;= 0
    */
   protected final void setWidth(final int width) {
     checkArgument(width > 0, "Width must be > 0.");
@@ -86,7 +86,7 @@ abstract class AbstractImageBuilder {
    * </p>
    *
    * @param height image height
-   * @throws IllegalArgumentException if height <= 0
+   * @throws IllegalArgumentException if height &lt;= 0
    */
   protected final void setHeight(final int height) {
     checkArgument(height > 0, "Height must be > 0.");
