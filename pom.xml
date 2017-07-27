@@ -585,9 +585,8 @@ Joala tries to avoid having any of the following dependencies:
           </bottom>
           <author>false</author>
           <links>
-            <link>http://docs.guava-libraries.googlecode.com/git-history/release/javadoc/</link>
+            <link>http://google.github.io/guava/releases/22.0/api/docs/</link>
             <link>http://findbugs.sourceforge.net/api/</link>
-            <link>http://docs.mockito.googlecode.com/hg/latest/</link>
           </links>
         </configuration>
         <reportSets>
