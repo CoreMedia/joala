@@ -6,20 +6,61 @@
     This is required in order to deploy the Maven site to [Joala GitHub Pages][].
 
     ```xml
-    <server>
-      <id>github-project-site</id>
-      <!-- the username really is git, do not change this -->
-      <username>git</username>
-    </server>
+    <servers>
+      <server>
+        <id>github-project-site</id>
+        <!-- the username really is git, do not change this -->
+        <username>git</username>
+      </server>
+    </servers>
     ```
     
     For deployment a fork of [wagon-gitsite][] by [kohsuke][kohsuke-wagon-gitsite] is used.
 * Ensure that you have set the passwords for Maven Central Deployment as described in
     [Sonatype OSS Maven Repository Usage Guide][oss-usage] in your `settings.xml`.
     Mind that you need to have an account at [Sonatype's JIRA][sonatype-jira].
+
+    ```xml
+    <servers>
+      <server>
+        <id>ossrh</id>
+        <username>your-jira-id</username>
+        <password>your-jira-pwd</password>
+      </server>
+    </servers>
+    ```
+
 * Ensure that you have your GPG keys at hand and that you have published them to
     `hkp://pool.sks-keyservers.net/`.
+    See [Working with PGP Signatures](http://central.sonatype.org/pages/working-with-pgp-signatures.html), section
+    *Distributing Your Public Key* for details.
+
 * Ensure that you have installed Maven 3.0.4 or higher.
+
+## Note: Original Registration for Maven Central
+
+* **Issue Number:** [OSSRH-5630][]
+* **Date:** 2013-11-03
+* **Reporter:** Mark Michaelis
+* **Group ID:** `net.joala`
+* **Project URL:** http://coremedia.github.com/joala/
+* **SCM URL:** https://github.com/CoreMedia/joala
+* **Username(s):** thragor
+* **Response:**
+
+    > Configuration has been prepared, now you can:
+    > Deploy snapshot artifacts into repository [https://oss.sonatype.org/content/repositories/snapshots]()
+    > Deploy release artifacts into the staging repository [https://oss.sonatype.org/service/local/staging/deploy/maven2]()
+    > Promote staged artifacts into repository 'Releases'
+    > Download snapshot and release artifacts from group [https://oss.sonatype.org/content/groups/public]()
+    > Download snapshot, release and staged artifacts from staging group [https://oss.sonatype.org/content/groups/staging]()
+    > ...
+    > Central sync is activated for net.joala, it runs about every 2 hours.
+
+### Collaborators
+
+As it seems, if you want to be added as collaborator, also create a task at [Sonatype's JIRA][sonatype-jira] and
+reference the issue mentioned above.
 
 ## Maven Release
 
@@ -121,3 +162,4 @@ joala$ mvn release:prepare release:perform
 [wagon-gitsite]: <http://khuxtable.github.com/wagon-gitsite/> "Wagon Provider for GitHub Pages Site Deployment"
 [kohsuke-wagon-gitsite]: <https://github.com/kohsuke/wagon-gitsite> "Fork of Wagon Provider for GitHub Pages Site Deployment"
 [oss-sonatype]: <https://oss.sonatype.org/> "Sonatype Nexus Repository"
+[OSSRH-5630]: <https://issues.sonatype.org/browse/OSSRH-5630> "[OSSRH-5630] Joala - Java Library for Testing with JUnit - Sonatype JIRA" 
