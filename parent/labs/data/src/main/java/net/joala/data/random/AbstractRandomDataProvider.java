@@ -28,8 +28,10 @@ import javax.annotation.Nonnull;
  * Abstract implementation of a random data provider.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public abstract class AbstractRandomDataProvider<T> implements RandomDataProvider<T> {
   @Override
   @Nonnull

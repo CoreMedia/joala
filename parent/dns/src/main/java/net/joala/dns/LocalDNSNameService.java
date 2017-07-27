@@ -45,7 +45,10 @@ import static net.joala.dns.FallbackInetAddressNameService.fallbackNameService;
  *
  * @since 10/5/12
  * @see net.joala.dns package documentation
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class LocalDNSNameService implements NameService {
   /**
    * A logger using System-PrintStreams.

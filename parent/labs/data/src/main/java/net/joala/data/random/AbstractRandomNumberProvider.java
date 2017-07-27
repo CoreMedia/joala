@@ -20,9 +20,8 @@
 package net.joala.data.random;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Range;
-import com.google.common.collect.Ranges;
 import net.joala.data.DataProvidingException;
 
 import javax.annotation.Nonnull;
@@ -38,8 +37,10 @@ import static com.google.common.base.Preconditions.checkState;
  * </p>
  *
  * @param <T> the number type you can retrieve from this data provider
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public abstract class AbstractRandomNumberProvider<T extends Comparable<? extends Number>> extends AbstractRandomDataProvider<T> implements RandomNumberProvider<T> {
   /**
    * Random number generator.
@@ -99,7 +100,7 @@ public abstract class AbstractRandomNumberProvider<T extends Comparable<? extend
   @Override
   public T get() throws DataProvidingException {
     try {
-      return nextRandom(Ranges.closed(minValue, maxValue));
+      return nextRandom(Range.closed(minValue, maxValue));
     } catch (IllegalArgumentException e) {
       throw new DataProvidingException("Illegal range.", e);
     }
@@ -137,7 +138,7 @@ public abstract class AbstractRandomNumberProvider<T extends Comparable<? extend
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("numberType", numberType)
             .add("minValue", minValue)
             .add("maxValue", maxValue)

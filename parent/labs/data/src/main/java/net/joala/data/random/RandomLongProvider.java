@@ -26,8 +26,10 @@ import javax.annotation.Nonnull;
  * Random number provider for long values.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class RandomLongProvider extends AbstractRandomNumberProvider<Long> {
   /**
    * <p>

@@ -40,7 +40,7 @@ import static org.mockito.Mockito.when;
  *
  * @since 9/14/12
  */
-@SuppressWarnings("ProhibitedExceptionDeclared")
+@SuppressWarnings({"ProhibitedExceptionDeclared", "deprecation"})
 @RunWith(Parameterized.class)
 public class RandomNumberProvidersTest<T extends Comparable<? extends Number>> {
   private static final Random GENERATOR = new Random(System.currentTimeMillis());

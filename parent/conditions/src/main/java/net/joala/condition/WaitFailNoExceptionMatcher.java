@@ -51,7 +51,7 @@ final class WaitFailNoExceptionMatcher extends CustomTypeSafeMatcher<Throwable> 
     item.printStackTrace(new PrintWriter(out));
     mismatchDescription.appendText("failed to evaluate: ");
     DescriptionUtil.describeTo(mismatchDescription, function);
-    mismatchDescription.appendText("because of: ");
+    mismatchDescription.appendText(" because of: ");
     mismatchDescription.appendText(out.toString());
   }
 }

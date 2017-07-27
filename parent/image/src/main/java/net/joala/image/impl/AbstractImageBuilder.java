@@ -19,7 +19,7 @@
 
 package net.joala.image.impl;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import net.joala.image.ImageBuilderBuildException;
 import net.joala.image.config.ImageBuilderConfig;
 import net.joala.image.config.ImageBuilderConfigImpl;
@@ -160,7 +160,7 @@ abstract class AbstractImageBuilder {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("height", height)
             .add("imageBuilderConfig", imageBuilderConfig)
             .add("width", width)

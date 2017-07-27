@@ -26,8 +26,10 @@ import javax.annotation.Nullable;
  * Provides random numbers. Configuration methods always return self-references.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public interface RandomNumberProvider<T extends Comparable<? extends Number>> extends RandomDataProvider<T> {
   /**
    * <p>

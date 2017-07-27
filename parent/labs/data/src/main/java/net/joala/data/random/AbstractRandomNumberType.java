@@ -19,9 +19,8 @@
 
 package net.joala.data.random;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Range;
-import com.google.common.collect.Ranges;
 
 import javax.annotation.Nonnull;
 
@@ -34,10 +33,12 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * </p>
  *
  * @param <T> number type to generate
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public abstract class AbstractRandomNumberType<T extends Comparable<? extends Number>> implements RandomNumberType<T> {
-  private static final Range<Double> VALID_PERCENTAGE_RANGE = Ranges.closed(0d, 1d);
+  private static final Range<Double> VALID_PERCENTAGE_RANGE = Range.closed(0d, 1d);
   /**
    * Type of numbers to create.
    */
@@ -64,7 +65,7 @@ public abstract class AbstractRandomNumberType<T extends Comparable<? extends Nu
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("type", type)
             .toString();
   }

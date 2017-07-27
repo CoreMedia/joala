@@ -19,15 +19,15 @@
 
 package net.joala.condition;
 
-import net.joala.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
 import net.joala.expression.Expression;
+import org.apache.commons.text.RandomStringGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
+import java.util.function.Supplier;
 
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.assertEquals;
@@ -47,7 +47,8 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/META-INF/joala/condition/test-context.xml")
 public class SpringConfiguredConditionFactoryTest {
-  private static final DataProvider<String> EXPRESSION_VALUE_PROVIDER = new DefaultRandomStringProvider().prefix("expressionValue").fixate();
+  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+  private static final Supplier<String> EXPRESSION_VALUE_PROVIDER = () -> "expressionValue_" + RANDOM_STRING_GENERATOR.generate(20);
 
   @Inject
   private ConditionFactory conditionFactory;

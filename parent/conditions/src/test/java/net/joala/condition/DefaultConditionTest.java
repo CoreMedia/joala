@@ -19,12 +19,10 @@
 
 package net.joala.condition;
 
+import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.expression.Expression;
 import net.joala.expression.ExpressionEvaluationException;
 import net.joala.time.Timeout;
-import net.joala.condition.timing.WaitTimeoutException;
-import net.joala.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.internal.AssumptionViolatedException;
@@ -32,8 +30,12 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.PrimitiveIterator;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
+import static java.lang.String.format;
 import static net.joala.matcher.exception.MessageContains.messageContains;
 import static org.hamcrest.core.IsAnything.anything;
 import static org.hamcrest.core.IsNot.not;
@@ -53,7 +55,7 @@ import static org.mockito.Mockito.when;
 public class DefaultConditionTest {
   @Before
   public void setUp() throws Exception {
-    condition = new DefaultCondition<String>(expression, timeout);
+    condition = new DefaultCondition<>(expression, timeout);
     expressionValue = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(expressionValue);
     when(timeout.in(any(TimeUnit.class), any(Double.class))).thenReturn(0L);
@@ -81,7 +83,7 @@ public class DefaultConditionTest {
   @Test(expected = NullPointerException.class)
   public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() throws Exception {
     //noinspection RedundantCast
-    new DefaultCondition<String>(expression, (Timeout)null);
+    new DefaultCondition<>(expression, (Timeout) null);
   }
 
   @Test
@@ -338,8 +340,10 @@ public class DefaultConditionTest {
     }
   }
 
-  private static final DataProvider<String> EXPRESSION_VALUE_PROVIDER = new DefaultRandomStringProvider().prefix("expressionValue").fixate();
-  private static final DataProvider<String> CONDITION_MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("conditionMessage").fixate();
+  private static final PrimitiveIterator.OfLong LONG_PROVIDER = new Random(0L).longs(0L, Long.MAX_VALUE).iterator();
+
+  private static final Supplier<String> EXPRESSION_VALUE_PROVIDER = () -> format("expressionValue%d", LONG_PROVIDER.next());
+  private static final Supplier<String> CONDITION_MESSAGE_PROVIDER = () -> format("conditionMessage%d", LONG_PROVIDER.next());
 
   private Condition<String> condition;
   private String expressionValue;

@@ -36,6 +36,7 @@ import static org.junit.Assert.assertThat;
  * @see RandomNumberProvidersTest
  * @since 9/17/12
  */
+@SuppressWarnings("deprecation")
 @RunWith(MockitoJUnitRunner.class)
 public final class AbstractRandomNumberProviderTest {
   @SuppressWarnings("UnusedDeclaration")

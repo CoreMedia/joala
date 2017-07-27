@@ -19,7 +19,7 @@
 
 package net.joala.data.random;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import net.joala.data.DataProvidingException;
 
 import javax.annotation.Nonnegative;
@@ -32,8 +32,10 @@ import static com.google.common.base.Preconditions.checkState;
 import static net.joala.data.random.RandomStringType.ALL;
 
 /**
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class DefaultRandomStringProvider extends AbstractRandomDataProvider<String> implements RandomStringProvider {
   private static final int DEFAULT_MIN_LEN = 1;
   private static final int DEFAULT_MAX_LEN = 16;
@@ -165,7 +167,7 @@ public class DefaultRandomStringProvider extends AbstractRandomDataProvider<Stri
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("minLen", minLen)
             .add("maxLen", maxLen)
             .add("stringType", stringType)

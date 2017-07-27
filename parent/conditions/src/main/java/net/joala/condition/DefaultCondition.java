@@ -19,7 +19,7 @@
 
 package net.joala.condition;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import net.joala.condition.timing.DeceleratingWait;
 import net.joala.condition.timing.Wait;
 import net.joala.condition.timing.WaitFailStrategy;
@@ -90,19 +90,16 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   }
 
   @Override
-  @Nullable
   public final T get() {
     return expression.get();
   }
 
   @Override
-  @Nullable
   public final T await() {
     return await(IsAnything.anything());
   }
 
   @Override
-  @Nullable
   public T await(@Nonnull final Matcher<? super T> matcher) {
     return until(matcher, TIMEOUT_FAIL_STRATEGY);
   }
@@ -127,7 +124,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
       runBeforeRunnable.run();
     }
     try {
-      return wait.until(message, expression, new ExpressionFunction<T>(), matcher);
+      return wait.until(message, expression, new ExpressionFunction<>(), matcher);
     } finally {
       if (runFinallyRunnable != null) {
         runFinallyRunnable.run();
@@ -185,14 +182,14 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
-            .add("message", message)
-            .add("expression", expression)
-            .add("runBefore", runBeforeRunnable)
-            .add("runFinally", runFinallyRunnable)
-            .add("timeout", timeout)
-            .add("factor", factor)
-            .toString();
+    return MoreObjects.toStringHelper(this)
+                      .add("message", message)
+                      .add("expression", expression)
+                      .add("runBefore", runBeforeRunnable)
+                      .add("runFinally", runFinallyRunnable)
+                      .add("timeout", timeout)
+                      .add("factor", factor)
+                      .toString();
   }
 
 

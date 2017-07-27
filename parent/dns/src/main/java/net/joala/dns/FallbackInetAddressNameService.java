@@ -19,7 +19,7 @@
 
 package net.joala.dns;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import sun.net.spi.nameservice.NameService;
 
 import java.lang.reflect.InvocationTargetException;
@@ -40,7 +40,10 @@ import static java.lang.String.format;
  *
  * @since 10/6/12
  * @see net.joala.dns package documentation
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 final class FallbackInetAddressNameService implements NameService {
   /**
    * A logger using System-PrintStreams.
@@ -197,7 +200,7 @@ final class FallbackInetAddressNameService implements NameService {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("inetAddressImpl", inetAddressImpl)
             .add("getHostByAddrMethod", getHostByAddrMethod)
             .add("lookupAllHostAddrMethod", lookupAllHostAddrMethod)

@@ -27,7 +27,6 @@ import javax.annotation.Nonnull;
 import java.lang.reflect.Constructor;
 
 import static net.joala.matcher.reflect.ClassHasModifier.classIsPublic;
-import static net.joala.matcher.reflect.IsAccessible.isAccessible;
 import static net.joala.matcher.reflect.MemberHasModifier.memberIsPublic;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.Matchers.typeCompatibleWith;
@@ -44,9 +43,11 @@ import static org.junit.Assert.assertThat;
  * </p>
  *
  * @since 10/5/12
+ * @deprecated Will be removed in one of the next releases.
  */
-@SuppressWarnings("JUnitTestClassNamingConvention")
+@SuppressWarnings({"JUnitTestClassNamingConvention", "deprecation"})
 @Ignore("Don't execute Testlets in IDE and alike.")
+@Deprecated
 public class ExceptionClassTestlet<T extends Throwable> extends AbstractTestlet<Class<T>> {
   private static final int RANDOM_MESSAGE_LENGTH = 64;
 

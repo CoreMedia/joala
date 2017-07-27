@@ -19,7 +19,7 @@
 
 package net.joala.bdd.reference;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.hamcrest.Description;
 
 import javax.annotation.Nonnull;
@@ -72,7 +72,7 @@ public class SelfDescribingReferenceImpl<T> extends ReferenceImpl<T> implements 
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("name", name)
             .toString();
   }

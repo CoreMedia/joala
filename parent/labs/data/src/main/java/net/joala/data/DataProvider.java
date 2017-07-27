@@ -25,8 +25,10 @@ package net.joala.data;
  * </p>
  *
  * @param <T> the type of data returned
- * @since 9/16/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public interface DataProvider<T> {
   /**
    * Retrieve a random data.

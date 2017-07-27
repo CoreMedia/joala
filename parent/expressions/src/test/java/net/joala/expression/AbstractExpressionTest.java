@@ -19,12 +19,13 @@
 
 package net.joala.expression;
 
-import net.joala.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
+import org.apache.commons.text.RandomStringGenerator;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
+
+import java.util.function.Supplier;
 
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.core.StringContains.containsString;
@@ -40,8 +41,9 @@ import static org.junit.Assert.assertThat;
  */
 @SuppressWarnings("ProhibitedExceptionDeclared")
 public class AbstractExpressionTest {
-  private static final DataProvider<String> TEXT_PROVIDER = new DefaultRandomStringProvider().prefix("text").fixate();
-  private static final DataProvider<String> DESCRIPTION_PROVIDER = new DefaultRandomStringProvider().prefix("description").fixate();
+  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+  private static final Supplier<String> TEXT_PROVIDER = () -> "text_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> DESCRIPTION_PROVIDER = () -> "description_" + RANDOM_STRING_GENERATOR.generate(20);
 
   @Test
   public void empty_simple_description_should_not_cause_update_of_description() throws Exception {

@@ -19,12 +19,12 @@
 
 package net.joala.time;
 
-import net.joala.data.DataProvider;
-import net.joala.data.random.RandomDoubleProvider;
-import net.joala.data.random.RandomIntegerProvider;
 import org.junit.Test;
 
+import java.util.PrimitiveIterator;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
@@ -38,18 +38,14 @@ import static org.junit.Assert.assertEquals;
  */
 @SuppressWarnings("ProhibitedExceptionDeclared")
 public class TimeoutImplTest {
-  private final DataProvider<Integer> randomPositiveInt = new RandomIntegerProvider().min(0).max(Integer.MAX_VALUE).fixate();
-  private final DataProvider<Double> randomPositiveDouble = new RandomDoubleProvider().min(0d).max(Double.MAX_VALUE).fixate();
+  private static final PrimitiveIterator.OfInt INTS = new Random().ints(0, Integer.MAX_VALUE).iterator();
+  private final Supplier<Integer> randomPositiveInt = INTS::next;
+  private static final PrimitiveIterator.OfDouble DOUBLES = new Random().doubles(0D, Double.MAX_VALUE).iterator();
+  private final Supplier<Double> randomPositiveDouble = DOUBLES::next;
 
   @Test(expected = IllegalArgumentException.class)
   public void constructor_should_throw_exception_on_negative_timeout() throws Exception {
     new TimeoutImpl(-1L, TimeUnit.MILLISECONDS);
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @Test(expected = NullPointerException.class)
-  public void constructor_should_throw_exception_on_invalid_timeunit() throws Exception {
-    new TimeoutImpl(randomPositiveInt.get(), null);
   }
 
   @Test
@@ -68,15 +64,6 @@ public class TimeoutImplTest {
     assertEquals(format("Correctly converted to Milliseconds: %s", timeout), unit.toMillis(amount), timeout.in(TimeUnit.MILLISECONDS));
     assertEquals(format("Correctly converted to Seconds: %s", timeout), unit.toSeconds(amount), timeout.in(TimeUnit.SECONDS));
     assertEquals(format("Correctly converted to Minutes: %s", timeout), unit.toMinutes(amount), timeout.in(TimeUnit.MINUTES));
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  @Test(expected = NullPointerException.class)
-  public void in_method_should_throw_exception_on_null_timeunit() throws Exception {
-    final int amount = randomPositiveInt.get();
-    final TimeUnit unit = TimeUnit.SECONDS;
-    final Timeout timeout = new TimeoutImpl(amount, unit);
-    timeout.in(null);
   }
 
   @Test

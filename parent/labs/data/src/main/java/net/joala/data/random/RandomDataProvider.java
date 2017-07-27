@@ -29,8 +29,10 @@ import javax.annotation.Nonnull;
  * again return self-references to build up chained-call configuration.
  * </p>
  *
- * @since 9/17/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public interface RandomDataProvider<T> extends DataProvider<T> {
   /**
    * <p>

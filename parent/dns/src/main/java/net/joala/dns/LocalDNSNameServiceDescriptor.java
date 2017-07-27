@@ -30,7 +30,10 @@ import sun.net.spi.nameservice.NameServiceDescriptor;
  *
  * @since 10/5/12
  * @see net.joala.dns package documentation
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class LocalDNSNameServiceDescriptor implements NameServiceDescriptor {
 
   /**

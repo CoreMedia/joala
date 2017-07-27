@@ -63,7 +63,7 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 10/6/12
  */
-@SuppressWarnings("ProhibitedExceptionDeclared")
+@SuppressWarnings({"ProhibitedExceptionDeclared", "deprecation"})
 public class DNSStoryTest extends StoryBaseTest {
   @Rule
   public final TestWatcher nameStoreTestWatcher = new NameStoreTestWatcher();

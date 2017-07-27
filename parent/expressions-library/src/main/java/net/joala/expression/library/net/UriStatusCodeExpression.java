@@ -47,8 +47,10 @@ import static net.joala.matcher.net.KnownHost.knownHost;
  * Matcher to validate response code received from given URI.
  * </p>
  *
- * @since 10/2/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings({"deprecation", "IOResourceOpenedButNotSafelyClosed"})
+@Deprecated
 public class UriStatusCodeExpression extends AbstractExpression<Integer> {
   /**
    * Default timeout to use if unspecified.

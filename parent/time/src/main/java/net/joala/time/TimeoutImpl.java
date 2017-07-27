@@ -19,7 +19,7 @@
 
 package net.joala.time;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -65,7 +65,7 @@ public class TimeoutImpl implements Timeout {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("amount", amount)
             .add("unit", unit)
             .toString();

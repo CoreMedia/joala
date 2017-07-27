@@ -35,6 +35,7 @@ import static org.junit.Assert.assertSame;
  *
  * @since 10/1/12
  */
+@SuppressWarnings("deprecation")
 public class AbstractRandomDataProviderTest {
   private static final Integer SOME_INTEGER = new Random().nextInt();
 

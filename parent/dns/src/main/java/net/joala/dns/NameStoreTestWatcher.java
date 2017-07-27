@@ -42,8 +42,10 @@ import static net.joala.dns.NameStore.nameStore;
  * an assumption failure.
  * </p>
  *
- * @since 10/6/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class NameStoreTestWatcher extends TestWatcher {
   /**
    * Enforcer used to install Joala DNS if it is not yet done.

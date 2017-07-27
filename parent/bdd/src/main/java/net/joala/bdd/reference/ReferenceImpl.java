@@ -19,7 +19,7 @@
 
 package net.joala.bdd.reference;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -116,7 +116,7 @@ public class ReferenceImpl<T> implements Reference<T> {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("value", value)
             .add("valueSet", valueSet)
             .add("properties", properties)

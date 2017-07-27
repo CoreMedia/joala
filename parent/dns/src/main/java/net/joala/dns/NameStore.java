@@ -20,7 +20,7 @@
 package net.joala.dns;
 
 import com.google.common.base.Function;
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -50,8 +50,10 @@ import static java.lang.String.format;
  * add and remove known hosts during your tests.
  * </p>
  *
- * @since 10/5/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 @ThreadSafe
 public final class NameStore {
   /**
@@ -272,7 +274,7 @@ public final class NameStore {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("store", store)
             .toString();
   }

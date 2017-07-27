@@ -47,7 +47,7 @@ import static org.junit.Assert.assertEquals;
  *
  * @since 10/2/12
  */
-@SuppressWarnings("ProhibitedExceptionDeclared")
+@SuppressWarnings({"ProhibitedExceptionDeclared", "deprecation"})
 public class UriStatusCodeExpressionTest {
   private static EmbeddedWebservice webservice;
   private static final int SOME_PORT = 12345;

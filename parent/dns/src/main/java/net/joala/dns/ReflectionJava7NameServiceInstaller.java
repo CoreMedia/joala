@@ -36,8 +36,10 @@ import static java.security.AccessController.doPrivileged;
  * Installs Joala DNS as Name Service as it was required for Java 6.
  * </p>
  *
- * @since 10/7/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 class ReflectionJava7NameServiceInstaller extends ReflectionNameServiceInstaller {
   @SuppressWarnings("unchecked")
   @Override

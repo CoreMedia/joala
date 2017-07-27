@@ -19,7 +19,7 @@
 
 package net.joala.net;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import com.sun.net.httpserver.HttpServer;
 import net.joala.condition.Condition;
 import net.joala.condition.DefaultConditionFactory;
@@ -59,8 +59,10 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * it with prepared responses which will then be sent on each request.
  * </p>
  *
- * @since 10/4/12
+ * @deprecated Will be removed soon.
  */
+@SuppressWarnings("deprecation")
+@Deprecated
 public class EmbeddedWebservice {
   /**
    * Logging instance.
@@ -205,7 +207,7 @@ public class EmbeddedWebservice {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("clientUri", clientUri)
             .add("server", server)
             .add("preparedResponsesHttpHandler", preparedResponsesHttpHandler)

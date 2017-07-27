@@ -19,9 +19,10 @@
 
 package net.joala.expression;
 
-import net.joala.data.DataProvider;
-import net.joala.data.random.DefaultRandomStringProvider;
+import org.apache.commons.text.RandomStringGenerator;
 import org.junit.Test;
+
+import java.util.function.Supplier;
 
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
@@ -35,8 +36,9 @@ import static org.junit.Assert.assertThat;
  * @since 8/25/12
  */
 public class ExpressionEvaluationExceptionTest {
-  private static final DataProvider<String> MESSAGE_PROVIDER = new DefaultRandomStringProvider().prefix("message").fixate();
-  private static final DataProvider<String> MESSAGE_CAUSE_PROVIDER = new DefaultRandomStringProvider().prefix("messageCause").fixate();
+  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+  private static final Supplier<String> MESSAGE_PROVIDER = () -> "message_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> MESSAGE_CAUSE_PROVIDER = () -> "messageCause_" + RANDOM_STRING_GENERATOR.generate(20);
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test

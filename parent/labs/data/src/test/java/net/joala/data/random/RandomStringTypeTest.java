@@ -19,7 +19,7 @@
 
 package net.joala.data.random;
 
-import com.google.common.base.Objects;
+import com.google.common.base.MoreObjects;
 import org.hamcrest.Matcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,7 @@ import static org.junit.Assume.assumeThat;
  *
  * @since 10/8/12
  */
-@SuppressWarnings("ProhibitedExceptionDeclared")
+@SuppressWarnings({"ProhibitedExceptionDeclared", "deprecation"})
 @RunWith(Parameterized.class)
 public class RandomStringTypeTest {
   private static final int GREAT_LENGTH = 1024;
@@ -113,7 +113,7 @@ public class RandomStringTypeTest {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this)
+    return MoreObjects.toStringHelper(this)
             .add("type", type)
             .toString();
   }
