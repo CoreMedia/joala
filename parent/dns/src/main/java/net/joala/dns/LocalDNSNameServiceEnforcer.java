@@ -69,9 +69,9 @@ class LocalDNSNameServiceEnforcer {
    * Message to output if Joala DNS could not be enabled.
    */
   private static final String ASSUMPTION_FAILURE_MESSAGE = format(
-          "Joala DNS not installed. Please verify that you have set sun.net.spi.nameservice.provider.1=%s " +
-                  "before java.net.InetAddress first got loaded. For runtime modification you might call " +
-                  "ensureJoalaDnsInstalled() instead.", NAME_SERVICE_ID);
+          "Joala DNS not installed. Please verify that you have set sun.net.spi.nameservice.provider.1=%s before java"
+                  + ".net.InetAddress first got loaded. For runtime modification you might call "
+                  + "ensureJoalaDnsInstalled() instead.", NAME_SERVICE_ID);
 
   /**
    * Store used for Joala DNS validation.
@@ -156,7 +156,7 @@ class LocalDNSNameServiceEnforcer {
   /**
    * Tries with different strategies to install Joala DNS as name service.
    */
-  private void forceJoalaDnsInstalled() {
+  private static void forceJoalaDnsInstalled() {
     final NameService nameService = new LocalDNSNameServiceDescriptor().createNameService();
     boolean passed = false;
     for (final ReflectionNameServiceInstaller installer : REFLECTION_NAME_SERVICE_INSTALLERS) {
@@ -176,7 +176,7 @@ class LocalDNSNameServiceEnforcer {
   /**
    * Force to disable cache.
    */
-  private void forceCacheDisabled() {
+  private static void forceCacheDisabled() {
     try {
       REFLECTION_INET_CACHE_DISABLER.disable();
     } catch (ReflectionCallException e) {

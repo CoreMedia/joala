@@ -66,7 +66,7 @@ public class LocalDNSNameServiceDescriptor implements NameServiceDescriptor {
   /**
    * <p>
    * Returns this name service type
-   * "dns" "nis" etc
+   * "dns" "nis" etc.
    * </p>
    */
   @Override

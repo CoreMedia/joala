@@ -68,7 +68,7 @@ final class FallbackInetAddressNameService implements NameService {
    */
   @SuppressWarnings("UtilityClassWithoutPrivateConstructor")
   private static class NameServiceHolder {
-    private static final FallbackInetAddressNameService ourInstance = new FallbackInetAddressNameService();
+    private static final FallbackInetAddressNameService OUR_INSTANCE = new FallbackInetAddressNameService();
   }
 
   /**
@@ -80,7 +80,7 @@ final class FallbackInetAddressNameService implements NameService {
    * @return instance of the fallback service
    */
   public static FallbackInetAddressNameService fallbackNameService() {
-    return NameServiceHolder.ourInstance;
+    return NameServiceHolder.OUR_INSTANCE;
   }
 
   /**

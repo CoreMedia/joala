@@ -147,7 +147,9 @@ public class JUnitScenarioWatcher extends TestWatcher {
    * @param message the message to print
    */
   protected void reportStart(final String type, final String message) {
-    report(new Formatter().format("%1$S: %2$s %3$s", type, typePadding(type), message).toString());
+    try (Formatter formatter = new Formatter()) {
+      report(formatter.format("%1$S: %2$s %3$s", type, typePadding(type), message).toString());
+    }
   }
 
   /**
@@ -155,9 +157,12 @@ public class JUnitScenarioWatcher extends TestWatcher {
    *
    * @param type    either story or scenario
    * @param message the message to print
+   * @param result  String describing result of finished story/scenario
    */
   protected void reportEnd(final String type, final String message, final String result) {
-    report(new Formatter().format("%1$S: %2$s %3$s (%4$S)", type, typePadding(type), message, result).toString());
+    try (Formatter formatter = new Formatter()) {
+      report(formatter.format("%1$S: %2$s %3$s (%4$S)", type, typePadding(type), message, result).toString());
+    }
   }
 
   /**
@@ -175,7 +180,7 @@ public class JUnitScenarioWatcher extends TestWatcher {
    * @param type scenario or story
    * @return padded story/scenario name
    */
-  private String typePadding(final CharSequence type) {
+  private static String typePadding(final CharSequence type) {
     return Strings.repeat(".", max(MIN_DOTS, MAX_TYPE_PADDING - type.length()));
   }
 }

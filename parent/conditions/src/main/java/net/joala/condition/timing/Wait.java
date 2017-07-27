@@ -69,6 +69,7 @@ public interface Wait {
    * @param matcher    the matcher to validate the result of the query; {@code null} to match any returned value
    * @param <F>        the input type
    * @param <T>        the return type of the state query
+   * @return the result of the successful state query
    */
   <F, T> T until(@Nonnull F input,
                  @Nonnull Function<? super F, T> stateQuery,
@@ -87,6 +88,7 @@ public interface Wait {
    * @param matcher    the matcher to validate the result of the query; {@code null} to match any returned value
    * @param <F>        the input type
    * @param <T>        the return type of the state query
+   * @return the result of the successful state query
    */
   <F, T> T until(@Nullable String message,
                  @Nonnull F input,

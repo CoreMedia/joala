@@ -72,8 +72,8 @@ import java.util.List;
  * </li>
  * </ul>
  *
- * @since 6/1/12
  * @see net.joala.bdd
+ * @since 6/1/12
  */
 @SuppressWarnings({"JavaDoc", "ProhibitedExceptionDeclared", "ProhibitedExceptionThrown"})
 @Aspect
@@ -90,7 +90,8 @@ public class JUnitAopStepsLogger {
    * @throws Throwable in case of any error
    */
   @Around("execution(* given_*(..))||execution(* when_*(..))||execution(* then_*(..))")
-  public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to deal with generic throwables here
+  public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to
+    // deal with generic throwables here
     final String stepName = joinPoint.getSignature().getName();
     final Object[] arguments = joinPoint.getArgs();
     final Description stepDescription = describeStep(stepName, arguments);
@@ -108,8 +109,8 @@ public class JUnitAopStepsLogger {
   /**
    * Describe the step, either inserting argument descriptions
    * into the placeholders of the step name or appending them.
-   * 
-   * @param stepName the step name
+   *
+   * @param stepName  the step name
    * @param arguments the arguments
    * @return the description
    */
@@ -124,7 +125,7 @@ public class JUnitAopStepsLogger {
         while (pos < stepName.length()) {
           final int digit = Character.digit(stepName.charAt(pos++), 10);
           if (digit == -1) {
-            pos --;
+            pos--;
             break;
           }
           index = index * 10 + digit;
@@ -142,7 +143,7 @@ public class JUnitAopStepsLogger {
         text.append(c);
       }
     }
-    
+
     final Description stepDescription = new StringDescription();
     stepDescription.appendText(text.toString().trim());
     if (!placeholderFound) {
@@ -157,7 +158,7 @@ public class JUnitAopStepsLogger {
     } else if (argument instanceof String) {
       return "\"" + argument + '"';
     } else if (argument instanceof SelfDescribingReference) {
-      return '<' + ((SelfDescribingReference)argument).getName() + '>';
+      return '<' + ((SelfDescribingReference) argument).getName() + '>';
     } else {
       return argument.toString();
     }

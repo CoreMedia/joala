@@ -75,7 +75,7 @@ public final class NameStore {
   /**
    * Singleton instance.
    */
-  private static final NameStore ourInstance = new NameStore();
+  private static final NameStore OUR_INSTANCE = new NameStore();
 
   /**
    * Use {@link #nameStore()} to get an instance.
@@ -92,7 +92,7 @@ public final class NameStore {
    */
   @Nonnull
   public static NameStore nameStore() {
-    return ourInstance;
+    return OUR_INSTANCE;
   }
 
   /**

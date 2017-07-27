@@ -74,7 +74,7 @@ public class ImageBuilderConfigImpl implements ImageBuilderConfig {
 
   @SuppressWarnings("UtilityClassWithoutPrivateConstructor")
   private static final class ImageBuilderConfigHolder {
-    private static final ImageBuilderConfig instance = new ImageBuilderConfigImpl();
+    private static final ImageBuilderConfig INSTANCE = new ImageBuilderConfigImpl();
   }
 
   /**
@@ -83,7 +83,7 @@ public class ImageBuilderConfigImpl implements ImageBuilderConfig {
    * @return instance of config
    */
   public static ImageBuilderConfig getInstance() {
-    return ImageBuilderConfigHolder.instance;
+    return ImageBuilderConfigHolder.INSTANCE;
   }
 
   @Override

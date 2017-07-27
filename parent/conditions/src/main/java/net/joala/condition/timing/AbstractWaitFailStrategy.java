@@ -50,6 +50,7 @@ public abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
    * @param function       function evaluated
    * @param input          the input to the function
    * @param consumedMillis how long it took until timeout  @return enhanced message
+   * @return enhanced description
    */
   @Nonnull
   protected String addTimeoutDescription(@Nullable final String message,
