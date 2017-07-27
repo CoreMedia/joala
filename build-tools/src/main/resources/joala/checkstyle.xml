@@ -58,9 +58,17 @@
 
     <!-- Checks for Javadoc comments.                     -->
     <!-- See http://checkstyle.sf.net/config_javadoc.html -->
-    <module name="JavadocMethod"/>
-    <module name="JavadocType"/>
-    <module name="JavadocVariable"/>
+    <module name="JavadocMethod">
+      <property name="severity" value="info"/>
+      <property name="scope" value="protected"/>
+    </module>
+    <module name="JavadocType">
+      <property name="severity" value="info"/>
+    </module>
+    <module name="JavadocVariable">
+      <property name="severity" value="info"/>
+      <property name="scope" value="public"/>
+    </module>
     <module name="JavadocStyle"/>
 
 
@@ -107,6 +115,7 @@
     <!-- Checks for Size Violations.                    -->
     <!-- See http://checkstyle.sf.net/config_sizes.html -->
     <module name="LineLength">
+      <property name="severity" value="warning"/>
       <property name="max" value="120"/>
     </module>
     <module name="MethodLength"/>
@@ -143,12 +152,14 @@
 
     <!-- Checks for common coding problems               -->
     <!-- See http://checkstyle.sf.net/config_coding.html -->
-    <module name="AvoidInlineConditionals"/>
-    <module name="DoubleCheckedLocking"/>
+    <module name="AvoidInlineConditionals">
+      <property name="severity" value="info"/>
+    </module>
     <!-- MY FAVOURITE -->
     <module name="EmptyStatement"/>
     <module name="EqualsHashCode"/>
     <module name="HiddenField">
+      <property name="severity" value="warning"/>
       <property name="ignoreConstructorParameter" value="true"/>
       <property name="ignoreSetter" value="true"/>
     </module>
@@ -156,9 +167,7 @@
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
     <module name="MissingSwitchDefault"/>
-    <module name="RedundantThrows">
-      <property name="allowUnchecked" value="true"/>
-    </module>
+    <module name="IllegalThrows"/>
     <module name="SimplifyBooleanExpression"/>
     <module name="SimplifyBooleanReturn"/>
 
