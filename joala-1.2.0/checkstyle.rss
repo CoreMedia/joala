@@ -19,20 +19,20 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>Joala Matchers - Checkstyle report</title>
-    <link>http://coremedia.github.com/joala/joala-parent/joala-matchers</link>
-    <description>Joala Matchers - Checkstyle report</description>
+    <title>Joala Testlets - Checkstyle report</title>
+    <link>http://coremedia.github.com/joala/joala-parent/joala-testlets</link>
+    <description>Joala Testlets - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2011 - 2017 CoreMedia AG</copyright>
     <item>
-      <title>File: 10,
-             Errors: 19,
-             Warnings: 4,
-             Infos: 62
+      <title>File: 7,
+             Errors: 16,
+             Warnings: 11,
+             Infos: 17
       </title>
-            <link>http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html</link>
+            <link>http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,21 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.decorator.EnhanceDescriptionBy.java">net/joala/matcher/decorator/EnhanceDescriptionBy.java</a>
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.net.KnownHost.java">net/joala/matcher/net/KnownHost.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.AbstractTestlet.java">net/joala/testlet/AbstractTestlet.java</a>
                 </td>
                 <td>
                   1
@@ -74,114 +60,86 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.exception.CausedBy.java">net/joala/matcher/exception/CausedBy.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.Testlet.java">net/joala/testlet/Testlet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.ExceptionClassTestlet.java">net/joala/testlet/ExceptionClassTestlet.java</a>
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  4
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.BlockJUnit4TestletRunner.java">net/joala/testlet/BlockJUnit4TestletRunner.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.ExceptionCollectingRunListener.java">net/joala/testlet/ExceptionCollectingRunListener.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.UtilityClassTestlet.java">net/joala/testlet/UtilityClassTestlet.java</a>
+                </td>
+                <td>
+                  4
                 </td>
                 <td>
                   2
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
+                  4
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.exception.MessageContains.java">net/joala/matcher/exception/MessageContains.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-testlets/checkstyle.html#net.joala.testlet.ToStringTestlet.java">net/joala/testlet/ToStringTestlet.java</a>
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  5
                 </td>
                 <td>
                   4
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.reflect.MemberHasModifier.java">net/joala/matcher/reflect/MemberHasModifier.java</a>
-                </td>
-                <td>
-                  12
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.reflect.ClassHasModifier.java">net/joala/matcher/reflect/ClassHasModifier.java</a>
-                </td>
-                <td>
-                  10
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.JoalaMatchers.java">net/joala/matcher/JoalaMatchers.java</a>
-                </td>
-                <td>
-                  26
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.DescriptionUtil.java">net/joala/matcher/DescriptionUtil.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.reflect.IsAccessible.java">net/joala/matcher/reflect/IsAccessible.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-matchers/checkstyle.html#net.joala.matcher.text.MatchesPattern.java">net/joala/matcher/text/MatchesPattern.java</a>
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
                 </td>
               </tr>
                       </tbody>
