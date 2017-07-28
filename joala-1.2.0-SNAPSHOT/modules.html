@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20170728" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Joala Main &#x2013; Project Modules</title>
+    <title>Joala Parent &#x2013; Project Modules</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,7 +18,7 @@
     <body class="topBarDisabled">
       <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>Joala BOM</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>Joala Parent</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -30,10 +30,11 @@
         <li id="publishDate">Last Published: 2017-07-28<span class="divider">|</span>
 </li>
           <li id="projectVersion">Version: 1.2.0-SNAPSHOT<span class="divider">|</span></li>
-        <li class=""><a href="index.html" title="Joala BOM">Joala BOM</a><span class="divider">/</span></li>
+        <li class=""><a href="../index.html" title="Joala Parent">Joala Parent</a><span class="divider">/</span></li>
+      <li class=""><a href="index.html" title="Joala Parent">Joala Parent</a><span class="divider">/</span></li>
     <li class="active ">Project Modules</li>
       <li class="pull-right"><span class="divider">|</span>
-<a href="./" title="GitHub Pages">GitHub Pages</a></li>
+<a href="../" title="GitHub Pages">GitHub Pages</a></li>
       <li class="pull-right"><span class="divider">|</span>
 <a href="http://github.com/CoreMedia/joala/" class="externalLink" title="GitHub Repository">GitHub Repository</a></li>
       <li class="pull-right"><a href="http://www.coremedia.com/" class="externalLink" title="CoreMedia">CoreMedia</a></li>
@@ -43,15 +44,24 @@
         <div id="leftColumn" class="span2">
           <div class="well sidebar-nav">
 <ul class="nav nav-list">
-            <li class="nav-header">Modules</li>
-    <li><a href="joala-parent/index.html" title="Joala Parent"><span class="none"></span>Joala Parent</a>  </li>
-    <li><a href="joala-build-tools/index.html" title="Joala Build-Tools"><span class="none"></span>Joala Build-Tools</a>  </li>
-    <li><a href="joala-thirdparty-bom/index.html" title="Joala 3rd-party BOM"><span class="none"></span>Joala 3rd-party BOM</a>  </li>
-    <li><a href="joala-thirdparty-test-bom/index.html" title="Joala 3rd-party Test BOM"><span class="none"></span>Joala 3rd-party Test BOM</a>  </li>
+          <li class="nav-header">Parent Project</li>
+    <li><a href="../index.html" title="Joala BOM"><span class="none"></span>Joala BOM</a>  </li>
+          <li class="nav-header">Modules</li>
+    <li><a href="joala-conditions/index.html" title="Joala Conditions"><span class="none"></span>Joala Conditions</a>  </li>
+    <li><a href="joala-matchers/index.html" title="Joala Matchers"><span class="none"></span>Joala Matchers</a>  </li>
+    <li><a href="joala-bdd/index.html" title="Joala BDD"><span class="none"></span>Joala BDD</a>  </li>
+    <li><a href="joala-time/index.html" title="Joala Time"><span class="none"></span>Joala Time</a>  </li>
+    <li><a href="joala-expressions/index.html" title="Joala Expressions"><span class="none"></span>Joala Expressions</a>  </li>
+    <li><a href="joala-labs/index.html" title="Joala Labs"><span class="none"></span>Joala Labs</a>  </li>
+    <li><a href="joala-dns/index.html" title="Joala DNS"><span class="none"></span>Joala DNS</a>  </li>
+    <li><a href="joala-core/index.html" title="Joala Core"><span class="none"></span>Joala Core</a>  </li>
+    <li><a href="joala-testlets/index.html" title="Joala Testlets"><span class="none"></span>Joala Testlets</a>  </li>
+    <li><a href="joala-book/index.html" title="Joala Book"><span class="none"></span>Joala Book</a>  </li>
+    <li><a href="joala-expressions-library/index.html" title="Joala Expressions Library"><span class="none"></span>Joala Expressions Library</a>  </li>
+    <li><a href="joala-image/index.html" title="Joala Image"><span class="none"></span>Joala Image</a>  </li>
           <li class="nav-header">Project Documentation</li>
     <li><a href="project-info.html" title="Project Information"><span class="icon-chevron-down"></span>Project Information</a>
       <ul class="nav nav-list">
-    <li><a href="dependency-convergence.html" title="Dependency Convergence"><span class="none"></span>Dependency Convergence</a>  </li>
     <li><a href="dependency-info.html" title="Dependency Information"><span class="none"></span>Dependency Information</a>  </li>
     <li><a href="dependency-management.html" title="Dependency Management"><span class="none"></span>Dependency Management</a>  </li>
     <li><a href="distribution-management.html" title="Distribution Management"><span class="none"></span>Distribution Management</a>  </li>
@@ -88,20 +98,59 @@
 <th>Name</th>
 <th>Description</th></tr>
 <tr class="b">
-<td><a href="joala-parent/index.html">Joala Parent</a></td>
+<td><a href="joala-conditions/index.html">Joala Conditions</a></td>
+<td>Implements Waiting for JUnit tests. Concept contains expressions which are responsible to
+    retrieve a state of the application, matcher to verify the expected state (from Hamcrest Library)
+    and conditions which are responsible to repeat the evaluation of the given expression until
+    the state matches the expected state.</td></tr>
+<tr class="a">
+<td><a href="joala-matchers/index.html">Joala Matchers</a></td>
+<td>Matchers in addition to those provided by Hamcrest. Might be added as proposal to
+    Hamcrest matchers. Thus take these as experimental.</td></tr>
+<tr class="b">
+<td><a href="joala-bdd/index.html">Joala BDD</a></td>
+<td>Provide support for writing your tests in JUnit with BDD style Gherkin Syntax. Especially supports
+    logging of steps as well as handing over variables from step to step.</td></tr>
+<tr class="a">
+<td><a href="joala-time/index.html">Joala Time</a></td>
+<td>Classes for dealing with timeouts, timing and formatting time.</td></tr>
+<tr class="b">
+<td><a href="joala-expressions/index.html">Joala Expressions</a></td>
+<td>Expressions are used to evaluate the current state of a given
+    system. Such as a web address you want to get the status code
+    from. Typical expressions are evaluated multiple times in order
+    to wait for a given state. Thus expressions are typically evaluated
+    fast and should denote by expression if they fail to evaluate.</td></tr>
+<tr class="a">
+<td><a href="joala-labs/index.html">Joala Labs</a></td>
+<td>Joala Labs is a module which provides experimental features. These experimental features
+    might be removed at any time without notice. Typically you will find classes in here which
+    might once make it into Joala's Public API.</td></tr>
+<tr class="b">
+<td><a href="joala-dns/index.html">Joala DNS</a></td>
+<td>Sometimes you need your tests to resolve hostnames. While you could change for
+    example the /etc/hosts file for your test resolving this is not what you actually
+    want to do. Joala DNS offers a custom Domain Name Server which you can feed with
+    hosts to resolve from within your tests.</td></tr>
+<tr class="a">
+<td><a href="joala-core/index.html">Joala Core</a></td>
+<td>Core components used within Joala. Classes should be considered private API
+    as they are meant for internal use only.</td></tr>
+<tr class="b">
+<td><a href="joala-testlets/index.html">Joala Testlets</a></td>
+<td>Testlets are set of tests to apply to a software under test (SUT). Testlets itself
+    contain multiple tests which are run with the provided SUT to see if it meets
+    a bunch of requirements specified through the testlet.</td></tr>
+<tr class="a">
+<td><a href="joala-book/index.html">Joala Book</a></td>
 <td>This is the parent POM used for all Joala modules in order to provide a common set of
     dependencies and common set of plugin configurations.</td></tr>
-<tr class="a">
-<td><a href="joala-build-tools/index.html">Joala Build-Tools</a></td>
-<td>Support for Build-Tooling. Module can be taken as dependency to provide configuration
-    data to reporting plugins for example like the checkstyle and PMD plugin.</td></tr>
 <tr class="b">
-<td><a href="joala-thirdparty-bom/index.html">Joala 3rd-party BOM</a></td>
-<td>Joala Bill of Materials for Thirdparty artifacts.</td></tr>
+<td><a href="joala-expressions-library/index.html">Joala Expressions Library</a></td>
+<td>A library of convenience expressions.</td></tr>
 <tr class="a">
-<td><a href="joala-thirdparty-test-bom/index.html">Joala 3rd-party Test BOM</a></td>
-<td>Joala Bill of Materials for Thirdparty test artifacts. Used to have common test libraries within
-    Joala throughout all modules. Not expected to be used as BOM outside of Joala.</td></tr></table></div>
+<td><a href="joala-image/index.html">Joala Image</a></td>
+<td>Library for using images during tests.</td></tr></table></div>
         </div>
       </div>
     </div>
