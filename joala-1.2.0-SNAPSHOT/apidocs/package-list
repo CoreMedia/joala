@@ -1,1 +1,6 @@
-net.joala.core.reflection
+net.joala.matcher
+net.joala.matcher.decorator
+net.joala.matcher.exception
+net.joala.matcher.net
+net.joala.matcher.reflect
+net.joala.matcher.text
