@@ -54,13 +54,20 @@
     ```xml
     <servers>
       <server>
-        <id>ossrh</id>
+        <id>sonatype-nexus-snapshots</id>
+        <username>your-jira-id</username>
+        <password>your-jira-pwd</password>
+      </server>
+      <server>
+        <id>sonatype-nexus-staging</id>
         <username>your-jira-id</username>
         <password>your-jira-pwd</password>
       </server>
     </servers>
     ```
 
+    **Note:** The server ids are determined by the `oss-parent`. So possibly check the distribution management
+    section for changed ids.
 * Ensure that you have your GPG keys at hand and that you have published them to
     `hkp://pool.sks-keyservers.net/`.
     See [Working with PGP Signatures](http://central.sonatype.org/pages/working-with-pgp-signatures.html), section
