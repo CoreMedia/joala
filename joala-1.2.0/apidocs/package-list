@@ -1,1 +1,4 @@
-net.joala.testlet
+net.joala.bdd
+net.joala.bdd.aop
+net.joala.bdd.reference
+net.joala.bdd.watcher

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20170728" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Joala Testlets &#x2013; Checkstyle Results</title>
+    <title>Joala BDD &#x2013; Checkstyle Results</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,7 +18,7 @@
     <body class="topBarDisabled">
       <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>Joala Testlets</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>Joala BDD</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -30,9 +30,9 @@
         <li id="publishDate">Last Published: 2017-07-28<span class="divider">|</span>
 </li>
           <li id="projectVersion">Version: 1.2.0<span class="divider">|</span></li>
-        <li class=""><a href="../../index.html" title="Joala Testlets">Joala Testlets</a><span class="divider">/</span></li>
+        <li class=""><a href="../../index.html" title="Joala BDD">Joala BDD</a><span class="divider">/</span></li>
       <li class=""><a href="../index.html" title="Joala Parent">Joala Parent</a><span class="divider">/</span></li>
-      <li class=""><a href="index.html" title="Joala Testlets">Joala Testlets</a><span class="divider">/</span></li>
+      <li class=""><a href="index.html" title="Joala BDD">Joala BDD</a><span class="divider">/</span></li>
     <li class="active ">Checkstyle Results</li>
       <li class="pull-right"><span class="divider">|</span>
 <a href="../../" title="GitHub Pages">GitHub Pages</a></li>
@@ -88,10 +88,10 @@
 <th><img src="images/icon_warning_sml.gif" alt="" />&#160;Warnings</th>
 <th><img src="images/icon_error_sml.gif" alt="" />&#160;Errors</th></tr>
 <tr class="b">
-<td>7</td>
-<td>17</td>
-<td>11</td>
-<td>16</td></tr></table></div>
+<td>13</td>
+<td>6</td>
+<td>3</td>
+<td>3</td></tr></table></div>
 <div class="section">
 <h2><a name="Files"></a>Files</h2>
 <table border="0" class="table table-striped">
@@ -101,35 +101,25 @@
 <th><img src="images/icon_warning_sml.gif" alt="" />&#160;W</th>
 <th><img src="images/icon_error_sml.gif" alt="" />&#160;E</th></tr>
 <tr class="b">
-<td><a href="#net.joala.testlet.AbstractTestlet.java">net/joala/testlet/AbstractTestlet.java</a></td>
+<td><a href="#net.joala.bdd.aop.JUnitAopStepsLogger.java">net/joala/bdd/aop/JUnitAopStepsLogger.java</a></td>
+<td>1</td>
+<td>0</td>
+<td>3</td></tr>
+<tr class="a">
+<td><a href="#net.joala.bdd.reference.ReferenceImpl.java">net/joala/bdd/reference/ReferenceImpl.java</a></td>
+<td>1</td>
+<td>3</td>
+<td>0</td></tr>
+<tr class="b">
+<td><a href="#net.joala.bdd.reference.SelfDescribingReference.java">net/joala/bdd/reference/SelfDescribingReference.java</a></td>
 <td>1</td>
 <td>0</td>
 <td>0</td></tr>
 <tr class="a">
-<td><a href="#net.joala.testlet.ExceptionClassTestlet.java">net/joala/testlet/ExceptionClassTestlet.java</a></td>
-<td>7</td>
-<td>4</td>
-<td>6</td></tr>
-<tr class="b">
-<td><a href="#net.joala.testlet.ExceptionCollectingRunListener.java">net/joala/testlet/ExceptionCollectingRunListener.java</a></td>
+<td><a href="#net.joala.bdd.reference.SelfDescribingReferenceImpl.java">net/joala/bdd/reference/SelfDescribingReferenceImpl.java</a></td>
+<td>3</td>
 <td>0</td>
-<td>0</td>
-<td>1</td></tr>
-<tr class="a">
-<td><a href="#net.joala.testlet.Testlet.java">net/joala/testlet/Testlet.java</a></td>
-<td>0</td>
-<td>0</td>
-<td>1</td></tr>
-<tr class="b">
-<td><a href="#net.joala.testlet.ToStringTestlet.java">net/joala/testlet/ToStringTestlet.java</a></td>
-<td>5</td>
-<td>5</td>
-<td>4</td></tr>
-<tr class="a">
-<td><a href="#net.joala.testlet.UtilityClassTestlet.java">net/joala/testlet/UtilityClassTestlet.java</a></td>
-<td>4</td>
-<td>2</td>
-<td>4</td></tr></table></div>
+<td>0</td></tr></table></div>
 <div class="section">
 <h2><a name="Rules"></a>Rules</h2>
 <table border="0" class="table table-striped">
@@ -140,50 +130,88 @@
 <th>Severity</th></tr>
 <tr class="a">
 <td>coding</td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_coding.html#AvoidInlineConditionals">AvoidInlineConditionals</a></td>
+<td>1</td>
+<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td></tr>
+<tr class="b">
+<td></td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_coding.html#HiddenField">HiddenField</a>
 <ul>
 <li>ignoreConstructorParameter: <tt>&quot;true&quot;</tt></li>
 <li>ignoreSetter: <tt>&quot;true&quot;</tt></li></ul></td>
 <td>2</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr>
-<tr class="b">
+<tr class="a">
 <td></td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_coding.html#IllegalThrows">IllegalThrows</a></td>
-<td>5</td>
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
-<tr class="a">
-<td>design</td>
-<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_design.html#FinalClass">FinalClass</a></td>
 <td>1</td>
 <td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
 <tr class="b">
+<td></td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_coding.html#MagicNumber">MagicNumber</a></td>
+<td>1</td>
+<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
+<tr class="a">
 <td>javadoc</td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocMethod">JavadocMethod</a>
 <ul>
 <li>scope: <tt>&quot;protected&quot;</tt></li></ul></td>
-<td>13</td>
+<td>1</td>
 <td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td></tr>
+<tr class="b">
+<td></td>
+<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
+<td>1</td>
+<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
 <tr class="a">
 <td></td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_javadoc.html#JavadocType">JavadocType</a></td>
 <td>4</td>
 <td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td></tr>
 <tr class="b">
-<td>naming</td>
-<td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_naming.html#MethodName">MethodName</a></td>
-<td>10</td>
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td></tr>
-<tr class="a">
 <td>sizes</td>
 <td><a class="externalLink" href="http://checkstyle.sourceforge.net/config_sizes.html#LineLength">LineLength</a>
 <ul>
 <li>max: <tt>&quot;120&quot;</tt></li></ul></td>
-<td>9</td>
+<td>1</td>
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td></tr></table></div>
 <div class="section">
 <h2><a name="Details"></a>Details</h2>
 <div class="section">
-<h3 id="net.joala.testlet.AbstractTestlet.java">net/joala/testlet/AbstractTestlet.java</h3>
+<h3 id="net.joala.bdd.aop.JUnitAopStepsLogger.java">net/joala/bdd/aop/JUnitAopStepsLogger.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
+<td>javadoc</td>
+<td>JavadocStyle</td>
+<td>Extra HTML tag found: &lt;/beans&gt;</td>
+<td><a href="./xref/net/joala/bdd/aop/JUnitAopStepsLogger.html#L70">70</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
+<td>coding</td>
+<td>IllegalThrows</td>
+<td>Throwing 'Throwable' is not allowed.</td>
+<td><a href="./xref/net/joala/bdd/aop/JUnitAopStepsLogger.html#L93">93</a></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
+<td>coding</td>
+<td>MagicNumber</td>
+<td>'10' is a magic number.</td>
+<td><a href="./xref/net/joala/bdd/aop/JUnitAopStepsLogger.html#L131">131</a></td></tr>
+<tr class="a">
+<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
+<td>javadoc</td>
+<td>JavadocType</td>
+<td>Missing a Javadoc comment.</td>
+<td><a href="./xref/net/joala/bdd/aop/JUnitAopStepsLogger.html#L200">200</a></td></tr></table></div>
+<div class="section">
+<h3 id="net.joala.bdd.reference.ReferenceImpl.java">net/joala/bdd/reference/ReferenceImpl.java</h3>
 <table border="0" class="table table-striped">
 <tr class="b">
 <th>Severity</th>
@@ -196,310 +224,67 @@
 <td>javadoc</td>
 <td>JavadocType</td>
 <td>Type Javadoc comment is missing an @param &lt;T&gt; tag.</td>
-<td><a href="./xref/net/joala/testlet/AbstractTestlet.html#L44">44</a></td></tr></table></div>
-<div class="section">
-<h3 id="net.joala.testlet.ExceptionClassTestlet.java">net/joala/testlet/ExceptionClassTestlet.java</h3>
-<table border="0" class="table table-striped">
-<tr class="b">
-<th>Severity</th>
-<th>Category</th>
-<th>Rule</th>
-<th>Message</th>
-<th>Line</th></tr>
-<tr class="a">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocType</td>
-<td>Type Javadoc comment is missing an @param &lt;T&gt; tag.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L48">48</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L65">65</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'exception_should_be_public' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L66">66</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L70">70</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'constructor_noarg_should_meet_requirements' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L71">71</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L75">75</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'constructor_string_should_meet_requirements' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L76">76</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L80">80</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'constructor_throwable_should_meet_requirements' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L81">81</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L85">85</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'constructor_string_throwable_should_meet_requirements' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L86">86</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 138).</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L107">107</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 122).</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L112">112</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 129).</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L113">113</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L131">131</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 195).</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L132">132</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>coding</td>
-<td>IllegalThrows</td>
-<td>Throwing 'Throwable' is not allowed.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionClassTestlet.html#L132">132</a></td></tr></table></div>
-<div class="section">
-<h3 id="net.joala.testlet.ExceptionCollectingRunListener.java">net/joala/testlet/ExceptionCollectingRunListener.java</h3>
-<table border="0" class="table table-striped">
-<tr class="b">
-<th>Severity</th>
-<th>Category</th>
-<th>Rule</th>
-<th>Message</th>
-<th>Line</th></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>coding</td>
-<td>IllegalThrows</td>
-<td>Throwing 'Throwable' is not allowed.</td>
-<td><a href="./xref/net/joala/testlet/ExceptionCollectingRunListener.html#L65">65</a></td></tr></table></div>
-<div class="section">
-<h3 id="net.joala.testlet.Testlet.java">net/joala/testlet/Testlet.java</h3>
-<table border="0" class="table table-striped">
-<tr class="b">
-<th>Severity</th>
-<th>Category</th>
-<th>Rule</th>
-<th>Message</th>
-<th>Line</th></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>coding</td>
-<td>IllegalThrows</td>
-<td>Throwing 'Throwable' is not allowed.</td>
-<td><a href="./xref/net/joala/testlet/Testlet.html#L38">38</a></td></tr></table></div>
-<div class="section">
-<h3 id="net.joala.testlet.ToStringTestlet.java">net/joala/testlet/ToStringTestlet.java</h3>
-<table border="0" class="table table-striped">
-<tr class="b">
-<th>Severity</th>
-<th>Category</th>
-<th>Rule</th>
-<th>Message</th>
-<th>Line</th></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>design</td>
-<td>FinalClass</td>
-<td>Class ToStringTestlet should be declared as final.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L60">60</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocType</td>
-<td>Type Javadoc comment is missing an @param &lt;T&gt; tag.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L60">60</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L94">94</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'toString_should_contain_classname' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L95">95</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 138).</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L97">97</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L101">101</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'toString_should_contain_all_fields_and_their_values' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L103">103</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 128).</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L106">106</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>coding</td>
-<td>HiddenField</td>
-<td>'excludeNamePattern' hides a field.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L201">201</a></td></tr>
+<td><a href="./xref/net/joala/bdd/reference/ReferenceImpl.html#L40">40</a></td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>coding</td>
 <td>HiddenField</td>
-<td>'excludeTypeNamePattern' hides a field.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L215">215</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L234">234</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 143).</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L235">235</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>coding</td>
-<td>IllegalThrows</td>
-<td>Throwing 'Throwable' is not allowed.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L235">235</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocType</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/ToStringTestlet.html#L239">239</a></td></tr></table></div>
-<div class="section">
-<h3 id="net.joala.testlet.UtilityClassTestlet.java">net/joala/testlet/UtilityClassTestlet.java</h3>
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Severity</th>
-<th>Category</th>
-<th>Rule</th>
-<th>Message</th>
-<th>Line</th></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L63">63</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'utilityClass_should_have_private_noarg_constructor' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L64">64</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L74">74</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'utilityClass_should_be_final' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L75">75</a></td></tr>
-<tr class="b">
-<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
-<td>javadoc</td>
-<td>JavadocMethod</td>
-<td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L79">79</a></td></tr>
+<td>'value' hides a field.</td>
+<td><a href="./xref/net/joala/bdd/reference/ReferenceImpl.html#L46">46</a></td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
 <td>sizes</td>
 <td>LineLength</td>
 <td>Line is longer than 120 characters (found 141).</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L80">80</a></td></tr>
+<td><a href="./xref/net/joala/bdd/reference/ReferenceImpl.html#L48">48</a></td></tr>
 <tr class="b">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
-<td>naming</td>
-<td>MethodName</td>
-<td>Name 'utilityClass_noarg_constructor_should_pass' must match pattern '^[a-z][a-zA-Z0-9]*$'.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L80">80</a></td></tr>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
+<td>coding</td>
+<td>HiddenField</td>
+<td>'value' hides a field.</td>
+<td><a href="./xref/net/joala/bdd/reference/ReferenceImpl.html#L69">69</a></td></tr></table></div>
+<div class="section">
+<h3 id="net.joala.bdd.reference.SelfDescribingReference.java">net/joala/bdd/reference/SelfDescribingReference.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
+<td>javadoc</td>
+<td>JavadocType</td>
+<td>Type Javadoc comment is missing an @param &lt;T&gt; tag.</td>
+<td><a href="./xref/net/joala/bdd/reference/SelfDescribingReference.html#L33">33</a></td></tr></table></div>
+<div class="section">
+<h3 id="net.joala.bdd.reference.SelfDescribingReferenceImpl.java">net/joala/bdd/reference/SelfDescribingReferenceImpl.java</h3>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Severity</th>
+<th>Category</th>
+<th>Rule</th>
+<th>Message</th>
+<th>Line</th></tr>
+<tr class="b">
+<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
+<td>javadoc</td>
+<td>JavadocType</td>
+<td>Type Javadoc comment is missing an @param &lt;T&gt; tag.</td>
+<td><a href="./xref/net/joala/bdd/reference/SelfDescribingReferenceImpl.html#L35">35</a></td></tr>
 <tr class="a">
 <td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
 <td>javadoc</td>
 <td>JavadocMethod</td>
 <td>Missing a Javadoc comment.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L94">94</a></td></tr>
+<td><a href="./xref/net/joala/bdd/reference/SelfDescribingReferenceImpl.html#L39">39</a></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" />&#160;Warning</td>
-<td>sizes</td>
-<td>LineLength</td>
-<td>Line is longer than 120 characters (found 164).</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L95">95</a></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" />&#160;Error</td>
+<td><img src="images/icon_info_sml.gif" alt="" />&#160;Info</td>
 <td>coding</td>
-<td>IllegalThrows</td>
-<td>Throwing 'Throwable' is not allowed.</td>
-<td><a href="./xref/net/joala/testlet/UtilityClassTestlet.html#L95">95</a></td></tr></table></div></div>
+<td>AvoidInlineConditionals</td>
+<td>Avoid inline conditionals.</td>
+<td><a href="./xref/net/joala/bdd/reference/SelfDescribingReferenceImpl.html#L51">51</a></td></tr></table></div></div>
         </div>
       </div>
     </div>
