@@ -2,7 +2,7 @@
 
 ## Release Preparations
 
-* Ensure that you have configured GitHub for site deployment in your `settings.xml`:
+* *Deprecated:* Ensure that you have configured GitHub for site deployment in your `settings.xml`:
     This is required in order to deploy the Maven site to [Joala GitHub Pages][].
 
     ```xml
@@ -16,6 +16,37 @@
     ```
     
     For deployment a fork of [wagon-gitsite][] by [kohsuke][kohsuke-wagon-gitsite] is used.
+* *Evaluating Replacement for Wagon GitSite:* The last tries to use Wagon GitSite on release
+    process failed miserable. Thus we are now going to try [Github Site Plugin][]. Just as
+    Wagon GitSite you require user/password settings in your `settings.xml`:
+
+    ```xml
+    <servers>
+      <server>
+        <id>github</id>
+        <username>YOUR_GITHUB_USERNAME</username>
+        <password>YOUR_GITHUB_PASSWORD</password>
+      </server>
+    </servers>
+    ```
+
+    and for using OAuth Tokens:
+    
+    ```xml
+    <servers>
+      <server>
+        <id>github</id>
+        <password>OAUTH_TOKEN</password>
+      </server>
+    </servers>
+    ```
+
+    **Note:** The OAuth Token needs permissions `repo` and `user`. If you do not provide `user`
+    permission, you will get a `RequestException: Not Found (404)` in `UserService.getEmails()`.
+    
+    The site will be deployed into a sub-directory with the naming pattern `joala-VERSION` on
+    `site-deploy`. So you may test site deployment even outside the release process and you will
+    get your site deployed with a snapshot version applied. 
 * Ensure that you have set the passwords for Maven Central Deployment as described in
     [Sonatype OSS Maven Repository Usage Guide][oss-usage] in your `settings.xml`.
     Mind that you need to have an account at [Sonatype's JIRA][sonatype-jira].
@@ -43,19 +74,19 @@
 * **Date:** 2013-11-03
 * **Reporter:** Mark Michaelis
 * **Group ID:** `net.joala`
-* **Project URL:** http://coremedia.github.com/joala/
-* **SCM URL:** https://github.com/CoreMedia/joala
+* **Project URL:** [http://coremedia.github.com/joala/]()
+* **SCM URL:** [https://github.com/CoreMedia/joala]()
 * **Username(s):** thragor
 * **Response:**
 
     > Configuration has been prepared, now you can:
-    > Deploy snapshot artifacts into repository [https://oss.sonatype.org/content/repositories/snapshots]()
-    > Deploy release artifacts into the staging repository [https://oss.sonatype.org/service/local/staging/deploy/maven2]()
-    > Promote staged artifacts into repository 'Releases'
-    > Download snapshot and release artifacts from group [https://oss.sonatype.org/content/groups/public]()
-    > Download snapshot, release and staged artifacts from staging group [https://oss.sonatype.org/content/groups/staging]()
-    > ...
-    > Central sync is activated for net.joala, it runs about every 2 hours.
+    > * Deploy snapshot artifacts into repository [oss.sonatype.org/content/repositories/snapshots](https://oss.sonatype.org/content/repositories/snapshots)
+    > * Deploy release artifacts into the staging repository [oss.sonatype.org/service/local/staging/deploy/maven2](https://oss.sonatype.org/service/local/staging/deploy/maven2)
+    > * Promote staged artifacts into repository 'Releases'
+    > * Download snapshot and release artifacts from group [oss.sonatype.org/content/groups/public](https://oss.sonatype.org/content/groups/public)
+    > * Download snapshot, release and staged artifacts from staging group [oss.sonatype.org/content/groups/staging](https://oss.sonatype.org/content/groups/staging)
+    > 
+    > \[...\] Central sync is activated for net.joala, it runs about every 2 hours.
 
 ### Collaborators
 
@@ -79,7 +110,11 @@ mentioned below. Versions for child modules will be set automatically so that yo
 have to specify the versions once.
 
 Currently the release process takes about an hour especially because of the deployment
-of the Maven site to GitHub Pages.
+of the Maven site to GitHub Pages. (Possibly obsolete switching to a new deployment
+strategy for GitHub Pages, see above.)
+
+On release failures you might want to read about rollback in the [Troubleshooting](#troubleshooting)
+section.
 
 ## Version Numbers
 
@@ -128,8 +163,10 @@ changes are introduced by deprecations in previous minor version releases.
 ### Clean `checkout` folders
 
 Your IDE might complain on additional git-folders after a release. They are located in `target/checkout`. In order to
-make your IDE happy again, just call `mvn clean`.
+make your IDE happy again, just call `mvn clean`. See [Troubleshooting](#troubleshooting) if you
+fail to clean the folder.
 
+<a name="troubleshooting"></a>
 ## Troubleshooting
 
 ### Fix Version after Release
@@ -152,6 +189,12 @@ joala$ git tag -d joala-bom-0.3.0
 joala$ mvn release:prepare release:perform
 ```
 
+### Failure cleaning target/checkout
+
+If cleanup of `target/checkout` fails you are most likely using Windows and some process still
+accesses the directory. A first guess is to open your task manager and kill a possibly dangling
+Java process which still accesses the directory.
+ 
 <!-- Links -->
 
 [Joala GitHub Pages]: <http://coremedia.github.com/joala/> "Joala GitHub Pages"
@@ -163,3 +206,4 @@ joala$ mvn release:prepare release:perform
 [kohsuke-wagon-gitsite]: <https://github.com/kohsuke/wagon-gitsite> "Fork of Wagon Provider for GitHub Pages Site Deployment"
 [oss-sonatype]: <https://oss.sonatype.org/> "Sonatype Nexus Repository"
 [OSSRH-5630]: <https://issues.sonatype.org/browse/OSSRH-5630> "[OSSRH-5630] Joala - Java Library for Testing with JUnit - Sonatype JIRA" 
+[Github Site Plugin]: <https://github.github.com/maven-plugins/site-plugin/>

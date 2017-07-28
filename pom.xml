@@ -227,11 +227,6 @@
         <artifactId>maven-scm-manager-plexus</artifactId>
         <version>1.9.5</version>
       </extension>
-      <extension>
-        <groupId>org.kohsuke</groupId>
-        <artifactId>wagon-gitsite</artifactId>
-        <version>0.3.5</version>
-      </extension>
     </extensions>
     <pluginManagement>
       <plugins>
@@ -346,6 +341,7 @@
             | also before the install of the submodules
             -->
             <preparationGoals>clean install</preparationGoals>
+            <goals>deploy site-deploy</goals>
             <pushChanges>false</pushChanges>
             <localCheckout>true</localCheckout>
             <releaseProfiles>release</releaseProfiles>
@@ -368,6 +364,7 @@
           <version>3.6</version>
           <configuration>
             <generateSitemap>true</generateSitemap>
+            <skipDeploy>true</skipDeploy>
           </configuration>
           <dependencies>
             <dependency>
@@ -380,6 +377,11 @@
               <version>1.7</version>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <version>0.12</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -502,6 +504,28 @@ Joala tries to avoid having any of the following dependencies:
             <goals>
               <goal>attach-descriptor</goal>
             </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <!-- Deploy the web site -->
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <configuration>
+          <server>github</server>
+          <message>Site for Joala ${project.version} (${project.artifactId}).</message>
+          <!-- The location where the site is uploaded -->
+          <path>joala-${project.version}</path>
+          <!-- Use merge or override the content -->
+          <merge>true</merge>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <!-- select the Maven phase in which the plugin will be executed -->
+            <phase>site-deploy</phase>
           </execution>
         </executions>
       </plugin>
@@ -639,14 +663,6 @@ Joala tries to avoid having any of the following dependencies:
   <profiles>
     <profile>
       <id>release</id>
-      <distributionManagement>
-        <!-- On Release Update GitHub pages with most recent site. -->
-        <site>
-          <id>github-project-site</id>
-          <name>Deployment through wagon-gitsite</name>
-          <url>gitsite:git@github.com/CoreMedia/joala.git</url>
-        </site>
-      </distributionManagement>
       <build>
         <plugins>
           <plugin>
