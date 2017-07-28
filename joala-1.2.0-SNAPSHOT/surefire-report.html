@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20170728" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Joala Matchers &#x2013; Surefire Report</title>
+    <title>Joala Testlets &#x2013; Surefire Report</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,7 +18,7 @@
     <body class="topBarDisabled">
       <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>Joala Matchers</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>Joala Testlets</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -30,9 +30,9 @@
         <li id="publishDate">Last Published: 2017-07-28<span class="divider">|</span>
 </li>
           <li id="projectVersion">Version: 1.2.0-SNAPSHOT<span class="divider">|</span></li>
-        <li class=""><a href="../../index.html" title="Joala Matchers">Joala Matchers</a><span class="divider">/</span></li>
+        <li class=""><a href="../../index.html" title="Joala Testlets">Joala Testlets</a><span class="divider">/</span></li>
       <li class=""><a href="../index.html" title="Joala Parent">Joala Parent</a><span class="divider">/</span></li>
-      <li class=""><a href="index.html" title="Joala Matchers">Joala Matchers</a><span class="divider">/</span></li>
+      <li class=""><a href="index.html" title="Joala Testlets">Joala Testlets</a><span class="divider">/</span></li>
     <li class="active ">Surefire Report</li>
       <li class="pull-right"><span class="divider">|</span>
 <a href="../../" title="GitHub Pages">GitHub Pages</a></li>
@@ -53,7 +53,6 @@
       <ul class="nav nav-list">
     <li><a href="checkstyle.html" title="Checkstyle"><span class="none"></span>Checkstyle</a>  </li>
     <li><a href="findbugs.html" title="FindBugs"><span class="none"></span>FindBugs</a>  </li>
-    <li><a href="cpd.html" title="CPD"><span class="none"></span>CPD</a>  </li>
     <li><a href="pmd.html" title="PMD"><span class="none"></span>PMD</a>  </li>
     <li><a href="apidocs/index.html" title="JavaDocs"><span class="none"></span>JavaDocs</a>  </li>
     <li><a href="xref/index.html" title="Source Xref"><span class="none"></span>Source Xref</a>  </li>
@@ -108,12 +107,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>8</td>
+<td>5</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.377</td></tr></table><br />
+<td>0.267</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -128,24 +127,16 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#net.joala.matcher.decorator">net.joala.matcher.decorator</a></td>
-<td>6</td>
+<td><a href="#net.joala.testlet">net.joala.testlet</a></td>
+<td>5</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.35</td></tr>
-<tr class="a">
-<td><a href="#net.joala.matcher.net">net.joala.matcher.net</a></td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0.027</td></tr></table><br />
+<td>0.267</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
-<h3><a name="net.joala.matcher.decorator"></a>net.joala.matcher.decorator</h3><a name="net.joala.matcher.decorator"></a>
+<h3><a name="net.joala.testlet"></a>net.joala.testlet</h3><a name="net.joala.testlet"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <th></th>
@@ -157,76 +148,40 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#net.joala.matcher.decoratorEnhanceDescriptionByTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#net.joala.matcher.decoratorEnhanceDescriptionByTest">EnhanceDescriptionByTest</a></td>
-<td>6</td>
+<td><a href="#net.joala.testletExceptionCollectingRunListenerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#net.joala.testletExceptionCollectingRunListenerTest">ExceptionCollectingRunListenerTest</a></td>
+<td>5</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.35</td></tr></table></div>
-<div class="section">
-<h3><a name="net.joala.matcher.net"></a>net.joala.matcher.net</h3><a name="net.joala.matcher.net"></a>
-<table border="1" class="table table-striped">
-<tr class="a">
-<th></th>
-<th>Class</th>
-<th>Tests</th>
-<th>Errors </th>
-<th>Failures</th>
-<th>Skipped</th>
-<th>Success Rate</th>
-<th>Time</th></tr>
-<tr class="b">
-<td><a href="#net.joala.matcher.netKnownHostTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#net.joala.matcher.netKnownHostTest">KnownHostTest</a></td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0.027</td></tr></table></div><br /></div>
+<td>0.267</td></tr></table></div><br /></div>
 <div class="section">
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
 <div class="section">
-<h3><a name="EnhanceDescriptionByTest"></a>EnhanceDescriptionByTest</h3><a name="net.joala.matcher.decoratorEnhanceDescriptionByTest"></a>
+<h3><a name="ExceptionCollectingRunListenerTest"></a>ExceptionCollectingRunListenerTest</h3><a name="net.joala.testletExceptionCollectingRunListenerTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.decorator.EnhanceDescriptionByTest.describeTo_should_add_matcher_description"></a>describeTo_should_add_matcher_description</td>
-<td>0.034</td></tr>
+<td><a name="TC_net.joala.testlet.ExceptionCollectingRunListenerTest.should_collect_assumption_failure"></a>should_collect_assumption_failure</td>
+<td>0.191</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.decorator.EnhanceDescriptionByTest.describeTo_should_add_enhanced_description"></a>describeTo_should_add_enhanced_description</td>
-<td>0.001</td></tr>
+<td><a name="TC_net.joala.testlet.ExceptionCollectingRunListenerTest.should_collect_multiple_assertion_errors"></a>should_collect_multiple_assertion_errors</td>
+<td>0.004</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.decorator.EnhanceDescriptionByTest.describeTo_should_add_matcher_description_using_factory"></a>describeTo_should_add_matcher_description_using_factory</td>
-<td>0.001</td></tr>
+<td><a name="TC_net.joala.testlet.ExceptionCollectingRunListenerTest.should_pass_for_no_errors"></a>should_pass_for_no_errors</td>
+<td>0.002</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.decorator.EnhanceDescriptionByTest.describeTo_should_add_template_arguments_using_factory"></a>describeTo_should_add_template_arguments_using_factory</td>
-<td>0</td></tr>
+<td><a name="TC_net.joala.testlet.ExceptionCollectingRunListenerTest.should_collect_assertion_error"></a>should_collect_assertion_error</td>
+<td>0.002</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.decorator.EnhanceDescriptionByTest.describeTo_should_add_enhanced_description_using_factory"></a>describeTo_should_add_enhanced_description_using_factory</td>
-<td>0.001</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.decorator.EnhanceDescriptionByTest.describeTo_should_add_template_arguments"></a>describeTo_should_add_template_arguments</td>
-<td>0.003</td></tr></table></div>
-<div class="section">
-<h3><a name="KnownHostTest"></a>KnownHostTest</h3><a name="net.joala.matcher.netKnownHostTest"></a>
-<table border="1" class="table table-striped">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.net.KnownHostTest.knownHost_should_match_for_known_host"></a>knownHost_should_match_for_known_host</td>
-<td>0.005</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_net.joala.matcher.net.KnownHostTest.knownHost_should_not_match_for_unknown_host"></a>knownHost_should_not_match_for_unknown_host</td>
-<td>0.018</td></tr></table></div><br /></div>
+<td><a name="TC_net.joala.testlet.ExceptionCollectingRunListenerTest.should_collect_multiple_assumption_failures"></a>should_collect_multiple_assumption_failures</td>
+<td>0.002</td></tr></table></div><br /></div>
         </div>
       </div>
     </div>

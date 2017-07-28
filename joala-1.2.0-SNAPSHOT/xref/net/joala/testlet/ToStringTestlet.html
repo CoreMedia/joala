@@ -114,7 +114,7 @@
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">final</strong> Collection&lt;Matcher&lt;? <strong class="jxr_keyword">super</strong> String&gt;&gt; fieldMatchers = <strong class="jxr_keyword">new</strong> ArrayList&lt;Matcher&lt;? <strong class="jxr_keyword">super</strong> String&gt;&gt;(declaredFields.length * 2);
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>     <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Field declaredField : declaredFields) {
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>       <strong class="jxr_keyword">if</strong> (!Modifier.isStatic(declaredField.getModifiers())) {
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         doPrivileged(<strong class="jxr_keyword">new</strong> <a href="../../../net/joala/core/reflection/SetAccessibleAction.html">SetAccessibleAction</a>(declaredField));
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>         doPrivileged(<strong class="jxr_keyword">new</strong> SetAccessibleAction(declaredField));
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">final</strong> String fieldName = declaredField.getName();
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>         fieldMatchers.add(containsString(fieldName));
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>         fieldMatchers.add(containsString(String.valueOf(declaredField.get(getTestling()))));
