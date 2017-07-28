@@ -1,1 +1,0 @@
-C:\programdata\scoop\apps\oraclejdk\current\jre\..\bin\javadoc.exe -J-Xmx1024m @options @packages
