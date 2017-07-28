@@ -1,0 +1,30 @@
+-classpath
+'C:/GitHub/joala/build-tools/target/classes;C:/GitHub/joala/parent/target/classes;C:/GitHub/joala/parent/labs/target/classes;C:/GitHub/joala/parent/labs/junit/target/classes;C:/GitHub/joala/parent/core/target/classes;C:/GitHub/joala/parent/matchers/target/classes;C:/GitHub/joala/parent/testlets/target/classes;C:/GitHub/joala/parent/bdd/target/classes;C:/GitHub/joala/parent/labs/data/target/classes;C:/GitHub/joala/parent/expressions/target/classes;C:/GitHub/joala/parent/time/target/classes;C:/GitHub/joala/parent/conditions/target/classes;C:/GitHub/joala/parent/labs/net/target/classes;C:/GitHub/joala/parent/expressions-library/target/classes;C:/GitHub/joala/parent/dns/target/classes;C:/GitHub/joala/parent/book/target/classes;C:/GitHub/joala/parent/image/target/classes;C:/GitHub/joala/thirdparty-bom/target/classes;C:/GitHub/joala/thirdparty-test-bom/target/classes;C:/Users/mmichael/.m2/repository/org/springframework/spring-beans/4.3.9.RELEASE/spring-beans-4.3.9.RELEASE.jar;C:/Users/mmichael/.m2/repository/dnsjava/dnsjava/2.1.8/dnsjava-2.1.8.jar;C:/Users/mmichael/.m2/repository/org/apache/commons/commons-lang3/3.6/commons-lang3-3.6.jar;C:/Users/mmichael/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar;C:/Users/mmichael/.m2/repository/commons-codec/commons-codec/1.9/commons-codec-1.9.jar;C:/Users/mmichael/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar;C:/Users/mmichael/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar;C:/Users/mmichael/.m2/repository/org/aspectj/aspectjweaver/1.8.10/aspectjweaver-1.8.10.jar;C:/Users/mmichael/.m2/repository/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar;C:/Users/mmichael/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar;C:/Users/mmichael/.m2/repository/org/apache/httpcomponents/httpcore/4.4.6/httpcore-4.4.6.jar;C:/Users/mmichael/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar;C:/Users/mmichael/.m2/repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar;C:/Users/mmichael/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar;C:/Users/mmichael/.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar;C:/Users/mmichael/.m2/repository/org/springframework/spring-core/4.3.9.RELEASE/spring-core-4.3.9.RELEASE.jar;C:/Users/mmichael/.m2/repository/junit/junit/4.12/junit-4.12.jar;C:/Users/mmichael/.m2/repository/com/google/guava/guava/22.0/guava-22.0.jar'
+-encoding
+'UTF-8'
+-overview
+'C:/GitHub/joala/src/main/javadoc/overview.html'
+-protected
+-sourcepath
+'C:/GitHub/joala/src/main/javadoc;C:/GitHub/joala/parent/labs/junit/src/main/java;C:/GitHub/joala/parent/core/src/main/java;C:/GitHub/joala/parent/matchers/src/main/java;C:/GitHub/joala/parent/testlets/src/main/java;C:/GitHub/joala/parent/bdd/src/main/java;C:/GitHub/joala/parent/labs/data/src/main/java;C:/GitHub/joala/parent/expressions/src/main/java;C:/GitHub/joala/parent/time/src/main/java;C:/GitHub/joala/parent/conditions/src/main/java;C:/GitHub/joala/parent/conditions/src/main/javadoc;C:/GitHub/joala/parent/labs/net/src/main/java;C:/GitHub/joala/parent/expressions-library/src/main/java;C:/GitHub/joala/parent/dns/src/main/java;C:/GitHub/joala/parent/dns/src/main/javadoc;C:/GitHub/joala/parent/image/src/main/java'
+-bottom
+'Copyright &#169; 2011-2017 <a href="http://coremedia.github.io/joala/">CoreMedia AG</a>. Licensed under the Apache             License,             Version 2.0.'
+-charset
+'UTF-8'
+-d
+'C:/GitHub/joala/target/site/apidocs'
+-docencoding
+'UTF-8'
+-docfilessubdirs
+-doctitle
+'Joala BOM 1.2.0-SNAPSHOT API'
+-link
+'http://google.github.io/guava/releases/22.0/api/docs'
+-link
+'http://findbugs.sourceforge.net/api'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' 'C:/GitHub/joala/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Joala BOM 1.2.0-SNAPSHOT API'
