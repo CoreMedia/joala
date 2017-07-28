@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20170728" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>Joala Time &#x2013; Project Dependencies</title>
+    <title>Joala Conditions &#x2013; Project Dependencies</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.6.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -18,7 +18,7 @@
     <body class="topBarDisabled">
       <div class="container-fluid">
       <div id="banner">
-        <div class="pull-left"><div id="bannerLeft"><h2>Joala Time</h2>
+        <div class="pull-left"><div id="bannerLeft"><h2>Joala Conditions</h2>
 </div>
 </div>
         <div class="pull-right"></div>
@@ -30,9 +30,9 @@
         <li id="publishDate">Last Published: 2017-07-28<span class="divider">|</span>
 </li>
           <li id="projectVersion">Version: 1.2.0<span class="divider">|</span></li>
-        <li class=""><a href="../../index.html" title="Joala Time">Joala Time</a><span class="divider">/</span></li>
+        <li class=""><a href="../../index.html" title="Joala Conditions">Joala Conditions</a><span class="divider">/</span></li>
       <li class=""><a href="../index.html" title="Joala Parent">Joala Parent</a><span class="divider">/</span></li>
-      <li class=""><a href="index.html" title="Joala Time">Joala Time</a><span class="divider">/</span></li>
+      <li class=""><a href="index.html" title="Joala Conditions">Joala Conditions</a><span class="divider">/</span></li>
     <li class="active ">Project Dependencies</li>
       <li class="pull-right"><span class="divider">|</span>
 <a href="../../" title="GitHub Pages">GitHub Pages</a></li>
@@ -104,11 +104,41 @@
 <td>jar</td>
 <td><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License 1.0</a></td></tr>
 <tr class="b">
+<td>net.joala</td>
+<td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-expressions">joala-expressions</a></td>
+<td>1.2.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
+<tr class="a">
+<td>net.joala</td>
+<td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-matchers">joala-matchers</a></td>
+<td>1.2.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
+<tr class="b">
+<td>net.joala</td>
+<td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-time">joala-time</a></td>
+<td>1.2.0</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
+<tr class="a">
 <td>org.hamcrest</td>
 <td><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-core">hamcrest-core</a></td>
 <td>1.3</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></td></tr></table></div><a name="Project_Dependencies_test"></a>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></td></tr>
+<tr class="b">
+<td>org.hamcrest</td>
+<td><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-library">hamcrest-library</a></td>
+<td>1.3</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></td></tr>
+<tr class="a">
+<td>org.slf4j</td>
+<td><a class="externalLink" href="http://www.slf4j.org">slf4j-api</a></td>
+<td>1.7.25</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr></table></div><a name="Project_Dependencies_test"></a>
 <div class="section">
 <h3><a name="test"></a>test</h3>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -126,23 +156,71 @@
 <td>jar</td>
 <td><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a>-<a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></td></tr>
 <tr class="a">
+<td>javax.inject</td>
+<td><a class="externalLink" href="http://code.google.com/p/atinject/">javax.inject</a></td>
+<td>1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
 <td>net.joala</td>
 <td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-data">joala-labs-data</a></td>
 <td>1.2.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>net.joala</td>
 <td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-junit">joala-labs-junit</a></td>
 <td>1.2.0</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>net.joala</td>
 <td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-testlets">joala-testlets</a></td>
 <td>1.2.0</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr></table></div><a name="Project_Dependencies_provided"></a>
+<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
+<tr class="a">
+<td>org.apache.commons</td>
+<td><a class="externalLink" href="http://commons.apache.org/proper/commons-lang/">commons-lang3</a></td>
+<td>3.6</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.apache.commons</td>
+<td><a class="externalLink" href="http://commons.apache.org/proper/commons-text/">commons-text</a></td>
+<td>1.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.mockito</td>
+<td><a class="externalLink" href="http://www.mockito.org">mockito-core</a></td>
+<td>1.10.19</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://github.com/mockito/mockito/blob/master/LICENSE">The MIT License</a></td></tr>
+<tr class="b">
+<td>org.springframework</td>
+<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-beans</a></td>
+<td>4.3.9.RELEASE</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.springframework</td>
+<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-context</a></td>
+<td>4.3.9.RELEASE</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.springframework</td>
+<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-core</a></td>
+<td>4.3.9.RELEASE</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
+<tr class="a">
+<td>org.springframework</td>
+<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-test</a></td>
+<td>4.3.9.RELEASE</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr></table></div><a name="Project_Dependencies_provided"></a>
 <div class="section">
 <h3><a name="provided"></a>provided</h3>
 <p>The following is a list of provided dependencies for this project. These dependencies are required to compile the application, but should be provided by default when using the library:</p>
@@ -191,7 +269,23 @@
 <td><a class="externalLink" href="http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations">animal-sniffer-annotations</a></td>
 <td>1.14</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT license</a></td></tr></table></div><a name="Project_Transitive_Dependencies_test"></a>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT license</a></td></tr></table></div><a name="Project_Transitive_Dependencies_runtime"></a>
+<div class="section">
+<h3><a name="runtime"></a>runtime</h3>
+<p>The following is a list of runtime dependencies for this project. These dependencies are required to run the application:</p>
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>org.slf4j</td>
+<td><a class="externalLink" href="http://www.slf4j.org">jcl-over-slf4j</a></td>
+<td>1.7.25</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr></table></div><a name="Project_Transitive_Dependencies_test"></a>
 <div class="section">
 <h3><a name="test"></a>test</h3>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -215,35 +309,11 @@
 <td>jar</td>
 <td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
 <tr class="b">
-<td>net.joala</td>
-<td><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-matchers">joala-matchers</a></td>
-<td>1.2.0</td>
+<td>org.objenesis</td>
+<td><a class="externalLink" href="http://objenesis.org">objenesis</a></td>
+<td>2.5.1</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></td></tr>
-<tr class="a">
-<td>org.apache.commons</td>
-<td><a class="externalLink" href="http://commons.apache.org/proper/commons-lang/">commons-lang3</a></td>
-<td>3.6</td>
-<td>jar</td>
-<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.hamcrest</td>
-<td><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-library">hamcrest-library</a></td>
-<td>1.3</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></td></tr>
-<tr class="a">
-<td>org.slf4j</td>
-<td><a class="externalLink" href="http://www.slf4j.org">jcl-over-slf4j</a></td>
-<td>1.7.25</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr>
-<tr class="b">
-<td>org.slf4j</td>
-<td><a class="externalLink" href="http://www.slf4j.org">slf4j-api</a></td>
-<td>1.7.25</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></td></tr>
 <tr class="a">
 <td>org.springframework</td>
 <td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-aop</a></td>
@@ -251,24 +321,6 @@
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
 <tr class="b">
-<td>org.springframework</td>
-<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-beans</a></td>
-<td>4.3.9.RELEASE</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>org.springframework</td>
-<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-context</a></td>
-<td>4.3.9.RELEASE</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.springframework</td>
-<td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-core</a></td>
-<td>4.3.9.RELEASE</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
 <td>org.springframework</td>
 <td><a class="externalLink" href="https://github.com/spring-projects/spring-framework">spring-expression</a></td>
 <td>4.3.9.RELEASE</td>
@@ -299,40 +351,20 @@
 <div class="section">
 <h3><a name="Dependency_Tree"></a>Dependency Tree</h3>
 <ul>
-<li>net.joala:joala-time:jar:1.2.0 <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
+<li>net.joala:joala-conditions:jar:1.2.0 <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
-<th>Joala Time</th></tr>
+<th>Joala Conditions</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Classes for dealing with timeouts, timing and formatting time.</p>
-<p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-time">http://coremedia.github.com/joala/joala-parent/joala-time</a></p>
+<p><b>Description: </b>Implements Waiting for JUnit tests. Concept contains expressions which are responsible to
+    retrieve a state of the application, matcher to verify the expected state (from Hamcrest Library)
+    and conditions which are responsible to repeat the evaluation of the given expression until
+    the state matches the expected state.</p>
+<p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-conditions">http://coremedia.github.com/joala/joala-parent/joala-conditions</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div>
 <ul>
-<li>net.joala:joala-labs-junit:jar:1.2.0 (test) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Joala Labs JUnit</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Joala Labs is a module which provides experimental features. These experimental features
-    might be removed at any time without notice. Typically you will find classes in here which
-    might once make it into Joala's Public API.</p>
-<p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-junit">http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-junit</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div>
-<ul>
-<li>org.apache.commons:commons-lang3:jar:3.6 (test) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Apache Commons Lang</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Apache Commons Lang, a package of Java utility classes for the
-  classes that are in java.lang's hierarchy, or are considered to be so
-  standard as to justify existence in java.lang.</p>
-<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/proper/commons-lang/">http://commons.apache.org/proper/commons-lang/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>net.joala:joala-labs-data:jar:1.2.0 (test) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
+<li>net.joala:joala-labs-data:jar:1.2.0 (test) <img id="_img3" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep2', '_img3' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep2" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Joala Labs Data Providers</th></tr>
@@ -342,7 +374,7 @@
 <p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-data">http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-data</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div>
 <ul>
-<li>org.slf4j:jcl-over-slf4j:jar:1.7.25 (test) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
+<li>org.slf4j:jcl-over-slf4j:jar:1.7.25 (runtime) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep4" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JCL 1.2 implemented over SLF4J</th></tr>
@@ -350,54 +382,8 @@
 <td>
 <p><b>Description: </b>JCL 1.2 implemented over SLF4J</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-context:jar:4.3.9.RELEASE (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Spring Context</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Spring Context</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
-<ul>
-<li>org.springframework:spring-aop:jar:4.3.9.RELEASE (test) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Spring AOP</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Spring AOP</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-beans:jar:4.3.9.RELEASE (test) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Spring Beans</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Spring Beans</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-core:jar:4.3.9.RELEASE (test) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Spring Core</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Spring Core</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.springframework:spring-expression:jar:4.3.9.RELEASE (test) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Spring Expression Language (SpEL)</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Spring Expression Language (SpEL)</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li></ul></li>
-<li>net.joala:joala-testlets:jar:1.2.0 (test) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li></ul></li>
+<li>net.joala:joala-testlets:jar:1.2.0 (test) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Joala Testlets</th></tr>
@@ -409,7 +395,7 @@
 <p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-testlets">http://coremedia.github.com/joala/joala-parent/joala-testlets</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div>
 <ul>
-<li>net.joala:joala-core:jar:1.2.0 (test) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
+<li>net.joala:joala-core:jar:1.2.0 (test) <img id="_img9" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep8', '_img9' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep8" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Joala Core</th></tr>
@@ -418,8 +404,41 @@
 <p><b>Description: </b>Core components used within Joala. Classes should be considered private API
     as they are meant for internal use only.</p>
 <p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-core">http://coremedia.github.com/joala/joala-parent/joala-core</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div></li></ul></li>
+<li>net.joala:joala-labs-junit:jar:1.2.0 (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep10', '_img11' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep10" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Joala Labs JUnit</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Joala Labs is a module which provides experimental features. These experimental features
+    might be removed at any time without notice. Typically you will find classes in here which
+    might once make it into Joala's Public API.</p>
+<p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-junit">http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-junit</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div></li>
-<li>net.joala:joala-matchers:jar:1.2.0 (test) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
+<li>net.joala:joala-expressions:jar:1.2.0 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep12', '_img13' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep12" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Joala Expressions</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Expressions are used to evaluate the current state of a given
+    system. Such as a web address you want to get the status code
+    from. Typical expressions are evaluated multiple times in order
+    to wait for a given state. Thus expressions are typically evaluated
+    fast and should denote by expression if they fail to evaluate.</p>
+<p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-expressions">http://coremedia.github.com/joala/joala-parent/joala-expressions</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div></li>
+<li>net.joala:joala-time:jar:1.2.0 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep14', '_img15' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep14" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Joala Time</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Classes for dealing with timeouts, timing and formatting time.</p>
+<p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-time">http://coremedia.github.com/joala/joala-parent/joala-time</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div></li>
+<li>net.joala:joala-matchers:jar:1.2.0 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep16', '_img17' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep16" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Joala Matchers</th></tr>
@@ -429,25 +448,7 @@
     Hamcrest matchers. Thus take these as experimental.</p>
 <p><b>URL: </b><a class="externalLink" href="http://coremedia.github.com/joala/joala-parent/joala-matchers">http://coremedia.github.com/joala/joala-parent/joala-matchers</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License, Version 3</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.25 (test) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>SLF4J API Module</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The slf4j API</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
-<li>org.hamcrest:hamcrest-library:jar:1.3 (test) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="table table-striped">
-<tr class="a">
-<th>Hamcrest library</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Hamcrest library of matcher implementations.</p>
-<p><b>URL: </b><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-library">https://github.com/hamcrest/JavaHamcrest/hamcrest-library</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li></ul></li>
-<li>com.google.code.findbugs:jsr305:jar:3.0.2 (provided) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
+<li>com.google.code.findbugs:jsr305:jar:3.0.2 (provided) <img id="_img19" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep18', '_img19' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep18" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>FindBugs-jsr305</th></tr>
@@ -456,7 +457,7 @@
 <p><b>Description: </b>JSR305 Annotations for Findbugs</p>
 <p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.google.guava:guava:jar:22.0 (compile) <img id="_img33" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep32', '_img33' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep32" style="display:none">
+<li>com.google.guava:guava:jar:22.0 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep20', '_img21' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Guava: Google Core Libraries for Java</th></tr>
@@ -471,7 +472,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://github.com/google/guava/guava">https://github.com/google/guava/guava</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>com.google.errorprone:error_prone_annotations:jar:2.0.18 (compile) <img id="_img35" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep34', '_img35' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep34" style="display:none">
+<li>com.google.errorprone:error_prone_annotations:jar:2.0.18 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep22', '_img23' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>error-prone annotations</th></tr>
@@ -480,7 +481,7 @@
 <p><b>Description: </b>Sonatype helps open source projects to set up Maven repositories on https://oss.sonatype.org/</p>
 <p><b>URL: </b><a class="externalLink" href="http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations">http://nexus.sonatype.org/oss-repository-hosting.html/error_prone_parent/error_prone_annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></p></td></tr></table></div></li>
-<li>com.google.j2objc:j2objc-annotations:jar:1.1 (compile) <img id="_img37" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep36', '_img37' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep36" style="display:none">
+<li>com.google.j2objc:j2objc-annotations:jar:1.1 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep24', '_img25' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep24" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>J2ObjC Annotations</th></tr>
@@ -490,7 +491,7 @@
     translator to modify the result of translation.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/google/j2objc/">https://github.com/google/j2objc/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.codehaus.mojo:animal-sniffer-annotations:jar:1.14 (compile) <img id="_img39" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep38', '_img39' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep38" style="display:none">
+<li>org.codehaus.mojo:animal-sniffer-annotations:jar:1.14 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep26', '_img27' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep26" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Animal Sniffer Annotations</th></tr>
@@ -499,7 +500,16 @@
 <p><b>Description: </b>Animal Sniffer Parent project.</p>
 <p><b>URL: </b><a class="externalLink" href="http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations">http://mojo.codehaus.org/animal-sniffer/animal-sniffer-annotations</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT license</a></p></td></tr></table></div></li></ul></li>
-<li>junit:junit:jar:4.12 (compile) <img id="_img41" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep40', '_img41' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep40" style="display:none">
+<li>javax.inject:javax.inject:jar:1 (test) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep28" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>javax.inject</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The javax.inject API</p>
+<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/atinject/">http://code.google.com/p/atinject/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>junit:junit:jar:4.12 (compile) <img id="_img31" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep30', '_img31' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep30" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>JUnit</th></tr>
@@ -508,7 +518,27 @@
 <p><b>Description: </b>JUnit is a unit testing framework for Java, created by Erich Gamma and Kent Beck.</p>
 <p><b>URL: </b><a class="externalLink" href="http://junit.org">http://junit.org</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License 1.0</a></p></td></tr></table></div></li>
-<li>org.hamcrest:hamcrest-core:jar:1.3 (compile) <img id="_img43" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep42', '_img43' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep42" style="display:none">
+<li>org.apache.commons:commons-lang3:jar:3.6 (test) <img id="_img33" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep32', '_img33' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep32" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache Commons Lang</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Commons Lang, a package of Java utility classes for the
+  classes that are in java.lang's hierarchy, or are considered to be so
+  standard as to justify existence in java.lang.</p>
+<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/proper/commons-lang/">http://commons.apache.org/proper/commons-lang/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.apache.commons:commons-text:jar:1.1 (test) <img id="_img35" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep34', '_img35' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep34" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Apache Commons Text</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Commons Text is a library focused on algorithms working on strings.</p>
+<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/proper/commons-text/">http://commons.apache.org/proper/commons-text/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.hamcrest:hamcrest-core:jar:1.3 (compile) <img id="_img37" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep36', '_img37' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep36" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Hamcrest Core</th></tr>
@@ -517,7 +547,99 @@
 <p><b>Description: </b>This is the core API of hamcrest matcher framework to be used by third-party framework providers. This includes the a foundation set of matcher implementations for common operations.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-core">https://github.com/hamcrest/JavaHamcrest/hamcrest-core</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li>
-<li>ch.qos.logback:logback-classic:jar:1.2.3 (test) <img id="_img45" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep44', '_img45' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep44" style="display:none">
+<li>org.hamcrest:hamcrest-library:jar:1.3 (compile) <img id="_img39" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep38', '_img39' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep38" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Hamcrest library</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Hamcrest library of matcher implementations.</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-library">https://github.com/hamcrest/JavaHamcrest/hamcrest-library</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li>
+<li>org.mockito:mockito-core:jar:1.10.19 (test) <img id="_img41" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep40', '_img41' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep40" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Mockito</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Mock objects library for java</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.mockito.org">http://www.mockito.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://github.com/mockito/mockito/blob/master/LICENSE">The MIT License</a></p></td></tr></table></div>
+<ul>
+<li>org.objenesis:objenesis:jar:2.5.1 (test) <img id="_img43" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep42', '_img43' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep42" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Objenesis</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>A library for instantiating Java objects</p>
+<p><b>URL: </b><a class="externalLink" href="http://objenesis.org">http://objenesis.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></p></td></tr></table></div></li></ul></li>
+<li>org.springframework:spring-test:jar:4.3.9.RELEASE (test) <img id="_img45" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep44', '_img45' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep44" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Spring TestContext Framework</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Spring TestContext Framework</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.springframework:spring-core:jar:4.3.9.RELEASE (test) <img id="_img47" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep46', '_img47' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep46" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Spring Core</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Spring Core</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.springframework:spring-beans:jar:4.3.9.RELEASE (test) <img id="_img49" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep48', '_img49' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep48" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Spring Beans</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Spring Beans</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.springframework:spring-context:jar:4.3.9.RELEASE (test) <img id="_img51" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep50', '_img51' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep50" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Spring Context</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Spring Context</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div>
+<ul>
+<li>org.springframework:spring-aop:jar:4.3.9.RELEASE (test) <img id="_img53" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep52', '_img53' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep52" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Spring AOP</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Spring AOP</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.springframework:spring-expression:jar:4.3.9.RELEASE (test) <img id="_img55" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep54', '_img55' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep54" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>Spring Expression Language (SpEL)</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Spring Expression Language (SpEL)</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/spring-projects/spring-framework">https://github.com/spring-projects/spring-framework</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>org.slf4j:slf4j-api:jar:1.7.25 (compile) <img id="_img57" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep56', '_img57' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep56" style="display:none">
+<table border="0" class="table table-striped">
+<tr class="a">
+<th>SLF4J API Module</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The slf4j API</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
+<li>ch.qos.logback:logback-classic:jar:1.2.3 (test) <img id="_img59" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep58', '_img59' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep58" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Logback Classic Module</th></tr>
@@ -527,7 +649,7 @@
 <p><b>URL: </b><a class="externalLink" href="http://logback.qos.ch/logback-classic">http://logback.qos.ch/logback-classic</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a>, <a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></p></td></tr></table></div>
 <ul>
-<li>ch.qos.logback:logback-core:jar:1.2.3 (test) <img id="_img47" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep46', '_img47' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep46" style="display:none">
+<li>ch.qos.logback:logback-core:jar:1.2.3 (test) <img id="_img61" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep60', '_img61' );" style="cursor: pointer; vertical-align: text-bottom;"></img><div id="_dep60" style="display:none">
 <table border="0" class="table table-striped">
 <tr class="a">
 <th>Logback Core Module</th></tr>
@@ -538,15 +660,17 @@
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a>, <a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License</a></p></td></tr></table></div></li></ul></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2><a name="Licenses"></a>Licenses</h2>
-<p><b>GNU General Public License, Version 3: </b>Joala Core, Joala Labs Data Providers, Joala Labs JUnit, Joala Matchers, Joala Testlets, Joala Time</p>
+<p><b>Apache 2: </b>Objenesis</p>
+<p><b>GNU General Public License, Version 3: </b>Joala Conditions, Joala Core, Joala Expressions, Joala Labs Data Providers, Joala Labs JUnit, Joala Matchers, Joala Testlets, Joala Time</p>
 <p><b>Apache 2.0: </b>error-prone annotations</p>
 <p><b>Eclipse Public License 1.0: </b>JUnit</p>
 <p><b>MIT License: </b>JCL 1.2 implemented over SLF4J, SLF4J API Module</p>
-<p><b>Apache License, Version 2.0: </b>Apache Commons Lang, Spring AOP, Spring Beans, Spring Context, Spring Core, Spring Expression Language (SpEL)</p>
+<p><b>The MIT License: </b>Mockito</p>
+<p><b>Apache License, Version 2.0: </b>Apache Commons Lang, Apache Commons Text, Spring AOP, Spring Beans, Spring Context, Spring Core, Spring Expression Language (SpEL), Spring TestContext Framework</p>
 <p><b>MIT license: </b>Animal Sniffer Annotations</p>
 <p><b>GNU Lesser General Public License: </b>Logback Classic Module, Logback Core Module</p>
 <p><b>New BSD License: </b>Hamcrest Core, Hamcrest library</p>
-<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305, Guava: Google Core Libraries for Java, J2ObjC Annotations</p>
+<p><b>The Apache Software License, Version 2.0: </b>FindBugs-jsr305, Guava: Google Core Libraries for Java, J2ObjC Annotations, javax.inject</p>
 <p><b>Eclipse Public License - v 1.0: </b>Logback Classic Module, Logback Core Module</p></div><a name="Dependency_File_Details"></a>
 <div class="section">
 <h2><a name="Dependency_File_Details"></a>Dependency File Details</h2>
@@ -600,6 +724,14 @@
 <td>1.5</td>
 <td>Yes</td></tr>
 <tr class="a">
+<td>javax.inject-1.jar</td>
+<td>2.5 kB</td>
+<td>8</td>
+<td>6</td>
+<td>1</td>
+<td>1.5</td>
+<td>No</td></tr>
+<tr class="b">
 <td>junit-4.12.jar</td>
 <td>314.9 kB</td>
 <td>323</td>
@@ -607,11 +739,19 @@
 <td>30</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="b">
+<tr class="a">
 <td>joala-core-1.2.0.jar</td>
 <td>1.7 kB</td>
 <td>7</td>
 <td>1</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>joala-expressions-1.2.0.jar</td>
+<td>2.8 kB</td>
+<td>8</td>
+<td>3</td>
 <td>1</td>
 <td>1.8</td>
 <td>Yes</td></tr>
@@ -648,11 +788,27 @@
 <td>1.8</td>
 <td>Yes</td></tr>
 <tr class="a">
+<td>joala-time-1.2.0.jar</td>
+<td>4.9 kB</td>
+<td>9</td>
+<td>4</td>
+<td>1</td>
+<td>1.8</td>
+<td>Yes</td></tr>
+<tr class="b">
 <td>commons-lang3-3.6.jar</td>
 <td>494.9 kB</td>
 <td>292</td>
 <td>267</td>
 <td>13</td>
+<td>1.7</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>commons-text-1.1.jar</td>
+<td>129.1 kB</td>
+<td>97</td>
+<td>81</td>
+<td>4</td>
 <td>1.7</td>
 <td>Yes</td></tr>
 <tr class="b">
@@ -677,6 +833,22 @@
 <td>46</td>
 <td>35</td>
 <td>7</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="a">
+<td>mockito-core-1.10.19.jar</td>
+<td>1.2 MB</td>
+<td>1138</td>
+<td>694</td>
+<td>67</td>
+<td>1.5</td>
+<td>Yes</td></tr>
+<tr class="b">
+<td>objenesis-2.5.1.jar</td>
+<td>54.4 kB</td>
+<td>58</td>
+<td>43</td>
+<td>9</td>
 <td>1.5</td>
 <td>Yes</td></tr>
 <tr class="a">
@@ -736,6 +908,14 @@
 <td>1.6</td>
 <td>Yes</td></tr>
 <tr class="b">
+<td>spring-test-4.3.9.RELEASE.jar</td>
+<td>600.4 kB</td>
+<td>484</td>
+<td>444</td>
+<td>31</td>
+<td>1.6</td>
+<td>Yes</td></tr>
+<tr class="a">
 <td>jsr305-3.0.2.jar</td>
 <td>19.9 kB</td>
 <td>46</td>
@@ -743,7 +923,7 @@
 <td>3</td>
 <td>1.5</td>
 <td>Yes</td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>Size</th>
 <th>Entries</th>
@@ -751,30 +931,38 @@
 <th>Packages</th>
 <th>Java Version</th>
 <th>Debug Information</th></tr>
-<tr class="b">
-<td>23</td>
-<td>8.1 MB</td>
-<td>6176</td>
-<td>5582</td>
-<td>303</td>
-<td>1.8</td>
-<td>21</td></tr>
 <tr class="a">
-<td>compile: 6</td>
-<td>compile: 3 MB</td>
-<td>compile: 2336</td>
-<td>compile: 2228</td>
-<td>compile: 55</td>
-<td>-</td>
-<td>compile: 4</td></tr>
+<td>30</td>
+<td>10 MB</td>
+<td>7978</td>
+<td>6857</td>
+<td>417</td>
+<td>1.8</td>
+<td>27</td></tr>
 <tr class="b">
-<td>test: 16</td>
-<td>test: 5.1 MB</td>
-<td>test: 3794</td>
-<td>test: 3319</td>
-<td>test: 245</td>
+<td>compile: 11</td>
+<td>compile: 3.1 MB</td>
+<td>compile: 2464</td>
+<td>compile: 2313</td>
+<td>compile: 74</td>
+<td>-</td>
+<td>compile: 9</td></tr>
+<tr class="a">
+<td>test: 17</td>
+<td>test: 6.9 MB</td>
+<td>test: 5445</td>
+<td>test: 4500</td>
+<td>test: 338</td>
 <td>-</td>
 <td>test: 16</td></tr>
+<tr class="b">
+<td>runtime: 1</td>
+<td>runtime: 16.5 kB</td>
+<td>runtime: 23</td>
+<td>runtime: 9</td>
+<td>runtime: 2</td>
+<td>-</td>
+<td>runtime: 1</td></tr>
 <tr class="a">
 <td>provided: 1</td>
 <td>provided: 19.9 kB</td>
@@ -817,10 +1005,16 @@
 <td>com.google.j2objc:j2objc-annotations:jar:1.1</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="a">
+<td>javax.inject:javax.inject:jar:1</td>
+<td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//javax/inject/javax.inject/1/javax.inject-1.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
 <td>junit:junit:jar:4.12</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//junit/junit/4.12/junit-4.12.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>net.joala:joala-core:jar:1.2.0</td>
+<td>-</td></tr>
+<tr class="b">
+<td>net.joala:joala-expressions:jar:1.2.0</td>
 <td>-</td></tr>
 <tr class="a">
 <td>net.joala:joala-labs-data:jar:1.2.0</td>
@@ -835,8 +1029,14 @@
 <td>net.joala:joala-testlets:jar:1.2.0</td>
 <td>-</td></tr>
 <tr class="a">
+<td>net.joala:joala-time:jar:1.2.0</td>
+<td>-</td></tr>
+<tr class="b">
 <td>org.apache.commons:commons-lang3:jar:3.6</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/apache/commons/commons-lang3/3.6/commons-lang3-3.6.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>org.apache.commons:commons-text:jar:1.1</td>
+<td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/apache/commons/commons-text/1.1/commons-text-1.1.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="b">
 <td>org.codehaus.mojo:animal-sniffer-annotations:jar:1.14</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
@@ -846,6 +1046,12 @@
 <tr class="b">
 <td>org.hamcrest:hamcrest-library:jar:1.3</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
+<td>org.mockito:mockito-core:jar:1.10.19</td>
+<td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/mockito/mockito-core/1.10.19/mockito-core-1.10.19.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="b">
+<td>org.objenesis:objenesis:jar:2.5.1</td>
+<td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/objenesis/objenesis/2.5.1/objenesis-2.5.1.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="a">
 <td>org.slf4j:jcl-over-slf4j:jar:1.7.25</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/slf4j/jcl-over-slf4j/1.7.25/jcl-over-slf4j-1.7.25.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
@@ -868,14 +1074,17 @@
 <td>org.springframework:spring-expression:jar:4.3.9.RELEASE</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/springframework/spring-expression/4.3.9.RELEASE/spring-expression-4.3.9.RELEASE.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
 <tr class="b">
+<td>org.springframework:spring-test:jar:4.3.9.RELEASE</td>
+<td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//org/springframework/spring-test/4.3.9.RELEASE/spring-test-4.3.9.RELEASE.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
+<tr class="a">
 <td>com.google.code.findbugs:jsr305:jar:3.0.2</td>
 <td><a class="externalLink" href="https://repository-build.coremedia.com/nexus/content/groups/releases//com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"><img alt="Found at https://repository-build.coremedia.com/nexus/content/groups/releases/" src="images/icon_success_sml.gif" /></a></td></tr>
-<tr class="a">
+<tr class="b">
 <th>Total</th>
 <th>central-cm-mirror</th></tr>
-<tr class="b">
-<td>23 (compile: 6, test: 16, provided: 1)</td>
-<td>18</td></tr></table></div>
+<tr class="a">
+<td>30 (compile: 11, test: 17, runtime: 1, provided: 1)</td>
+<td>23</td></tr></table></div>
         </div>
       </div>
     </div>
