@@ -19,20 +19,20 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>Joala Conditions - Checkstyle report</title>
-    <link>http://coremedia.github.com/joala/joala-parent/joala-conditions</link>
-    <description>Joala Conditions - Checkstyle report</description>
+    <title>Joala Labs Net - Checkstyle report</title>
+    <link>http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net</link>
+    <description>Joala Labs Net - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2011 - 2017 CoreMedia AG</copyright>
     <item>
-      <title>File: 20,
-             Errors: 2,
-             Warnings: 8,
-             Infos: 15
+      <title>File: 7,
+             Errors: 1,
+             Warnings: 2,
+             Infos: 1
       </title>
-            <link>http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html</link>
+            <link>http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html</link>
       <description>
-        <p>Click <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,195 +46,55 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.WaitTimeoutFailStrategy.java">net/joala/condition/timing/WaitTimeoutFailStrategy.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.Response.java">net/joala/net/Response.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.PortUtils.java">net/joala/net/PortUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.StatusCodeResponse.java">net/joala/net/StatusCodeResponse.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.EmbeddedWebservice.java">net/joala/net/EmbeddedWebservice.java</a>
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
                   1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.Condition.java">net/joala/condition/Condition.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.ConditionFactory.java">net/joala/condition/ConditionFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#META-INF.joala.condition.conditions-context-default.properties">META-INF/joala/condition/conditions-context-default.properties</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.MatcherExecute.java">net/joala/condition/timing/MatcherExecute.java</a>
-                </td>
-                <td>
-                  4
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.WaitTimeoutException.java">net/joala/condition/timing/WaitTimeoutException.java</a>
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.DefaultCondition.java">net/joala/condition/DefaultCondition.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.DeceleratingWait.java">net/joala/condition/timing/DeceleratingWait.java</a>
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.FailSafeCondition.java">net/joala/condition/FailSafeCondition.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.ExpressionFunction.java">net/joala/condition/ExpressionFunction.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.BooleanCondition.java">net/joala/condition/BooleanCondition.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.DefaultBooleanCondition.java">net/joala/condition/DefaultBooleanCondition.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.DefaultConditionFactory.java">net/joala/condition/DefaultConditionFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.AbstractWaitFailStrategy.java">net/joala/condition/timing/AbstractWaitFailStrategy.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   1
@@ -242,21 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.IgnorableStateQueryException.java">net/joala/condition/timing/IgnorableStateQueryException.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.WaitFailNoExceptionMatcher.java">net/joala/condition/WaitFailNoExceptionMatcher.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.DelayedResponse.java">net/joala/net/DelayedResponse.java</a>
                 </td>
                 <td>
                   0
@@ -270,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.WaitFailStrategy.java">net/joala/condition/timing/WaitFailStrategy.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.PreparedResponsesHttpHandler.java">net/joala/net/PreparedResponsesHttpHandler.java</a>
                 </td>
                 <td>
                   0
@@ -284,35 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.timing.Wait.java">net/joala/condition/timing/Wait.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.WaitAssertionFailStrategy.java">net/joala/condition/WaitAssertionFailStrategy.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://coremedia.github.com/joala/joala-parent/joala-conditions/checkstyle.html#net.joala.condition.WaitAssumptionFailStrategy.java">net/joala/condition/WaitAssumptionFailStrategy.java</a>
+                  <a href="http://coremedia.github.com/joala/joala-parent/joala-labs/joala-labs-net/checkstyle.html#net.joala.net.PreparedResponsesHttpHandlerImpl.java">net/joala/net/PreparedResponsesHttpHandlerImpl.java</a>
                 </td>
                 <td>
                   0
