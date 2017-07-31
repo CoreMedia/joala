@@ -161,11 +161,15 @@ changes are introduced by deprecations in previous minor version releases.
 * Visit [Sonatype's Nexus Repository][oss-sonatype].
 * Open the Staging Repositories and choose `net.joala`.
 * Close the repository.
-* Release the repository.
+* Release the repository (Press Release Button).
     Mind that during release several checks are performed. If those checks fail it is
     required to perform a re-release. Thus it might be wise not to push the local release
     artifacts (see above) but to do it after the release passed the quality gate
     in Nexus repository.
+    
+    Here you see a screenshot how a ready-to-release state of your repository looks like:
+    
+    ![OSSRH Nexus Final Release State just before Pressing 'Release'](OSSRH-Nexus-Final-Release-Step.png)
 
 ### Clean `checkout` folders
 
