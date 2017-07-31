@@ -128,13 +128,13 @@
     <url>https://github.com/CoreMedia/joala/issues</url>
   </issueManagement>
   <distributionManagement>
-    <!-- repository and snapshotRepository from parent POM -->
-    <!-- Local Deployment, will be overridden by GitHub Pages Deployment on Release -->
+    <!-- https://github.com/github/maven-plugins/issues/22 -->
     <site>
-      <id>local-site</id>
-      <name>Deployment as local artifacts</name>
-      <url>${local.site.deploy.url}</url>
+      <id>github-pages-site</id>
+      <name>Deployment through GitHub's site deployment plugin</name>
+      <url>${project.version}</url>
     </site>
+    <!-- repository and snapshotRepository from parent POM -->
   </distributionManagement>
   <!-- Properties -->
   <properties>
@@ -142,7 +142,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
     <generated.sources.root>${project.build.directory}/generated-sources</generated.sources.root>
     <!-- Signals to ignore approved non-compile dependencies which are recognized as unused. -->
     <dependency.ignore.approved.noncompile>true</dependency.ignore.approved.noncompile>
@@ -382,6 +381,23 @@
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
           <version>0.12</version>
+          <configuration>
+            <server>github</server>
+            <message>Site for ${project.artifactId}:${project.version}</message>
+            <!-- The location where the site is uploaded -->
+            <path>${project.distributionManagement.site.url}</path>
+            <!-- Use merge or override the content -->
+            <merge>true</merge>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>site</goal>
+              </goals>
+              <!-- select the Maven phase in which the plugin will be executed -->
+              <phase>site-deploy</phase>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -511,23 +527,6 @@ Joala tries to avoid having any of the following dependencies:
         <!-- Deploy the web site -->
         <groupId>com.github.github</groupId>
         <artifactId>site-maven-plugin</artifactId>
-        <configuration>
-          <server>github</server>
-          <message>Site for Joala ${project.version} (${project.artifactId}).</message>
-          <!-- The location where the site is uploaded -->
-          <path>joala-${project.version}</path>
-          <!-- Use merge or override the content -->
-          <merge>true</merge>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <!-- select the Maven phase in which the plugin will be executed -->
-            <phase>site-deploy</phase>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

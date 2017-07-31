@@ -17,7 +17,8 @@
   ~ You should have received a copy of the GNU General Public License
   ~ along with Joala.  If not, see <http://www.gnu.org/licenses />.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <!-- Must not have joala-bom as parent as it must be built before joala-bom in order
        to provide artifacts to depend on during maven lifecycle. -->
@@ -26,7 +27,7 @@
     <artifactId>oss-parent</artifactId>
     <version>9</version>
     <!--suppress MavenModelInspection -->
-    <relativePath />
+    <relativePath/>
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-build-tools</artifactId>
@@ -67,12 +68,14 @@
     <url>http://pc-ci.coremedia.com/job/joala/</url>
   </ciManagement>
   <distributionManagement>
-    <!-- Local Deployment, will be overridden by GitHub Pages Deployment on Release -->
+    <!-- https://github.com/github/maven-plugins/issues/22 -->
     <site>
-      <id>local-site</id>
-      <name>Deployment as local artifacts</name>
-      <url>${local.site.deploy.url}/${project.artifactId}</url>
+      <id>github-pages-site</id>
+      <name>Deployment through GitHub's site deployment plugin</name>
+      <!-- This is different to all others as build-tools module is independent from the other module structure. -->
+      <url>${project.version}/${project.artifactId}</url>
     </site>
+    <!-- repository and snapshotRepository from parent POM -->
   </distributionManagement>
   <properties>
     <maven.deploy.skip>true</maven.deploy.skip>
@@ -80,7 +83,6 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <local.site.deploy.url>file://${user.home}/target/joala/site</local.site.deploy.url>
     <skipTests>true</skipTests>
   </properties>
   <build>
@@ -119,15 +121,14 @@
           </dependencies>
         </plugin>
         <plugin>
-          <!-- Deploy the web site -->
           <groupId>com.github.github</groupId>
           <artifactId>site-maven-plugin</artifactId>
           <version>0.12</version>
           <configuration>
             <server>github</server>
-            <message>Site for Joala ${project.version} (${project.artifactId}).</message>
+            <message>Site for ${project.artifactId}:${project.version}</message>
             <!-- The location where the site is uploaded -->
-            <path>joala-${project.version}/joala-build-tools</path>
+            <path>${project.distributionManagement.site.url}</path>
             <!-- Use merge or override the content -->
             <merge>true</merge>
           </configuration>
