@@ -30,7 +30,7 @@
   </parent>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>1.2.0</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
   <description><![CDATA[
@@ -120,7 +120,7 @@
   <scm>
     <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>joala-1.2.0</tag>
     <url>https://github.com/CoreMedia/joala</url>
   </scm>
   <issueManagement>
