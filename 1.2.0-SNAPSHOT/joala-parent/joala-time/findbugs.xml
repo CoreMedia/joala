@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='3.0.1' threshold='medium' effort='min'><Error></Error><Project><SrcDir>C:\GitHub\joala\parent\time\src\main\java</SrcDir><SrcDir>C:\GitHub\joala\parent\time\src\test\java</SrcDir></Project></BugCollection>
