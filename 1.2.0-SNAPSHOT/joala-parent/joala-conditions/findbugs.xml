@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<BugCollection version='3.0.1' threshold='medium' effort='min'><file classname='net.joala.condition.ExpressionFunction'><BugInstance type='NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE' priority='Normal' category='STYLE' message='input must be non-null but is marked as nullable' lineNumber='52'/></file><Error></Error><Project><SrcDir>C:\GitHub\joala\parent\conditions\src\main\java</SrcDir><SrcDir>C:\GitHub\joala\parent\conditions\src\test\java</SrcDir></Project></BugCollection>
