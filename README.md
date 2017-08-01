@@ -15,14 +15,8 @@ For complete documentation of Joala please visit [Joala Pages][].
 ## See Also
 
 * [Joala Git Logs as Star Wars Intro][StarLogs]
-* Tracked with [githalytics][]
-
-<!-- Google Analytics -->
-
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/7bfa0d577c19e1c25e814bd30a0de0c0 "githalytics.com")](http://githalytics.com/CoreMedia/joala)
 
 <!-- Links -->
 
 [Joala Pages]: <http://coremedia.github.com/joala/> "GitHub Pages for Joala"
 [StarLogs]: <http://starlogs.net/#CoreMedia/joala> "Star Wars Intro Log of Joala"
-[githalytics]: <http://githalytics.com/> "Google Analytics Tracking for GitHub projects"
