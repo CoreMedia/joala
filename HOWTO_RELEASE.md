@@ -1,24 +1,14 @@
 # How to release Joala
 
+The whole release process might take up to 2,5 h (measured for release 1.2.0). This is due to a very
+slow transmission of the gh-pages documentation. We might to change that in the future. But for now:
+You can actually relax and lean back in the 2,5 h. There is nothing to do despite entering some version
+co-ordinates at the beginning and then starting to wait.
+
 ## Release Preparations
 
-* *Deprecated:* Ensure that you have configured GitHub for site deployment in your `settings.xml`:
-    This is required in order to deploy the Maven site to [Joala GitHub Pages][].
-
-    ```xml
-    <servers>
-      <server>
-        <id>github-project-site</id>
-        <!-- the username really is git, do not change this -->
-        <username>git</username>
-      </server>
-    </servers>
-    ```
-    
-    For deployment a fork of [wagon-gitsite][] by [kohsuke][kohsuke-wagon-gitsite] is used.
-* *Evaluating Replacement for Wagon GitSite:* The last tries to use Wagon GitSite on release
-    process failed miserable. Thus we are now going to try [Github Site Plugin][]. Just as
-    Wagon GitSite you require user/password settings in your `settings.xml`:
+* Joala Documentation is uploaded to GitHub Pages ([Joala GitHub Pages][]) using the
+    [Github Site Plugin][]. In order to do so, you have to add GitHub credentials to your `settings.xml`:
 
     ```xml
     <servers>
@@ -44,7 +34,7 @@
     **Note:** The OAuth Token needs permissions `repo` and `user`. If you do not provide `user`
     permission, you will get a `RequestException: Not Found (404)` in `UserService.getEmails()`.
     
-    The site will be deployed into a sub-directory with the naming pattern `joala-VERSION` on
+    The site will be deployed into a sub-directory with the naming pattern `VERSION` on
     `site-deploy`. So you may test site deployment even outside the release process and you will
     get your site deployed with a snapshot version applied. 
 * Ensure that you have set the passwords for Maven Central Deployment as described in
@@ -214,7 +204,6 @@ Java process which still accesses the directory.
 [oss-usage]: <https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide> "Sonatype OSS Maven Repository Usage Guide"
 [sonatype-jira]: <https://issues.sonatype.org/> "Sonatype JIRA"
 [wagon-gitsite]: <http://khuxtable.github.com/wagon-gitsite/> "Wagon Provider for GitHub Pages Site Deployment"
-[kohsuke-wagon-gitsite]: <https://github.com/kohsuke/wagon-gitsite> "Fork of Wagon Provider for GitHub Pages Site Deployment"
 [oss-sonatype]: <https://oss.sonatype.org/> "Sonatype Nexus Repository"
 [OSSRH-5630]: <https://issues.sonatype.org/browse/OSSRH-5630> "[OSSRH-5630] Joala - Java Library for Testing with JUnit - Sonatype JIRA" 
 [Github Site Plugin]: <https://github.github.com/maven-plugins/site-plugin/>
