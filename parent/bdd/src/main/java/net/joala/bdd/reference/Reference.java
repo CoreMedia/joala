@@ -51,11 +51,10 @@ public interface Reference<T> {
    * Retrieve the value of a reference.
    * </p>
    *
-   * @return the value of the reference
+   * @return the value of the reference; {@code null} iff. {@code null} has been set as value previously
    * @throws ReferenceNotBoundException if the reference does not contain a value yet
    * @see #hasValue()
    */
-  @Nullable
   T get();
 
   /**
