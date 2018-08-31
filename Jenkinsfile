@@ -4,8 +4,8 @@ pipeline {
   tools {
     // Requires MAVEN3 to be configured in Global Tool Configuration
     maven "MAVEN3"
-    // Requires OpenJDK-8 to be configured in Global Tool Configuration
-    jdk "OpenJDK-8"
+    // Requires JDK8 to be configured in Global Tool Configuration
+    jdk "JDK8"
   }
 
   parameters {
