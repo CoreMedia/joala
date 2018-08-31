@@ -33,18 +33,18 @@ pipeline {
         expression { return params.RELEASE }
       }
       steps {
-        configFileProvider([fileId: 'release-settings', variable: 'MAVEN_SETTINGS']) {
+        echo "In case of failure: Please ensure you have your gpg-sign certificate set up correctly."
+        configFileProvider([configFile(fileId: 'release-settings', variable: 'MAVEN_SETTINGS')]) {
           withCredentials([
-                  usernamePassword(credentialsId: 'sonatype-jira', usernameVariable: 'OSS_USER', passwordVariable: 'OSS_PASSWORD'),
                   string(credentialsId: 'github-oauth', variable: 'GITHUB_OAUTH'),
                   certificate(credentialsId: 'gpg-sign', keystoreVariable: 'GPG_KEYSTORE_FILE', passwordVariable: 'GPG_KEYSTORE_PASSWORD')
           ]) {
             echo "Release not implemented yet."
             echo "The following will be hidden in log, it just shows the usage..."
-            echo "    Configured Sonatype Credentials: ${OSS_USER} with password ${OSS_PASSWORD}"
             echo "    Configured GitHub OAUTH: ${GITHUB_OAUTH}"
             echo "    Configured GPG Sign: ${GPG_KEYSTORE_FILE}, password: ${GPG_KEYSTORE_PASSWORD}"
             echo "    Configured settings file: ${MAVEN_SETTINGS}"
+            sh "cat '${MAVEN_SETTINGS}'"
           }
         }
       }
