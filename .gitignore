@@ -21,3 +21,5 @@ overlays/
 # Git:
 *.orig
 
+# Temporary Files
+*.cid
