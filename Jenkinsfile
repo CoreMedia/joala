@@ -33,8 +33,11 @@ pipeline {
         expression { return params.RELEASE }
       }
       steps {
-        withCredentials([usernamePassword(credentialsId: 'sonatype', usernameVariable: 'OSS_USER', passwordVariable: 'OSS_PASSWORD')]) {
-          echo "Release not implemented yet. Release would have been done as ${OSS_USER} with password ${OSS_PASSWORD}."
+        withCredentials([
+                usernamePassword(credentialsId: 'sonatype-jira', usernameVariable: 'OSS_USER', passwordVariable: 'OSS_PASSWORD'),
+                string(credentialsId: 'github-oauth', variable: 'GITHUB_OAUTH')
+        ]) {
+          echo "Release not implemented yet. Release would have been done as ${OSS_USER} with password ${OSS_PASSWORD} and GitHub OAUTH ${GITHUB_OAUTH}."
         }
       }
     }
@@ -42,7 +45,7 @@ pipeline {
   post {
     always {
       junit '**/target/surefire-reports/TEST-*.xml'
-      archive '**/target/*.jar'
+      archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
     }
   }
 }
