@@ -8,12 +8,13 @@ pipeline {
     jdk "JDK8"
   }
 
+  // Note, that parameters can only be configured after first run.
   parameters {
     booleanParam(name: 'RELEASE', defaultValue: false, description: 'Check this to trigger a release build.')
   }
 
   triggers {
-    pollSCM('H */4 * * 1-5')
+    pollSCM('@daily')
   }
 
   stages {
@@ -39,7 +40,7 @@ pipeline {
   post {
     always {
       junit '**/target/surefire-reports/TEST-*.xml'
-      archive 'target/*.jar'
+      archive '**/target/*.jar'
     }
   }
 }
