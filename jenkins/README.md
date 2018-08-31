@@ -27,6 +27,21 @@ In order to set up run `joala-ci.sh`.
   configure Docker to expose the daemon on `tcp://localhost:2375` without
   TLS.
 
+## Open Issues
+
+* **GPG keyring:** It is currently not possible to handle the GPG keyring as prepared.
+  Current idea is to upload it as custom file (see `maven-settings.groovy`) and
+  add the password as credentials-string (see `credentials.groovy`).
+* **Release:** The whole release phase is missing, only the skeleton is prepared.
+* **Git User Config:** This is currently hard-wired in `git-config.groovy`. We
+  either need a pseudo-user or some better way to configure it. Combined with
+  `joala-ci.sh` we could use the Git configuration as provided on the current
+  machine.
+* **Credentials from Docker Secrets:** Until now you have to do one additional
+  step prior to releasing, which is to configure all credentials within your
+  Docker container. A better way should be to use Docker secrets, but this
+  requires Docker swarm. Or are there any other options?
+
 ## References
 
 * [Automating Jenkins Docker Setup | Technology Conversations][tc2017]
