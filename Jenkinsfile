@@ -1,26 +1,43 @@
 pipeline {
   agent any
 
-  stages {
-    def mvnHome
+  tools {
+    // Requires MAVEN3 to be configured in Global Tool Configuration
+    maven "MAVEN3"
+    // Requires OpenJDK-8 to be configured in Global Tool Configuration
+    jdk "OpenJDK-8"
+  }
 
-    stage('Preparation') { // for display purposes
-      // Get some code from a GitHub repository
-      git 'https://github.com/CoreMedia/joala.git'
-      // Get the Maven tool.
-      // ** NOTE: This 'MAVEN3' Maven tool must be configured
-      // **       in the global configuration.
-      mvnHome = tool 'MAVEN3'
-    }
-    stage('Build') {
-      // Run the maven build
-      if (isUnix()) {
-        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
-      } else {
-        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+  parameters {
+    booleanParam(name: 'RELEASE', defaultValue: false, description: 'Check this to trigger a release build.')
+  }
+
+  triggers {
+    pollSCM('H */4 * * 1-5')
+  }
+
+  stages {
+    stage('Preparation') {
+      steps {
+        git 'https://github.com/CoreMedia/joala.git'
       }
     }
-    stage('Results') {
+    stage('Build') {
+      steps {
+        sh "'${M2_HOME}/bin/mvn' -Dmaven.test.failure.ignore clean install"
+      }
+    }
+    stage('Release') {
+      when {
+        expression { return params.RELEASE }
+      }
+      steps {
+        echo "Release not implemented yet."
+      }
+    }
+  }
+  post {
+    always {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
     }
