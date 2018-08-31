@@ -33,7 +33,9 @@ pipeline {
         expression { return params.RELEASE }
       }
       steps {
-        echo "Release not implemented yet."
+        withCredentials([usernamePassword(credentialsId: 'sonatype', usernameVariable: 'OSS_USER', passwordVariable: 'OSS_PASSWORD')]) {
+          echo "Release not implemented yet. Release would have been done as ${OSS_USER} with password ${OSS_PASSWORD}."
+        }
       }
     }
   }
