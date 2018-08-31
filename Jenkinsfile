@@ -35,9 +35,14 @@ pipeline {
       steps {
         withCredentials([
                 usernamePassword(credentialsId: 'sonatype-jira', usernameVariable: 'OSS_USER', passwordVariable: 'OSS_PASSWORD'),
-                string(credentialsId: 'github-oauth', variable: 'GITHUB_OAUTH')
+                string(credentialsId: 'github-oauth', variable: 'GITHUB_OAUTH'),
+                certificate(credentialsId: 'gpg-sign', keystoreVariable: 'GPG_KEYSTORE_FILE', passwordVariable: 'GPG_KEYSTORE_PASSWORD')
         ]) {
-          echo "Release not implemented yet. Release would have been done as ${OSS_USER} with password ${OSS_PASSWORD} and GitHub OAUTH ${GITHUB_OAUTH}."
+          echo "Release not implemented yet."
+          echo "The following will be hidden in log, it just shows the usage..."
+          echo "    Configured Sonatype Credentials: ${OSS_USER} with password ${OSS_PASSWORD}"
+          echo "    Configured GitHub OAUTH: ${GITHUB_OAUTH}"
+          echo "    Configured GPG Sign: ${GPG_KEYSTORE_FILE}, password: ${GPG_KEYSTORE_PASSWORD}"
         }
       }
     }
