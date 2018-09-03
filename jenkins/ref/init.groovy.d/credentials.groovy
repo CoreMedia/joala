@@ -3,6 +3,7 @@ import org.jenkinsci.plugins.plaincredentials.impl.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.plugins.credentials.impl.*
 import hudson.util.*
+import java.nio.file.*
 
 Credentials sonatypeCredentials = (Credentials) new UsernamePasswordCredentialsImpl(
         CredentialsScope.GLOBAL,
@@ -19,16 +20,29 @@ Credentials githubOauthToken = (Credentials) new StringCredentialsImpl(
         new Secret('your-github-oauth-token')
 )
 
-Credentials gpgSign = (Credentials) new CertificateCredentialsImpl(
+//Path fileLocation = Paths.get("/path/to/some/file.txt");
+
+//SecretBytes secretBytes = SecretBytes.fromBytes(Files.readAllBytes(fileLocation))
+SecretBytes secretBytes = SecretBytes.fromBytes(new byte[0])
+
+Credentials gpgSecRing = (Credentials) new FileCredentialsImpl(
         CredentialsScope.GLOBAL,
-        "gpg-sign",
+        "gpg-secring",
         "GPG Key for signing Maven Central Artifacts. Must have been published to hkp://pool.sks-keyservers.net/",
-        "gpg-key-password",
-        new CertificateCredentialsImpl.UploadedKeyStoreSource("")
+        "secring.gpg",
+        secretBytes
+)
+
+Credentials gpgPassword = (Credentials) new StringCredentialsImpl(
+        CredentialsScope.GLOBAL,
+        "gpg-password",
+        "Password for gpg key, as specified in gpg-sign.",
+        new Secret('your-gpg-password')
 )
 
 def store = SystemCredentialsProvider.getInstance().getStore()
 
 store.addCredentials(Domain.global(), sonatypeCredentials)
 store.addCredentials(Domain.global(), githubOauthToken)
-store.addCredentials(Domain.global(), gpgSign)
+store.addCredentials(Domain.global(), gpgSecRing)
+store.addCredentials(Domain.global(), gpgPassword)
