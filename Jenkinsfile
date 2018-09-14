@@ -36,13 +36,11 @@ pipeline {
         echo "In case of failure: Please ensure you have your gpg-sign certificate set up correctly."
         configFileProvider([configFile(fileId: 'release-settings', variable: 'MAVEN_SETTINGS')]) {
           withCredentials([
-                  string(credentialsId: 'github-oauth', variable: 'GITHUB_OAUTH'),
                   string(credentialsId: 'gpg-password', variable: 'GPG_PASSWORD'),
                   file(credentialsId: 'gpg-secring', variable: 'GPG_SECRING')
           ]) {
             echo "Release not implemented yet."
             echo "The following will be hidden in log, it just shows the usage..."
-            echo "    Configured GitHub OAUTH: ${GITHUB_OAUTH}"
             echo "    Configured GPG Sign: ${GPG_SECRING}, password: ${GPG_PASSWORD}"
             echo "    Configured settings file: ${MAVEN_SETTINGS}"
             sh "cat '${MAVEN_SETTINGS}'"
