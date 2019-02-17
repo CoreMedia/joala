@@ -25,5 +25,4 @@
   <factory class="net.joala.matcher.decorator.EnhanceDescriptionBy"/>
   <factory class="net.joala.matcher.exception.CausedBy"/>
   <factory class="net.joala.matcher.exception.MessageContains"/>
-  <factory class="net.joala.matcher.reflect.ClassHasModifier"/>
 </matchers>
