@@ -36,7 +36,6 @@
   ]]></description>
   <modules>
     <module>junit</module>
-    <module>net</module>
     <module>data</module>
   </modules>
 
