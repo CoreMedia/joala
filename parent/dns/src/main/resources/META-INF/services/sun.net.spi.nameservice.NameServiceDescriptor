@@ -1,9 +1,0 @@
-# DNS Service Provider Descriptor
-# This will provide name resolution using local API
-#
-# Reference:
-# Roman Kuzmik, Local Managed DNS (Java)
-# Friday, August 11, 2006
-# <http://rkuzmik.blogspot.de/2006/08/local-managed-dns-java_11.html>
-#
-net.joala.dns.LocalDNSNameServiceDescriptor
