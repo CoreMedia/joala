@@ -23,10 +23,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
-import static net.joala.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -90,11 +90,11 @@ public class RandomNumberProvidersTest<T extends Comparable<? extends Number>> {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-    return singletonParametersBuilder(RandomNumberProvidersTest.class)
-            .add(new RandomDoubleProvider(),
-                    new RandomFloatProvider(),
-                    new RandomIntegerProvider(),
-                    new RandomLongProvider())
-            .build();
+    return Arrays.asList(
+            new Object[]{new RandomDoubleProvider()},
+            new Object[]{new RandomFloatProvider()},
+            new Object[]{new RandomIntegerProvider()},
+            new Object[]{new RandomLongProvider()}
+    );
   }
 }

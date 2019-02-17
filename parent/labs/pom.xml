@@ -35,7 +35,6 @@
     might once make it into Joala's Public API.
   ]]></description>
   <modules>
-    <module>junit</module>
     <module>data</module>
   </modules>
 

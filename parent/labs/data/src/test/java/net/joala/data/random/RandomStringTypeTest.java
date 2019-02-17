@@ -25,9 +25,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
-import static net.joala.junit.ParameterizedParametersBuilders.singletonParametersBuilder;
 import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -108,7 +109,7 @@ public class RandomStringTypeTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> data() {
-    return singletonParametersBuilder(RandomStringTypeTest.class).add(RandomStringType.values()).build();
+    return Arrays.stream(RandomStringType.values()).map(v -> new Object[]{v}).collect(Collectors.toList());
   }
 
   @Override

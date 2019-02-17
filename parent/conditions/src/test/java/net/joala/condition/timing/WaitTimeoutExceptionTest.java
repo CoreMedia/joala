@@ -26,10 +26,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import static net.joala.junit.ParameterizedParametersBuilders.defaultParametersBuilder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 
@@ -69,12 +69,12 @@ public class WaitTimeoutExceptionTest {
 
   @Parameterized.Parameters
   public static Collection<Object[]> parameters() {
-    return defaultParametersBuilder(WaitTimeoutExceptionTest.class)
-            .add("Should except both, message and cause to be null.", null, null)
-            .add("Should except both, message and cause not to be null.", STRING_PROVIDER.get(), new Exception(STRING_PROVIDER.get()))
-            .add("Should except message to be null, while cause is non-null.", null, new Exception(STRING_PROVIDER.get()))
-            .add("Should except cause to be null, while message is non-null.", STRING_PROVIDER.get(), null)
-            .build();
+    return Arrays.asList(
+            new Object[]{"Should except both, message and cause to be null.", null, null},
+            new Object[]{"Should except both, message and cause not to be null.", STRING_PROVIDER.get(), new Exception(STRING_PROVIDER.get())},
+            new Object[]{"Should except message to be null, while cause is non-null.", null, new Exception(STRING_PROVIDER.get())},
+            new Object[]{"Should except cause to be null, while message is non-null.", STRING_PROVIDER.get(), null}
+    );
   }
 
   private final String testMessage;
