@@ -168,22 +168,12 @@
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
-        <artifactId>joala-labs-data</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
         <artifactId>joala-bdd</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>joala-testlets</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>${project.groupId}</groupId>
-        <artifactId>joala-labs</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -466,8 +456,6 @@ Joala tries to avoid having any of the following dependencies:
   * Alternative Hamcrest Implementations - as Joala uses Hamcrest Libraries for
     Matchers they collide with junit:junit prior to JUnit 4.11. The same applies
     to artifacts like mockito-all.
-  * Joala Labs: Joala Labs are experimental and thus they must not leak into
-    any transitive dependency inside the Joala project.
                   ]]></message>
                   <searchTransitive>true</searchTransitive>
                   <excludes>
@@ -477,13 +465,6 @@ Joala tries to avoid having any of the following dependencies:
                     <exclude>*:log4j</exclude>
                     <!-- Use junit instead; since JUnit 4.11 -->
                     <exclude>junit:junit-dep</exclude>
-                    <!-- joala-labs must only be used internally -->
-                    <exclude>${project.groupId}:joala-labs-junit:*:jar:compile</exclude>
-                    <exclude>${project.groupId}:joala-labs-junit:*:jar:runtime</exclude>
-                    <exclude>${project.groupId}:joala-labs-net:*:jar:compile</exclude>
-                    <exclude>${project.groupId}:joala-labs-net:*:jar:runtime</exclude>
-                    <exclude>${project.groupId}:joala-labs-data:*:jar:compile</exclude>
-                    <exclude>${project.groupId}:joala-labs-data:*:jar:runtime</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>

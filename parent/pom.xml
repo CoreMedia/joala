@@ -40,7 +40,6 @@
     <module>bdd</module>
     <module>time</module>
     <module>expressions</module>
-    <module>labs</module>
     <module>core</module>
     <module>testlets</module>
     <module>image</module>
