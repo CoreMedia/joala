@@ -23,5 +23,4 @@
 <!-- Lists all matchers which shall be combined in the JoalaMatchers class -->
 <matchers>
   <factory class="net.joala.matcher.decorator.EnhanceDescriptionBy"/>
-  <factory class="net.joala.matcher.exception.CausedBy"/>
 </matchers>
