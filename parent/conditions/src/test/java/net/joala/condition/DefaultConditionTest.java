@@ -36,11 +36,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import static java.lang.String.format;
-import static net.joala.matcher.exception.MessageContains.messageContains;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.core.IsAnything.anything;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -54,7 +53,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class DefaultConditionTest {
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     condition = new DefaultCondition<>(expression, timeout);
     expressionValue = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(expressionValue);
@@ -62,62 +61,62 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void constructor_should_accept_nonnull_expression() throws Exception {
+  public void constructor_should_accept_nonnull_expression() {
     condition.get();
     verify(expression).get();
   }
 
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
-  public void constructor_should_throw_nullpointer_exception_if_expression_is_null() throws Exception {
+  public void constructor_should_throw_nullpointer_exception_if_expression_is_null() {
     new DefaultCondition<String>(null, timeout);
   }
 
   @Test
-  public void constructor_should_accept_nonnull_timeout() throws Exception {
+  public void constructor_should_accept_nonnull_timeout() {
     condition.await();
     verify(timeout).in(any(TimeUnit.class), any(Double.class));
   }
 
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
-  public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() throws Exception {
+  public void constructor_should_throw_nullpointer_exception_if_timeout_is_null() {
     //noinspection RedundantCast
     new DefaultCondition<>(expression, (Timeout) null);
   }
 
   @Test
-  public void get_should_return_expression_value() throws Exception {
+  public void get_should_return_expression_value() {
     final String conditionValue = condition.get();
     verify(expression).get();
     assertEquals("Expression's value should have been returned.", expressionValue, conditionValue);
   }
 
   @Test
-  public void await_noarg_should_return_expression_value() throws Exception {
+  public void await_noarg_should_return_expression_value() {
     final String conditionValue = condition.await();
     assertEquals("Expression's value should have been returned.", expressionValue, conditionValue);
   }
 
   @Test
-  public void await_with_matcher_should_return_expression_value() throws Exception {
+  public void await_with_matcher_should_return_expression_value() {
     final String conditionValue = condition.await(anything());
     assertEquals("Expression's value should have been returned.", expressionValue, conditionValue);
   }
 
   @Test
-  public void await_should_evaluate_expression_only_once_on_immediate_success() throws Exception {
+  public void await_should_evaluate_expression_only_once_on_immediate_success() {
     condition.await();
     verify(expression).get();
   }
 
   @Test(expected = WaitTimeoutException.class)
-  public void await_should_timeout_if_expression_does_not_match() throws Exception {
+  public void await_should_timeout_if_expression_does_not_match() {
     condition.await(not(anything()));
   }
 
   @Test
-  public void assume_should_timeout_if_expression_does_not_match() throws Exception {
+  public void assume_should_timeout_if_expression_does_not_match() {
     try {
       condition.assumeThat(not(anything()));
       fail("AssumptionViolatedException should have been thrown.");
@@ -127,7 +126,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void assert_should_timeout_if_expression_does_not_match() throws Exception {
+  public void assert_should_timeout_if_expression_does_not_match() {
     try {
       condition.assertThat(not(anything()));
       fail("AssertionError should have been thrown.");
@@ -137,7 +136,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void waitUntil_should_timeout_if_expression_does_not_match() throws Exception {
+  public void waitUntil_should_timeout_if_expression_does_not_match() {
     try {
       condition.waitUntil(not(anything()));
       fail("WaitTimeoutException should have been thrown.");
@@ -147,7 +146,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_before_should_be_executed_on_await() throws Exception {
+  public void run_before_should_be_executed_on_await() {
     ((FailSafeCondition<String>) condition).runBefore(runnable);
     verify(runnable, times(0)).run();
     condition.await(anything());
@@ -155,7 +154,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_before_should_be_executed_on_assume() throws Exception {
+  public void run_before_should_be_executed_on_assume() {
     ((FailSafeCondition<String>) condition).runBefore(runnable);
     verify(runnable, times(0)).run();
     condition.assumeThat(anything());
@@ -163,7 +162,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_before_should_be_executed_on_assertion() throws Exception {
+  public void run_before_should_be_executed_on_assertion() {
     ((FailSafeCondition<String>) condition).runBefore(runnable);
     verify(runnable, times(0)).run();
     condition.assumeThat(anything());
@@ -171,7 +170,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_finally_should_be_executed_on_await_success() throws Exception {
+  public void run_finally_should_be_executed_on_await_success() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     verify(runnable, times(0)).run();
     condition.await(anything());
@@ -179,7 +178,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_finally_should_be_executed_on_assume_success() throws Exception {
+  public void run_finally_should_be_executed_on_assume_success() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     verify(runnable, times(0)).run();
     condition.assumeThat(anything());
@@ -187,7 +186,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_finally_should_be_executed_on_assertion_success() throws Exception {
+  public void run_finally_should_be_executed_on_assertion_success() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     verify(runnable, times(0)).run();
     condition.assumeThat(anything());
@@ -195,7 +194,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_finally_should_be_executed_on_await_failure() throws Exception {
+  public void run_finally_should_be_executed_on_await_failure() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     verify(runnable, times(0)).run();
     try {
@@ -206,7 +205,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_finally_should_be_executed_on_assume_failure() throws Exception {
+  public void run_finally_should_be_executed_on_assume_failure() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     verify(runnable, times(0)).run();
     try {
@@ -217,7 +216,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void run_finally_should_be_executed_on_assertion_failure() throws Exception {
+  public void run_finally_should_be_executed_on_assertion_failure() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     verify(runnable, times(0)).run();
     try {
@@ -229,7 +228,7 @@ public class DefaultConditionTest {
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void run_finally_should_be_executed_on_await_exception() throws Exception {
+  public void run_finally_should_be_executed_on_await_exception() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
     verify(runnable, times(0)).run();
@@ -242,7 +241,7 @@ public class DefaultConditionTest {
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void run_finally_should_be_executed_on_assume_exception() throws Exception {
+  public void run_finally_should_be_executed_on_assume_exception() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
     verify(runnable, times(0)).run();
@@ -255,7 +254,7 @@ public class DefaultConditionTest {
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void run_finally_should_be_executed_on_assertion_exception() throws Exception {
+  public void run_finally_should_be_executed_on_assertion_exception() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
     verify(runnable, times(0)).run();
@@ -267,7 +266,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void await_should_apply_timeout_factor_to_timeout() throws Exception {
+  public void await_should_apply_timeout_factor_to_timeout() {
     final double factor = Math.random();
     condition.withTimeoutFactor(factor);
     condition.await();
@@ -275,7 +274,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void assume_should_apply_timeout_factor_to_timeout() throws Exception {
+  public void assume_should_apply_timeout_factor_to_timeout() {
     final double factor = Math.random();
     condition.withTimeoutFactor(factor);
     condition.assumeThat(anything());
@@ -283,7 +282,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void assert_should_apply_timeout_factor_to_timeout() throws Exception {
+  public void assert_should_apply_timeout_factor_to_timeout() {
     final double factor = Math.random();
     condition.withTimeoutFactor(factor);
     condition.assertThat(anything());
@@ -291,7 +290,7 @@ public class DefaultConditionTest {
   }
 
   @Test
-  public void waitUntil_should_apply_timeout_factor_to_timeout() throws Exception {
+  public void waitUntil_should_apply_timeout_factor_to_timeout() {
     final double factor = Math.random();
     condition.withTimeoutFactor(factor);
     condition.waitUntil(anything());
@@ -300,44 +299,35 @@ public class DefaultConditionTest {
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void message_should_be_contained_in_exception_on_await_exception() throws Exception {
+  public void message_should_be_contained_in_exception_on_await_exception() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
     final String message = CONDITION_MESSAGE_PROVIDER.get();
     condition.withMessage(message);
-    try {
-      condition.await(not(anything()));
-    } catch (Exception e) {
-      assertThat(e, messageContains(message, true));
-    }
+    assertThatThrownBy(() -> condition.await(not(anything())))
+            .hasMessageContaining(message);
   }
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void message_should_be_contained_in_exception_on_assume_exception() throws Exception {
+  public void message_should_be_contained_in_exception_on_assume_exception() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
     final String message = CONDITION_MESSAGE_PROVIDER.get();
     condition.withMessage(message);
-    try {
-      condition.assumeThat(not(anything()));
-    } catch (Exception e) {
-      assertThat(e, messageContains(message, true));
-    }
+    assertThatThrownBy(() -> condition.await(not(anything())))
+            .hasMessageContaining(message);
   }
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void message_should_be_contained_in_exception_on_assertion_exception() throws Exception {
+  public void message_should_be_contained_in_exception_on_assertion_exception() {
     ((FailSafeCondition<String>) condition).runFinally(runnable);
     when(expression.get()).thenThrow(new ExpressionEvaluationException());
     final String message = CONDITION_MESSAGE_PROVIDER.get();
     condition.withMessage(message);
-    try {
-      condition.assumeThat(not(anything()));
-    } catch (Exception e) {
-      assertThat(e, messageContains(message, true));
-    }
+    assertThatThrownBy(() -> condition.await(not(anything())))
+            .hasMessageContaining(message);
   }
 
   private static final PrimitiveIterator.OfLong LONG_PROVIDER = new Random(0L).longs(0L, Long.MAX_VALUE).iterator();

@@ -20,6 +20,7 @@
 package net.joala.condition.timing;
 
 import org.apache.commons.text.RandomStringGenerator;
+import org.assertj.core.api.Assertions;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +33,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 import static java.lang.String.format;
-import static net.joala.matcher.exception.CausedBy.causedBy;
-import static net.joala.matcher.exception.MessageContains.messageContains;
-import static org.hamcrest.Matchers.anyOf;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertFalse;
@@ -73,7 +72,7 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   private Throwable lastFailure;
 
   @Test
-  public void failed_match_method_should_throw_exception() throws Exception {
+  public void failed_match_method_should_throw_exception() {
     final S strategy = getFailStrategy();
     boolean success = false;
     try {
@@ -90,7 +89,7 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   }
 
   @Test
-  public void failed_with_exceptions_method_should_throw_exception() throws Exception {
+  public void failed_with_exceptions_method_should_throw_exception() {
     final S strategy = getFailStrategy();
     boolean success = false;
     try {
@@ -107,7 +106,7 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   }
 
   @Test
-  public void message_on_failed_match_should_be_contained_in_exception() throws Throwable {
+  public void message_on_failed_match_should_be_contained_in_exception() {
     final S strategy = getFailStrategy();
     final String message = FAIL_MESSAGE_PROVIDER.get();
     boolean success = false;
@@ -124,7 +123,7 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   }
 
   @Test
-  public void message_when_failed_with_exception_should_be_contained_in_exception() throws Throwable {
+  public void message_when_failed_with_exception_should_be_contained_in_exception() {
     final S strategy = getFailStrategy();
     boolean success = false;
     final String message = FAIL_MESSAGE_PROVIDER.get();
@@ -141,33 +140,24 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   }
 
   @Test
-  public void cause_when_failed_with_exception_should_be_contained_in_exception() throws Throwable {
+  public void cause_when_failed_with_exception_should_be_contained_in_exception() {
     final S strategy = getFailStrategy();
     final String evaluationExceptionMessage = EXCEPTION_MESSAGE_PROVIDER.get();
     doAnswer(invocation -> {
       invocation.getArgumentAt(0, PrintWriter.class).append(evaluationExceptionMessage);
       return null;
     }).when(lastFailure).printStackTrace(any(PrintWriter.class));
-    boolean success = false;
-    try {
-      strategy.fail(FAIL_MESSAGE_PROVIDER.get(), failedFunction, failedInput, lastFailure, CONSUMED_MILLIS_PROVIDER.get());
-      success = true;
-    } catch (Throwable t) {
-      if (!getRaisedExceptionType().isAssignableFrom(t.getClass())) {
-        throw t;
-      }
-      assertThat("Cause should be mentioned in failure.", t,
-              anyOf(
-                      causedBy(lastFailure),
-                      messageContains(evaluationExceptionMessage, true)
-              )
-      );
-    }
-    assertFalse("An exception should have been thrown.", success);
+
+    assertThatThrownBy(() -> strategy.fail(FAIL_MESSAGE_PROVIDER.get(), failedFunction, failedInput, lastFailure, CONSUMED_MILLIS_PROVIDER.get()))
+            .isInstanceOf(getRaisedExceptionType())
+            .satisfiesAnyOf(
+                    t -> Assertions.assertThat(t).hasCause(lastFailure),
+                    t -> Assertions.assertThat(t).hasMessageContaining(evaluationExceptionMessage)
+            );
   }
 
   @Test
-  public void should_throw_expected_exception_type_on_failure_because_of_exception() throws Exception {
+  public void should_throw_expected_exception_type_on_failure_because_of_exception() {
     final S strategy = getFailStrategy();
     try {
       strategy.fail(FAIL_MESSAGE_PROVIDER.get(), failedFunction, failedInput, lastFailure, CONSUMED_MILLIS_PROVIDER.get());
@@ -178,7 +168,7 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   }
 
   @Test
-  public void should_throw_expected_exception_type_on_failure_because_mismatch() throws Exception {
+  public void should_throw_expected_exception_type_on_failure_because_mismatch() {
     final S strategy = getFailStrategy();
     try {
       strategy.fail(FAIL_MESSAGE_PROVIDER.get(), failedFunction, failedInput, failedLastValue, nullValue(), CONSUMED_MILLIS_PROVIDER.get());
