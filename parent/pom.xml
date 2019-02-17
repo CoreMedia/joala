@@ -36,7 +36,6 @@
     dependencies and common set of plugin configurations.]]></description>
   <modules>
     <module>conditions</module>
-    <module>matchers</module>
     <module>bdd</module>
     <module>time</module>
     <module>expressions</module>

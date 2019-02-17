@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
-import static net.joala.matcher.DescriptionUtil.describeTo;
+import static net.joala.condition.util.DescriptionUtil.describeTo;
 
 /**
  * <p>

@@ -28,7 +28,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static net.joala.matcher.DescriptionUtil.describeTo;
+import static net.joala.condition.util.DescriptionUtil.describeTo;
 
 /**
  * <p>

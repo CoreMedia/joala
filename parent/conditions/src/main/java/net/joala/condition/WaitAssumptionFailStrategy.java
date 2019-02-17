@@ -20,7 +20,7 @@
 package net.joala.condition;
 
 import net.joala.condition.timing.AbstractWaitFailStrategy;
-import net.joala.matcher.decorator.EnhanceDescriptionBy;
+import net.joala.condition.util.EnhanceDescriptionBy;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnegative;

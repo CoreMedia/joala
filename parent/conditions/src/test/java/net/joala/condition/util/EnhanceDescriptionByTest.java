@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.matcher.decorator;
+package net.joala.condition.util;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -33,7 +33,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 
 import static java.lang.String.format;
-import static net.joala.matcher.decorator.EnhanceDescriptionBy.enhanceDescriptionBy;
+import static net.joala.condition.util.EnhanceDescriptionBy.enhanceDescriptionBy;
 import static org.apache.commons.lang3.RandomStringUtils.random;
 import static org.hamcrest.Matchers.arrayWithSize;
 import static org.hamcrest.Matchers.instanceOf;

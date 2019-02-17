@@ -17,7 +17,7 @@
  * along with Joala.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.joala.matcher.decorator;
+package net.joala.condition.util;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;

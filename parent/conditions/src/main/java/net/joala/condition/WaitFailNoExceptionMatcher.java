@@ -19,7 +19,7 @@
 
 package net.joala.condition;
 
-import net.joala.matcher.DescriptionUtil;
+import net.joala.condition.util.DescriptionUtil;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Description;
 
