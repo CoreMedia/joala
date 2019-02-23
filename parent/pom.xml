@@ -40,7 +40,6 @@
     <module>time</module>
     <module>expressions</module>
     <module>core</module>
-    <module>testlets</module>
   </modules>
 
   <dependencyManagement>
