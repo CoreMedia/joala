@@ -19,6 +19,7 @@
 
 package net.joala.time;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.util.PrimitiveIterator;
@@ -28,8 +29,8 @@ import java.util.function.Supplier;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@link TimeoutImpl}.
@@ -90,7 +91,13 @@ public class TimeoutImplTest {
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
-    toStringTestlet(timeout).run();
+    assertThat(timeout, Matchers.hasToString(
+            Matchers.allOf(
+                    Matchers.containsString(TimeoutImpl.class.getSimpleName()),
+                    Matchers.containsString(String.valueOf(amount)),
+                    Matchers.containsString(unit.name())
+            )
+    ));
   }
 
 }

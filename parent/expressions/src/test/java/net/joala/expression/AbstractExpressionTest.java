@@ -21,13 +21,13 @@ package net.joala.expression;
 
 import org.apache.commons.text.RandomStringGenerator;
 import org.hamcrest.Description;
+import org.hamcrest.Matchers;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
 import org.junit.Test;
 
 import java.util.function.Supplier;
 
-import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -69,7 +69,7 @@ public class AbstractExpressionTest {
   @Test
   public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: Adopted from JUnit standard
     final AbstractExpression<?> expression = new MockExpression(DESCRIPTION_PROVIDER.get());
-    toStringTestlet(expression).fieldsFromClass(AbstractExpression.class).run();
+    assertThat(expression, Matchers.hasToString(Matchers.containsString("simpleDescription")));
   }
 
   private static class MockExpression extends AbstractExpression<Object> {

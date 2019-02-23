@@ -45,7 +45,6 @@ import java.util.function.Supplier;
 
 import static java.lang.Math.round;
 import static java.lang.String.format;
-import static net.joala.testlet.ToStringTestlet.toStringTestlet;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -197,7 +196,7 @@ public class DeceleratingWaitTest {
   @Test
   public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: from JUnit
     final DeceleratingWait wait = new DeceleratingWait(timeout, TIMEOUT_FACTOR_PROVIDER.nextDouble(), mockWaitFailStrategy);
-    toStringTestlet(wait).run();
+    assertThat(wait, Matchers.hasToString(Matchers.containsString(DeceleratingWait.class.getSimpleName())));
   }
 
   @Test
