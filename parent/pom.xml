@@ -41,7 +41,6 @@
     <module>expressions</module>
     <module>core</module>
     <module>testlets</module>
-    <module>image</module>
   </modules>
 
   <dependencyManagement>
