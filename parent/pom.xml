@@ -39,7 +39,6 @@
     <module>bdd</module>
     <module>time</module>
     <module>expressions</module>
-    <module>core</module>
   </modules>
 
   <dependencyManagement>
