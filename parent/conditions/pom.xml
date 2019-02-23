@@ -40,12 +40,6 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>joala-testlets</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>joala-labs-junit</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
