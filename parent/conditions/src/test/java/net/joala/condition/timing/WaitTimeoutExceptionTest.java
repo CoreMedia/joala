@@ -44,12 +44,12 @@ public class WaitTimeoutExceptionTest {
   private static final Supplier<String> STRING_PROVIDER = () -> RandomStringUtils.random(20);
 
   @Test(expected = WaitTimeoutException.class)
-  public void should_be_able_to_call_constructor_without_exception() throws Exception {
+  public void should_be_able_to_call_constructor_without_exception() {
     throw new WaitTimeoutException(exceptionMessage, exceptionCause);
   }
 
   @Test
-  public void message_should_be_set_correctly() throws Exception {
+  public void message_should_be_set_correctly() {
     try {
       throw new WaitTimeoutException(exceptionMessage, exceptionCause);
     } catch (WaitTimeoutException e) {
@@ -58,7 +58,7 @@ public class WaitTimeoutExceptionTest {
   }
 
   @Test
-  public void cause_should_be_set_correctly() throws Exception {
+  public void cause_should_be_set_correctly() {
     try {
       throw new WaitTimeoutException(exceptionMessage, exceptionCause);
     } catch (WaitTimeoutException e) {

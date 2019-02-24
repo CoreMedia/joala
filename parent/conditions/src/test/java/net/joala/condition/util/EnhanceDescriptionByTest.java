@@ -60,10 +60,10 @@ public class EnhanceDescriptionByTest {
   private final String matcherDescription = format("%s_matcher", random(RANDOM_STRING_LENGTH));
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     doAnswer(new Answer<Void>() {
       @Override
-      public Void answer(final InvocationOnMock invocation) throws Throwable {
+      public Void answer(final InvocationOnMock invocation) {
         final Object[] arguments = invocation.getArguments();
         assumeThat(arguments, arrayWithSize(1));
         assumeThat(arguments[0], instanceOf(Description.class));
@@ -75,21 +75,21 @@ public class EnhanceDescriptionByTest {
   }
 
   @Test
-  public void describeTo_should_add_matcher_description() throws Exception {
+  public void describeTo_should_add_matcher_description() {
     final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Matcher description should be part of the description.", description.toString(), Matchers.containsString(matcherDescription));
   }
 
   @Test
-  public void describeTo_should_add_enhanced_description() throws Exception {
+  public void describeTo_should_add_enhanced_description() {
     final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Enhanced description should be part of the description.", description.toString(), Matchers.containsString(plainDescriptionTemplate));
   }
 
   @Test
-  public void describeTo_should_add_template_arguments() throws Exception {
+  public void describeTo_should_add_template_arguments() {
     final String argument = format("%sarg0", random(RANDOM_STRING_LENGTH));
     final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(arg1DescriptionTemplate, matcher, argument);
     descMatcher.describeTo(description);
@@ -97,21 +97,21 @@ public class EnhanceDescriptionByTest {
   }
 
   @Test
-  public void describeTo_should_add_matcher_description_using_factory() throws Exception {
+  public void describeTo_should_add_matcher_description_using_factory() {
     final Matcher<String> descMatcher = enhanceDescriptionBy(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Matcher description should be part of the description.", description.toString(), Matchers.containsString(matcherDescription));
   }
 
   @Test
-  public void describeTo_should_add_enhanced_description_using_factory() throws Exception {
+  public void describeTo_should_add_enhanced_description_using_factory() {
     final Matcher<String> descMatcher = enhanceDescriptionBy(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Enhanced description should be part of the description.", description.toString(), Matchers.containsString(plainDescriptionTemplate));
   }
 
   @Test
-  public void describeTo_should_add_template_arguments_using_factory() throws Exception {
+  public void describeTo_should_add_template_arguments_using_factory() {
     final String argument = format("%sarg0", random(RANDOM_STRING_LENGTH));
     final Matcher<String> descMatcher = enhanceDescriptionBy(arg1DescriptionTemplate, matcher, argument);
     descMatcher.describeTo(description);

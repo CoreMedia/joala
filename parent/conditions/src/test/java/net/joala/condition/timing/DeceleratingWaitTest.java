@@ -70,14 +70,14 @@ public class DeceleratingWaitTest {
 
   @SuppressWarnings("unchecked")
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     doThrow(mockFailException).when(mockWaitFailStrategy).fail(anyString(), any(), any(), any(), any(Matcher.class), anyLong());
     doThrow(mockFailException).when(mockWaitFailStrategy).fail(anyString(), any(), any(), any(Throwable.class), anyLong());
     timeout = new TimeoutImpl(TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
   }
 
   @Test
-  public void until_returns_immediately_if_first_evaluation_succeeds() throws Exception {
+  public void until_returns_immediately_if_first_evaluation_succeeds() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -87,7 +87,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void until_retries_once_and_then_succeeds() throws Exception {
+  public void until_retries_once_and_then_succeeds() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -102,7 +102,7 @@ public class DeceleratingWaitTest {
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void until_retries_once_with_exception_and_then_succeeds() throws Exception {
+  public void until_retries_once_with_exception_and_then_succeeds() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -116,7 +116,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void until_retries_until_timeout_and_fails() throws Exception {
+  public void until_retries_until_timeout_and_fails() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -128,7 +128,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void until_retries_with_exceptions_until_timeout_and_fails() throws Exception {
+  public void until_retries_with_exceptions_until_timeout_and_fails() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -140,7 +140,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void until_retries_with_exponential_backoff() throws Exception {
+  public void until_retries_with_exponential_backoff() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -158,7 +158,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void until_polling_should_adopt_to_evaluation_duration() throws Exception {
+  public void until_polling_should_adopt_to_evaluation_duration() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L) // used to calculate deadline
             .add(WaitCall.NOW, 0L) // used to get timestamp before evaluation
@@ -183,7 +183,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void now_should_return_system_time_millis() throws Exception {
+  public void now_should_return_system_time_millis() {
     final long before = System.currentTimeMillis();
     final long now = new DeceleratingWait(timeout, mockWaitFailStrategy).nowMillis();
     final long after = System.currentTimeMillis();
@@ -193,13 +193,13 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: from JUnit
+  public void toString_should_contain_necessary_information() { // NOSONAR: from JUnit
     final DeceleratingWait wait = new DeceleratingWait(timeout, TIMEOUT_FACTOR_PROVIDER.nextDouble(), mockWaitFailStrategy);
     assertThat(wait, Matchers.hasToString(Matchers.containsString(DeceleratingWait.class.getSimpleName())));
   }
 
   @Test
-  public void constructor_noarg_should_correctly_initialize_wait_for_successful_run() throws Exception {
+  public void constructor_noarg_should_correctly_initialize_wait_for_successful_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -209,7 +209,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_noarg_should_correctly_initialize_wait_for_timeout_run() throws Exception {
+  public void constructor_noarg_should_correctly_initialize_wait_for_timeout_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -221,7 +221,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_noarg_should_correctly_initialize_wait_for_timeout_on_exception_run() throws Exception {
+  public void constructor_noarg_should_correctly_initialize_wait_for_timeout_on_exception_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -233,7 +233,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_timeoutArg_should_correctly_initialize_wait_for_successful_run() throws Exception {
+  public void constructor_timeoutArg_should_correctly_initialize_wait_for_successful_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -243,7 +243,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_timeoutArg_should_correctly_initialize_wait_for_timeout_run() throws Exception {
+  public void constructor_timeoutArg_should_correctly_initialize_wait_for_timeout_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -255,7 +255,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_timeoutArg_should_correctly_initialize_wait_for_timeout_on_exception_run() throws Exception {
+  public void constructor_timeoutArg_should_correctly_initialize_wait_for_timeout_on_exception_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -267,7 +267,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_successful_run() throws Exception {
+  public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_successful_run() {
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
             .add(WaitCall.NOW, 0L)
@@ -277,7 +277,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_timeout_run() throws Exception {
+  public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_timeout_run() {
     final double timeoutFactor = TEST_TIMEOUT_FACTOR;
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)
@@ -293,7 +293,7 @@ public class DeceleratingWaitTest {
   }
 
   @Test
-  public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_timeout_on_exception_run() throws Exception {
+  public void constructor_timeoutAndFactorArgs_should_correctly_initialize_wait_for_timeout_on_exception_run() {
     final double timeoutFactor = TEST_TIMEOUT_FACTOR;
     expectedCalls = new ExpectedCallsBuilder()
             .add(WaitCall.NOW, 0L)

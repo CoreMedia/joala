@@ -39,7 +39,7 @@ public class Joala45SpringConfigurationUnresolvablePropertyTest {
   private static final Logger LOG = LoggerFactory.getLogger(Joala45SpringConfigurationUnresolvablePropertyTest.class);
 
   @Test
-  public void scenario_local_property_placeholder_fails_for_property_from_conditions_context_order_1() throws Exception {
+  public void scenario_local_property_placeholder_fails_for_property_from_conditions_context_order_1() {
     try {
       new ClassPathXmlApplicationContext("/META-INF/joala/condition/joala-45-context-1.xml");
       fail("Expected BeansException reporting unresolvable placeholder condition.timeout.seconds");
@@ -49,7 +49,7 @@ public class Joala45SpringConfigurationUnresolvablePropertyTest {
   }
 
   @Test
-  public void scenario_local_property_placeholder_fails_for_property_from_conditions_context_order_2() throws Exception {
+  public void scenario_local_property_placeholder_fails_for_property_from_conditions_context_order_2() {
     try {
       new ClassPathXmlApplicationContext("/META-INF/joala/condition/joala-45-context-3.xml");
       fail("Expected BeansException reporting unresolvable placeholder condition.timeout.seconds");
@@ -59,7 +59,7 @@ public class Joala45SpringConfigurationUnresolvablePropertyTest {
   }
 
   @Test
-  public void scenario_joala45_ignore_unresolvable_for_local_properties() throws Exception {
+  public void scenario_joala45_ignore_unresolvable_for_local_properties() {
     final ClassPathXmlApplicationContext applicationContext;
     try {
       applicationContext = new ClassPathXmlApplicationContext("/META-INF/joala/condition/joala-45-context-2.xml");

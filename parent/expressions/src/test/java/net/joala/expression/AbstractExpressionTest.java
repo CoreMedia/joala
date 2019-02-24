@@ -45,7 +45,7 @@ public class AbstractExpressionTest {
   private static final Supplier<String> DESCRIPTION_PROVIDER = () -> "description_" + RandomStringUtils.random(20);
 
   @Test
-  public void empty_simple_description_should_not_cause_update_of_description() throws Exception {
+  public void empty_simple_description_should_not_cause_update_of_description() {
     final SelfDescribing expression = new MockExpression();
     final String text = TEXT_PROVIDER.get();
     final Description description = new StringDescription().appendText(text);
@@ -54,7 +54,7 @@ public class AbstractExpressionTest {
   }
 
   @Test
-  public void non_empty_simple_description_should_be_added_to_description() throws Exception {
+  public void non_empty_simple_description_should_be_added_to_description() {
     final String simpleDescription = DESCRIPTION_PROVIDER.get();
     final SelfDescribing expression = new MockExpression(simpleDescription);
     final String text = TEXT_PROVIDER.get();
@@ -66,7 +66,7 @@ public class AbstractExpressionTest {
 
   @SuppressWarnings("ProhibitedExceptionDeclared")
   @Test
-  public void toString_should_contain_necessary_information() throws Throwable { // NOSONAR: Adopted from JUnit standard
+  public void toString_should_contain_necessary_information() { // NOSONAR: Adopted from JUnit standard
     final AbstractExpression<?> expression = new MockExpression(DESCRIPTION_PROVIDER.get());
     assertThat(expression, Matchers.hasToString(Matchers.containsString("simpleDescription")));
   }

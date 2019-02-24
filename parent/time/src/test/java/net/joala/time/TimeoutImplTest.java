@@ -45,12 +45,12 @@ public class TimeoutImplTest {
   private final Supplier<Double> randomPositiveDouble = DOUBLES::next;
 
   @Test(expected = IllegalArgumentException.class)
-  public void constructor_should_throw_exception_on_negative_timeout() throws Exception {
+  public void constructor_should_throw_exception_on_negative_timeout() {
     new TimeoutImpl(-1L, TimeUnit.MILLISECONDS);
   }
 
   @Test
-  public void constructor_should_set_amount_and_unit_correctly() throws Exception {
+  public void constructor_should_set_amount_and_unit_correctly() {
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
@@ -58,7 +58,7 @@ public class TimeoutImplTest {
   }
 
   @Test
-  public void in_method_should_convert_correctly() throws Exception {
+  public void in_method_should_convert_correctly() {
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);
@@ -68,7 +68,7 @@ public class TimeoutImplTest {
   }
 
   @Test
-  public void in_method_should_correctly_apply_positive_factor() throws Exception {
+  public void in_method_should_correctly_apply_positive_factor() {
     final double factor = randomPositiveDouble.get();
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
@@ -78,7 +78,7 @@ public class TimeoutImplTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-  public void in_method_should_throw_exception_on_non_positive_factor() throws Exception {
+  public void in_method_should_throw_exception_on_non_positive_factor() {
     final double factor = -1.0 * randomPositiveDouble.get();
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
@@ -87,7 +87,7 @@ public class TimeoutImplTest {
   }
 
   @Test
-  public void toString_should_contain_necessary_information() throws Throwable {
+  public void toString_should_contain_necessary_information() {
     final int amount = randomPositiveInt.get();
     final TimeUnit unit = TimeUnit.SECONDS;
     final Timeout timeout = new TimeoutImpl(amount, unit);

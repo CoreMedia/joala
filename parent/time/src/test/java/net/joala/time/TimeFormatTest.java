@@ -55,7 +55,7 @@ public class TimeFormatTest {
   }
 
   @Test
-  public void time_should_be_formatted_as_expected() throws Exception {
+  public void time_should_be_formatted_as_expected() {
     final String description = TimeFormat.format(amount, timeUnit);
     assertThat(message, description, new MatchesPattern(expectedTimePattern));
   }

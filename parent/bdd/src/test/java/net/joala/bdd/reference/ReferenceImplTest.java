@@ -40,7 +40,7 @@ import static org.junit.Assert.assertTrue;
 @SuppressWarnings("ProhibitedExceptionDeclared")
 public class ReferenceImplTest {
   @Test
-  public void should_hold_value() throws Exception {
+  public void should_hold_value() {
     final Reference<Map<Object, Object>> reference = new ReferenceImpl<Map<Object, Object>>();
     final Map<Object, Object> referenceValue = Collections.emptyMap();
     reference.set(referenceValue);
@@ -48,27 +48,27 @@ public class ReferenceImplTest {
   }
 
   @Test(expected = ReferenceAlreadyBoundException.class)
-  public void should_deny_to_set_value_twice() throws Exception {
+  public void should_deny_to_set_value_twice() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set("Lorem");
     reference.set("Ipsum");
   }
 
   @Test(expected = ReferenceNotBoundException.class)
-  public void should_deny_to_read_from_unbound_reference() throws Exception {
+  public void should_deny_to_read_from_unbound_reference() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.get();
   }
 
   @Test
-  public void should_be_able_to_hold_reference_value_null() throws Exception {
+  public void should_be_able_to_hold_reference_value_null() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set(null);
     assertNull("Value null should be returned when retrieving value.", reference.get());
   }
 
   @Test
-  public void should_hold_property_value() throws Exception {
+  public void should_hold_property_value() {
     final String propertyKey = "lorem";
     final Map<Object, Object> propertyValue = Collections.emptyMap();
     final Reference<String> reference = new ReferenceImpl<String>();
@@ -78,7 +78,7 @@ public class ReferenceImplTest {
   }
 
   @Test
-  public void should_hold_null_property_value() throws Exception {
+  public void should_hold_null_property_value() {
     final String propertyKey = "lorem";
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.setProperty(propertyKey, null);
@@ -87,13 +87,13 @@ public class ReferenceImplTest {
   }
 
   @Test(expected = PropertyNotSetException.class)
-  public void should_fail_reading_unset_property() throws Exception {
+  public void should_fail_reading_unset_property() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.getProperty("lorem");
   }
 
   @Test(expected = PropertyAlreadySetException.class)
-  public void should_fail_setting_property_which_got_already_set() throws Exception {
+  public void should_fail_setting_property_which_got_already_set() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.setProperty("lorem", null);
     reference.setProperty("lorem", null);
@@ -101,14 +101,14 @@ public class ReferenceImplTest {
 
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
-  public void should_fail_for_set_with_property_key_null() throws Exception {
+  public void should_fail_for_set_with_property_key_null() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.setProperty(null, "value");
   }
 
   @SuppressWarnings("ConstantConditions")
   @Test(expected = NullPointerException.class)
-  public void should_fail_for_asking_a_null_key() throws Exception {
+  public void should_fail_for_asking_a_null_key() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.hasProperty(null);
   }
@@ -141,13 +141,13 @@ public class ReferenceImplTest {
   }
 
   @Test(expected = PropertyNotSetException.class)
-  public void should_fail_when_trying_to_remove_unset_property() throws Exception {
+  public void should_fail_when_trying_to_remove_unset_property() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.removeProperty("foo", String.class);
   }
 
   @Test
-  public void remove_property_should_return_former_property_value() throws Exception {
+  public void remove_property_should_return_former_property_value() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.setProperty("foo", "bar");
     assertEquals("\"foo\" must be set to \"bar\".", "bar", reference.removeProperty("foo", String.class));
@@ -162,21 +162,21 @@ public class ReferenceImplTest {
   }
 
   @Test
-  public void should_be_possible_to_query_if_reference_value_is_set_if_set() throws Exception {
+  public void should_be_possible_to_query_if_reference_value_is_set_if_set() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set("Lorem");
     assertTrue("Reference should signal to carry a value.", reference.hasValue());
   }
 
   @Test
-  public void hasValue_should_signal_value_set_for_reference_value_null() throws Exception {
+  public void hasValue_should_signal_value_set_for_reference_value_null() {
     final Reference<String> reference = new ReferenceImpl<String>();
     reference.set(null);
     assertTrue("Reference should signal to carry a value.", reference.hasValue());
   }
 
   @Test
-  public void should_be_possible_to_query_if_reference_value_is_set_if_unset() throws Exception {
+  public void should_be_possible_to_query_if_reference_value_is_set_if_unset() {
     final Reference<String> reference = new ReferenceImpl<String>();
     assertFalse("Reference should signal not to carry a value.", reference.hasValue());
   }

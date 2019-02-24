@@ -53,7 +53,7 @@ public class SpringConfiguredConditionFactoryTest {
   private ConditionFactory conditionFactory;
 
   @Test
-  public void condition_factory_should_have_been_injected() throws Exception {
+  public void condition_factory_should_have_been_injected() {
     assertNotNull("Condition factory should not be null.", conditionFactory);
     assertThat("Condition factory should match expected default.",
             conditionFactory,
@@ -61,7 +61,7 @@ public class SpringConfiguredConditionFactoryTest {
   }
 
   @Test
-  public void instantiating_boolean_condition_should_be_possible() throws Exception {
+  public void instantiating_boolean_condition_should_be_possible() {
     final BooleanTestExpression expression = mock(BooleanTestExpression.class);
     when(expression.get()).thenReturn(Boolean.TRUE);
     final BooleanCondition condition = conditionFactory.booleanCondition(expression);
@@ -70,7 +70,7 @@ public class SpringConfiguredConditionFactoryTest {
   }
 
   @Test
-  public void instantiating_string_condition_should_be_possible() throws Exception {
+  public void instantiating_string_condition_should_be_possible() {
     final StringTestExpression expression = mock(StringTestExpression.class);
     final String value = EXPRESSION_VALUE_PROVIDER.get();
     when(expression.get()).thenReturn(value);

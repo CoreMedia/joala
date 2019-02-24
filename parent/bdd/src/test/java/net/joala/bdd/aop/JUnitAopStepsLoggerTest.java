@@ -58,12 +58,12 @@ public class JUnitAopStepsLoggerTest {
   private Steps steps;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     JUnitAopStepsLoggerTestAppender.clearEvents();
   }
 
   @After
-  public void tearDown() throws Exception {
+  public void tearDown() {
     JUnitAopStepsLoggerTestAppender.clearEvents();
   }
 
@@ -94,14 +94,14 @@ public class JUnitAopStepsLoggerTest {
   }
 
   @Test
-  public void testGivenPointcut() throws Exception {
+  public void testGivenPointcut() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_test();
     assertMessagesContains("given this is a test");
   }
 
   @Test
-  public void testSingleArgumentLogged() throws Exception {
+  public void testSingleArgumentLogged() {
     final String TEST_VALUE = "cxyvhkah";
     final SelfDescribing pseudoRef = new TestSelfDescribing(TEST_VALUE);
     steps.given_this_is_a_step_with_a_logged_argument(pseudoRef);
@@ -109,14 +109,14 @@ public class JUnitAopStepsLoggerTest {
   }
 
   @Test
-  public void testSingleArgumentNotLogged() throws Exception {
+  public void testSingleArgumentNotLogged() {
     final String TEST_VALUE = "cxyvhkah";
     steps.given_this_is_a_step_with_a_not_logged_argument(TEST_VALUE);
     assertMessagesDontContain(TEST_VALUE);
   }
 
   @Test
-  public void testMultipleLoggedArgumentsAreLogged() throws Exception {
+  public void testMultipleLoggedArgumentsAreLogged() {
     final String TEST_VALUE_1 = "cxyvhkah";
     final String TEST_VALUE_2 = "sdfahvhs";
     final SelfDescribing pseudoRef1 = new TestSelfDescribing(TEST_VALUE_1);
@@ -129,7 +129,7 @@ public class JUnitAopStepsLoggerTest {
   }
 
   @Test
-  public void testMultipleLoggedVarargArgumentsAreLogged() throws Exception {
+  public void testMultipleLoggedVarargArgumentsAreLogged() {
     final String TEST_VALUE_1 = "cxyvhkah";
     final String TEST_VALUE_2 = "sdfahvhs";
     final SelfDescribing pseudoRef1 = new TestSelfDescribing(TEST_VALUE_1);
@@ -142,14 +142,14 @@ public class JUnitAopStepsLoggerTest {
   }
 
   @Test
-  public void testWhenPointcut() throws Exception {
+  public void testWhenPointcut() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.when_this_is_a_test();
     assertMessagesContains("when this is a test");
   }
 
   @Test
-  public void testFailingWhenPointcut() throws Exception {
+  public void testFailingWhenPointcut() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     try {
       steps.when_assumption_fails();
@@ -160,14 +160,14 @@ public class JUnitAopStepsLoggerTest {
   }
 
   @Test
-  public void testThenPointcut() throws Exception {
+  public void testThenPointcut() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.then_this_is_a_test();
     assertMessagesContains("then this is a test");
   }
 
   @Test
-  public void testFailingThenPointcut() throws Exception {
+  public void testFailingThenPointcut() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     try {
       steps.then_I_fail();
@@ -179,7 +179,7 @@ public class JUnitAopStepsLoggerTest {
 
   @SuppressWarnings("MagicNumber")
   @Test
-  public void testInsertedNumberArgument() throws Exception {
+  public void testInsertedNumberArgument() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_an_inserted_argument_$0(42);
     assertMessagesContains("given this is a step with an inserted argument 42");
@@ -187,28 +187,28 @@ public class JUnitAopStepsLoggerTest {
 
   @SuppressWarnings("MagicNumber")
   @Test
-  public void testInsertedNumberArgumentInTheMiddle() throws Exception {
+  public void testInsertedNumberArgumentInTheMiddle() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(42);
     assertMessagesContains("given this is a step with an inserted argument 42 in the middle of the method name");
   }
 
   @Test
-  public void testInsertedNullArgument() throws Exception {
+  public void testInsertedNullArgument() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_an_inserted_argument_$0(null);
     assertMessagesContains("given this is a step with an inserted argument <null>");
   }
 
   @Test
-  public void testInsertedStringArgument() throws Exception {
+  public void testInsertedStringArgument() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_an_inserted_argument_$0("foo");
     assertMessagesContains("given this is a step with an inserted argument \"foo\"");
   }
 
   @Test
-  public void testInsertedReferenceArgument() throws Exception {
+  public void testInsertedReferenceArgument() {
     final SelfDescribingReferenceImpl<Object> ref = new SelfDescribingReferenceImpl<Object>("bar");
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_an_inserted_argument_$0(ref);
@@ -216,7 +216,7 @@ public class JUnitAopStepsLoggerTest {
   }
 
   @Test
-  public void testFakePlaceholder() throws Exception {
+  public void testFakePlaceholder() {
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_a_fake_placeholder_$42();
     assertMessagesContains("given this is a step with a fake placeholder $42");

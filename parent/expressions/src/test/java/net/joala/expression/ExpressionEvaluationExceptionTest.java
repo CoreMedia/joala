@@ -41,7 +41,7 @@ public class ExpressionEvaluationExceptionTest {
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test
-  public void default_constructor_should_work() throws Exception {
+  public void default_constructor_should_work() {
     try {
       throw new ExpressionEvaluationException();
     } catch (ExpressionEvaluationException e) {
@@ -51,7 +51,7 @@ public class ExpressionEvaluationExceptionTest {
   }
 
   @Test
-  public void constructor_with_message_should_work() throws Exception {
+  public void constructor_with_message_should_work() {
     final String message = MESSAGE_PROVIDER.get();
     try {
       throw new ExpressionEvaluationException(message);
@@ -62,7 +62,7 @@ public class ExpressionEvaluationExceptionTest {
   }
 
   @Test
-  public void constructor_with_cause_should_work() throws Exception {
+  public void constructor_with_cause_should_work() {
     final String message = MESSAGE_PROVIDER.get();
     final Exception cause = new Exception(message);
     try {
@@ -74,7 +74,7 @@ public class ExpressionEvaluationExceptionTest {
   }
 
   @Test
-  public void constructor_with_message_and_cause_should_work() throws Exception {
+  public void constructor_with_message_and_cause_should_work() {
     final String message = MESSAGE_PROVIDER.get();
     final Exception cause = new Exception(MESSAGE_CAUSE_PROVIDER.get());
     try {
