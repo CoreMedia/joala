@@ -445,6 +445,7 @@ Joala tries to avoid having any of the following dependencies:
     to artifacts like mockito-all.
   * findbugs:jsr305 - being incompatible with Java 11, use spotbugs-annotations
     instead.
+  * checker-qual: Use spotbugs-annotations instead.
                   ]]></message>
                   <searchTransitive>true</searchTransitive>
                   <excludes>
@@ -456,6 +457,8 @@ Joala tries to avoid having any of the following dependencies:
                     <exclude>junit:junit-dep</exclude>
                     <!-- Findbugs fails with Java 11, use spotbugs-annotations instead. -->
                     <exclude>com.google.code.findbugs:jsr305</exclude>
+                    <!-- Prevent accidental import. Use spotbugs-annotations instead. -->
+                    <exclude>org.checkerframework:checker-qual</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>
