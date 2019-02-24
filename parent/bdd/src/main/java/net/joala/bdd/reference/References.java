@@ -53,7 +53,7 @@ public final class References {
    */
   @NonNull
   public static <T> Reference<T> ref() {
-    return new ReferenceImpl<T>();
+    return new ReferenceImpl<>();
   }
 
   /**
@@ -76,6 +76,6 @@ public final class References {
    */
   @NonNull
   public static <T> Reference<T> ref(final String name) {
-    return new SelfDescribingReferenceImpl<T>(name);
+    return new SelfDescribingReferenceImpl<>(name);
   }
 }

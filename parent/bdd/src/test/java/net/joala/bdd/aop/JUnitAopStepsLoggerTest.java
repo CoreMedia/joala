@@ -209,7 +209,7 @@ public class JUnitAopStepsLoggerTest {
 
   @Test
   public void testInsertedReferenceArgument() {
-    final SelfDescribingReferenceImpl<Object> ref = new SelfDescribingReferenceImpl<Object>("bar");
+    final SelfDescribingReferenceImpl<Object> ref = new SelfDescribingReferenceImpl<>("bar");
     assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
     steps.given_this_is_a_step_with_an_inserted_argument_$0(ref);
     assertMessagesContains("given this is a step with an inserted argument <bar>");

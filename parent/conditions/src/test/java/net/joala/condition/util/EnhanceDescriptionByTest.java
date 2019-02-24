@@ -76,14 +76,14 @@ public class EnhanceDescriptionByTest {
 
   @Test
   public void describeTo_should_add_matcher_description() {
-    final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
+    final SelfDescribing descMatcher = new EnhanceDescriptionBy<>(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Matcher description should be part of the description.", description.toString(), Matchers.containsString(matcherDescription));
   }
 
   @Test
   public void describeTo_should_add_enhanced_description() {
-    final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(plainDescriptionTemplate, matcher);
+    final SelfDescribing descMatcher = new EnhanceDescriptionBy<>(plainDescriptionTemplate, matcher);
     descMatcher.describeTo(description);
     assertThat("Enhanced description should be part of the description.", description.toString(), Matchers.containsString(plainDescriptionTemplate));
   }
@@ -91,7 +91,7 @@ public class EnhanceDescriptionByTest {
   @Test
   public void describeTo_should_add_template_arguments() {
     final String argument = format("%sarg0", random(RANDOM_STRING_LENGTH));
-    final SelfDescribing descMatcher = new EnhanceDescriptionBy<String>(arg1DescriptionTemplate, matcher, argument);
+    final SelfDescribing descMatcher = new EnhanceDescriptionBy<>(arg1DescriptionTemplate, matcher, argument);
     descMatcher.describeTo(description);
     assertThat("Argument should be contained in description.", description.toString(), Matchers.containsString(argument));
   }

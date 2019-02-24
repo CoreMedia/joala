@@ -40,7 +40,7 @@ import static java.lang.String.format;
 public class ReferenceImpl<T> implements Reference<T> {
   private boolean valueSet;
   private T value;
-  private final Map<String, Object> properties = new HashMap<String, Object>(1);
+  private final Map<String, Object> properties = new HashMap<>(1);
 
   @Override
   public void set(@Nullable final T value) {

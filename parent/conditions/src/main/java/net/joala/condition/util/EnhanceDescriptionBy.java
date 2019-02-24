@@ -61,7 +61,7 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
           @NonNull final String descriptionTemplate,
           @NonNull final Matcher<T> matcher,
           final Object... values) {
-    return new EnhanceDescriptionBy<T>(descriptionTemplate, matcher, values);
+    return new EnhanceDescriptionBy<>(descriptionTemplate, matcher, values);
   }
 
 }

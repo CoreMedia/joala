@@ -32,7 +32,7 @@ import java.util.Collections;
  * @since 6/2/12
  */
 public class JUnitAopStepsLoggerTestAppender extends AppenderBase<ILoggingEvent> {
-  private static final Collection<ILoggingEvent> events = new ArrayList<ILoggingEvent>(1);
+  private static final Collection<ILoggingEvent> events = new ArrayList<>(1);
 
   @Override
   protected void append(final ILoggingEvent eventObject) {
