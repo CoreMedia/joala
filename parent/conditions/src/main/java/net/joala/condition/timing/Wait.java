@@ -19,7 +19,7 @@
 
 package net.joala.condition.timing;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Matcher;

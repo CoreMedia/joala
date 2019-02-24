@@ -19,12 +19,13 @@
 
 package net.joala.condition.timing;
 
-import com.google.common.base.Function;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
+
+import java.util.function.Function;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static net.joala.condition.util.DescriptionUtil.describeTo;

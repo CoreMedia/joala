@@ -19,11 +19,12 @@
 
 package net.joala.condition;
 
-import com.google.common.base.Function;
 import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.condition.timing.IgnorableStateQueryException;
 import net.joala.expression.Expression;
 import net.joala.expression.ExpressionEvaluationException;
+
+import java.util.function.Function;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

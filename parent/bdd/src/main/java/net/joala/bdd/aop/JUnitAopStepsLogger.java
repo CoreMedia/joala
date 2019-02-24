@@ -19,12 +19,9 @@
 
 package net.joala.bdd.aop;
 
-import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import edu.umd.cs.findbugs.annotations.NonNull;
-import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.bdd.reference.SelfDescribingReference;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -37,6 +34,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * <p>
@@ -175,11 +176,13 @@ public class JUnitAopStepsLogger {
    */
   private void describeArguments(@NonNull final Description stepDescription, @NonNull final Object[] args) {
     final List<Object> argsList = Arrays.asList(args);
-    final Iterable<Object> descArgs = Iterables.filter(argsList, new IsSelfDescribing());
+    Predicate<Object> predicate = new IsSelfDescribing();
+    final List<Object> descArgs = argsList.stream().filter(predicate).collect(toList());
     final boolean hasDescribableArgs = !Iterables.isEmpty(descArgs);
     if (hasDescribableArgs) {
       stepDescription.appendText(" (");
-      final Iterable<String> transformed = Iterables.transform(descArgs, new DescribeArgument());
+      DescribeArgument mapper = new DescribeArgument();
+      final List<String> transformed = descArgs.stream().map(mapper).collect(toList());
       stepDescription.appendText(Joiner.on(',').join(transformed));
       stepDescription.appendText(")");
     }
@@ -192,14 +195,14 @@ public class JUnitAopStepsLogger {
    */
   private static class IsSelfDescribing implements Predicate<Object> {
     @Override
-    public boolean apply(@Nullable final Object input) {
+    public boolean test(final Object input) {
       return input instanceof SelfDescribing || input instanceof SelfDescribing[];
     }
   }
 
   private static class DescribeArgument implements Function<Object, String> {
     @Override
-    public String apply(@Nullable final Object input) {
+    public String apply(final Object input) {
       final Description description = new StringDescription();
       if (input instanceof SelfDescribing) {
         description.appendDescriptionOf((SelfDescribing) input);

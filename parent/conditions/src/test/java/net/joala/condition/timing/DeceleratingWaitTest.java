@@ -19,7 +19,6 @@
 
 package net.joala.condition.timing;
 
-import com.google.common.base.Function;
 import com.google.common.base.MoreObjects;
 import edu.umd.cs.findbugs.annotations.NonNull;
 import edu.umd.cs.findbugs.annotations.Nullable;
@@ -40,6 +39,7 @@ import java.util.PrimitiveIterator.OfDouble;
 import java.util.PrimitiveIterator.OfLong;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static java.lang.Math.round;
