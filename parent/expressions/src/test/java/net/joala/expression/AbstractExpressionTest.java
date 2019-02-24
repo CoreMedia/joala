@@ -19,7 +19,7 @@
 
 package net.joala.expression;
 
-import org.apache.commons.text.RandomStringGenerator;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.hamcrest.Description;
 import org.hamcrest.Matchers;
 import org.hamcrest.SelfDescribing;
@@ -41,9 +41,8 @@ import static org.junit.Assert.assertThat;
  */
 @SuppressWarnings("ProhibitedExceptionDeclared")
 public class AbstractExpressionTest {
-  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
-  private static final Supplier<String> TEXT_PROVIDER = () -> "text_" + RANDOM_STRING_GENERATOR.generate(20);
-  private static final Supplier<String> DESCRIPTION_PROVIDER = () -> "description_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> TEXT_PROVIDER = () -> "text_" + RandomStringUtils.random(20);
+  private static final Supplier<String> DESCRIPTION_PROVIDER = () -> "description_" + RandomStringUtils.random(20);
 
   @Test
   public void empty_simple_description_should_not_cause_update_of_description() throws Exception {

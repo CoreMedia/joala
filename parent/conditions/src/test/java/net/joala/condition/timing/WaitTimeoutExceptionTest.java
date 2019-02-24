@@ -19,9 +19,9 @@
 
 package net.joala.condition.timing;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.apache.commons.text.RandomStringGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -41,8 +41,7 @@ import static org.junit.Assert.assertSame;
 @SuppressWarnings("ProhibitedExceptionDeclared")
 @RunWith(Parameterized.class)
 public class WaitTimeoutExceptionTest {
-  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
-  private static final Supplier<String> STRING_PROVIDER = () -> RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> STRING_PROVIDER = () -> RandomStringUtils.random(20);
 
   @Test(expected = WaitTimeoutException.class)
   public void should_be_able_to_call_constructor_without_exception() throws Exception {

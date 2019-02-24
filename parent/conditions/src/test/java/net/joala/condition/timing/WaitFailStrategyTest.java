@@ -19,13 +19,12 @@
 
 package net.joala.condition.timing;
 
-import org.apache.commons.text.RandomStringGenerator;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.assertj.core.api.Assertions;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.PrintWriter;
@@ -41,7 +40,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.lenient;
 
 /**
@@ -53,11 +51,10 @@ import static org.mockito.Mockito.lenient;
  */
 @RunWith(MockitoJUnitRunner.class)
 public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends Throwable> {
-  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
   private static final PrimitiveIterator.OfLong LONGS = new Random().longs(0L, 1000L).iterator();
 
-  private static final Supplier<String> FAIL_MESSAGE_PROVIDER = () -> "failMessage_" + RANDOM_STRING_GENERATOR.generate(20);
-  private static final Supplier<String> EXCEPTION_MESSAGE_PROVIDER = () -> "exceptionMessage_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> FAIL_MESSAGE_PROVIDER = () -> "failMessage_" + RandomStringUtils.random(20);
+  private static final Supplier<String> EXCEPTION_MESSAGE_PROVIDER = () -> "exceptionMessage_" + RandomStringUtils.random(20);
   private static final Supplier<Long> CONSUMED_MILLIS_PROVIDER = LONGS::next;
 
   @SuppressWarnings("UnusedDeclaration")

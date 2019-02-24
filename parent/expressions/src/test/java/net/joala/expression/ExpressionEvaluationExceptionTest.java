@@ -19,7 +19,7 @@
 
 package net.joala.expression;
 
-import org.apache.commons.text.RandomStringGenerator;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 
 import java.util.function.Supplier;
@@ -36,9 +36,8 @@ import static org.junit.Assert.assertThat;
  * @since 8/25/12
  */
 public class ExpressionEvaluationExceptionTest {
-  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
-  private static final Supplier<String> MESSAGE_PROVIDER = () -> "message_" + RANDOM_STRING_GENERATOR.generate(20);
-  private static final Supplier<String> MESSAGE_CAUSE_PROVIDER = () -> "messageCause_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> MESSAGE_PROVIDER = () -> "message_" + RandomStringUtils.random(20);
+  private static final Supplier<String> MESSAGE_CAUSE_PROVIDER = () -> "messageCause_" + RandomStringUtils.random(20);
 
   @SuppressWarnings("NewExceptionWithoutArguments")
   @Test

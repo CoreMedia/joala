@@ -20,7 +20,7 @@
 package net.joala.condition;
 
 import net.joala.expression.Expression;
-import org.apache.commons.text.RandomStringGenerator;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -47,8 +47,7 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/META-INF/joala/condition/test-context.xml")
 public class SpringConfiguredConditionFactoryTest {
-  private static final RandomStringGenerator RANDOM_STRING_GENERATOR = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
-  private static final Supplier<String> EXPRESSION_VALUE_PROVIDER = () -> "expressionValue_" + RANDOM_STRING_GENERATOR.generate(20);
+  private static final Supplier<String> EXPRESSION_VALUE_PROVIDER = () -> "expressionValue_" + RandomStringUtils.random(20);
 
   @Inject
   private ConditionFactory conditionFactory;
