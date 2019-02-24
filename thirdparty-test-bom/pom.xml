@@ -35,13 +35,9 @@
   ]]></description>
 
   <properties>
-    <spring.version>4.3.9.RELEASE</spring.version>
+    <spring.version>5.1.5.RELEASE</spring.version>
     <logback.version>1.2.3</logback.version>
-    <powermock.version>1.7.0</powermock.version>
-<!--
-    <mockito.version>2.8.47</mockito.version>
--->
-    <mockito.version>1.10.19</mockito.version>
+    <mockito.version>2.24.5</mockito.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -54,45 +50,6 @@
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
         <version>3.12.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.kubek2k</groupId>
-        <artifactId>springockito</artifactId>
-        <version>1.0.9</version>
-        <exclusions>
-          <!-- Must not use mockito-all as it comes with hamcrest fork included. -->
-          <exclusion>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-mockito</artifactId>
-        <version>${powermock.version}</version>
-        <exclusions>
-          <!-- Must not use mockito-all as it comes with hamcrest fork included. -->
-          <exclusion>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-core</artifactId>
-        <version>${powermock.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-support</artifactId>
-        <version>${powermock.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.powermock</groupId>
-        <artifactId>powermock-module-junit4</artifactId>
-        <version>${powermock.version}</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
@@ -116,11 +73,6 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
-        <artifactId>spring-context-support</artifactId>
-        <version>${spring.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
         <artifactId>spring-core</artifactId>
         <version>${spring.version}</version>
         <exclusions>
@@ -134,12 +86,6 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
-      </dependency>
-      <!-- Dependency convergence: Mockito vs. Powermock -->
-      <dependency>
-        <groupId>org.objenesis</groupId>
-        <artifactId>objenesis</artifactId>
-        <version>2.5.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

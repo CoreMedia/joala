@@ -25,7 +25,8 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.PrintWriter;
 import java.util.PrimitiveIterator;
@@ -39,8 +40,9 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.lenient;
 
 /**
  * <p>
@@ -143,8 +145,9 @@ public abstract class WaitFailStrategyTest<S extends WaitFailStrategy, T extends
   public void cause_when_failed_with_exception_should_be_contained_in_exception() {
     final S strategy = getFailStrategy();
     final String evaluationExceptionMessage = EXCEPTION_MESSAGE_PROVIDER.get();
-    doAnswer(invocation -> {
-      invocation.getArgumentAt(0, PrintWriter.class).append(evaluationExceptionMessage);
+    lenient().doAnswer(invocation -> {
+      PrintWriter argument = invocation.getArgument(0);
+      argument.append(evaluationExceptionMessage);
       return null;
     }).when(lastFailure).printStackTrace(any(PrintWriter.class));
 
