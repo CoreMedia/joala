@@ -232,6 +232,7 @@ public class JUnitAopStepsLoggerTest {
     void when_this_is_a_test() {
     }
 
+    @SuppressWarnings("ConstantConditions")
     void when_assumption_fails() {
       Assume.assumeTrue(false);
     }

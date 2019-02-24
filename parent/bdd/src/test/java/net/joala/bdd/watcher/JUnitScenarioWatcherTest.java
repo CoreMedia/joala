@@ -54,6 +54,7 @@ public class JUnitScenarioWatcherTest {
     @Rule
     public TestRule watcher = new MockJUnitScenarioWatcher(watchedLog);
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     public void scenario_assumption_failure() {
       assumeTrue(false);
