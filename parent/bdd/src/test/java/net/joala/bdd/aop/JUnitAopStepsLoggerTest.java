@@ -225,48 +225,48 @@ public class JUnitAopStepsLoggerTest {
   @Named
   @Singleton
   public static class Steps {
-    public void given_this_is_a_test() {
+    void given_this_is_a_test() {
     }
 
-    public void when_this_is_a_test() {
+    void when_this_is_a_test() {
     }
 
-    public void when_assumption_fails() {
+    void when_assumption_fails() {
       Assume.assumeTrue(false);
     }
 
-    public void then_this_is_a_test() {
+    void then_this_is_a_test() {
     }
 
-    public void then_I_fail() {
+    void then_I_fail() {
       fail("I will fail.");
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_a_logged_argument(final SelfDescribing pseudoRef) {
+    void given_this_is_a_step_with_a_logged_argument(final SelfDescribing pseudoRef) {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_a_not_logged_argument(final String val) {
+    void given_this_is_a_step_with_a_not_logged_argument(final String val) {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_two_logged_arguments(final SelfDescribing pseudoRef1, final SelfDescribing pseudoRef2) {
+    void given_this_is_a_step_with_two_logged_arguments(final SelfDescribing pseudoRef1, final SelfDescribing pseudoRef2) {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_two_logged_vararg_arguments(final SelfDescribing... pseudoRef1) {
+    void given_this_is_a_step_with_two_logged_vararg_arguments(final SelfDescribing... pseudoRef1) {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_an_inserted_argument_$0(final Object o) {
+    void given_this_is_a_step_with_an_inserted_argument_$0(final Object o) {
     }
 
     @SuppressWarnings("UnusedParameters")
-    public void given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(final Object o) {
+    void given_this_is_a_step_with_an_inserted_argument_$0_in_the_middle_of_the_method_name(final Object o) {
     }
 
-    public void given_this_is_a_step_with_a_fake_placeholder_$42() {
+    void given_this_is_a_step_with_a_fake_placeholder_$42() {
     }
   }
 
