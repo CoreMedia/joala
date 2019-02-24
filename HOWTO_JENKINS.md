@@ -2,7 +2,7 @@
 
 ## 3 Jobs
 
-In order to provide fast reponses to code changes the recommended setup for Jenkins is having three distinct jobs.
+In order to provide fast responses to code changes the recommended setup for Jenkins is having three distinct jobs.
 
 ### Job 1: joala-ci
 

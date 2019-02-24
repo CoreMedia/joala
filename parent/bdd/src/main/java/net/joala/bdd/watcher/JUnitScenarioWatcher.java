@@ -65,7 +65,7 @@ public class JUnitScenarioWatcher extends TestWatcher {
    */
   private static final Pattern INSERT_SPACE_BEFORE_CAP_LETTERS_PATTERN = Pattern.compile("([A-Z][^A-Z0-9]*|[0-9]+)");
   /**
-   * Pattern to remove the test-suffic from test class names.
+   * Pattern to remove the test-suffix from test class names.
    */
   private static final Pattern REMOVE_TEST_SUFFIX_PATTERN = Pattern.compile("I?Test$");
   private static final int MIN_DOTS = 3;

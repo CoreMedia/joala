@@ -45,7 +45,7 @@
   <bean id="defaultTimeout" class="net.joala.time.TimeoutImpl" scope="singleton">
     <description><![CDATA[
       Provides a default timeout. It defaults to 30 seconds. The amount of
-      seconds to use as default can be overriden by a property named
+      seconds to use as default can be overridden by a property named
       condition.timeout.seconds.
     ]]></description>
     <constructor-arg name="amount" value="${condition.timeout.seconds}"/>
