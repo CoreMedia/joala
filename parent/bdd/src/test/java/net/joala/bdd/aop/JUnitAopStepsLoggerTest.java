@@ -222,6 +222,7 @@ public class JUnitAopStepsLoggerTest {
     assertMessagesContains("given this is a step with a fake placeholder $42");
   }
 
+  @SuppressWarnings("EmptyMethod")
   @Named
   @Singleton
   public static class Steps {

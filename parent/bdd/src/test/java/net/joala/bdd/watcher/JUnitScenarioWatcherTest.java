@@ -132,6 +132,7 @@ public class JUnitScenarioWatcherTest {
     titleShouldBeReported(AssertionErrorTest.watchedLog, AssertionErrorTest.class, "assertion error");
   }
 
+  @SuppressWarnings("EmptyMethod")
   public static class PassedTest {
     private static Appendable watchedLog = new StringBuilder();
 
