@@ -21,6 +21,8 @@ package net.joala.condition.timing;
 
 import com.google.common.base.Function;
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
@@ -31,9 +33,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -358,15 +357,15 @@ public class DeceleratingWaitTest {
     private TestedDeceleratingWait() {
     }
 
-    private TestedDeceleratingWait(@Nonnull final Timeout timeout) {
+    private TestedDeceleratingWait(@NonNull final Timeout timeout) {
       super(timeout);
     }
 
-    private TestedDeceleratingWait(@Nonnull final Timeout timeout, @Nonnull final WaitFailStrategy failStrategy) {
+    private TestedDeceleratingWait(@NonNull final Timeout timeout, @NonNull final WaitFailStrategy failStrategy) {
       super(timeout, failStrategy);
     }
 
-    private TestedDeceleratingWait(@Nonnull final Timeout timeout, @Nonnegative final double timeoutFactor) {
+    private TestedDeceleratingWait(@NonNull final Timeout timeout, final double timeoutFactor) {
       super(timeout, timeoutFactor);
     }
 
@@ -399,7 +398,7 @@ public class DeceleratingWaitTest {
     }
   }
 
-  private ExpectedCall nextCall(@Nonnull final WaitCall type) {
+  private ExpectedCall nextCall(@NonNull final WaitCall type) {
     final ExpectedCall peek = expectedCalls.peek();
     if (peek == null) {
       fail(format("Call of type %s but did not expect any more calls.", type));

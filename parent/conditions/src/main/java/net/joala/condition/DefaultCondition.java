@@ -20,6 +20,8 @@
 package net.joala.condition;
 
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.condition.timing.DeceleratingWait;
 import net.joala.condition.timing.Wait;
 import net.joala.condition.timing.WaitFailStrategy;
@@ -28,10 +30,6 @@ import net.joala.expression.Expression;
 import net.joala.time.Timeout;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsAnything;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -71,18 +69,17 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   @Nullable
   private Runnable runBeforeRunnable;
 
-  @Nonnull
+  @NonNull
   private final Timeout timeout;
 
   /**
    * The expression to retrieve the value/state while waiting.
    */
-  @Nonnull
+  @NonNull
   private final Expression<T> expression;
-  @Nonnegative
   private double factor = 1.0;
 
-  public DefaultCondition(@Nonnull final Expression<T> expression, @Nonnull final Timeout timeout) {
+  public DefaultCondition(@NonNull final Expression<T> expression, @NonNull final Timeout timeout) {
     checkNotNull(expression, "Expression must not be null.");
     checkNotNull(timeout, "Timeout must not be null.");
     this.expression = expression;
@@ -100,12 +97,12 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   }
 
   @Override
-  public T await(@Nonnull final Matcher<? super T> matcher) {
+  public T await(@NonNull final Matcher<? super T> matcher) {
     return until(matcher, TIMEOUT_FAIL_STRATEGY);
   }
 
   @Override
-  public void waitUntil(@Nonnull final Matcher<? super T> matcher) {
+  public void waitUntil(@NonNull final Matcher<? super T> matcher) {
     //noinspection ResultOfMethodCallIgnored
     await(matcher); // NOSONAR; Ignoring return value by intention
   }
@@ -119,7 +116,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
     return until(new DeceleratingWait(timeout, factor, failStrategy), matcher);
   }
 
-  private T until(@Nonnull final Wait wait, @Nullable final Matcher<? super T> matcher) {
+  private T until(@NonNull final Wait wait, @Nullable final Matcher<? super T> matcher) {
     if (runBeforeRunnable != null) {
       runBeforeRunnable.run();
     }
@@ -133,7 +130,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   }
 
   @Override
-  public void assumeThat(@Nonnull final Matcher<? super T> matcher) {
+  public void assumeThat(@NonNull final Matcher<? super T> matcher) {
     until(matcher, ASSUMPTION_FAIL_STRATEGY);
   }
 
@@ -143,7 +140,7 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   }
 
   @Override
-  public void assertThat(@Nonnull final Matcher<? super T> matcher) {
+  public void assertThat(@NonNull final Matcher<? super T> matcher) {
     until(matcher, ASSERTION_FAIL_STRATEGY);
   }
 
@@ -153,28 +150,28 @@ public class DefaultCondition<T> implements Condition<T>, FailSafeCondition<T> {
   }
 
   @Override
-  @Nonnull
+  @NonNull
   public DefaultCondition<T> runFinally(@Nullable final Runnable runnable) {
     runFinallyRunnable = runnable;
     return this;
   }
 
   @Override
-  @Nonnull
+  @NonNull
   public DefaultCondition<T> runBefore(@Nullable final Runnable runnable) {
     runBeforeRunnable = runnable;
     return this;
   }
 
   @Override
-  @Nonnull
-  public DefaultCondition<T> withTimeoutFactor(@Nonnegative final double newFactor) {
+  @NonNull
+  public DefaultCondition<T> withTimeoutFactor(final double newFactor) {
     this.factor = newFactor;
     return this;
   }
 
   @Override
-  @Nonnull
+  @NonNull
   public DefaultCondition<T> withMessage(@Nullable final String newMessage) {
     this.message = newMessage;
     return this;

@@ -20,12 +20,11 @@
 package net.joala.condition.timing;
 
 import com.google.common.base.Function;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.StringDescription;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static net.joala.condition.util.DescriptionUtil.describeTo;
@@ -46,7 +45,7 @@ import static net.joala.condition.util.DescriptionUtil.describeTo;
  */
 public class IgnorableStateQueryException extends RuntimeException {
   private static final String CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL = "Query function must not be null";
-  @Nonnull
+  @NonNull
   private final Function<?, ?> stateQuery;
 
   /**
@@ -56,7 +55,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    *
    * @param stateQuery query raising this exception
    */
-  public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery) {
+  public IgnorableStateQueryException(@NonNull final Function<?, ?> stateQuery) {
     super();
     checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
@@ -70,7 +69,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    * @param stateQuery query raising this exception
    * @param cause      exception which caused the failure on state query
    */
-  public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery, final Throwable cause) {
+  public IgnorableStateQueryException(@NonNull final Function<?, ?> stateQuery, final Throwable cause) {
     super(cause);
     checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
@@ -84,7 +83,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    * @param stateQuery query raising this exception
    * @param message    message for this failure, will be enriched by the description of the stateQuery
    */
-  public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery, final String message) {
+  public IgnorableStateQueryException(@NonNull final Function<?, ?> stateQuery, final String message) {
     super(message);
     checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
@@ -99,7 +98,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    * @param message    message for this failure, will be enriched by the description of the stateQuery
    * @param cause      exception which caused the failure on state query
    */
-  public IgnorableStateQueryException(@Nonnull final Function<?, ?> stateQuery, final String message, final Throwable cause) {
+  public IgnorableStateQueryException(@NonNull final Function<?, ?> stateQuery, final String message, final Throwable cause) {
     super(message, cause);
     checkNotNull(stateQuery, CHECK_QUERY_FUNCTION_MUST_NOT_BE_NULL);
     this.stateQuery = stateQuery;
@@ -124,7 +123,7 @@ public class IgnorableStateQueryException extends RuntimeException {
    * @param message  message provided for exception; might be {@code null}
    * @return a complete message for the exception
    */
-  private static String buildMessage(@Nonnull final Function<?, ?> function, @Nullable final String message) {
+  private static String buildMessage(@NonNull final Function<?, ?> function, @Nullable final String message) {
     final Description description = new StringDescription();
     if (message == null) {
       description.appendText("Failure: ");

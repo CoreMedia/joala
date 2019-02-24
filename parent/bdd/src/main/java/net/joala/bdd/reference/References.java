@@ -19,7 +19,7 @@
 
 package net.joala.bdd.reference;
 
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.NonNull;
 
 /**
  * <p>
@@ -51,7 +51,7 @@ public final class References {
    * @param <T> the type of value contained in the reference
    * @return a reference
    */
-  @Nonnull
+  @NonNull
   public static <T> Reference<T> ref() {
     return new ReferenceImpl<T>();
   }
@@ -74,7 +74,7 @@ public final class References {
    * @return a reference
    * @see #ref()
    */
-  @Nonnull
+  @NonNull
   public static <T> Reference<T> ref(final String name) {
     return new SelfDescribingReferenceImpl<T>(name);
   }

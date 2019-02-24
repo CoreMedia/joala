@@ -22,15 +22,14 @@ package net.joala.condition.timing;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.time.Timeout;
 import net.joala.time.TimeoutImpl;
 import org.hamcrest.Matcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.currentThread;
@@ -60,30 +59,29 @@ public class DeceleratingWait implements Wait {
   @VisibleForTesting
   static final double DECELERATION_FACTOR = 1.1;
   private static final long SLEEP_NOT_MUCH_LONGER_OFFSET_MILLIS = 100L;
-  @Nonnull
+  @NonNull
   private final Timeout timeout;
-  @Nonnegative
   private final double timeoutFactor;
-  @Nonnull
+  @NonNull
   private final WaitFailStrategy failStrategy;
 
   public DeceleratingWait() {
     this(new TimeoutImpl(DEFAULT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS));
   }
 
-  public DeceleratingWait(@Nonnull final Timeout timeout) {
+  public DeceleratingWait(@NonNull final Timeout timeout) {
     this(timeout, new WaitTimeoutFailStrategy());
   }
 
-  public DeceleratingWait(@Nonnull final Timeout timeout, @Nonnegative final double timeoutFactor) {
+  public DeceleratingWait(@NonNull final Timeout timeout, final double timeoutFactor) {
     this(timeout, timeoutFactor, new WaitTimeoutFailStrategy());
   }
 
-  public DeceleratingWait(@Nonnull final Timeout timeout, @Nonnull final WaitFailStrategy failStrategy) {
+  public DeceleratingWait(@NonNull final Timeout timeout, @NonNull final WaitFailStrategy failStrategy) {
     this(timeout, 1d, failStrategy);
   }
 
-  public DeceleratingWait(@Nonnull final Timeout timeout, @Nonnegative final double timeoutFactor, @Nonnull final WaitFailStrategy failStrategy) {
+  public DeceleratingWait(@NonNull final Timeout timeout, final double timeoutFactor, @NonNull final WaitFailStrategy failStrategy) {
     this.timeout = timeout;
     this.timeoutFactor = timeoutFactor;
     this.failStrategy = failStrategy;
@@ -111,19 +109,19 @@ public class DeceleratingWait implements Wait {
   }
 
   @Override
-  public final <F, T> T until(@Nonnull final F input, @Nonnull final Function<? super F, T> stateQuery) {
+  public final <F, T> T until(@NonNull final F input, @NonNull final Function<? super F, T> stateQuery) {
     return until(null, input, stateQuery, null);
   }
 
   @Override
-  public <F, T> T until(@Nonnull final F input, @Nonnull final Function<? super F, T> stateQuery, @Nullable final Matcher<? super T> matcher) {
+  public <F, T> T until(@NonNull final F input, @NonNull final Function<? super F, T> stateQuery, @Nullable final Matcher<? super T> matcher) {
     return until(null, input, stateQuery, matcher);
   }
 
   @Override
   public <F, T> T until(@Nullable final String message,
-                        @Nonnull final F input,
-                        @Nonnull final Function<? super F, T> stateQuery,
+                        @NonNull final F input,
+                        @NonNull final Function<? super F, T> stateQuery,
                         @Nullable final Matcher<? super T> matcher) {
     // Compute the deadlineTimeMillis until which we want to wait.
     final long startTimeMillis = nowMillis();
@@ -188,12 +186,12 @@ public class DeceleratingWait implements Wait {
   }
 
   private <F, T> void failAtDeadline(@Nullable final String message,
-                                     @Nonnull final Function<? super F, T> stateQuery,
-                                     @Nonnull final F input,
+                                     @NonNull final Function<? super F, T> stateQuery,
+                                     @NonNull final F input,
                                      @Nullable final IgnorableStateQueryException lastException,
                                      @Nullable final T lastState,
-                                     @Nonnull final Matcher<? super T> matcher,
-                                     @Nonnegative final long startTimeMillis) {
+                                     @NonNull final Matcher<? super T> matcher,
+                                     final long startTimeMillis) {
     final long consumedMillis = nowMillis() - startTimeMillis;
     if (lastException == null) {
       failStrategy.fail(message, stateQuery, input, lastState, matcher, consumedMillis);

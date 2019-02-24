@@ -19,12 +19,10 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.condition.timing.AbstractWaitFailStrategy;
 import org.hamcrest.Matcher;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -38,10 +36,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nullable final String reason,
-                   @Nonnull final Object function,
-                   @Nonnull final Object input,
-                   @Nonnull final Throwable exception,
-                   @Nonnegative final long consumedMillis) {
+                   @NonNull final Object function,
+                   @NonNull final Object input,
+                   @NonNull final Throwable exception,
+                   final long consumedMillis) {
     assertThat(
             addTimeoutDescription(reason, function, input, consumedMillis),
             exception,
@@ -50,11 +48,11 @@ public class WaitAssertionFailStrategy extends AbstractWaitFailStrategy {
 
   @Override
   public <T> void fail(@Nullable final String reason,
-                       @Nonnull final Object function,
-                       @Nonnull final Object input,
+                       @NonNull final Object function,
+                       @NonNull final Object input,
                        @Nullable final T lastValue,
-                       @Nonnull final Matcher<? super T> matcher,
-                       @Nonnegative final long consumedMillis) {
+                       @NonNull final Matcher<? super T> matcher,
+                       final long consumedMillis) {
     assertThat(addTimeoutDescription(reason, function, input, consumedMillis), lastValue, matcher);
   }
 }

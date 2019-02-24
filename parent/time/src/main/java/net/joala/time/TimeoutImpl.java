@@ -20,9 +20,8 @@
 package net.joala.time;
 
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
 import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -40,7 +39,7 @@ public class TimeoutImpl implements Timeout {
   private final long amount;
   private final TimeUnit unit;
 
-  public TimeoutImpl(@Nonnegative final long amount, @Nonnull final TimeUnit unit) {
+  public TimeoutImpl(final long amount, @NonNull final TimeUnit unit) {
     checkArgument(amount >= 0L, "amount must be positive: %s", amount);
     checkNotNull(unit, "time unit must not be null");
     this.amount = amount;
@@ -48,17 +47,15 @@ public class TimeoutImpl implements Timeout {
   }
 
   @Override
-  @Nonnegative
   @SuppressWarnings("PMD.ShortMethodName")
-  public long in(@Nonnull final TimeUnit targetUnit) {
+  public long in(@NonNull final TimeUnit targetUnit) {
     checkNotNull(targetUnit, "time unit must not be null");
     return targetUnit.convert(amount, unit);
   }
 
   @Override
-  @Nonnegative
   @SuppressWarnings("PMD.ShortMethodName")
-  public long in(@Nonnull final TimeUnit targetUnit, @Nonnegative final double factor) {
+  public long in(@NonNull final TimeUnit targetUnit, final double factor) {
     checkArgument(Double.compare(factor, 0d) >= 0, "factor must be positive: %s", factor);
     return round(in(targetUnit) * factor);
   }

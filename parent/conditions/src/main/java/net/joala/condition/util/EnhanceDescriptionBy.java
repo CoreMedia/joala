@@ -19,12 +19,11 @@
 
 package net.joala.condition.util;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.DescribedAs;
-
-import javax.annotation.Nonnull;
 
 /**
  * <p>
@@ -41,15 +40,15 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
   private final Matcher<T> matcher;
 
   public EnhanceDescriptionBy(
-          @Nonnull final String descriptionTemplate,
-          @Nonnull final Matcher<T> matcher,
+          @NonNull final String descriptionTemplate,
+          @NonNull final Matcher<T> matcher,
           final Object... values) {
     super(descriptionTemplate, matcher, values);
     this.matcher = matcher;
   }
 
   @Override
-  public void describeTo(@Nonnull final Description description) {
+  public void describeTo(@NonNull final Description description) {
     matcher.describeTo(description);
     description.appendText(" (");
     super.describeTo(description);
@@ -59,8 +58,8 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
   @SuppressWarnings("ParameterHidesMemberVariable")
   @Factory
   public static <T> Matcher<T> enhanceDescriptionBy(
-          @Nonnull final String descriptionTemplate,
-          @Nonnull final Matcher<T> matcher,
+          @NonNull final String descriptionTemplate,
+          @NonNull final Matcher<T> matcher,
           final Object... values) {
     return new EnhanceDescriptionBy<T>(descriptionTemplate, matcher, values);
   }

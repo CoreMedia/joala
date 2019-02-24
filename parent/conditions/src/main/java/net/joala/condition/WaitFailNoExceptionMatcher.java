@@ -19,12 +19,12 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.condition.util.DescriptionUtil;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Description;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -34,7 +34,7 @@ import java.io.StringWriter;
 final class WaitFailNoExceptionMatcher extends CustomTypeSafeMatcher<Throwable> {
   private final Object function;
 
-  WaitFailNoExceptionMatcher(@Nonnull final Object function) {
+  WaitFailNoExceptionMatcher(@NonNull final Object function) {
     super("evaluation without exception");
     this.function = function;
   }
@@ -45,8 +45,8 @@ final class WaitFailNoExceptionMatcher extends CustomTypeSafeMatcher<Throwable> 
   }
 
   @Override
-  protected void describeMismatchSafely(@Nonnull final Throwable item,
-                                        @Nonnull final Description mismatchDescription) {
+  protected void describeMismatchSafely(@NonNull final Throwable item,
+                                        @NonNull final Description mismatchDescription) {
     final StringWriter out = new StringWriter();
     item.printStackTrace(new PrintWriter(out));
     mismatchDescription.appendText("failed to evaluate: ");

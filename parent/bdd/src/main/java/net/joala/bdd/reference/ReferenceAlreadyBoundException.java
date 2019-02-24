@@ -19,7 +19,7 @@
 
 package net.joala.bdd.reference;
 
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * <p>

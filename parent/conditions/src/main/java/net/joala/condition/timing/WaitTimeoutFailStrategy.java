@@ -19,11 +19,9 @@
 
 package net.joala.condition.timing;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Matcher;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static net.joala.condition.timing.MatcherExecute.FailStrategy;
 import static net.joala.condition.timing.MatcherExecute.match;
@@ -38,20 +36,20 @@ import static net.joala.condition.timing.MatcherExecute.match;
 public class WaitTimeoutFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nullable final String reason,
-                   @Nonnull final Object function,
-                   @Nonnull final Object input,
-                   @Nonnull final Throwable exception,
-                   @Nonnegative final long consumedMillis) {
+                   @NonNull final Object function,
+                   @NonNull final Object input,
+                   @NonNull final Throwable exception,
+                   final long consumedMillis) {
     throw new WaitTimeoutException(addTimeoutDescription(reason, function, input, consumedMillis), exception);
   }
 
   @Override
   public <T> void fail(@Nullable final String reason,
-                       @Nonnull final Object function,
-                       @Nonnull final Object input,
+                       @NonNull final Object function,
+                       @NonNull final Object input,
                        @Nullable final T lastValue,
-                       @Nonnull final Matcher<? super T> matcher,
-                       @Nonnegative final long consumedMillis) {
+                       @NonNull final Matcher<? super T> matcher,
+                       final long consumedMillis) {
     match(reason, lastValue, matcher, new WaitTimeoutExceptionFailStrategy(function, input, consumedMillis));
   }
 

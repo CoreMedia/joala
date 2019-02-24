@@ -19,12 +19,10 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -33,7 +31,7 @@ import static java.lang.Boolean.TRUE;
  * @since 2/26/12
  */
 public class DefaultBooleanCondition extends DefaultCondition<Boolean> implements BooleanCondition {
-  public DefaultBooleanCondition(@Nonnull final Expression<Boolean> expression, @Nonnull final Timeout timeout) {
+  public DefaultBooleanCondition(@NonNull final Expression<Boolean> expression, @NonNull final Timeout timeout) {
     super(expression, timeout);
   }
 
@@ -68,29 +66,29 @@ public class DefaultBooleanCondition extends DefaultCondition<Boolean> implement
   }
 
   @Override
-  @Nonnull
+  @NonNull
   public DefaultBooleanCondition runFinally(@Nullable final Runnable runnable) {
     super.runFinally(runnable);
     return this;
   }
 
   @Override
-  @Nonnull
+  @NonNull
   public DefaultBooleanCondition runBefore(@Nullable final Runnable runnable) {
     super.runBefore(runnable);
     return this;
   }
 
   @Override
-  @Nonnull
+  @NonNull
   public DefaultBooleanCondition withMessage(@Nullable final String newMessage) {
     super.withMessage(newMessage);
     return this;
   }
 
   @Override
-  @Nonnull
-  public DefaultBooleanCondition withTimeoutFactor(@Nonnegative final double newFactor) {
+  @NonNull
+  public DefaultBooleanCondition withTimeoutFactor(final double newFactor) {
     super.withTimeoutFactor(newFactor);
     return this;
   }

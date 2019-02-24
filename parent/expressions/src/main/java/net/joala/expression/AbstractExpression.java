@@ -20,10 +20,9 @@
 package net.joala.expression;
 
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Description;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -67,7 +66,7 @@ public abstract class AbstractExpression<T> implements Expression<T> {
    * @param description The description to be built or appended to.
    */
   @Override
-  public void describeTo(@Nonnull final Description description) {
+  public void describeTo(@NonNull final Description description) {
     checkNotNull(description, "Description must not be null.");
     if (simpleDescription != null) {
       description.appendText(simpleDescription);

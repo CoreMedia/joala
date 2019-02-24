@@ -108,9 +108,6 @@
       <timezone>+1</timezone>
     </developer>
   </developers>
-  <prerequisites>
-    <maven>3.3.9</maven>
-  </prerequisites>
   <modules>
     <module>parent</module>
     <module>build-tools</module>
@@ -446,6 +443,8 @@ Joala tries to avoid having any of the following dependencies:
   * Alternative Hamcrest Implementations - as Joala uses Hamcrest Libraries for
     Matchers they collide with junit:junit prior to JUnit 4.11. The same applies
     to artifacts like mockito-all.
+  * findbugs:jsr305 - being incompatible with Java 11, use spotbugs-annotations
+    instead.
                   ]]></message>
                   <searchTransitive>true</searchTransitive>
                   <excludes>
@@ -455,6 +454,8 @@ Joala tries to avoid having any of the following dependencies:
                     <exclude>*:log4j</exclude>
                     <!-- Use junit instead; since JUnit 4.11 -->
                     <exclude>junit:junit-dep</exclude>
+                    <!-- Findbugs fails with Java 11, use spotbugs-annotations instead. -->
+                    <exclude>com.google.code.findbugs:jsr305</exclude>
                   </excludes>
                 </bannedDependencies>
               </rules>

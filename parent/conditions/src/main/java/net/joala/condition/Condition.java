@@ -19,14 +19,12 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.condition.timing.WaitTimeoutException;
 import net.joala.expression.Expression;
 import net.joala.expression.ExpressionEvaluationException;
 import org.hamcrest.Matcher;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * A test condition to wait for using a given timeout. If the condition does not become true within
@@ -67,7 +65,7 @@ public interface Condition<T> {
    * @return the value which fulfills the given matcher
    * @throws WaitTimeoutException if a value could not be retrieved in time
    */
-  T await(@Nonnull Matcher<? super T> matcher);
+  T await(@NonNull Matcher<? super T> matcher);
 
   /**
    * <p>
@@ -83,7 +81,7 @@ public interface Condition<T> {
    *
    * @param matcher the matcher to use
    */
-  void assumeThat(@Nonnull Matcher<? super T> matcher);
+  void assumeThat(@NonNull Matcher<? super T> matcher);
 
   /**
    * <p>
@@ -99,7 +97,7 @@ public interface Condition<T> {
    *
    * @param matcher the matcher to use
    */
-  void assertThat(@Nonnull Matcher<? super T> matcher);
+  void assertThat(@NonNull Matcher<? super T> matcher);
 
   /**
    * <p>
@@ -115,7 +113,7 @@ public interface Condition<T> {
    *
    * @param matcher the matcher to use
    */
-  void waitUntil(@Nonnull Matcher<? super T> matcher);
+  void waitUntil(@NonNull Matcher<? super T> matcher);
 
   /**
    * Sets a factor to speed up or slow down tests. If &lt; 1.0 the tests will speed up at least
@@ -125,8 +123,8 @@ public interface Condition<T> {
    * @param factor factor by which to increase the timeout for this condition
    * @return a self-reference.
    */
-  @Nonnull
-  Condition<T> withTimeoutFactor(@Nonnegative double factor);
+  @NonNull
+  Condition<T> withTimeoutFactor(double factor);
 
   /**
    * The message to print on failure.
@@ -134,6 +132,6 @@ public interface Condition<T> {
    * @param message message with debugging hints; {@code null} to remove the message
    * @return self-reference
    */
-  @Nonnull
+  @NonNull
   Condition<T> withMessage(@Nullable String message);
 }

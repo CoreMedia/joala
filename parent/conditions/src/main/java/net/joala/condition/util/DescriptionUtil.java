@@ -19,11 +19,10 @@
 
 package net.joala.condition.util;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * @since 9/18/12
@@ -32,7 +31,7 @@ public final class DescriptionUtil {
   private DescriptionUtil() {
   }
 
-  public static void describeTo(@Nonnull final Description description, @Nullable final Object obj) {
+  public static void describeTo(@NonNull final Description description, @Nullable final Object obj) {
     if (obj instanceof SelfDescribing) {
       description.appendDescriptionOf((SelfDescribing) obj);
     } else {

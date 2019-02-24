@@ -19,10 +19,9 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import net.joala.expression.Expression;
 import net.joala.time.Timeout;
-
-import javax.annotation.Nonnull;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -34,7 +33,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @since 9/3/12
  */
 public class DefaultConditionFactory implements ConditionFactory {
-  @Nonnull
+  @NonNull
   private final Timeout timeout;
 
   /**
@@ -44,20 +43,20 @@ public class DefaultConditionFactory implements ConditionFactory {
    *
    * @param timeout the timeout behavior (i. e. the default time to time out)
    */
-  public DefaultConditionFactory(@Nonnull final Timeout timeout) {
+  public DefaultConditionFactory(@NonNull final Timeout timeout) {
     this.timeout = timeout;
   }
 
-  @Nonnull
+  @NonNull
   @Override
-  public BooleanCondition booleanCondition(@Nonnull final Expression<Boolean> expression) {
+  public BooleanCondition booleanCondition(@NonNull final Expression<Boolean> expression) {
     checkNotNull(expression, "Expression must not be null");
     return new DefaultBooleanCondition(expression, timeout);
   }
 
-  @Nonnull
+  @NonNull
   @Override
-  public <T> Condition<T> condition(@Nonnull final Expression<T> expression) {
+  public <T> Condition<T> condition(@NonNull final Expression<T> expression) {
     checkNotNull(expression, "Expression must not be null");
     return new DefaultCondition<>(expression, timeout);
   }

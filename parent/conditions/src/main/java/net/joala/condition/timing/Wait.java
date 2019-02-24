@@ -20,11 +20,10 @@
 package net.joala.condition.timing;
 
 import com.google.common.base.Function;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Matcher;
 import org.hamcrest.SelfDescribing;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * <p>
@@ -54,8 +53,8 @@ public interface Wait {
    * @return the result of the successful state query
    * @see IgnorableStateQueryException
    */
-  <F, T> T until(@Nonnull F input,
-                 @Nonnull Function<? super F, T> stateQuery);
+  <F, T> T until(@NonNull F input,
+                 @NonNull Function<? super F, T> stateQuery);
 
   /**
    * <p>
@@ -71,8 +70,8 @@ public interface Wait {
    * @param <T>        the return type of the state query
    * @return the result of the successful state query
    */
-  <F, T> T until(@Nonnull F input,
-                 @Nonnull Function<? super F, T> stateQuery,
+  <F, T> T until(@NonNull F input,
+                 @NonNull Function<? super F, T> stateQuery,
                  @Nullable Matcher<? super T> matcher);
 
   /**
@@ -91,7 +90,7 @@ public interface Wait {
    * @return the result of the successful state query
    */
   <F, T> T until(@Nullable String message,
-                 @Nonnull F input,
-                 @Nonnull Function<? super F, T> stateQuery,
+                 @NonNull F input,
+                 @NonNull Function<? super F, T> stateQuery,
                  @Nullable Matcher<? super T> matcher);
 }

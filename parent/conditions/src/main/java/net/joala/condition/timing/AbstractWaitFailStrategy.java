@@ -19,13 +19,12 @@
 
 package net.joala.condition.timing;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.time.TimeFormat;
 import org.hamcrest.Description;
 import org.hamcrest.StringDescription;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.concurrent.TimeUnit;
 
 import static net.joala.condition.util.DescriptionUtil.describeTo;
@@ -52,11 +51,11 @@ public abstract class AbstractWaitFailStrategy implements WaitFailStrategy {
    * @param consumedMillis how long it took until timeout  @return enhanced message
    * @return enhanced description
    */
-  @Nonnull
+  @NonNull
   protected String addTimeoutDescription(@Nullable final String message,
-                                         @Nonnull final Object function,
-                                         @Nonnull final Object input,
-                                         @Nonnegative final long consumedMillis) {
+                                         @NonNull final Object function,
+                                         @NonNull final Object input,
+                                         final long consumedMillis) {
     final Description description = new StringDescription();
     description.appendText(message == null ? "Failed to evaluate." : message);
     description.appendText(" - after ");

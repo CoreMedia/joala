@@ -19,11 +19,9 @@
 
 package net.joala.condition.timing;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Matcher;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * <p>
@@ -46,11 +44,11 @@ public interface WaitFailStrategy {
    * @param <T>            the value type returned by the function
    */
   <T> void fail(@Nullable String reason,
-                @Nonnull Object function,
-                @Nonnull Object input,
+                @NonNull Object function,
+                @NonNull Object input,
                 @Nullable T lastValue,
-                @Nonnull Matcher<? super T> matcher,
-                @Nonnegative long consumedMillis);
+                @NonNull Matcher<? super T> matcher,
+                long consumedMillis);
 
   /**
    * Makes a condition fail because the expected value could not be retrieved because of repeating
@@ -63,8 +61,8 @@ public interface WaitFailStrategy {
    * @param consumedMillis consumed milliseconds
    */
   void fail(@Nullable String reason,
-            @Nonnull Object function,
-            @Nonnull Object input,
-            @Nonnull Throwable throwable,
-            @Nonnegative long consumedMillis);
+            @NonNull Object function,
+            @NonNull Object input,
+            @NonNull Throwable throwable,
+            long consumedMillis);
 }

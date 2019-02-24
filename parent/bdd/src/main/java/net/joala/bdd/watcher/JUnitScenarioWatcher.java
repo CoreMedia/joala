@@ -20,13 +20,13 @@
 package net.joala.bdd.watcher;
 
 import com.google.common.base.Strings;
+import edu.umd.cs.findbugs.annotations.NonNull;
 import org.junit.AssumptionViolatedException;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.Formatter;
@@ -96,13 +96,13 @@ public class JUnitScenarioWatcher extends TestWatcher {
    * @param rawScenario raw name of the scenario/test method
    * @return scenario name ready for output
    */
-  @Nonnull
-  private String formatScenario(@Nonnull final String rawScenario) {
+  @NonNull
+  private String formatScenario(@NonNull final String rawScenario) {
     return rawScenario.replace('_', ' ').replace("scenario", "").trim();
   }
 
   @Override
-  protected void starting(@Nonnull final Description description) {
+  protected void starting(@NonNull final Description description) {
     if (isScenario(description)) {
       reportStart(STORY_HEADING, formatStory(description.getTestClass().getSimpleName()));
       reportStart(SCENARIO_HEADING, formatScenario(description.getMethodName()));
@@ -117,14 +117,14 @@ public class JUnitScenarioWatcher extends TestWatcher {
   }
 
   @Override
-  protected void failed(final Throwable e, @Nonnull final Description description) {
+  protected void failed(final Throwable e, @NonNull final Description description) {
     if (isScenario(description)) {
       reportEnd(SCENARIO_HEADING, formatScenario(description.getMethodName()), "failed");
     }
   }
 
   @Override
-  protected void succeeded(@Nonnull final Description description) {
+  protected void succeeded(@NonNull final Description description) {
     if (isScenario(description)) {
       reportEnd(SCENARIO_HEADING, formatScenario(description.getMethodName()), "success");
     }
@@ -136,7 +136,7 @@ public class JUnitScenarioWatcher extends TestWatcher {
    * @param description description to retrieve the method name from
    * @return true, if the current test method is identified as scenario
    */
-  private boolean isScenario(@Nonnull final Description description) {
+  private boolean isScenario(@NonNull final Description description) {
     return description.getMethodName().contains("scenario");
   }
 

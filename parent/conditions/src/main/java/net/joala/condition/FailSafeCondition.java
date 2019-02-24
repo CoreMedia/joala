@@ -19,9 +19,8 @@
 
 package net.joala.condition;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * Condition which ensures that a runnable is executed after the condition
@@ -37,7 +36,7 @@ public interface FailSafeCondition<T> extends Condition<T> {
    * @param runnable runnable to execute; null to disable execution
    * @return self-reference
    */
-  @Nonnull
+  @NonNull
   FailSafeCondition<T> runFinally(@Nullable Runnable runnable);
 
   /**
@@ -46,14 +45,14 @@ public interface FailSafeCondition<T> extends Condition<T> {
    * @param runnable runnable to execute; null to disable execution
    * @return self-reference
    */
-  @Nonnull
+  @NonNull
   FailSafeCondition<T> runBefore(@Nullable Runnable runnable);
 
   @Override
-  @Nonnull
+  @NonNull
   FailSafeCondition<T> withMessage(@Nullable String message);
 
   @Override
-  @Nonnull
-  FailSafeCondition<T> withTimeoutFactor(@Nonnegative double factor);
+  @NonNull
+  FailSafeCondition<T> withTimeoutFactor(double factor);
 }

@@ -23,6 +23,8 @@ import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.bdd.reference.SelfDescribingReference;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -33,8 +35,6 @@ import org.hamcrest.StringDescription;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -90,7 +90,7 @@ public class JUnitAopStepsLogger {
    * @throws Throwable in case of any error
    */
   @Around("execution(* given_*(..))||execution(* when_*(..))||execution(* then_*(..))")
-  public Object logGivenWhenThen(@Nonnull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to
+  public Object logGivenWhenThen(@NonNull final ProceedingJoinPoint joinPoint) throws Throwable { // NOSONAR: Need to
     // deal with generic throwables here
     final String stepName = joinPoint.getSignature().getName();
     final Object[] arguments = joinPoint.getArgs();
@@ -173,7 +173,7 @@ public class JUnitAopStepsLogger {
    * @param stepDescription description to add description of arguments to
    * @param args            arguments to describe
    */
-  private void describeArguments(@Nonnull final Description stepDescription, @Nonnull final Object[] args) {
+  private void describeArguments(@NonNull final Description stepDescription, @NonNull final Object[] args) {
     final List<Object> argsList = Arrays.asList(args);
     final Iterable<Object> descArgs = Iterables.filter(argsList, new IsSelfDescribing());
     final boolean hasDescribableArgs = !Iterables.isEmpty(descArgs);

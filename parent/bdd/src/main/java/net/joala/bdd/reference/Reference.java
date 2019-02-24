@@ -19,8 +19,8 @@
 
 package net.joala.bdd.reference;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * <p>
@@ -76,7 +76,7 @@ public interface Reference<T> {
    * @throws NullPointerException        if the key is {@code null}
    * @throws PropertyAlreadySetException if you already set this property
    */
-  void setProperty(@Nonnull String key, @Nullable Object value);
+  void setProperty(@NonNull String key, @Nullable Object value);
 
   /**
    * <p>
@@ -88,7 +88,7 @@ public interface Reference<T> {
    * @throws PropertyNotSetException if you did not define that property before
    */
   @Nullable
-  Object getProperty(@Nonnull String key);
+  Object getProperty(@NonNull String key);
 
   /**
    * <p>
@@ -102,7 +102,7 @@ public interface Reference<T> {
    * @throws PropertyNotSetException if you did not define that property before
    */
   @Nullable
-  <P> P getProperty(@Nonnull String key, @Nonnull Class<P> clazz);
+  <P> P getProperty(@NonNull String key, @NonNull Class<P> clazz);
 
   /**
    * <p>
@@ -113,7 +113,7 @@ public interface Reference<T> {
    * @return {@code true} if the property is set, otherwise {@code false}
    * @since 1.1.0
    */
-  boolean hasProperty(@Nonnull String key);
+  boolean hasProperty(@NonNull String key);
 
   /**
    * Removes the property with the given key.
@@ -126,7 +126,7 @@ public interface Reference<T> {
    * @since 1.1.0
    */
   @Nullable
-  <P> P removeProperty(@Nonnull String key, @Nonnull Class<P> expectedClass);
+  <P> P removeProperty(@NonNull String key, @NonNull Class<P> expectedClass);
 
   /**
    * Removes the property with the given key.
@@ -136,6 +136,6 @@ public interface Reference<T> {
    * @throws PropertyNotSetException if you did not define that property before
    * @since 1.1.0
    */
-  Object removeProperty(@Nonnull String key);
+  Object removeProperty(@NonNull String key);
 
 }

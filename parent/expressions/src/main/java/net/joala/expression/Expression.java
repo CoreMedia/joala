@@ -19,10 +19,9 @@
 
 package net.joala.expression;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
-
-import javax.annotation.Nullable;
 
 /**
  * An expression is handed over to conditions to be evaluated again and again.

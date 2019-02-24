@@ -39,6 +39,7 @@
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.26</slf4j.version>
     <spring.version>5.1.5.RELEASE</spring.version>
+    <spotbugs.version>3.1.11</spotbugs.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -47,6 +48,12 @@
         <artifactId>guava</artifactId>
         <version>${guava.version}</version>
         <type>jar</type>
+        <exclusions>
+          <exclusion>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -105,9 +112,15 @@
         <version>${spring.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>jsr305</artifactId>
-        <version>${jsr305.version}</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>${spotbugs.version}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
     </dependencies>
   </dependencyManagement>

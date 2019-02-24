@@ -20,10 +20,9 @@
 package net.joala.bdd.reference;
 
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.Description;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * <p>
@@ -47,7 +46,7 @@ public class SelfDescribingReferenceImpl<T> extends ReferenceImpl<T> implements 
   }
 
   @Override
-  public void describeTo(@Nonnull final Description description) {
+  public void describeTo(@NonNull final Description description) {
     description.appendText(name != null ? getName() : "<noname>");
     description.appendText("=");
     describeValue(description);
@@ -62,7 +61,7 @@ public class SelfDescribingReferenceImpl<T> extends ReferenceImpl<T> implements 
    *
    * @param description description to append the value to
    */
-  protected void describeValue(@Nonnull final Description description) {
+  protected void describeValue(@NonNull final Description description) {
     if (hasValue()) {
       description.appendValue(get());
     } else {

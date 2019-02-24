@@ -19,8 +19,8 @@
 
 package net.joala.time;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
+import edu.umd.cs.findbugs.annotations.NonNull;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,9 +37,8 @@ public interface Timeout {
    * @param targetUnit the timeunit to use
    * @return timeout in the given unit
    */
-  @Nonnegative
   @SuppressWarnings("PMD.ShortMethodName")
-  long in(@Nonnull TimeUnit targetUnit);
+  long in(@NonNull TimeUnit targetUnit);
 
   /**
    * <p>
@@ -50,7 +49,6 @@ public interface Timeout {
    * @param factor     factor to adjust the timeout
    * @return timeout adjust by factor
    */
-  @Nonnegative
   @SuppressWarnings("PMD.ShortMethodName")
-  long in(@Nonnull TimeUnit targetUnit, @Nonnegative double factor);
+  long in(@NonNull TimeUnit targetUnit, double factor);
 }

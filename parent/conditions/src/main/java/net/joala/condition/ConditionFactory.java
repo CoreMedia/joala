@@ -19,9 +19,8 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import net.joala.expression.Expression;
-
-import javax.annotation.Nonnull;
 
 /**
  * <p>
@@ -40,8 +39,8 @@ public interface ConditionFactory {
    * @return boolean condition
    * @throws NullPointerException if expression is null
    */
-  @Nonnull
-  BooleanCondition booleanCondition(@Nonnull Expression<Boolean> expression);
+  @NonNull
+  BooleanCondition booleanCondition(@NonNull Expression<Boolean> expression);
 
   /**
    * <p>
@@ -53,6 +52,6 @@ public interface ConditionFactory {
    * @return condition
    * @throws NullPointerException if expression is null
    */
-  @Nonnull
-  <T> Condition<T> condition(@Nonnull Expression<T> expression);
+  @NonNull
+  <T> Condition<T> condition(@NonNull Expression<T> expression);
 }

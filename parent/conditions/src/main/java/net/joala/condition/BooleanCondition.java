@@ -19,9 +19,8 @@
 
 package net.joala.condition;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
 /**
  * Specialized condition for boolean states (true/false). Offers convenience
@@ -61,10 +60,10 @@ public interface BooleanCondition extends Condition<Boolean> {
   void waitUntilFalse();
 
   @Override
-  @Nonnull
+  @NonNull
   BooleanCondition withMessage(@Nullable String message);
 
   @Override
-  @Nonnull
-  BooleanCondition withTimeoutFactor(@Nonnegative double factor);
+  @NonNull
+  BooleanCondition withTimeoutFactor(double factor);
 }

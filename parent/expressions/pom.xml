@@ -44,16 +44,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>joala-labs-data</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
       <scope>provided</scope>
-      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>

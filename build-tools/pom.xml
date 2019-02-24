@@ -49,9 +49,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-  <prerequisites>
-    <maven>3.3.9</maven>
-  </prerequisites>
   <scm>
     <connection>scm:git:git@github.com:CoreMedia/joala.git</connection>
     <developerConnection>scm:git:git@github.com:CoreMedia/joala.git</developerConnection>

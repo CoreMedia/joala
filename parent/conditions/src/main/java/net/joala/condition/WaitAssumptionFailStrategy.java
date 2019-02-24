@@ -19,13 +19,11 @@
 
 package net.joala.condition;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 import net.joala.condition.timing.AbstractWaitFailStrategy;
 import net.joala.condition.util.EnhanceDescriptionBy;
 import org.hamcrest.Matcher;
-
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import static org.junit.Assume.assumeThat;
 
@@ -39,10 +37,10 @@ import static org.junit.Assume.assumeThat;
 public class WaitAssumptionFailStrategy extends AbstractWaitFailStrategy {
   @Override
   public void fail(@Nullable final String reason,
-                   @Nonnull final Object function,
-                   @Nonnull final Object input,
-                   @Nonnull final Throwable exception,
-                   @Nonnegative final long consumedMillis) {
+                   @NonNull final Object function,
+                   @NonNull final Object input,
+                   @NonNull final Throwable exception,
+                   final long consumedMillis) {
     // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
     assumeThat(
             exception,
@@ -53,11 +51,11 @@ public class WaitAssumptionFailStrategy extends AbstractWaitFailStrategy {
 
   @Override
   public <T> void fail(@Nullable final String reason,
-                       @Nonnull final Object function,
-                       @Nonnull final Object input,
+                       @NonNull final Object function,
+                       @NonNull final Object input,
                        @Nullable final T lastValue,
-                       @Nonnull final Matcher<? super T> matcher,
-                       @Nonnegative final long consumedMillis) {
+                       @NonNull final Matcher<? super T> matcher,
+                       final long consumedMillis) {
     // enhanceDescriptionBy: Workaround, see https://github.com/KentBeck/junit/pull/489
     assumeThat(
             lastValue,

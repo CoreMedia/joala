@@ -20,9 +20,9 @@
 package net.joala.bdd.reference;
 
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.NonNull;
+import edu.umd.cs.findbugs.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +66,7 @@ public class ReferenceImpl<T> implements Reference<T> {
   }
 
   @Override
-  public void setProperty(@Nonnull final String key, @Nullable final Object value) {
+  public void setProperty(@NonNull final String key, @Nullable final Object value) {
     checkNotNull(key, "Property key must not be null.");
     if (hasProperty(key)) {
       throw new PropertyAlreadySetException(format("Property '%s' already set to value %s", key, properties.get(key)));
@@ -75,7 +75,7 @@ public class ReferenceImpl<T> implements Reference<T> {
   }
 
   @Override
-  public Object getProperty(@Nonnull final String key) {
+  public Object getProperty(@NonNull final String key) {
     checkNotNull(key, "Property key must not be null.");
     if (!hasProperty(key)) {
       throw new PropertyNotSetException(format("Property '%s' not set.", key));
@@ -85,20 +85,20 @@ public class ReferenceImpl<T> implements Reference<T> {
 
   @Override
   @Nullable
-  public <P> P getProperty(@Nonnull final String key, @Nonnull final Class<P> clazz) {
+  public <P> P getProperty(@NonNull final String key, @NonNull final Class<P> clazz) {
     checkNotNull(key, "Property key must not be null.");
     checkNotNull(clazz, "Expected class must not be null.");
     return clazz.cast(getProperty(key));
   }
 
   @Override
-  public boolean hasProperty(@Nonnull final String key) {
+  public boolean hasProperty(@NonNull final String key) {
     checkNotNull(key, "Property key must not be null.");
     return properties.containsKey(key);
   }
 
   @Override
-  public Object removeProperty(@Nonnull final String key) {
+  public Object removeProperty(@NonNull final String key) {
     checkNotNull(key, "Property key must not be null.");
     if (!hasProperty(key)) {
       throw new PropertyNotSetException(format("Property '%s' not set.", key));
@@ -108,7 +108,7 @@ public class ReferenceImpl<T> implements Reference<T> {
 
   @Override
   @Nullable
-  public <P> P removeProperty(@Nonnull final String key, @Nonnull final Class<P> expectedClass) {
+  public <P> P removeProperty(@NonNull final String key, @NonNull final Class<P> expectedClass) {
     checkNotNull(key, "Property key must not be null.");
     checkNotNull(expectedClass, "Expected class must not be null.");
     return expectedClass.cast(removeProperty(key));

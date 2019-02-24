@@ -21,9 +21,8 @@ package net.joala.time;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Lists;
+import edu.umd.cs.findbugs.annotations.NonNull;
 
-import javax.annotation.Nonnegative;
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +46,7 @@ public final class TimeFormat {
    * @param timeUnit the time unit
    * @return time amount in human readable format (for example converted to seconds or minutes)
    */
-  public static String format(@Nonnegative final long amount, @Nonnull final TimeUnit timeUnit) {
+  public static String format(final long amount, @NonNull final TimeUnit timeUnit) {
     final List<TimeUnit> reverse = Lists.reverse(Arrays.asList(TimeUnit.values()));
     for (final TimeUnit currentUnit : reverse) {
       if (currentUnit.equals(timeUnit) || currentUnit.convert(amount, timeUnit) >= TIMEUNIT_LIMIT) {

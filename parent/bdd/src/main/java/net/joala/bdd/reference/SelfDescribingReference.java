@@ -19,9 +19,8 @@
 
 package net.joala.bdd.reference;
 
+import edu.umd.cs.findbugs.annotations.Nullable;
 import org.hamcrest.SelfDescribing;
-
-import javax.annotation.Nullable;
 
 /**
  * <p>
