@@ -61,16 +61,13 @@ public class EnhanceDescriptionByTest {
 
   @Before
   public void setUp() {
-    doAnswer(new Answer<Void>() {
-      @Override
-      public Void answer(final InvocationOnMock invocation) {
-        final Object[] arguments = invocation.getArguments();
-        assumeThat(arguments, arrayWithSize(1));
-        assumeThat(arguments[0], instanceOf(Description.class));
-        final Description desc = (Description) arguments[0];
-        desc.appendText(matcherDescription);
-        return null;
-      }
+    doAnswer((Answer<Void>) invocation -> {
+      final Object[] arguments = invocation.getArguments();
+      assumeThat(arguments, arrayWithSize(1));
+      assumeThat(arguments[0], instanceOf(Description.class));
+      final Description desc = (Description) arguments[0];
+      desc.appendText(matcherDescription);
+      return null;
     }).when(matcher).describeTo(any(Description.class));
   }
 
