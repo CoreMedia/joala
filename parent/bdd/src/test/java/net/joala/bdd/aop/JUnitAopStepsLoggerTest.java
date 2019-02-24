@@ -88,7 +88,7 @@ public class JUnitAopStepsLoggerTest {
         lastError = e;
       }
     }
-    if (!passedAtLeastOnce) {
+    if (lastError != null && !passedAtLeastOnce) {
       throw lastError;
     }
   }
