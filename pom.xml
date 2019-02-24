@@ -443,8 +443,6 @@ Joala tries to avoid having any of the following dependencies:
   * Alternative Hamcrest Implementations - as Joala uses Hamcrest Libraries for
     Matchers they collide with junit:junit prior to JUnit 4.11. The same applies
     to artifacts like mockito-all.
-  * findbugs:jsr305 - being incompatible with Java 11, use spotbugs-annotations
-    instead.
   * checker-qual: Use spotbugs-annotations instead.
                   ]]></message>
                   <searchTransitive>true</searchTransitive>
@@ -455,8 +453,6 @@ Joala tries to avoid having any of the following dependencies:
                     <exclude>*:log4j</exclude>
                     <!-- Use junit instead; since JUnit 4.11 -->
                     <exclude>junit:junit-dep</exclude>
-                    <!-- Findbugs fails with Java 11, use spotbugs-annotations instead. -->
-                    <exclude>com.google.code.findbugs:jsr305</exclude>
                     <!-- Prevent accidental import. Use spotbugs-annotations instead. -->
                     <exclude>org.checkerframework:checker-qual</exclude>
                   </excludes>
