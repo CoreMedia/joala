@@ -37,6 +37,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p>
@@ -79,6 +81,12 @@ import java.util.List;
 @Aspect
 public class JUnitAopStepsLogger {
   private static final Logger LOG = LoggerFactory.getLogger(JUnitAopStepsLogger.class);
+  /*
+   * "Directives" in test method names are character sequences that start with a dollar sign ('$').
+   * There are three different types of directives: 2-digit ('x') and 4-digit ('u') hex-encoded escaped
+   * Unicode characters, and integers referring to a method argument by its index, starting at zero.
+   */
+  private static final Pattern DIRECTIVES_PATTERN = Pattern.compile("\\$(x\\p{XDigit}{2}|u\\p{XDigit}{4}|\\d*)");
 
   /**
    * <p>
@@ -118,34 +126,37 @@ public class JUnitAopStepsLogger {
     final StringBuilder text = new StringBuilder();
     int pos = 0;
     boolean placeholderFound = false;
-    while (pos < stepName.length()) {
-      final char c = stepName.charAt(pos++);
-      if (c == '$') {
-        int index = 0;
-        while (pos < stepName.length()) {
-          final int digit = Character.digit(stepName.charAt(pos++), 10);
-          if (digit == -1) {
-            pos--;
-            break;
-          }
-          index = index * 10 + digit;
-        }
+    Matcher matcher = DIRECTIVES_PATTERN.matcher(stepName);
+    while (matcher.find()) {
+      // append everything up to the current match:
+      text.append(stepName, pos, matcher.start());
+      // next time, continue after the match:
+      pos = matcher.end();
+      // the matched directive (without '$'):
+      String directive = matcher.group(1);
+      if (directive.startsWith("x") || directive.startsWith("u")) {
+        // parse 2- or 4-digit hex number and interpret it as Unicode:
+        int characterCode = Integer.parseInt(directive.substring(1), 16);
+        text.append((char) characterCode);
+      } else {
+        // integer number => argument reference; empty (just "$") is interpreted as zero:
+        int index = directive.isEmpty() ? 0 : Integer.parseInt(directive);
         if (index < arguments.length) {
           final Object argument = arguments[index];
           text.append(describeArgument(argument));
           placeholderFound = true;
         } else {
-          text.append('$').append(index);
+          // keep invalid argument references as-is:
+          text.append(matcher.group());
         }
-      } else if (c == '_') {
-        text.append(' ');
-      } else {
-        text.append(c);
       }
     }
+    // append remaining part of the input string (might be the empty string):
+    text.append(stepName, pos, stepName.length());
 
     final Description stepDescription = new StringDescription();
-    stepDescription.appendText(text.toString().trim());
+    // finally, replace all underscores by spaces:
+    stepDescription.appendText(text.toString().replace('_', ' ').trim());
     if (!placeholderFound) {
       describeArguments(stepDescription, arguments);
     }

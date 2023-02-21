@@ -222,6 +222,20 @@ public class JUnitAopStepsLoggerTest {
     assertMessagesContains("given this is a step with a fake placeholder $42");
   }
 
+  @Test
+  public void testCharacterEscapes() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_step$x27s_name_uses_many$x2c_many_$u0022escape_sequences$x22();
+    assertMessagesContains("given this step's name uses many, many \"escape sequences\"");
+  }
+
+  @Test
+  public void testCharacterEscapesAndPlaceholder() throws Exception {
+    assumeThat(JUnitAopStepsLoggerTestAppender.getEvents().size(), Matchers.equalTo(0));
+    _.given_this_is_a_step_with_an_escaped_character_$u272A_and_a_placeholder_$0("param");
+    assertMessagesContains("given this is a step with an escaped character ✪ and a placeholder \"param\"");
+  }
+
   @Named
   @Singleton
   public static class Steps {
@@ -267,6 +281,13 @@ public class JUnitAopStepsLoggerTest {
     }
 
     public void given_this_is_a_step_with_a_fake_placeholder_$42() {
+    }
+
+    public void given_this_step$x27s_name_uses_many$x2c_many_$u0022escape_sequences$x22() {
+    }
+
+    @SuppressWarnings("UnusedParameters")
+    public void given_this_is_a_step_with_an_escaped_character_$u272A_and_a_placeholder_$0(final String str) {
     }
   }
 
