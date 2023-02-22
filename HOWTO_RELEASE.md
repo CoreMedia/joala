@@ -198,12 +198,12 @@ Java process which still accesses the directory.
  
 <!-- Links -->
 
-[Joala GitHub Pages]: <http://coremedia.github.com/joala/> "Joala GitHub Pages"
-[versions-maven-plugin]: <http://mojo.codehaus.org/versions-maven-plugin/> "Codehaus.org: Versions Maven Plugin"
-[maven-reference-pom-syntax]: <http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-syntax.html> "Maven: The Complete Reference, 3.3. POM Syntax"
-[oss-usage]: <https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide> "Sonatype OSS Maven Repository Usage Guide"
+[Joala GitHub Pages]: <https://coremedia.github.io/joala/> "Joala GitHub Pages"
+[versions-maven-plugin]: <https://www.mojohaus.org/versions/versions-maven-plugin/> "Codehaus.org: Versions Maven Plugin"
+[maven-reference-pom-syntax]: <[http://www.sonatype.com/books/mvnref-book/reference/pom-relationships-sect-pom-syntax.html](https://books.sonatype.com/mvnref-book/reference/pom-relationships-sect-pom-syntax.html)> "Maven: The Complete Reference, 3.3. POM Syntax"
+[oss-usage]: <https://central.sonatype.org/publish/publish-guide/> "Sonatype OSS Maven Repository Usage Guide"
 [sonatype-jira]: <https://issues.sonatype.org/> "Sonatype JIRA"
-[wagon-gitsite]: <http://khuxtable.github.com/wagon-gitsite/> "Wagon Provider for GitHub Pages Site Deployment"
+[wagon-gitsite]: <https://khuxtable.github.io/wagon-gitsite/> "Wagon Provider for GitHub Pages Site Deployment"
 [oss-sonatype]: <https://oss.sonatype.org/> "Sonatype Nexus Repository"
 [OSSRH-5630]: <https://issues.sonatype.org/browse/OSSRH-5630> "[OSSRH-5630] Joala - Java Library for Testing with JUnit - Sonatype JIRA" 
 [Github Site Plugin]: <https://github.github.com/maven-plugins/site-plugin/>
