@@ -20,7 +20,6 @@
 package net.joala.matcher.exception;
 
 import org.hamcrest.CustomTypeSafeMatcher;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 
 import static java.lang.String.format;
@@ -49,14 +48,11 @@ public class MessageContains extends CustomTypeSafeMatcher<Throwable> {
             || (recurseCauses && item.getCause() != null && matchesSafely(item.getCause()));
   }
 
-  @Factory
   public static Matcher<Throwable> messageContains(final String expectedMessage, final boolean recurseCauses) {
     return new MessageContains(expectedMessage, recurseCauses);
   }
 
-  @Factory
   public static Matcher<Throwable> messageContains(final String expectedMessage) {
     return new MessageContains(expectedMessage);
   }
-
 }

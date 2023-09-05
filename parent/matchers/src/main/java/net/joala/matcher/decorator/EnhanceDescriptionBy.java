@@ -20,7 +20,6 @@
 package net.joala.matcher.decorator;
 
 import org.hamcrest.Description;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.core.DescribedAs;
 
@@ -57,7 +56,6 @@ public class EnhanceDescriptionBy<T> extends DescribedAs<T> {
   }
 
   @SuppressWarnings("ParameterHidesMemberVariable")
-  @Factory
   public static <T> Matcher<T> enhanceDescriptionBy(
           @Nonnull final String descriptionTemplate,
           @Nonnull final Matcher<T> matcher,

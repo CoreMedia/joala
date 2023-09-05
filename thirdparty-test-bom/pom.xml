@@ -22,7 +22,7 @@
   <parent>
     <groupId>net.joala</groupId>
     <artifactId>joala-bom</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -35,13 +35,13 @@
   ]]></description>
 
   <properties>
-    <spring.version>4.3.9.RELEASE</spring.version>
-    <logback.version>1.2.3</logback.version>
-    <powermock.version>1.7.0</powermock.version>
-<!--
-    <mockito.version>2.8.47</mockito.version>
--->
-    <mockito.version>1.10.19</mockito.version>
+    <spring.version>5.3.29</spring.version>
+    <logback.version>1.4.11</logback.version>
+    <powermock.version>2.0.9</powermock.version>
+    <mockito.version>5.5.0</mockito.version>
+    <springockito.version>1.0.9</springockito.version>
+    <objenesis.version>3.3</objenesis.version>
+    <byte-buddy-agent.version>1.14.6</byte-buddy-agent.version> <!-- keep in sync with mockito -->
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -50,10 +50,21 @@
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
       </dependency>
+      <!-- declare ByteBuddy version before powermock / mockito as they require different versions -->
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>${byte-buddy-agent.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy-agent</artifactId>
+        <version>${byte-buddy-agent.version}</version>
+      </dependency>
       <dependency>
         <groupId>org.kubek2k</groupId>
         <artifactId>springockito</artifactId>
-        <version>1.0.9</version>
+        <version>${springockito.version}</version>
         <exclusions>
           <!-- Must not use mockito-all as it comes with hamcrest fork included. -->
           <exclusion>
@@ -64,15 +75,8 @@
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
-        <artifactId>powermock-api-mockito</artifactId>
+        <artifactId>powermock-api-mockito2</artifactId>
         <version>${powermock.version}</version>
-        <exclusions>
-          <!-- Must not use mockito-all as it comes with hamcrest fork included. -->
-          <exclusion>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-          </exclusion>
-        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.powermock</groupId>
@@ -134,7 +138,7 @@
       <dependency>
         <groupId>org.objenesis</groupId>
         <artifactId>objenesis</artifactId>
-        <version>2.5.1</version>
+        <version>${objenesis.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

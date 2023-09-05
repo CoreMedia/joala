@@ -31,7 +31,7 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.isNull;
+import static org.mockito.ArgumentMatchers.isNull;
 
 /**
  * <p>

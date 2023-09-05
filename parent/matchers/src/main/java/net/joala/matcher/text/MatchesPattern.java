@@ -20,7 +20,6 @@
 package net.joala.matcher.text;
 
 import org.hamcrest.Description;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
@@ -47,12 +46,10 @@ public class MatchesPattern extends TypeSafeMatcher<CharSequence> {
     return pattern.matcher(item).matches();
   }
 
-  @Factory
   public static Matcher<CharSequence> matchesPattern(final Pattern pattern) {
     return new MatchesPattern(pattern);
   }
 
-  @Factory
   public static Matcher<CharSequence> matchesPattern(final String pattern) {
     return new MatchesPattern(Pattern.compile(pattern));
   }

@@ -22,6 +22,7 @@ package net.joala.testlet;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.TestCouldNotBeSkippedException;
 import org.junit.internal.AssumptionViolatedException;
 import org.junit.rules.ErrorCollector;
 import org.junit.runner.JUnitCore;
@@ -127,7 +128,7 @@ public class ExceptionCollectingRunListenerTest {
       final List<Throwable> failures = multipleFailureException.getFailures();
       for (int i = 0; i < failures.size(); i++) {
         final Throwable embeddedFailure = failures.get(i);
-        collector.checkThat(format("Should have collected assertion failure no. %d.", i + 1), embeddedFailure.getClass(), typeCompatibleWith(AssumptionViolatedException.class));
+        collector.checkThat(format("Should have collected wrapped assertion failure no. %d.", i + 1), embeddedFailure.getClass(), typeCompatibleWith(TestCouldNotBeSkippedException.class));
       }
     }
     validateToString();
