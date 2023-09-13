@@ -20,7 +20,6 @@
 package net.joala.matcher.net;
 
 import org.hamcrest.CustomTypeSafeMatcher;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 
 import java.net.UnknownHostException;
@@ -57,7 +56,6 @@ public class KnownHost extends CustomTypeSafeMatcher<String> {
    *
    * @return hostname validating matcher
    */
-  @Factory
   public static Matcher<String> knownHost() {
     return new KnownHost();
   }

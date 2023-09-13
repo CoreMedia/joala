@@ -20,7 +20,6 @@
 package net.joala.matcher.exception;
 
 import org.hamcrest.CustomTypeSafeMatcher;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 
 import javax.annotation.Nonnull;
@@ -45,7 +44,6 @@ public class CausedBy extends CustomTypeSafeMatcher<Throwable> {
     return item.getCause() != null && (item.getCause() == cause || matchesSafely(item.getCause()));
   }
 
-  @Factory
   public static Matcher<Throwable> causedBy(final Throwable expected) {
     return new CausedBy(expected);
   }

@@ -20,7 +20,6 @@
 package net.joala.matcher.reflect;
 
 import org.hamcrest.CustomTypeSafeMatcher;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 
 import java.lang.reflect.AccessibleObject;
@@ -52,7 +51,6 @@ public class IsAccessible<T extends AccessibleObject> extends CustomTypeSafeMatc
    * @param <T> accessible object type
    * @return matcher
    */
-  @Factory
   public static <T extends AccessibleObject> Matcher<T> isAccessible() {
     return new IsAccessible<T>();
   }

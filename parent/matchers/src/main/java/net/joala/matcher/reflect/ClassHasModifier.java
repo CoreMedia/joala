@@ -20,7 +20,6 @@
 package net.joala.matcher.reflect;
 
 import org.hamcrest.Description;
-import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
@@ -55,42 +54,34 @@ public class ClassHasModifier<T extends Class<?>> extends TypeSafeMatcher<T> {
             .appendText(Modifier.toString(item.getModifiers()));
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsAbstract() {
     return new ClassHasModifier<T>(Modifier.ABSTRACT);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsFinal() {
     return new ClassHasModifier<T>(Modifier.FINAL);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsInterface() {
     return new ClassHasModifier<T>(Modifier.INTERFACE);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsPrivate() {
     return new ClassHasModifier<T>(Modifier.PRIVATE);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsProtected() {
     return new ClassHasModifier<T>(Modifier.PROTECTED);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsPublic() {
     return new ClassHasModifier<T>(Modifier.PUBLIC);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsStatic() {
     return new ClassHasModifier<T>(Modifier.STATIC);
   }
 
-  @Factory
   public static <T extends Class<?>> Matcher<T> classIsStrict() {
     return new ClassHasModifier<T>(Modifier.STRICT);
   }
