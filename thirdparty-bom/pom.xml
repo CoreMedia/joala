@@ -31,7 +31,7 @@
   <description>Joala Bill of Materials for Thirdparty artifacts.</description>
   <properties>
     <aspectjweaver.version>1.9.20.1</aspectjweaver.version>
-    <commons.lang3.version>3.13.0</commons.lang3.version>
+    <commons.lang3.version>3.17.0</commons.lang3.version>
     <guava.version>33.3.0-jre</guava.version>
     <jakarta.inject.version>2.0.1</jakarta.inject.version>
     <hamcrest.version>1.3</hamcrest.version>
