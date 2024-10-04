@@ -35,14 +35,14 @@
   ]]></description>
 
   <properties>
-    <spring.version>6.0.12</spring.version>
+    <spring.version>6.1.12</spring.version>
     <jakarta.inject.version>2.0.1</jakarta.inject.version>
-    <logback.version>1.4.11</logback.version>
+    <logback.version>1.5.8</logback.version>
     <powermock.version>2.0.9</powermock.version>
-    <mockito.version>5.5.0</mockito.version>
+    <mockito.version>5.13.0</mockito.version>
     <springockito.version>1.0.9</springockito.version>
     <objenesis.version>3.3</objenesis.version>
-    <byte-buddy-agent.version>1.14.6</byte-buddy-agent.version> <!-- keep in sync with mockito -->
+    <byte-buddy-agent.version>1.15.0</byte-buddy-agent.version> <!-- keep in sync with mockito -->
   </properties>
   <dependencyManagement>
     <dependencies>
