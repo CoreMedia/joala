@@ -6,6 +6,10 @@
 *.ipr
 *.iws
 .idea/
+# vscode:
+.vscode/
+# SDKMAN!
+.sdkmanrc
 # maven:
 target/
 overlays/
