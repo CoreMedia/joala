@@ -30,7 +30,7 @@
   <name>Joala 3rd-party BOM</name>
   <description>Joala Bill of Materials for Thirdparty artifacts.</description>
   <properties>
-    <aspectjweaver.version>1.9.22</aspectjweaver.version>
+    <aspectjweaver.version>1.9.22.1</aspectjweaver.version>
     <commons.lang3.version>3.17.0</commons.lang3.version>
     <guava.version>33.4.0-jre</guava.version>
     <jakarta.inject.version>2.0.1</jakarta.inject.version>
