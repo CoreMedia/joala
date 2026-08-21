@@ -21,7 +21,6 @@ package net.joala.testlet;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
-import net.joala.core.reflection.SetAccessibleAction;
 import org.hamcrest.Matcher;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -39,7 +38,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static java.security.AccessController.doPrivileged;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertThat;
@@ -106,7 +104,7 @@ public class ToStringTestlet<T> extends AbstractTestlet<T> {
     final Collection<Matcher<? super String>> fieldMatchers = new ArrayList<Matcher<? super String>>(declaredFields.length * 2);
     for (final Field declaredField : declaredFields) {
       if (!Modifier.isStatic(declaredField.getModifiers())) {
-        doPrivileged(new SetAccessibleAction(declaredField));
+        declaredField.setAccessible(true);
         final String fieldName = declaredField.getName();
         fieldMatchers.add(containsString(fieldName));
         fieldMatchers.add(containsString(String.valueOf(declaredField.get(getTestling()))));
