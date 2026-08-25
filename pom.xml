@@ -24,7 +24,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.joala</groupId>
   <artifactId>joala-bom</artifactId>
-  <version>3.0.5</version>
+  <version>3.0.6-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Joala BOM</name>
   <description><![CDATA[
